@@ -1067,7 +1067,7 @@
             🔊 Toca aqui para activar o áudio<br>
             <button onclick="fxUnlockAudio()" style="margin-top:.5rem;padding:.5rem 1.25rem;background:var(--accent-deep);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.12em;cursor:pointer">Activar Áudio</button>
           </div>
-          <button class="freq-play-btn" id="freq-play-btn" onclick="toggleFreq()">▶ Start</button>
+          <button class="freq-play-btn" id="freq-play-btn" onclick="toggleFreq()" ontouchend="event.preventDefault();toggleFreq()">▶ Iniciar</button>
         </div>
       </div>
     </div>
@@ -4845,45 +4845,51 @@ function toggleFreq(){
   if(fxPlaying){ stopFreq(); return; }
 
   var el=_fxGetAudioEl(curHz);
-  if(!el){ console.warn('No audio element for',curHz); return; }
+  if(!el){ return; }
 
-  // Stop any currently playing element
+  // Stop anything playing
   document.querySelectorAll('[id^="freq-audio-"]').forEach(function(a){
-    a.pause(); a.currentTime=0;
+    try{a.pause();a.currentTime=0;}catch(e){}
   });
 
+  // iOS PWA requires play() called SYNCHRONOUSLY in the event handler
+  // Set properties before play() — no async gaps
   el.volume=Math.max(0,Math.min(1,(fxVol||40)/100));
   el.loop=true;
   el.currentTime=0;
+  el.muted=false;
 
-  var playPromise=el.play();
-  if(playPromise!==undefined){
-    playPromise.then(function(){
-      _fxAudioEl=el;
-      fxPlaying=true;
-      var btn=document.getElementById('freq-play-btn');
-      if(btn){btn.textContent=(window._T&&window._T.freq_parar)||'⏹ Parar';btn.classList.add('playing');}
-      if(fxDur>0){
-        fxSecs=fxDur;
-        var cdEl=document.getElementById('freq-countdown');
-        if(cdEl)cdEl.style.display='block';
-        updCD();
-        fxCInv=setInterval(function(){fxSecs--;updCD();if(fxSecs<=0)stopFreq();},1000);
-      }
-      drawWave();
-    }).catch(function(e){
-      console.warn('Audio play failed:',e);
-      // Show unlock button as fallback
-      var warn=document.getElementById('freq-ios-warn');
-      if(warn)warn.style.display='block';
+  // Call play() immediately — still in the click/touch event stack
+  var p;
+  try{ p=el.play(); } catch(e){ p=null; }
+
+  // Update UI immediately (don't wait for promise)
+  _fxAudioEl=el;
+  fxPlaying=true;
+  var btn=document.getElementById('freq-play-btn');
+  if(btn){
+    btn.textContent=(window._T&&window._T.freq_parar)||'⏹ Parar';
+    btn.classList.add('playing');
+  }
+  if(fxDur>0){
+    fxSecs=fxDur;
+    var cdEl=document.getElementById('freq-countdown');
+    if(cdEl)cdEl.style.display='block';
+    updCD();
+    fxCInv=setInterval(function(){fxSecs--;updCD();if(fxSecs<=0)stopFreq();},1000);
+  }
+  drawWave();
+
+  // Handle promise errors silently
+  if(p&&p.catch){
+    p.catch(function(e){
+      console.warn('freq play error:',e.name,e.message);
+      // If NotAllowedError on iOS — audio context needs a direct tap
+      // This should not happen since we are IN a click handler
+      fxPlaying=false;
+      _fxAudioEl=null;
+      if(btn){btn.textContent=(window._T&&window._T.freq_iniciar)||'▶ Iniciar';btn.classList.remove('playing');}
     });
-  } else {
-    // Older browsers — assume it worked
-    _fxAudioEl=el;
-    fxPlaying=true;
-    var btn=document.getElementById('freq-play-btn');
-    if(btn){btn.textContent=(window._T&&window._T.freq_parar)||'⏹ Parar';btn.classList.add('playing');}
-    drawWave();
   }
 }
 
@@ -5971,7 +5977,7 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
             🔊 Toca aqui para activar o áudio<br>
             <button onclick="fxUnlockAudio()" style="margin-top:.5rem;padding:.5rem 1.25rem;background:var(--accent-deep);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.12em;cursor:pointer">Activar Áudio</button>
           </div>
-          <button class="freq-play-btn" id="freq-play-btn" onclick="toggleFreq()">▶ Start</button>
+          <button class="freq-play-btn" id="freq-play-btn" onclick="toggleFreq()" ontouchend="event.preventDefault();toggleFreq()">▶ Iniciar</button>
         </div>
       </div>
     </div>
@@ -11915,8 +11921,8 @@ const DRAWER_LABELS = {
     numerologia:'Numerologia', ki:'Astrologia do Ki', enneagram:'Eneagrama',
     humandesign:'Human Design', chakras:'Chakras', lunar:'Agenda Lunar',
     meditacoes:'Meditações', frequencias:'Frequências', tarot:'Tarot', runas:'Runas',
-    palma:'Leitura de Mãos', constelacoes:'Constelações', eventos:'Eventos', eventos:'Eventos', terapeutas:'Consultas',
-    cursos:'Cursos', biblioteca:'Biblioteca', diario_terapeutico:'Diário', sono:'Sono', sono:'Sono',
+    palma:'Leitura de Mãos', constelacoes:'Constelações', eventos:'Eventos', terapeutas:'Consultas',
+    cursos:'Cursos', biblioteca:'Biblioteca', diario_terapeutico:'Diário', sono:'Sono',
     parceiro:'Parceiro',
     nova_pessoa:'Nova pessoa'
   },
@@ -11926,8 +11932,8 @@ const DRAWER_LABELS = {
     numerologia:'Numerología', ki:'Astrología del Ki', enneagram:'Eneagrama',
     humandesign:'Human Design', chakras:'Chakras', lunar:'Agenda Lunar',
     meditacoes:'Meditaciones', frequencias:'Frecuencias', tarot:'Tarot', runas:'Runas',
-    palma:'Lectura de Manos', constelacoes:'Constelaciones', terapeutas:'Consultas',
-    cursos:'Cursos', biblioteca:'Biblioteca', diario_terapeutico:'Diario', sono:'Sueño', sono:'Sueño',
+    palma:'Lectura de Manos', constelacoes:'Constelaciones', eventos:'Eventos', terapeutas:'Consultas',
+    cursos:'Cursos', biblioteca:'Biblioteca', diario_terapeutico:'Diario', sono:'Sueño',
     parceiro:'Pareja',
     nova_pessoa:'Nueva persona'
   },
@@ -11937,8 +11943,8 @@ const DRAWER_LABELS = {
     numerologia:'Numerology', ki:'Ki Astrology', enneagram:'Enneagram',
     humandesign:'Human Design', chakras:'Chakras', lunar:'Lunar Calendar',
     meditacoes:'Meditations', frequencias:'Frequencies', tarot:'Tarot', runas:'Runes',
-    palma:'Palm Reading', constelacoes:'Constellations', terapeutas:'Sessions',
-    cursos:'Courses', biblioteca:'Library', diario_terapeutico:'Journal', sono:'Sleep', sono:'Sleep',
+    palma:'Palm Reading', constelacoes:'Constellations', eventos:'Events', terapeutas:'Sessions',
+    cursos:'Courses', biblioteca:'Library', diario_terapeutico:'Journal', sono:'Sleep',
     parceiro:'Partner',
     nova_pessoa:'New person'
   }
@@ -12619,14 +12625,17 @@ function evRender(){
         '<div class="ev-card-meta">'+badgeTipo+badgeLang+
           '<span class="ev-card-date">'+dataStr+hora+'</span>'+
         '</div>'+
-        '<div class="ev-card-title">'+ev.titulo+'</div>'+
-        (ev.organizador?'<div class="ev-card-org">'+ev.organizador+'</div>':'')+
-        '<div class="ev-card-desc">'+ev.descricao+'</div>'+
+        '<div class="ev-card-title">'+(currentLang==='es'&&ev.titulo_es?ev.titulo_es:currentLang==='en'&&ev.titulo_en?ev.titulo_en:ev.titulo)+'</div>'+
+        (ev.organizador?'<div class="ev-card-org">'+(currentLang==='es'&&ev.organizador_es?ev.organizador_es:currentLang==='en'&&ev.organizador_en?ev.organizador_en:ev.organizador)+'</div>':'')+
+        '<div class="ev-card-desc">'+(currentLang==='es'&&ev.descricao_es?ev.descricao_es:currentLang==='en'&&ev.descricao_en?ev.descricao_en:ev.descricao)+'</div>'+
         '<div class="ev-card-footer">'+
           '<span class="ev-card-local">'+local+'</span>'+
           '<div style="display:flex;align-items:center;gap:.75rem">'+
             (preco?'<span class="ev-card-price">'+preco+'</span>':'')+
-            (ev.link?'<a class="ev-btn" href="'+ev.link+'" target="_blank" rel="noopener">'+btnTxt+'</a>':'')+
+            (ev.link?
+              '<a class="ev-btn" href="'+ev.link+'" target="_blank" rel="noopener">'+btnTxt+'</a>':
+              '<span class="ev-btn" style="opacity:.55;cursor:default;pointer-events:none">'+
+              (currentLang==='en'?'Coming soon':currentLang==='es'?'Próximamente':'Em breve')+'</span>')+
           '</div>'+
         '</div>'+
       '</div>'+
