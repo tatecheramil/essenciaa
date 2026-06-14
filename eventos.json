@@ -1,7 +1,11 @@
 [
   {
     "titulo": "Inteligência Espiritual — Workshops Vivenciais",
+    "titulo_es": "Inteligencia Espiritual — Talleres Vivenciales",
+    "titulo_en": "Spiritual Intelligence — Experiential Workshops",
     "descricao": "Um dia de imersão em práticas vivenciais de inteligência espiritual. Um espaço de encontro, reflexão e transformação interior num ambiente acolhedor e inspirador.",
+    "descricao_es": "Un día de inmersión en prácticas vivenciales de inteligencia espiritual. Un espacio de encuentro, reflexión y transformación interior en un ambiente acogedor e inspirador.",
+    "descricao_en": "A full day of immersive experiential practices in spiritual intelligence. A space for encounter, reflection and inner transformation in a welcoming and inspiring environment.",
     "data": "2026-10-24",
     "hora": "09:30 – 18:30",
     "tipo": "presencial",
