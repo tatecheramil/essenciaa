@@ -253,7 +253,7 @@
 <body>
 
 <!-- ── ECRÃ DE CÓDIGO DE ACESSO ── -->
-<div id="ecra-codigo" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem">
+<div id="ecra-codigo" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:9999;flex-direction:column;align-items:center;justify-content:center;padding:2rem">
   <div style="max-width:360px;width:100%;text-align:center">
     <div style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem">Essência</div>
     <div style="font-size:2rem;margin-bottom:.5rem">✦</div>
@@ -12587,8 +12587,7 @@ function evCarregar(){
       if(loading){loading.style.display='none';}
       var lista=document.getElementById('ev-lista');
       if(lista){
-        var T=TRANSLATIONS[currentLang]||TRANSLATIONS.pt;
-        lista.innerHTML='<div class="ev-empty">'+(T.ev_sem_eventos||'Nenhum evento disponível de momento. Volta em breve.')+'</div>';
+        lista.innerHTML='<div style="padding:1rem;color:#c0392b;font-size:.82rem">Erro ao carregar eventos: '+e.message+'<br>URL: '+(window.location.origin+(window.location.pathname.replace(/\/[^\/]*$/, '')||''))+'/eventos.json</div>';
       }
     });
 }
@@ -13237,9 +13236,27 @@ function calcularComLang() {
     return id;
   }
 
-  // Verificar se já tem acesso
+  // Verificar se já tem acesso — usa localStorage E cookie como backup
+  function setCookie(name, value, days){
+    var d = new Date();
+    d.setTime(d.getTime() + (days*24*60*60*1000));
+    document.cookie = name + '=' + value + ';expires=' + d.toUTCString() + ';path=/;SameSite=Strict';
+  }
+  function getCookie(name){
+    var ca = document.cookie.split(';');
+    for(var i=0;i<ca.length;i++){
+      var c=ca[i].trim();
+      if(c.indexOf(name+'=')===0) return c.substring(name.length+1);
+    }
+    return null;
+  }
   function temAcesso(){
-    return localStorage.getItem('_ess_acesso') === '1';
+    var ls = localStorage.getItem('_ess_acesso') === '1';
+    var ck = getCookie('_ess_acesso') === '1';
+    // Se um tem mas o outro não, sincronizar
+    if(ls && !ck) setCookie('_ess_acesso', '1', 365);
+    if(ck && !ls) localStorage.setItem('_ess_acesso', '1');
+    return ls || ck;
   }
 
   // Mostrar ecrã de código se necessário
@@ -13280,6 +13297,7 @@ function calcularComLang() {
       if(data.valido){
         localStorage.setItem('_ess_acesso', '1');
         localStorage.setItem('_ess_codigo', codigo);
+        setCookie('_ess_acesso', '1', 365);
         document.getElementById('ecra-codigo').style.display = 'none';
       } else {
         erroEl.textContent = data.erro || 'Código inválido. Verifica e tenta novamente.';
@@ -13294,6 +13312,7 @@ function calcularComLang() {
         localStorage.setItem('_ess_acesso', '1');
         localStorage.setItem('_ess_codigo', codigo);
         localStorage.setItem('_ess_validar_online', '1');
+        setCookie('_ess_acesso', '1', 365);
         document.getElementById('ecra-codigo').style.display = 'none';
       } else {
         erroEl.textContent = 'Sem ligação. Verifica o formato do código (ESS-XXXX-XXXX-XXXX).';
