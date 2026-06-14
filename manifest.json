@@ -2,7 +2,7 @@
   "name": "Essência — Auto-Conhecimento",
   "short_name": "Essência",
   "description": "Descobre quem realmente és — Mapa Astral, Numerologia, Human Design, Chakras e muito mais.",
-  "start_url": "/essenciaa/",
+  "start_url": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#f4f8fc",
