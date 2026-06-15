@@ -1010,6 +1010,17 @@
       </div>
     </div>
     <div id="hd-result-section" style="display:none">
+      <div class="hd-hero">
+        <div class="hd-hero-icon">⬡</div>
+        <div>
+          <div class="hd-hero-title" id="hd-result-title">Human Design</div>
+          <div class="hd-hero-sub" id="hd-result-sub">O teu manual de instruções único</div>
+        </div>
+      </div>
+      <div class="interp-box" style="margin-bottom:1.5rem">
+        <div class="interp-label" id="hd-titulo-label2" style="font-size:.7rem;letter-spacing:.12em">O que é o Human Design?</div>
+        <div class="interp-text" id="hd-intro-txt2" style="font-size:.82rem">O Human Design combina Astrologia, I Ching, Kabbalah, Chakras e Mecânica Quântica para revelar como estás desenhado/a para tomar decisões, interagir com os outros e viver alinhado/a com a tua natureza profunda.</div>
+      </div>
       <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
         <button class="btn-back" id="hd-btn-recalc" onclick="refazerHD()">← Recalcular</button>
       </div>
@@ -3320,6 +3331,9 @@ function applyLang() {
   if(lunarRitualTitulo) lunarRitualTitulo.textContent=currentLang==='es'?'✨ Tu ritual personalizado':currentLang==='en'?'✨ Your personalised ritual':'✨ Ritual personalizado para ti';
   const hdTituloLabel=document.getElementById('hd-titulo-label'); if(hdTituloLabel) hdTituloLabel.textContent=T.hd_titulo;
   const hdIntroTxt=document.getElementById('hd-intro-txt'); if(hdIntroTxt) hdIntroTxt.textContent=T.hd_intro;
+  const hdTituloLabel2=document.getElementById('hd-titulo-label2'); if(hdTituloLabel2) hdTituloLabel2.textContent=T.hd_titulo;
+  const hdIntroTxt2=document.getElementById('hd-intro-txt2'); if(hdIntroTxt2) hdIntroTxt2.textContent=T.hd_intro;
+  const hdResultSub=document.getElementById('hd-result-sub'); if(hdResultSub) hdResultSub.textContent=currentLang==='en'?'Your unique instruction manual':currentLang==='es'?'Tu manual de instrucciones único':'O teu manual de instruções único';
   const hdBtnRecalc=document.getElementById('hd-btn-recalc'); if(hdBtnRecalc) hdBtnRecalc.textContent=T.hd_recalcular;
   const hdBgTitulo=document.getElementById('hd-bodygraph-titulo'); if(hdBgTitulo) hdBgTitulo.textContent=T.hd_bodygraph_titulo;
   const hdCentresTitulo=document.getElementById('hd-centres-titulo'); if(hdCentresTitulo) hdCentresTitulo.textContent=T.hd_centres_titulo;
@@ -6138,6 +6152,17 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
       </div>
     </div>
     <div id="hd-result-section" style="display:none">
+      <div class="hd-hero">
+        <div class="hd-hero-icon">⬡</div>
+        <div>
+          <div class="hd-hero-title" id="hd-result-title">Human Design</div>
+          <div class="hd-hero-sub" id="hd-result-sub">O teu manual de instruções único</div>
+        </div>
+      </div>
+      <div class="interp-box" style="margin-bottom:1.5rem">
+        <div class="interp-label" id="hd-titulo-label2" style="font-size:.7rem;letter-spacing:.12em">O que é o Human Design?</div>
+        <div class="interp-text" id="hd-intro-txt2" style="font-size:.82rem">O Human Design combina Astrologia, I Ching, Kabbalah, Chakras e Mecânica Quântica para revelar como estás desenhado/a para tomar decisões, interagir com os outros e viver alinhado/a com a tua natureza profunda.</div>
+      </div>
       <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
         <button class="btn-back" id="hd-btn-recalc" onclick="refazerHD()">← Recalcular</button>
       </div>
@@ -8404,6 +8429,9 @@ function applyLang() {
   if(lunarRitualTitulo) lunarRitualTitulo.textContent=currentLang==='es'?'✨ Tu ritual personalizado':currentLang==='en'?'✨ Your personalised ritual':'✨ Ritual personalizado para ti';
   const hdTituloLabel=document.getElementById('hd-titulo-label'); if(hdTituloLabel) hdTituloLabel.textContent=T.hd_titulo;
   const hdIntroTxt=document.getElementById('hd-intro-txt'); if(hdIntroTxt) hdIntroTxt.textContent=T.hd_intro;
+  const hdTituloLabel2=document.getElementById('hd-titulo-label2'); if(hdTituloLabel2) hdTituloLabel2.textContent=T.hd_titulo;
+  const hdIntroTxt2=document.getElementById('hd-intro-txt2'); if(hdIntroTxt2) hdIntroTxt2.textContent=T.hd_intro;
+  const hdResultSub=document.getElementById('hd-result-sub'); if(hdResultSub) hdResultSub.textContent=currentLang==='en'?'Your unique instruction manual':currentLang==='es'?'Tu manual de instrucciones único':'O teu manual de instruções único';
   const hdBtnRecalc=document.getElementById('hd-btn-recalc'); if(hdBtnRecalc) hdBtnRecalc.textContent=T.hd_recalcular;
   const hdBgTitulo=document.getElementById('hd-bodygraph-titulo'); if(hdBgTitulo) hdBgTitulo.textContent=T.hd_bodygraph_titulo;
   const hdCentresTitulo=document.getElementById('hd-centres-titulo'); if(hdCentresTitulo) hdCentresTitulo.textContent=T.hd_centres_titulo;
