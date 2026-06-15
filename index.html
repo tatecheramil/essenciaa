@@ -375,6 +375,20 @@
         <select id="inp-cidade" onchange="selecionarCidade()">
           <option value="" id="opt-cidade-default">— Selecciona primeiro o país —</option>
         </select>
+        <div id="cidade-manual-area" style="display:none;margin-top:.5rem">
+          <div style="display:flex;gap:.5rem">
+            <input type="text" id="cidade-manual-input"
+              placeholder="Escreve o nome da cidade..."
+              style="flex:1;padding:.6rem .8rem;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-family:'Jost',sans-serif;font-size:.85rem;outline:none"
+              onkeydown="if(event.key==='Enter')procurarCidadeManual()"
+            >
+            <button id="btn-procurar-cidade" onclick="procurarCidadeManual()"
+              style="padding:.6rem 1rem;background:var(--accent-deep);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.1em;cursor:pointer;white-space:nowrap">
+              Procurar
+            </button>
+          </div>
+          <div id="cidade-manual-result" style="font-size:.8rem;margin-top:.4rem;min-height:1.2rem"></div>
+        </div>
         <input type="hidden" id="inp-local"/>
         <div id="cidade-coords" style="display:none;margin-top:0.4rem;font-size:0.72rem;color:var(--accent2)"></div>
       </div>
@@ -3467,23 +3481,74 @@ function atualizarCidades(){
   cidSel.innerHTML='<option value="">'+(TRANSLATIONS[currentLang]?.sel_cidade||'— Selecciona a cidade —')+'</option>';
   document.getElementById('inp-local').value='';
   document.getElementById('cidade-coords').style.display='none';
+  const ma=document.getElementById('cidade-manual-area');if(ma)ma.style.display='none';
   if(!pais||!PAISES_CIDADES[pais])return;
   Object.keys(PAISES_CIDADES[pais].cidades).sort().forEach(c=>{
     const o=document.createElement('option');o.value=c;o.textContent=c;cidSel.appendChild(o);
   });
+  const oM=document.createElement('option');oM.value='__manual__';oM.textContent='✏️ Outra cidade...';cidSel.appendChild(oM);
 }
 
 function selecionarCidade(){
   const pais=document.getElementById('inp-pais').value;
   const cid=document.getElementById('inp-cidade').value;
   const el=document.getElementById('cidade-coords');
-  if(!pais||!cid){document.getElementById('inp-local').value='';el.style.display='none';return;}
+  const ma=document.getElementById('cidade-manual-area');
+  if(!pais||!cid){document.getElementById('inp-local').value='';el.style.display='none';if(ma)ma.style.display='none';return;}
+  if(cid==='__manual__'){
+    el.style.display='none';
+    if(ma){ma.style.display='block';document.getElementById('cidade-manual-input').focus();}
+    document.getElementById('inp-local').value='';
+    return;
+  }
+  if(ma)ma.style.display='none';
   const data=PAISES_CIDADES[pais].cidades[cid];
   document.getElementById('inp-local').value=cid+','+pais;
   if(data){
     el.style.display='block';
     el.textContent='📍 '+cid+' · '+data.lat.toFixed(2)+'°N '+Math.abs(data.lon).toFixed(2)+'°'+(data.lon<0?'W':'E');
   }
+}
+
+async function procurarCidadeManual(){
+  const pais=document.getElementById('inp-pais').value;
+  const query=document.getElementById('cidade-manual-input').value.trim();
+  const resultEl=document.getElementById('cidade-manual-result');
+  const btnEl=document.getElementById('btn-procurar-cidade');
+  if(!query){resultEl.textContent='Por favor escreve o nome da cidade.';resultEl.style.color='#c0392b';return;}
+  btnEl.disabled=true;btnEl.textContent='...';
+  resultEl.textContent='A procurar...';resultEl.style.color='var(--text3)';
+  try{
+    const url='https://nominatim.openstreetmap.org/search?q='+encodeURIComponent(query+(pais?', '+pais:''))+'&format=json&limit=1&accept-language=pt';
+    const resp=await fetch(url,{headers:{'User-Agent':'Essencia-App/1.0'}});
+    const data=await resp.json();
+    if(!data||data.length===0){
+      resultEl.textContent='Cidade não encontrada. Tenta com o nome em inglês ou adiciona o país.';
+      resultEl.style.color='#c0392b';
+      btnEl.disabled=false;btnEl.textContent='Procurar';return;
+    }
+    const r=data[0];
+    const lat=parseFloat(r.lat),lon=parseFloat(r.lon);
+    const nome=r.display_name.split(',')[0].trim();
+    window._cidadeManualLat=lat;window._cidadeManualLon=lon;window._cidadeManualNome=nome;
+    if(pais&&PAISES_CIDADES[pais]){
+      PAISES_CIDADES[pais].cidades[nome]={lat:lat,lon:lon};
+      const cidSel=document.getElementById('inp-cidade');
+      let found=false;
+      for(let i=0;i<cidSel.options.length;i++){if(cidSel.options[i].value===nome){cidSel.value=nome;found=true;break;}}
+      if(!found){const o=document.createElement('option');o.value=nome;o.textContent=nome;cidSel.insertBefore(o,cidSel.lastElementChild);cidSel.value=nome;}
+    }
+    document.getElementById('inp-local').value=nome+(pais?','+pais:'');
+    const el=document.getElementById('cidade-coords');
+    el.style.display='block';
+    el.textContent='📍 '+nome+' · '+lat.toFixed(2)+'°N '+Math.abs(lon).toFixed(2)+'°'+(lon<0?'W':'E');
+    document.getElementById('cidade-manual-area').style.display='none';
+    resultEl.textContent='';
+  }catch(e){
+    resultEl.textContent='Erro de ligação. Verifica a internet e tenta novamente.';
+    resultEl.style.color='#c0392b';
+  }
+  btnEl.disabled=false;btnEl.textContent='Procurar';
 }
 
 // Inicializar dropdowns quando a página carrega
@@ -5285,6 +5350,20 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
         <select id="inp-cidade" onchange="selecionarCidade()">
           <option value="" id="opt-cidade-default">— Selecciona primeiro o país —</option>
         </select>
+        <div id="cidade-manual-area" style="display:none;margin-top:.5rem">
+          <div style="display:flex;gap:.5rem">
+            <input type="text" id="cidade-manual-input"
+              placeholder="Escreve o nome da cidade..."
+              style="flex:1;padding:.6rem .8rem;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-family:'Jost',sans-serif;font-size:.85rem;outline:none"
+              onkeydown="if(event.key==='Enter')procurarCidadeManual()"
+            >
+            <button id="btn-procurar-cidade" onclick="procurarCidadeManual()"
+              style="padding:.6rem 1rem;background:var(--accent-deep);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.1em;cursor:pointer;white-space:nowrap">
+              Procurar
+            </button>
+          </div>
+          <div id="cidade-manual-result" style="font-size:.8rem;margin-top:.4rem;min-height:1.2rem"></div>
+        </div>
         <input type="hidden" id="inp-local"/>
         <div id="cidade-coords" style="display:none;margin-top:0.4rem;font-size:0.72rem;color:var(--accent2)"></div>
       </div>
@@ -8333,23 +8412,74 @@ function atualizarCidades(){
   cidSel.innerHTML='<option value="">'+(TRANSLATIONS[currentLang]?.sel_cidade||'— Selecciona a cidade —')+'</option>';
   document.getElementById('inp-local').value='';
   document.getElementById('cidade-coords').style.display='none';
+  const ma=document.getElementById('cidade-manual-area');if(ma)ma.style.display='none';
   if(!pais||!PAISES_CIDADES[pais])return;
   Object.keys(PAISES_CIDADES[pais].cidades).sort().forEach(c=>{
     const o=document.createElement('option');o.value=c;o.textContent=c;cidSel.appendChild(o);
   });
+  const oM=document.createElement('option');oM.value='__manual__';oM.textContent='✏️ Outra cidade...';cidSel.appendChild(oM);
 }
 
 function selecionarCidade(){
   const pais=document.getElementById('inp-pais').value;
   const cid=document.getElementById('inp-cidade').value;
   const el=document.getElementById('cidade-coords');
-  if(!pais||!cid){document.getElementById('inp-local').value='';el.style.display='none';return;}
+  const ma=document.getElementById('cidade-manual-area');
+  if(!pais||!cid){document.getElementById('inp-local').value='';el.style.display='none';if(ma)ma.style.display='none';return;}
+  if(cid==='__manual__'){
+    el.style.display='none';
+    if(ma){ma.style.display='block';document.getElementById('cidade-manual-input').focus();}
+    document.getElementById('inp-local').value='';
+    return;
+  }
+  if(ma)ma.style.display='none';
   const data=PAISES_CIDADES[pais].cidades[cid];
   document.getElementById('inp-local').value=cid+','+pais;
   if(data){
     el.style.display='block';
     el.textContent='📍 '+cid+' · '+data.lat.toFixed(2)+'°N '+Math.abs(data.lon).toFixed(2)+'°'+(data.lon<0?'W':'E');
   }
+}
+
+async function procurarCidadeManual(){
+  const pais=document.getElementById('inp-pais').value;
+  const query=document.getElementById('cidade-manual-input').value.trim();
+  const resultEl=document.getElementById('cidade-manual-result');
+  const btnEl=document.getElementById('btn-procurar-cidade');
+  if(!query){resultEl.textContent='Por favor escreve o nome da cidade.';resultEl.style.color='#c0392b';return;}
+  btnEl.disabled=true;btnEl.textContent='...';
+  resultEl.textContent='A procurar...';resultEl.style.color='var(--text3)';
+  try{
+    const url='https://nominatim.openstreetmap.org/search?q='+encodeURIComponent(query+(pais?', '+pais:''))+'&format=json&limit=1&accept-language=pt';
+    const resp=await fetch(url,{headers:{'User-Agent':'Essencia-App/1.0'}});
+    const data=await resp.json();
+    if(!data||data.length===0){
+      resultEl.textContent='Cidade não encontrada. Tenta com o nome em inglês ou adiciona o país.';
+      resultEl.style.color='#c0392b';
+      btnEl.disabled=false;btnEl.textContent='Procurar';return;
+    }
+    const r=data[0];
+    const lat=parseFloat(r.lat),lon=parseFloat(r.lon);
+    const nome=r.display_name.split(',')[0].trim();
+    window._cidadeManualLat=lat;window._cidadeManualLon=lon;window._cidadeManualNome=nome;
+    if(pais&&PAISES_CIDADES[pais]){
+      PAISES_CIDADES[pais].cidades[nome]={lat:lat,lon:lon};
+      const cidSel=document.getElementById('inp-cidade');
+      let found=false;
+      for(let i=0;i<cidSel.options.length;i++){if(cidSel.options[i].value===nome){cidSel.value=nome;found=true;break;}}
+      if(!found){const o=document.createElement('option');o.value=nome;o.textContent=nome;cidSel.insertBefore(o,cidSel.lastElementChild);cidSel.value=nome;}
+    }
+    document.getElementById('inp-local').value=nome+(pais?','+pais:'');
+    const el=document.getElementById('cidade-coords');
+    el.style.display='block';
+    el.textContent='📍 '+nome+' · '+lat.toFixed(2)+'°N '+Math.abs(lon).toFixed(2)+'°'+(lon<0?'W':'E');
+    document.getElementById('cidade-manual-area').style.display='none';
+    resultEl.textContent='';
+  }catch(e){
+    resultEl.textContent='Erro de ligação. Verifica a internet e tenta novamente.';
+    resultEl.style.color='#c0392b';
+  }
+  btnEl.disabled=false;btnEl.textContent='Procurar';
 }
 
 // Inicializar dropdowns quando a página carrega
