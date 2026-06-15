@@ -377,7 +377,7 @@
   <div class="form-wrap">
     <div class="form-card">
       <div class="form-section-label" id="lbl-dados-pessoais">Dados pessoais</div>
-      <div class="field"><label id="lbl-nome">Nome completo</label><input type="text" id="inp-nome" placeholder="O teu nome completo"/></div>
+      <div class="field"><label id="lbl-nome">Nome de nascimento</label><input type="text" id="inp-nome" placeholder="O teu nome completo"/></div>
       <div class="form-section-label" style="margin-top:1.5rem" id="lbl-data-local">Data e local de nascimento</div>
       <div class="field"><label id="lbl-data-nasc">Data de nascimento</label>
         <div class="row3">
@@ -406,6 +406,20 @@
         <select id="inp-cidade" onchange="selecionarCidade()">
           <option value="" id="opt-cidade-default">— Selecciona primeiro o país —</option>
         </select>
+        <div id="cidade-manual-area" style="display:none;margin-top:.5rem">
+          <div style="display:flex;gap:.5rem">
+            <input type="text" id="cidade-manual-input"
+              placeholder="Escreve o nome da cidade..."
+              style="flex:1;padding:.6rem .8rem;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-family:'Jost',sans-serif;font-size:.85rem;outline:none"
+              onkeydown="if(event.key==='Enter')procurarCidadeManual()"
+            >
+            <button id="btn-procurar-cidade" onclick="procurarCidadeManual()"
+              style="padding:.6rem 1rem;background:var(--accent-deep);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.1em;cursor:pointer;white-space:nowrap">
+              Procurar
+            </button>
+          </div>
+          <div id="cidade-manual-result" style="font-size:.8rem;margin-top:.4rem;min-height:1.2rem"></div>
+        </div>
         <input type="hidden" id="inp-local"/>
         <div id="cidade-coords" style="display:none;margin-top:0.4rem;font-size:0.72rem;color:var(--accent2)"></div>
       </div>
@@ -756,7 +770,7 @@
         </div>
         <div class="feedback-question" id="fb-q2" style="font-size:0.9rem;margin-bottom:0.75rem">O que foi mais valioso hoje?</div>
         <div class="feedback-btns" id="feedback-topic-btns">
-          <button class="feedback-btn" id="fb-btn-tarot" onclick="toggleFeedbackBtn(this)">🃏 <span id="fb-tarot-label">Tarô</span></button>
+          <button class="feedback-btn" id="fb-btn-tarot" onclick="toggleFeedbackBtn(this)">🃏 <span id="fb-tarot-label">Tarot</span></button>
           <button class="feedback-btn" id="fb-btn-runa" onclick="toggleFeedbackBtn(this)">⭐ <span id="fb-runa-label">Runa</span></button>
           <button class="feedback-btn" id="fb-btn-astral" onclick="toggleFeedbackBtn(this)">☉ <span id="fb-astral-label">Posição astral</span></button>
           <button class="feedback-btn" id="fb-btn-bem" onclick="toggleFeedbackBtn(this)">🌿 <span id="fb-bem-label">Bem-estar</span></button>
@@ -1213,7 +1227,7 @@
     <div id="ev-lista"></div>
     <div class="ev-submit-card" id="ev-submit-card">
       <div class="ev-submit-title" id="ev-submit-title">Tens um evento para divulgar?</div>
-      <div class="ev-submit-text" id="ev-submit-text">Envia os detalhes para <strong>eventos@essencia.app</strong> e publicamos gratuitamente.</div>
+      <div class="ev-submit-text" id="ev-submit-text">Envia os detalhes para <strong>elekitra@mail.com</strong> e entraremos em contacto contigo.</div>
     </div>
   </div>
 
@@ -1290,7 +1304,7 @@
         <div class="form-section-label" id="parc-lbl-dados">Dados do parceiro/a</div>
         <div class="field">
           <label id="parc-lbl-nome">Nome</label>
-          <input type="text" id="parc-inp-nome" placeholder="Nome completo"/>
+          <input type="text" id="parc-inp-nome" placeholder="Nome de nascimento"/>
         </div>
         <div class="field">
           <label id="parc-lbl-data">Data de nascimento</label>
@@ -1477,7 +1491,7 @@ const TRANSLATIONS = {
     apagar_confirm: 'Apagar o perfil de {nome}? Esta acção não pode ser desfeita.',
     // Form
     dados_pessoais: 'Dados pessoais',
-    lbl_nome: 'Nome completo',
+    lbl_nome: 'Nome de nascimento',
     ph_nome: 'O teu nome completo',
     data_local: 'Data e local de nascimento',
     lbl_data: 'Data de nascimento',
@@ -1889,7 +1903,7 @@ const TRANSLATIONS = {
     ev_sem_eventos: 'Nenhum evento disponível de momento. Volta em breve.',
     ev_sem_filtro: 'Nenhum evento encontrado para este filtro.',
     ev_submit_title: 'Tens um evento para divulgar?',
-    ev_submit_text: 'Envia os detalhes para eventos@essencia.app e publicamos gratuitamente.',
+    ev_submit_text: 'Envia os detalhes para elekitra@mail.com e entraremos em contacto contigo.',
     disc_titulo: 'Antes de Entrares',
     disc_texto: 'A Essência é um espaço de autoconhecimento e reflexão pessoal. Todo o conteúdo — astrológico, numerológico, de Human Design e outros sistemas — tem carácter exploratório e simbólico.<br><br>As análises são convites à reflexão, não verdades absolutas. Nada aqui deve substituir o acompanhamento de profissionais de saúde, psicologia ou de qualquer outra área especializada.',
     disc_check: 'Li e compreendo que a Essência é um espaço de exploração interior, não de determinismo.',
@@ -1952,7 +1966,7 @@ const TRANSLATIONS = {
     apagar_confirm: '¿Eliminar el perfil de {nome}? Esta acción no se puede deshacer.',
     // Form
     dados_pessoais: 'Datos personales',
-    lbl_nome: 'Nombre completo',
+    lbl_nome: 'Nombre de nacimiento',
     ph_nome: 'Tu nombre completo',
     data_local: 'Fecha y lugar de nacimiento',
     lbl_data: 'Fecha de nacimiento',
@@ -2389,7 +2403,7 @@ const TRANSLATIONS = {
     ev_sem_eventos: 'Ningún evento disponible por el momento. Vuelve pronto.',
     ev_sem_filtro: 'Ningún evento encontrado para este filtro.',
     ev_submit_title: 'Tienes un evento para divulgar?',
-    ev_submit_text: 'Envía los detalles a eventos@essencia.app y lo publicamos gratuitamente.',
+    ev_submit_text: 'Envía los detalles a elekitra@mail.com y nos pondremos en contacto contigo.',
     disc_titulo: 'Antes de Entrar',
     disc_texto: 'Essência es un espacio de autoconocimiento y reflexión personal. Todo el contenido — astrológico, numerológico, de Human Design y otros sistemas — tiene carácter exploratorio y simbólico.<br><br>Los análisis son invitaciones a la reflexión, no verdades absolutas. Nada aquí debe sustituir el acompañamiento de profesionales de salud, psicología u otras áreas especializadas.',
     disc_check: 'He leído y entiendo que Essência es un espacio de exploración interior, no de determinismo.',
@@ -2451,7 +2465,7 @@ const TRANSLATIONS = {
     perfil_toca: 'Tap to view profile',
     apagar_confirm: "Delete {nome}'s profile? This action cannot be undone.",
     dados_pessoais: 'Personal data',
-    lbl_nome: 'Full name',
+    lbl_nome: 'Birth name',
     ph_nome: 'Your full name',
     data_local: 'Date and place of birth',
     lbl_data: 'Date of birth',
@@ -2812,7 +2826,7 @@ const TRANSLATIONS = {
     ev_sem_eventos: 'No events available at the moment. Check back soon.',
     ev_sem_filtro: 'No events found for this filter.',
     ev_submit_title: 'Have an event to share?',
-    ev_submit_text: 'Send details to eventos@essencia.app and we will publish it for free.',
+    ev_submit_text: 'Send details to elekitra@mail.com and we will get in touch with you.',
     disc_titulo: 'Before You Enter',
     disc_texto: 'Essência is a space for self-knowledge and personal reflection. All content — astrological, numerological, Human Design and other systems — is exploratory and symbolic in nature.<br><br>The analyses are invitations to reflect, not absolute truths. Nothing here should replace the guidance of qualified health, psychology or other professional practitioners.',
     disc_check: 'I have read and understand that Essência is a space for inner exploration, not determinism.',
@@ -3399,12 +3413,30 @@ const PAISES_CIDADES={
   'França':{tz:1,dst:true,cidades:{
     'Paris':{lat:48.85,lon:2.35},'Lyon':{lat:45.75,lon:4.85},
     'Marselha':{lat:43.30,lon:5.37},'Toulouse':{lat:43.60,lon:1.44},
-    'Nice':{lat:43.70,lon:7.26},'Bordéus':{lat:44.84,lon:-0.58}
+    'Nice':{lat:43.70,lon:7.26},'Bordéus':{lat:44.84,lon:-0.58},
+    'Nantes':{lat:47.22,lon:-1.55},'Estrasburgo':{lat:48.57,lon:7.75},
+    'Montpellier':{lat:43.61,lon:3.88},'Rennes':{lat:48.11,lon:-1.68},
+    'Lille':{lat:50.63,lon:3.06},'Reims':{lat:49.26,lon:4.03},
+    'Saint-Étienne':{lat:45.44,lon:4.39},'Toulon':{lat:43.12,lon:5.93},
+    'Grenoble':{lat:45.19,lon:5.72},'Dijon':{lat:47.32,lon:5.04},
+    'Angers':{lat:47.47,lon:-0.55},'Brest':{lat:48.39,lon:-4.49},
+    'Le Havre':{lat:49.49,lon:0.11},'Clermont-Ferrand':{lat:45.78,lon:3.08},
+    'Aix-en-Provence':{lat:43.53,lon:5.45},'Metz':{lat:49.12,lon:6.17},
+    'Versailles':{lat:48.80,lon:2.13},'Amiens':{lat:49.89,lon:2.30}
   }},
   'Reino Unido':{tz:0,dst:true,cidades:{
     'Londres':{lat:51.51,lon:-0.13},'Manchester':{lat:53.48,lon:-2.24},
     'Birmingham':{lat:52.48,lon:-1.90},'Edimburgo':{lat:55.95,lon:-3.19},
-    'Glasgow':{lat:55.86,lon:-4.25},'Dublin':{lat:53.33,lon:-6.25}
+    'Glasgow':{lat:55.86,lon:-4.25},'Liverpool':{lat:53.41,lon:-2.98},
+    'Bristol':{lat:51.45,lon:-2.59},'Leeds':{lat:53.80,lon:-1.55},
+    'Sheffield':{lat:53.38,lon:-1.47},'Newcastle':{lat:54.98,lon:-1.61},
+    'Nottingham':{lat:52.95,lon:-1.15},'Southampton':{lat:50.90,lon:-1.40},
+    'Cardiff':{lat:51.48,lon:-3.18},'Belfast':{lat:54.60,lon:-5.93},
+    'Leicester':{lat:52.64,lon:-1.13},'Coventry':{lat:52.41,lon:-1.51},
+    'Bradford':{lat:53.79,lon:-1.75},'Oxford':{lat:51.75,lon:-1.26},
+    'Cambridge':{lat:52.21,lon:0.12},'Brighton':{lat:50.83,lon:-0.14},
+    'Portsmouth':{lat:50.80,lon:-1.09},'Aberdeen':{lat:57.15,lon:-2.11},
+    'Inverness':{lat:57.48,lon:-4.22},'Swansea':{lat:51.62,lon:-3.94}
   }},
   'Alemanha':{tz:1,dst:true,cidades:{
     'Berlim':{lat:52.52,lon:13.40},'Munique':{lat:48.14,lon:11.58},
@@ -3414,7 +3446,14 @@ const PAISES_CIDADES={
   'Suíça':{tz:1,dst:true,cidades:{
     'Zurique':{lat:47.38,lon:8.54},'Genebra':{lat:46.20,lon:6.15},
     'Berna':{lat:46.95,lon:7.45},'Lausanne':{lat:46.52,lon:6.63},
-    'Basileia':{lat:47.56,lon:7.59}
+    'Basileia':{lat:47.56,lon:7.59},'Winterthur':{lat:47.50,lon:8.72},
+    'St. Gallen':{lat:47.42,lon:9.37},'Lugano':{lat:46.00,lon:8.95},
+    'Lucerna':{lat:47.05,lon:8.31},'Biel':{lat:47.14,lon:7.24},
+    'Thun':{lat:46.76,lon:7.62},'Köniz':{lat:46.92,lon:7.41},
+    'La Chaux-de-Fonds':{lat:47.10,lon:6.83},'Schaffhausen':{lat:47.70,lon:8.63},
+    'Friburgo':{lat:46.80,lon:7.15},'Sion':{lat:46.23,lon:7.36},
+    'Neuchâtel':{lat:46.99,lon:6.93},'Zug':{lat:47.17,lon:8.52},
+    'Aarau':{lat:47.39,lon:8.04},'Baden':{lat:47.47,lon:8.31}
   }},
   'Países Baixos':{tz:1,dst:true,cidades:{
     'Amsterdão':{lat:52.37,lon:4.90},'Roterdão':{lat:51.92,lon:4.48},
@@ -3448,7 +3487,12 @@ const PAISES_CIDADES={
     'Valencia':{lat:10.18,lon:-68.00}
   }},
   'Luxemburgo':{tz:1,dst:true,cidades:{
-    'Luxemburgo':{lat:49.61,lon:6.13}
+    'Luxemburgo':{lat:49.61,lon:6.13},'Esch-sur-Alzette':{lat:49.50,lon:5.98},
+    'Differdange':{lat:49.52,lon:5.89},'Dudelange':{lat:49.48,lon:6.08},
+    'Ettelbruck':{lat:49.85,lon:6.10},'Diekirch':{lat:49.87,lon:6.16},
+    'Wiltz':{lat:49.97,lon:5.93},'Echternach':{lat:49.81,lon:6.42},
+    'Rumelange':{lat:49.46,lon:6.02},'Grevenmacher':{lat:49.68,lon:6.44},
+    'Remich':{lat:49.54,lon:6.37},'Vianden':{lat:49.93,lon:6.20}
   }},
   'Áustria':{tz:1,dst:true,cidades:{
     'Viena':{lat:48.21,lon:16.37},'Salzburgo':{lat:47.80,lon:13.04},
@@ -3498,23 +3542,102 @@ function atualizarCidades(){
   cidSel.innerHTML='<option value="">'+(TRANSLATIONS[currentLang]?.sel_cidade||'— Selecciona a cidade —')+'</option>';
   document.getElementById('inp-local').value='';
   document.getElementById('cidade-coords').style.display='none';
+  document.getElementById('cidade-manual-area').style.display='none';
   if(!pais||!PAISES_CIDADES[pais])return;
   Object.keys(PAISES_CIDADES[pais].cidades).sort().forEach(c=>{
     const o=document.createElement('option');o.value=c;o.textContent=c;cidSel.appendChild(o);
   });
+  // Opção "Outra cidade..."
+  const oManual=document.createElement('option');
+  oManual.value='__manual__';
+  oManual.textContent='✏️ Outra cidade...';
+  cidSel.appendChild(oManual);
 }
 
 function selecionarCidade(){
   const pais=document.getElementById('inp-pais').value;
   const cid=document.getElementById('inp-cidade').value;
   const el=document.getElementById('cidade-coords');
-  if(!pais||!cid){document.getElementById('inp-local').value='';el.style.display='none';return;}
+  const manualArea=document.getElementById('cidade-manual-area');
+  if(!pais||!cid){document.getElementById('inp-local').value='';el.style.display='none';manualArea.style.display='none';return;}
+  if(cid==='__manual__'){
+    // Mostrar campo de pesquisa manual
+    el.style.display='none';
+    manualArea.style.display='block';
+    document.getElementById('inp-local').value='';
+    document.getElementById('cidade-manual-input').focus();
+    return;
+  }
+  manualArea.style.display='none';
   const data=PAISES_CIDADES[pais].cidades[cid];
   document.getElementById('inp-local').value=cid+','+pais;
   if(data){
     el.style.display='block';
     el.textContent='📍 '+cid+' · '+data.lat.toFixed(2)+'°N '+Math.abs(data.lon).toFixed(2)+'°'+(data.lon<0?'W':'E');
   }
+}
+
+async function procurarCidadeManual(){
+  const pais=document.getElementById('inp-pais').value;
+  const query=document.getElementById('cidade-manual-input').value.trim();
+  const resultEl=document.getElementById('cidade-manual-result');
+  const btnEl=document.getElementById('btn-procurar-cidade');
+  if(!query){resultEl.textContent='Por favor escreve o nome da cidade.';resultEl.style.color='#c0392b';return;}
+  btnEl.disabled=true;btnEl.textContent='...';
+  resultEl.textContent='A procurar...';resultEl.style.color='var(--text3)';
+  try{
+    const searchQuery=query+(pais?', '+pais:'');
+    const url='https://nominatim.openstreetmap.org/search?q='+encodeURIComponent(searchQuery)+'&format=json&limit=1&accept-language=pt';
+    const resp=await fetch(url,{headers:{'User-Agent':'Essencia-App/1.0'}});
+    const data=await resp.json();
+    if(!data||data.length===0){
+      resultEl.textContent='Cidade não encontrada. Tenta com o nome em inglês ou adiciona o país.';
+      resultEl.style.color='#c0392b';
+      btnEl.disabled=false;btnEl.textContent='Procurar';
+      return;
+    }
+    const r=data[0];
+    const lat=parseFloat(r.lat);
+    const lon=parseFloat(r.lon);
+    const nomeCidade=r.display_name.split(',')[0].trim();
+    // Guardar coordenadas encontradas
+    window._cidadeManualLat=lat;
+    window._cidadeManualLon=lon;
+    window._cidadeManualNome=nomeCidade;
+    document.getElementById('inp-local').value=nomeCidade+','+pais;
+    resultEl.innerHTML='📍 <strong>'+nomeCidade+'</strong> · '+lat.toFixed(4)+'°, '+lon.toFixed(4)+'° <span style="color:var(--accent);cursor:pointer" onclick="confirmarCidadeManual()">✓ Confirmar</span>';
+    resultEl.style.color='var(--text)';
+    // Auto-confirmar
+    confirmarCidadeManual();
+  }catch(e){
+    resultEl.textContent='Erro de ligação. Verifica a internet e tenta novamente.';
+    resultEl.style.color='#c0392b';
+  }
+  btnEl.disabled=false;btnEl.textContent='Procurar';
+}
+
+function confirmarCidadeManual(){
+  const lat=window._cidadeManualLat;
+  const lon=window._cidadeManualLon;
+  const nome=window._cidadeManualNome||document.getElementById('cidade-manual-input').value.trim();
+  if(!lat||!lon)return;
+  const pais=document.getElementById('inp-pais').value;
+  const tz=pais&&PAISES_CIDADES[pais]?PAISES_CIDADES[pais].tz:0;
+  const dst=pais&&PAISES_CIDADES[pais]?PAISES_CIDADES[pais].dst:false;
+  // Injectar temporariamente nas cidades conhecidas
+  if(pais&&PAISES_CIDADES[pais]){
+    PAISES_CIDADES[pais].cidades[nome]={lat:lat,lon:lon};
+    // Adicionar à lista e seleccionar
+    const cidSel=document.getElementById('inp-cidade');
+    let found=false;
+    for(let i=0;i<cidSel.options.length;i++){if(cidSel.options[i].value===nome){cidSel.value=nome;found=true;break;}}
+    if(!found){const o=document.createElement('option');o.value=nome;o.textContent=nome;cidSel.insertBefore(o,cidSel.lastElementChild);cidSel.value=nome;}
+  }
+  const el=document.getElementById('cidade-coords');
+  el.style.display='block';
+  el.textContent='📍 '+nome+' · '+lat.toFixed(2)+'°N '+Math.abs(lon).toFixed(2)+'°'+(lon<0?'W':'E');
+  document.getElementById('cidade-manual-area').style.display='none';
+  document.getElementById('inp-local').value=nome+','+(pais||'');
 }
 
 // Inicializar dropdowns quando a página carrega
@@ -5287,7 +5410,7 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
   <div class="form-wrap">
     <div class="form-card">
       <div class="form-section-label" id="lbl-dados-pessoais">Dados pessoais</div>
-      <div class="field"><label id="lbl-nome">Nome completo</label><input type="text" id="inp-nome" placeholder="O teu nome completo"/></div>
+      <div class="field"><label id="lbl-nome">Nome de nascimento</label><input type="text" id="inp-nome" placeholder="O teu nome completo"/></div>
       <div class="form-section-label" style="margin-top:1.5rem" id="lbl-data-local">Data e local de nascimento</div>
       <div class="field"><label id="lbl-data-nasc">Data de nascimento</label>
         <div class="row3">
@@ -5316,6 +5439,20 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
         <select id="inp-cidade" onchange="selecionarCidade()">
           <option value="" id="opt-cidade-default">— Selecciona primeiro o país —</option>
         </select>
+        <div id="cidade-manual-area" style="display:none;margin-top:.5rem">
+          <div style="display:flex;gap:.5rem">
+            <input type="text" id="cidade-manual-input"
+              placeholder="Escreve o nome da cidade..."
+              style="flex:1;padding:.6rem .8rem;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-family:'Jost',sans-serif;font-size:.85rem;outline:none"
+              onkeydown="if(event.key==='Enter')procurarCidadeManual()"
+            >
+            <button id="btn-procurar-cidade" onclick="procurarCidadeManual()"
+              style="padding:.6rem 1rem;background:var(--accent-deep);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.1em;cursor:pointer;white-space:nowrap">
+              Procurar
+            </button>
+          </div>
+          <div id="cidade-manual-result" style="font-size:.8rem;margin-top:.4rem;min-height:1.2rem"></div>
+        </div>
         <input type="hidden" id="inp-local"/>
         <div id="cidade-coords" style="display:none;margin-top:0.4rem;font-size:0.72rem;color:var(--accent2)"></div>
       </div>
@@ -5666,7 +5803,7 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
         </div>
         <div class="feedback-question" id="fb-q2" style="font-size:0.9rem;margin-bottom:0.75rem">O que foi mais valioso hoje?</div>
         <div class="feedback-btns" id="feedback-topic-btns">
-          <button class="feedback-btn" id="fb-btn-tarot" onclick="toggleFeedbackBtn(this)">🃏 <span id="fb-tarot-label">Tarô</span></button>
+          <button class="feedback-btn" id="fb-btn-tarot" onclick="toggleFeedbackBtn(this)">🃏 <span id="fb-tarot-label">Tarot</span></button>
           <button class="feedback-btn" id="fb-btn-runa" onclick="toggleFeedbackBtn(this)">⭐ <span id="fb-runa-label">Runa</span></button>
           <button class="feedback-btn" id="fb-btn-astral" onclick="toggleFeedbackBtn(this)">☉ <span id="fb-astral-label">Posição astral</span></button>
           <button class="feedback-btn" id="fb-btn-bem" onclick="toggleFeedbackBtn(this)">🌿 <span id="fb-bem-label">Bem-estar</span></button>
@@ -6177,7 +6314,7 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
         <div class="form-section-label" id="parc-lbl-dados">Dados do parceiro/a</div>
         <div class="field">
           <label id="parc-lbl-nome">Nome</label>
-          <input type="text" id="parc-inp-nome" placeholder="Nome completo"/>
+          <input type="text" id="parc-inp-nome" placeholder="Nome de nascimento"/>
         </div>
         <div class="field">
           <label id="parc-lbl-data">Data de nascimento</label>
@@ -6364,7 +6501,7 @@ const TRANSLATIONS = {
     apagar_confirm: 'Apagar o perfil de {nome}? Esta acção não pode ser desfeita.',
     // Form
     dados_pessoais: 'Dados pessoais',
-    lbl_nome: 'Nome completo',
+    lbl_nome: 'Nome de nascimento',
     ph_nome: 'O teu nome completo',
     data_local: 'Data e local de nascimento',
     lbl_data: 'Data de nascimento',
@@ -6832,7 +6969,7 @@ const TRANSLATIONS = {
     apagar_confirm: '¿Eliminar el perfil de {nome}? Esta acción no se puede deshacer.',
     // Form
     dados_pessoais: 'Datos personales',
-    lbl_nome: 'Nombre completo',
+    lbl_nome: 'Nombre de nacimiento',
     ph_nome: 'Tu nombre completo',
     data_local: 'Fecha y lugar de nacimiento',
     lbl_data: 'Fecha de nacimiento',
@@ -7324,7 +7461,7 @@ const TRANSLATIONS = {
     perfil_toca: 'Tap to view profile',
     apagar_confirm: "Delete {nome}'s profile? This action cannot be undone.",
     dados_pessoais: 'Personal data',
-    lbl_nome: 'Full name',
+    lbl_nome: 'Birth name',
     ph_nome: 'Your full name',
     data_local: 'Date and place of birth',
     lbl_data: 'Date of birth',
@@ -8265,12 +8402,30 @@ const PAISES_CIDADES={
   'França':{tz:1,dst:true,cidades:{
     'Paris':{lat:48.85,lon:2.35},'Lyon':{lat:45.75,lon:4.85},
     'Marselha':{lat:43.30,lon:5.37},'Toulouse':{lat:43.60,lon:1.44},
-    'Nice':{lat:43.70,lon:7.26},'Bordéus':{lat:44.84,lon:-0.58}
+    'Nice':{lat:43.70,lon:7.26},'Bordéus':{lat:44.84,lon:-0.58},
+    'Nantes':{lat:47.22,lon:-1.55},'Estrasburgo':{lat:48.57,lon:7.75},
+    'Montpellier':{lat:43.61,lon:3.88},'Rennes':{lat:48.11,lon:-1.68},
+    'Lille':{lat:50.63,lon:3.06},'Reims':{lat:49.26,lon:4.03},
+    'Saint-Étienne':{lat:45.44,lon:4.39},'Toulon':{lat:43.12,lon:5.93},
+    'Grenoble':{lat:45.19,lon:5.72},'Dijon':{lat:47.32,lon:5.04},
+    'Angers':{lat:47.47,lon:-0.55},'Brest':{lat:48.39,lon:-4.49},
+    'Le Havre':{lat:49.49,lon:0.11},'Clermont-Ferrand':{lat:45.78,lon:3.08},
+    'Aix-en-Provence':{lat:43.53,lon:5.45},'Metz':{lat:49.12,lon:6.17},
+    'Versailles':{lat:48.80,lon:2.13},'Amiens':{lat:49.89,lon:2.30}
   }},
   'Reino Unido':{tz:0,dst:true,cidades:{
     'Londres':{lat:51.51,lon:-0.13},'Manchester':{lat:53.48,lon:-2.24},
     'Birmingham':{lat:52.48,lon:-1.90},'Edimburgo':{lat:55.95,lon:-3.19},
-    'Glasgow':{lat:55.86,lon:-4.25},'Dublin':{lat:53.33,lon:-6.25}
+    'Glasgow':{lat:55.86,lon:-4.25},'Liverpool':{lat:53.41,lon:-2.98},
+    'Bristol':{lat:51.45,lon:-2.59},'Leeds':{lat:53.80,lon:-1.55},
+    'Sheffield':{lat:53.38,lon:-1.47},'Newcastle':{lat:54.98,lon:-1.61},
+    'Nottingham':{lat:52.95,lon:-1.15},'Southampton':{lat:50.90,lon:-1.40},
+    'Cardiff':{lat:51.48,lon:-3.18},'Belfast':{lat:54.60,lon:-5.93},
+    'Leicester':{lat:52.64,lon:-1.13},'Coventry':{lat:52.41,lon:-1.51},
+    'Bradford':{lat:53.79,lon:-1.75},'Oxford':{lat:51.75,lon:-1.26},
+    'Cambridge':{lat:52.21,lon:0.12},'Brighton':{lat:50.83,lon:-0.14},
+    'Portsmouth':{lat:50.80,lon:-1.09},'Aberdeen':{lat:57.15,lon:-2.11},
+    'Inverness':{lat:57.48,lon:-4.22},'Swansea':{lat:51.62,lon:-3.94}
   }},
   'Alemanha':{tz:1,dst:true,cidades:{
     'Berlim':{lat:52.52,lon:13.40},'Munique':{lat:48.14,lon:11.58},
@@ -8280,7 +8435,14 @@ const PAISES_CIDADES={
   'Suíça':{tz:1,dst:true,cidades:{
     'Zurique':{lat:47.38,lon:8.54},'Genebra':{lat:46.20,lon:6.15},
     'Berna':{lat:46.95,lon:7.45},'Lausanne':{lat:46.52,lon:6.63},
-    'Basileia':{lat:47.56,lon:7.59}
+    'Basileia':{lat:47.56,lon:7.59},'Winterthur':{lat:47.50,lon:8.72},
+    'St. Gallen':{lat:47.42,lon:9.37},'Lugano':{lat:46.00,lon:8.95},
+    'Lucerna':{lat:47.05,lon:8.31},'Biel':{lat:47.14,lon:7.24},
+    'Thun':{lat:46.76,lon:7.62},'Köniz':{lat:46.92,lon:7.41},
+    'La Chaux-de-Fonds':{lat:47.10,lon:6.83},'Schaffhausen':{lat:47.70,lon:8.63},
+    'Friburgo':{lat:46.80,lon:7.15},'Sion':{lat:46.23,lon:7.36},
+    'Neuchâtel':{lat:46.99,lon:6.93},'Zug':{lat:47.17,lon:8.52},
+    'Aarau':{lat:47.39,lon:8.04},'Baden':{lat:47.47,lon:8.31}
   }},
   'Países Baixos':{tz:1,dst:true,cidades:{
     'Amsterdão':{lat:52.37,lon:4.90},'Roterdão':{lat:51.92,lon:4.48},
@@ -8314,7 +8476,12 @@ const PAISES_CIDADES={
     'Valencia':{lat:10.18,lon:-68.00}
   }},
   'Luxemburgo':{tz:1,dst:true,cidades:{
-    'Luxemburgo':{lat:49.61,lon:6.13}
+    'Luxemburgo':{lat:49.61,lon:6.13},'Esch-sur-Alzette':{lat:49.50,lon:5.98},
+    'Differdange':{lat:49.52,lon:5.89},'Dudelange':{lat:49.48,lon:6.08},
+    'Ettelbruck':{lat:49.85,lon:6.10},'Diekirch':{lat:49.87,lon:6.16},
+    'Wiltz':{lat:49.97,lon:5.93},'Echternach':{lat:49.81,lon:6.42},
+    'Rumelange':{lat:49.46,lon:6.02},'Grevenmacher':{lat:49.68,lon:6.44},
+    'Remich':{lat:49.54,lon:6.37},'Vianden':{lat:49.93,lon:6.20}
   }},
   'Áustria':{tz:1,dst:true,cidades:{
     'Viena':{lat:48.21,lon:16.37},'Salzburgo':{lat:47.80,lon:13.04},
@@ -8364,23 +8531,102 @@ function atualizarCidades(){
   cidSel.innerHTML='<option value="">'+(TRANSLATIONS[currentLang]?.sel_cidade||'— Selecciona a cidade —')+'</option>';
   document.getElementById('inp-local').value='';
   document.getElementById('cidade-coords').style.display='none';
+  document.getElementById('cidade-manual-area').style.display='none';
   if(!pais||!PAISES_CIDADES[pais])return;
   Object.keys(PAISES_CIDADES[pais].cidades).sort().forEach(c=>{
     const o=document.createElement('option');o.value=c;o.textContent=c;cidSel.appendChild(o);
   });
+  // Opção "Outra cidade..."
+  const oManual=document.createElement('option');
+  oManual.value='__manual__';
+  oManual.textContent='✏️ Outra cidade...';
+  cidSel.appendChild(oManual);
 }
 
 function selecionarCidade(){
   const pais=document.getElementById('inp-pais').value;
   const cid=document.getElementById('inp-cidade').value;
   const el=document.getElementById('cidade-coords');
-  if(!pais||!cid){document.getElementById('inp-local').value='';el.style.display='none';return;}
+  const manualArea=document.getElementById('cidade-manual-area');
+  if(!pais||!cid){document.getElementById('inp-local').value='';el.style.display='none';manualArea.style.display='none';return;}
+  if(cid==='__manual__'){
+    // Mostrar campo de pesquisa manual
+    el.style.display='none';
+    manualArea.style.display='block';
+    document.getElementById('inp-local').value='';
+    document.getElementById('cidade-manual-input').focus();
+    return;
+  }
+  manualArea.style.display='none';
   const data=PAISES_CIDADES[pais].cidades[cid];
   document.getElementById('inp-local').value=cid+','+pais;
   if(data){
     el.style.display='block';
     el.textContent='📍 '+cid+' · '+data.lat.toFixed(2)+'°N '+Math.abs(data.lon).toFixed(2)+'°'+(data.lon<0?'W':'E');
   }
+}
+
+async function procurarCidadeManual(){
+  const pais=document.getElementById('inp-pais').value;
+  const query=document.getElementById('cidade-manual-input').value.trim();
+  const resultEl=document.getElementById('cidade-manual-result');
+  const btnEl=document.getElementById('btn-procurar-cidade');
+  if(!query){resultEl.textContent='Por favor escreve o nome da cidade.';resultEl.style.color='#c0392b';return;}
+  btnEl.disabled=true;btnEl.textContent='...';
+  resultEl.textContent='A procurar...';resultEl.style.color='var(--text3)';
+  try{
+    const searchQuery=query+(pais?', '+pais:'');
+    const url='https://nominatim.openstreetmap.org/search?q='+encodeURIComponent(searchQuery)+'&format=json&limit=1&accept-language=pt';
+    const resp=await fetch(url,{headers:{'User-Agent':'Essencia-App/1.0'}});
+    const data=await resp.json();
+    if(!data||data.length===0){
+      resultEl.textContent='Cidade não encontrada. Tenta com o nome em inglês ou adiciona o país.';
+      resultEl.style.color='#c0392b';
+      btnEl.disabled=false;btnEl.textContent='Procurar';
+      return;
+    }
+    const r=data[0];
+    const lat=parseFloat(r.lat);
+    const lon=parseFloat(r.lon);
+    const nomeCidade=r.display_name.split(',')[0].trim();
+    // Guardar coordenadas encontradas
+    window._cidadeManualLat=lat;
+    window._cidadeManualLon=lon;
+    window._cidadeManualNome=nomeCidade;
+    document.getElementById('inp-local').value=nomeCidade+','+pais;
+    resultEl.innerHTML='📍 <strong>'+nomeCidade+'</strong> · '+lat.toFixed(4)+'°, '+lon.toFixed(4)+'° <span style="color:var(--accent);cursor:pointer" onclick="confirmarCidadeManual()">✓ Confirmar</span>';
+    resultEl.style.color='var(--text)';
+    // Auto-confirmar
+    confirmarCidadeManual();
+  }catch(e){
+    resultEl.textContent='Erro de ligação. Verifica a internet e tenta novamente.';
+    resultEl.style.color='#c0392b';
+  }
+  btnEl.disabled=false;btnEl.textContent='Procurar';
+}
+
+function confirmarCidadeManual(){
+  const lat=window._cidadeManualLat;
+  const lon=window._cidadeManualLon;
+  const nome=window._cidadeManualNome||document.getElementById('cidade-manual-input').value.trim();
+  if(!lat||!lon)return;
+  const pais=document.getElementById('inp-pais').value;
+  const tz=pais&&PAISES_CIDADES[pais]?PAISES_CIDADES[pais].tz:0;
+  const dst=pais&&PAISES_CIDADES[pais]?PAISES_CIDADES[pais].dst:false;
+  // Injectar temporariamente nas cidades conhecidas
+  if(pais&&PAISES_CIDADES[pais]){
+    PAISES_CIDADES[pais].cidades[nome]={lat:lat,lon:lon};
+    // Adicionar à lista e seleccionar
+    const cidSel=document.getElementById('inp-cidade');
+    let found=false;
+    for(let i=0;i<cidSel.options.length;i++){if(cidSel.options[i].value===nome){cidSel.value=nome;found=true;break;}}
+    if(!found){const o=document.createElement('option');o.value=nome;o.textContent=nome;cidSel.insertBefore(o,cidSel.lastElementChild);cidSel.value=nome;}
+  }
+  const el=document.getElementById('cidade-coords');
+  el.style.display='block';
+  el.textContent='📍 '+nome+' · '+lat.toFixed(2)+'°N '+Math.abs(lon).toFixed(2)+'°'+(lon<0?'W':'E');
+  document.getElementById('cidade-manual-area').style.display='none';
+  document.getElementById('inp-local').value=nome+','+(pais||'');
 }
 
 // Inicializar dropdowns quando a página carrega
@@ -10914,7 +11160,7 @@ function apagarEntrada(id){if(!confirm(currentLang==='es'?'¿Eliminar esta entra
 
 // ── PRIVACIDADE, MISC ──
 function toggleHoraDesconhecida(cb){const inp=document.getElementById('inp-hora'),msg=document.getElementById('hora-desconhecida-msg');inp.disabled=cb.checked;inp.style.opacity=cb.checked?'.4':'1';msg.style.display=cb.checked?'block':'none';if(cb.checked)inp.value='';}
-function abrirPrivacidade(){document.getElementById('modal-privacidade').style.display='block';document.body.style.overflow='hidden';document.getElementById('privacidade-conteudo').innerHTML='<h3 style="font-family:Cinzel,serif;color:var(--accent-deep);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;margin:0 0 .5rem">1. Responsável pelo Tratamento</h3><p>Plataforma <strong>Essência</strong>, gerida por <strong>Margarida Leite</strong>. Contacto: <a href="https://www.elekitra.net" target="_blank" style="color:var(--accent)">www.elekitra.net</a> · 925 791 568.</p><h3 style="font-family:Cinzel,serif;color:var(--accent-deep);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;margin:1.25rem 0 .5rem">2. Dados Recolhidos</h3><ul style="margin:.5rem 0 .5rem 1.5rem;line-height:2"><li>Nome completo — cálculos numerológicos</li><li>Data de nascimento — astrologia, numerologia, Ki, Human Design</li><li>Hora (opcional) — Ascendente</li><li>Local (opcional) — precisão astrológica</li></ul><h3 style="font-family:Cinzel,serif;color:var(--accent-deep);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;margin:1.25rem 0 .5rem">3. Base Legal</h3><p>Consentimento do titular (artigo 6.º, n.º 1, al. a) do RGPD).</p><h3 style="font-family:Cinzel,serif;color:var(--accent-deep);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;margin:1.25rem 0 .5rem">4. Armazenamento</h3><p>Dados processados <strong>localmente no browser</strong>. Não transmitidos para servidores externos.</p><h3 style="font-family:Cinzel,serif;color:var(--accent-deep);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;margin:1.25rem 0 .5rem">5. Os teus Direitos</h3><p>Acesso, rectificação, apagamento, limitação, portabilidade e retirada do consentimento. Contacta: <a href="https://www.elekitra.net" target="_blank" style="color:var(--accent)">www.elekitra.net</a>.</p><h3 style="font-family:Cinzel,serif;color:var(--accent-deep);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;margin:1.25rem 0 .5rem">6. Reclamações</h3><p>CNPD: <a href="https://www.cnpd.pt" target="_blank" style="color:var(--accent)">www.cnpd.pt</a>.</p><p style="margin-top:1.5rem;padding:1rem;background:var(--bg2);border-radius:8px;font-size:.78rem;color:var(--text3)">Conforme o RGPD (UE) 2016/679 e Lei n.º 58/2019. Junho 2025.</p>';}
+function abrirPrivacidade(){document.getElementById('modal-privacidade').style.display='block';document.body.style.overflow='hidden';document.getElementById('privacidade-conteudo').innerHTML='<h3 style="font-family:Cinzel,serif;color:var(--accent-deep);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;margin:0 0 .5rem">1. Responsável pelo Tratamento</h3><p>Plataforma <strong>Essência</strong>, gerida por <strong>Margarida Leite</strong>. Contacto: <a href="https://www.elekitra.net" target="_blank" style="color:var(--accent)">www.elekitra.net</a> · 925 791 568.</p><h3 style="font-family:Cinzel,serif;color:var(--accent-deep);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;margin:1.25rem 0 .5rem">2. Dados Recolhidos</h3><ul style="margin:.5rem 0 .5rem 1.5rem;line-height:2"><li>Nome de nascimento — cálculos numerológicos</li><li>Data de nascimento — astrologia, numerologia, Ki, Human Design</li><li>Hora (opcional) — Ascendente</li><li>Local (opcional) — precisão astrológica</li></ul><h3 style="font-family:Cinzel,serif;color:var(--accent-deep);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;margin:1.25rem 0 .5rem">3. Base Legal</h3><p>Consentimento do titular (artigo 6.º, n.º 1, al. a) do RGPD).</p><h3 style="font-family:Cinzel,serif;color:var(--accent-deep);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;margin:1.25rem 0 .5rem">4. Armazenamento</h3><p>Dados processados <strong>localmente no browser</strong>. Não transmitidos para servidores externos.</p><h3 style="font-family:Cinzel,serif;color:var(--accent-deep);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;margin:1.25rem 0 .5rem">5. Os teus Direitos</h3><p>Acesso, rectificação, apagamento, limitação, portabilidade e retirada do consentimento. Contacta: <a href="https://www.elekitra.net" target="_blank" style="color:var(--accent)">www.elekitra.net</a>.</p><h3 style="font-family:Cinzel,serif;color:var(--accent-deep);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;margin:1.25rem 0 .5rem">6. Reclamações</h3><p>CNPD: <a href="https://www.cnpd.pt" target="_blank" style="color:var(--accent)">www.cnpd.pt</a>.</p><p style="margin-top:1.5rem;padding:1rem;background:var(--bg2);border-radius:8px;font-size:.78rem;color:var(--text3)">Conforme o RGPD (UE) 2016/679 e Lei n.º 58/2019. Junho 2025.</p>';}
 function fecharPrivacidade(){document.getElementById('modal-privacidade').style.display='none';document.body.style.overflow='';}
 let fbEmoji='';
 function selectEmoji(el,e){document.querySelectorAll('.feedback-emoji').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');fbEmoji=e;}
