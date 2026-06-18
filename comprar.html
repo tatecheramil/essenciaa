@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt" id="html-root">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Essência — App de Auto-Conhecimento</title>
+<title id="page-title">Essência — App de Auto-Conhecimento</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,6 +21,12 @@
   html { scroll-behavior: smooth; }
   body { font-family: 'Jost', sans-serif; font-weight: 300; color: var(--text); background: var(--cream); line-height: 1.7; }
 
+  /* LANG BAR */
+  .lang-bar { position: fixed; top: 0; right: 0; z-index: 999; display: flex; gap: .35rem; padding: .6rem .85rem; }
+  .lang-btn { padding: .28rem .65rem; border-radius: 20px; border: 1px solid rgba(255,255,255,.25); background: transparent; color: rgba(255,255,255,.55); font-family: 'Cinzel', serif; font-size: .55rem; letter-spacing: .12em; cursor: pointer; transition: all .2s; }
+  .lang-btn.active { background: var(--gold); border-color: var(--gold); color: var(--deep); }
+  .lang-btn:hover:not(.active) { border-color: rgba(255,255,255,.5); color: rgba(255,255,255,.85); }
+
   /* HERO */
   .hero { background: linear-gradient(160deg, var(--deep) 0%, #0e2030 55%, #1a3545 100%); color: var(--white); text-align: center; padding: 5rem 2rem 4rem; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 60%, rgba(74,155,181,.12) 0%, transparent 70%); pointer-events: none; }
@@ -31,7 +37,7 @@
   .hero h1 em { font-style: normal; color: var(--gold); }
   .hero-sub { font-size: clamp(.95rem,2.5vw,1.1rem); color: rgba(255,255,255,.72); max-width: 520px; margin: 0 auto 2.5rem; font-weight: 300; }
 
-  /* FORMULÁRIO DE EMAIL */
+  /* FORMULÁRIO */
   .email-form-wrap { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.15); border-radius: 16px; padding: 2rem; max-width: 440px; margin: 0 auto; }
   .email-form-label { font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; display: block; }
   .email-form-row { display: flex; gap: .6rem; flex-wrap: wrap; }
@@ -43,8 +49,6 @@
   .email-note { font-size: .75rem; color: rgba(255,255,255,.4); margin-top: .8rem; }
   .hero-price { margin-top: 1.4rem; font-size: .85rem; color: rgba(255,255,255,.5); }
   .hero-price strong { color: var(--gold); font-size: 1.1rem; font-weight: 400; }
-
-  /* ERRO / SUCESSO */
   .form-msg { display: none; margin-top: .8rem; font-size: .82rem; border-radius: 8px; padding: .6rem 1rem; }
   .form-msg.error { background: rgba(192,57,43,.15); color: #e87a6a; display: block; }
 
@@ -110,45 +114,51 @@
 </head>
 <body>
 
+<!-- SELETOR DE LÍNGUA -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('pt')" id="lb-pt">PT</button>
+  <button class="lang-btn" onclick="setLang('es')" id="lb-es">ES</button>
+  <button class="lang-btn" onclick="setLang('en')" id="lb-en">EN</button>
+</div>
+
 <!-- HERO -->
 <header class="hero">
   <span class="hero-star">✦</span>
-  <p class="hero-eyebrow">App de Auto-Conhecimento</p>
-  <h1>Descobre quem<br><em>realmente és</em></h1>
-  <p class="hero-sub">Mapa Astral, Numerologia, Human Design, Chakras, Fases da Lua e muito mais — tudo no teu bolso, sempre disponível, sem subscrição mensal.</p>
+  <p class="hero-eyebrow" id="t-eyebrow-hero">App de Auto-Conhecimento</p>
+  <h1 id="t-h1">Descobre quem<br><em id="t-h1-em">realmente és</em></h1>
+  <p class="hero-sub" id="t-hero-sub">Mapa Astral, Numerologia, Human Design, Chakras, Fases da Lua e muito mais — tudo no teu bolso, sempre disponível, sem subscrição mensal.</p>
 
-  <!-- Formulário de email + botão pagamento -->
   <form class="email-form-wrap" name="compra-essencia" netlify netlify-honeypot="bot-field" id="heroForm">
     <input type="hidden" name="form-name" value="compra-essencia">
     <input type="hidden" name="bot-field" style="display:none">
-    <label class="email-form-label">Introduz o teu email para receberes o código de acesso</label>
+    <label class="email-form-label" id="t-form-label">Introduz o teu email para receberes o código de acesso</label>
     <div class="email-form-row">
-      <input type="email" name="email" class="email-input" placeholder="o-teu-email@exemplo.com" required id="heroEmail">
-      <button type="submit" class="btn-primary">✦ Comprar — 14,99€</button>
+      <input type="email" name="email" class="email-input" id="heroEmail" required>
+      <button type="submit" class="btn-primary" id="t-btn-hero">✦ Comprar — 14,99€</button>
     </div>
-    <p class="email-note">O teu email é usado apenas para enviar o código de acesso. Não partilhamos com terceiros.</p>
-    <div class="form-msg error" id="heroError">Por favor introduz um email válido.</div>
+    <p class="email-note" id="t-email-note">O teu email é usado apenas para enviar o código de acesso. Não partilhamos com terceiros.</p>
+    <div class="form-msg error" id="heroError"></div>
   </form>
 
-  <p class="hero-price">Pagamento único · <strong>14,99€</strong> · Acesso vitalício</p>
+  <p class="hero-price" id="t-hero-price">Pagamento único · <strong>14,99€</strong> · Acesso vitalício</p>
 </header>
 
 <!-- FEATURES -->
 <section>
-  <p class="section-eyebrow">O que inclui</p>
-  <h2 class="section-title">Mais de 20 ferramentas de auto-conhecimento</h2>
-  <p class="section-intro">Uma biblioteca completa de sistemas ancestrais e modernos, personalizados com base no teu nome, data e hora de nascimento.</p>
+  <p class="section-eyebrow" id="t-feat-eyebrow">O que inclui</p>
+  <h2 class="section-title" id="t-feat-title">Mais de 20 ferramentas de auto-conhecimento</h2>
+  <p class="section-intro" id="t-feat-intro">Uma biblioteca completa de sistemas ancestrais e modernos, personalizados com base no teu nome, data e hora de nascimento.</p>
   <div class="features-grid">
-    <div class="feature-card"><span class="feature-icon">☀️</span><p class="feature-name">Mapa Astral</p><p class="feature-desc">Planetas, casas e aspectos interpretados para o teu perfil único.</p></div>
-    <div class="feature-card"><span class="feature-icon">🔢</span><p class="feature-name">Numerologia</p><p class="feature-desc">Número de Vida, Expressão, Alma e muito mais.</p></div>
-    <div class="feature-card"><span class="feature-icon">⬡</span><p class="feature-name">Human Design</p><p class="feature-desc">O teu tipo, estratégia, autoridade e centros definidos.</p></div>
-    <div class="feature-card"><span class="feature-icon">🌙</span><p class="feature-name">Agenda Lunar</p><p class="feature-desc">8 fases com rituais personalizados pelo teu elemento.</p></div>
-    <div class="feature-card"><span class="feature-icon">🌸</span><p class="feature-name">Chakras</p><p class="feature-desc">Diagnóstico energético e práticas para cada centro.</p></div>
-    <div class="feature-card"><span class="feature-icon">🃏</span><p class="feature-name">Tarot & Runas</p><p class="feature-desc">Tiragens diárias com interpretações aprofundadas.</p></div>
-    <div class="feature-card"><span class="feature-icon">🌳</span><p class="feature-name">Constelações</p><p class="feature-desc">Mapeamento sistémico familiar guiado.</p></div>
-    <div class="feature-card"><span class="feature-icon">✋</span><p class="feature-name">Leitura de Mão IA</p><p class="feature-desc">Análise das tuas linhas por inteligência artificial.</p></div>
-    <div class="feature-card"><span class="feature-icon">🌟</span><p class="feature-name">Ki de 9 Estrelas</p><p class="feature-desc">Sistema japonês de orientação e ciclos de vida.</p></div>
-    <div class="feature-card"><span class="feature-icon">📖</span><p class="feature-name">Diário Terapêutico</p><p class="feature-desc">Reflexão guiada com perguntas personalizadas.</p></div>
+    <div class="feature-card"><span class="feature-icon">☀️</span><p class="feature-name">Mapa Astral</p><p class="feature-desc" id="t-f1">Planetas, casas e aspectos interpretados para o teu perfil único.</p></div>
+    <div class="feature-card"><span class="feature-icon">🔢</span><p class="feature-name">Numerologia</p><p class="feature-desc" id="t-f2">Número de Vida, Expressão, Alma e muito mais.</p></div>
+    <div class="feature-card"><span class="feature-icon">⬡</span><p class="feature-name">Human Design</p><p class="feature-desc" id="t-f3">O teu tipo, estratégia, autoridade e centros definidos.</p></div>
+    <div class="feature-card"><span class="feature-icon">🌙</span><p class="feature-name" id="t-fn4">Agenda Lunar</p><p class="feature-desc" id="t-f4">8 fases com rituais personalizados pelo teu elemento.</p></div>
+    <div class="feature-card"><span class="feature-icon">🌸</span><p class="feature-name">Chakras</p><p class="feature-desc" id="t-f5">Diagnóstico energético e práticas para cada centro.</p></div>
+    <div class="feature-card"><span class="feature-icon">🃏</span><p class="feature-name">Tarot & Runas</p><p class="feature-desc" id="t-f6">Tiragens diárias com interpretações aprofundadas.</p></div>
+    <div class="feature-card"><span class="feature-icon">🌳</span><p class="feature-name" id="t-fn7">Constelações</p><p class="feature-desc" id="t-f7">Mapeamento sistémico familiar guiado.</p></div>
+    <div class="feature-card"><span class="feature-icon">✋</span><p class="feature-name" id="t-fn8">Leitura de Mão IA</p><p class="feature-desc" id="t-f8">Análise das tuas linhas por inteligência artificial.</p></div>
+    <div class="feature-card"><span class="feature-icon">🌟</span><p class="feature-name" id="t-fn9">Ki de 9 Estrelas</p><p class="feature-desc" id="t-f9">Sistema japonês de orientação e ciclos de vida.</p></div>
+    <div class="feature-card"><span class="feature-icon">📖</span><p class="feature-name" id="t-fn10">Diário Terapêutico</p><p class="feature-desc" id="t-f10">Reflexão guiada com perguntas personalizadas.</p></div>
   </div>
 </section>
 
@@ -157,9 +167,9 @@
 <!-- TESTIMONIALS -->
 <div class="testimonials-section">
   <div class="testimonials-inner">
-    <p class="section-eyebrow">Quem já usou</p>
-    <h2 class="section-title">O que dizem sobre a Essência</h2>
-    <p class="section-intro">Feedback real de pessoas que experimentaram a app.</p>
+    <p class="section-eyebrow" id="t-test-eyebrow">Quem já usou</p>
+    <h2 class="section-title" id="t-test-title">O que dizem sobre a Essência</h2>
+    <p class="section-intro" id="t-test-intro">Feedback real de pessoas que experimentaram a app.</p>
     <div class="testimonials-grid">
       <div class="testimonial-card">
         <p class="testimonial-stars">★★★★★</p>
@@ -177,14 +187,14 @@
 
 <!-- COMO INSTALAR -->
 <section>
-  <p class="section-eyebrow">Instalação simples</p>
-  <h2 class="section-title">Tens a app no telemóvel em 4 passos</h2>
-  <p class="section-intro">A Essência é uma Progressive Web App — não precisas de App Store nem Google Play.</p>
+  <p class="section-eyebrow" id="t-steps-eyebrow">Instalação simples</p>
+  <h2 class="section-title" id="t-steps-title">Tens a app no telemóvel em 4 passos</h2>
+  <p class="section-intro" id="t-steps-intro">A Essência é uma Progressive Web App — não precisas de App Store nem Google Play.</p>
   <ol class="steps-list">
-    <li class="step"><span class="step-num">1</span><div class="step-text"><strong>Compra e deixa o teu email</strong><span>Preenche o formulário acima com o teu email e completa o pagamento de 14,99€.</span></div></li>
-    <li class="step"><span class="step-num">2</span><div class="step-text"><strong>Recebe o código de acesso</strong><span>Em até 24h receberás um email com o teu código único de acesso.</span></div></li>
-    <li class="step"><span class="step-num">3</span><div class="step-text"><strong>Abre o link no telemóvel</strong><span>No Safari (iPhone) ou Chrome (Android), abre o link enviado no email e adiciona ao ecrã principal.</span></div></li>
-    <li class="step"><span class="step-num">4</span><div class="step-text"><strong>Introduz o código e começa</strong><span>Na primeira abertura, insere o teu código e começa a descobrir quem realmente és.</span></div></li>
+    <li class="step"><span class="step-num">1</span><div class="step-text"><strong id="t-s1t">Compra e deixa o teu email</strong><span id="t-s1d">Preenche o formulário acima com o teu email e completa o pagamento de 14,99€.</span></div></li>
+    <li class="step"><span class="step-num">2</span><div class="step-text"><strong id="t-s2t">Recebe o código de acesso</strong><span id="t-s2d">Em até 24h receberás um email com o teu código único de acesso.</span></div></li>
+    <li class="step"><span class="step-num">3</span><div class="step-text"><strong id="t-s3t">Abre o link no telemóvel</strong><span id="t-s3d">No Safari (iPhone) ou Chrome (Android), abre o link enviado no email e adiciona ao ecrã principal.</span></div></li>
+    <li class="step"><span class="step-num">4</span><div class="step-text"><strong id="t-s4t">Introduz o código e começa</strong><span id="t-s4d">Na primeira abertura, insere o teu código e começa a descobrir quem realmente és.</span></div></li>
   </ol>
 </section>
 
@@ -192,45 +202,283 @@
 
 <!-- FAQ -->
 <section>
-  <p class="section-eyebrow">Perguntas frequentes</p>
-  <h2 class="section-title">Tens dúvidas?</h2>
+  <p class="section-eyebrow" id="t-faq-eyebrow">Perguntas frequentes</p>
+  <h2 class="section-title" id="t-faq-title">Tens dúvidas?</h2>
   <div class="faq-list">
-    <div class="faq-item"><p class="faq-q">Funciona no iPhone e Android?</p><p class="faq-a">Sim, funciona em qualquer smartphone. Não precisas de App Store nem Google Play.</p></div>
-    <div class="faq-item"><p class="faq-q">O pagamento é único ou mensal?</p><p class="faq-a">Pagamento único de 14,99€. Sem subscrições, sem custos escondidos. Acesso vitalício.</p></div>
-    <div class="faq-item"><p class="faq-q">Os meus dados ficam guardados?</p><p class="faq-a">Sim. Todos os dados ficam guardados localmente no teu dispositivo. Ninguém tem acesso às tuas informações.</p></div>
-    <div class="faq-item"><p class="faq-q">Posso usar em mais do que um dispositivo?</p><p class="faq-a">O código é válido para um dispositivo. Se precisares de mudar de telemóvel, contacta-nos por email.</p></div>
-    <div class="faq-item"><p class="faq-q">A app está em inglês e espanhol?</p><p class="faq-a">Sim! Disponível em Português, Inglês e Espanhol. Podes mudar a língua a qualquer momento.</p></div>
-    <div class="faq-item"><p class="faq-q">Quanto tempo demora a receber o código?</p><p class="faq-a">Em até 24 horas após confirmação do pagamento. Normalmente muito mais rápido.</p></div>
+    <div class="faq-item"><p class="faq-q" id="t-q1">Funciona no iPhone e Android?</p><p class="faq-a" id="t-a1">Sim, funciona em qualquer smartphone. Não precisas de App Store nem Google Play.</p></div>
+    <div class="faq-item"><p class="faq-q" id="t-q2">O pagamento é único ou mensal?</p><p class="faq-a" id="t-a2">Pagamento único de 14,99€. Sem subscrições, sem custos escondidos. Acesso vitalício.</p></div>
+    <div class="faq-item"><p class="faq-q" id="t-q3">Os meus dados ficam guardados?</p><p class="faq-a" id="t-a3">Sim. Todos os dados ficam guardados localmente no teu dispositivo. Ninguém tem acesso às tuas informações.</p></div>
+    <div class="faq-item"><p class="faq-q" id="t-q4">Posso usar em mais do que um dispositivo?</p><p class="faq-a" id="t-a4">O código é válido para um dispositivo. Se precisares de mudar de telemóvel, contacta-nos por email.</p></div>
+    <div class="faq-item"><p class="faq-q" id="t-q5">A app está em inglês e espanhol?</p><p class="faq-a" id="t-a5">Sim! Disponível em Português, Inglês e Espanhol. Podes mudar a língua a qualquer momento.</p></div>
+    <div class="faq-item"><p class="faq-q" id="t-q6">Quanto tempo demora a receber o código?</p><p class="faq-a" id="t-a6">Em até 24 horas após confirmação do pagamento. Normalmente muito mais rápido.</p></div>
   </div>
 </section>
 
 <!-- CTA FINAL -->
 <div class="cta-section">
-  <p class="hero-eyebrow">Começa hoje</p>
-  <h2>O teu caminho de<br>auto-conhecimento começa aqui</h2>
-  <p>Uma ferramenta criada com intenção, para quem quer ir mais fundo no conhecimento de si mesmo.</p>
+  <p class="hero-eyebrow" id="t-cta-eyebrow">Começa hoje</p>
+  <h2 id="t-cta-h2">O teu caminho de<br>auto-conhecimento começa aqui</h2>
+  <p id="t-cta-p">Uma ferramenta criada com intenção, para quem quer ir mais fundo no conhecimento de si mesmo.</p>
   <div class="cta-email-wrap">
     <form name="compra-essencia-cta" netlify netlify-honeypot="bot-field" id="ctaForm">
       <input type="hidden" name="form-name" value="compra-essencia-cta">
       <input type="hidden" name="bot-field" style="display:none">
-      <label class="email-form-label" style="color:var(--gold)">O teu email para receberes o código</label>
+      <label class="email-form-label" style="color:var(--gold)" id="t-cta-label">O teu email para receberes o código</label>
       <div class="email-form-row" style="margin-top:.8rem">
-        <input type="email" name="email" class="email-input" placeholder="o-teu-email@exemplo.com" required id="ctaEmail">
-        <button type="submit" class="btn-primary">✦ Comprar — 14,99€</button>
+        <input type="email" name="email" class="email-input" id="ctaEmail" required>
+        <button type="submit" class="btn-primary" id="t-btn-cta">✦ Comprar — 14,99€</button>
       </div>
-      <p class="email-note" style="color:rgba(255,255,255,.35)">Não partilhamos o teu email com terceiros.</p>
-      <div class="form-msg error" id="ctaError">Por favor introduz um email válido.</div>
+      <p class="email-note" style="color:rgba(255,255,255,.35)" id="t-cta-note">Não partilhamos o teu email com terceiros.</p>
+      <div class="form-msg error" id="ctaError"></div>
     </form>
   </div>
-  <p class="cta-guarantee">Pagamento seguro via SumUp · Acesso vitalício · Suporte por email</p>
+  <p class="cta-guarantee" id="t-guarantee">Pagamento seguro via SumUp · Acesso vitalício · Suporte por email</p>
 </div>
 
 <footer>
-  <p>Essência — Auto-Conhecimento · Criado por <a href="https://www.elekitra.net">Margarida Leite</a> · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a></p>
+  <p id="t-footer">Essência — Auto-Conhecimento · Criado por <a href="https://www.elekitra.net">Margarida Leite</a> · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a></p>
 </footer>
 
 <script>
-// Ao submeter qualquer formulário: guardar email e redirigir para SumUp
+// ── TRADUÇÕES ────────────────────────────────────────────────────────────────
+var T = {
+  pt: {
+    lang: 'pt',
+    pageTitle: 'Essência — App de Auto-Conhecimento',
+    heroEyebrow: 'App de Auto-Conhecimento',
+    h1: 'Descobre quem<br><em>realmente és</em>',
+    heroSub: 'Mapa Astral, Numerologia, Human Design, Chakras, Fases da Lua e muito mais — tudo no teu bolso, sempre disponível, sem subscrição mensal.',
+    formLabel: 'Introduz o teu email para receberes o código de acesso',
+    btnHero: '✦ Comprar — 14,99€',
+    emailPlaceholder: 'o-teu-email@exemplo.com',
+    emailNote: 'O teu email é usado apenas para enviar o código de acesso. Não partilhamos com terceiros.',
+    heroPrice: 'Pagamento único · <strong>14,99€</strong> · Acesso vitalício',
+    formError: 'Por favor introduz um email válido.',
+    featEyebrow: 'O que inclui',
+    featTitle: 'Mais de 20 ferramentas de auto-conhecimento',
+    featIntro: 'Uma biblioteca completa de sistemas ancestrais e modernos, personalizados com base no teu nome, data e hora de nascimento.',
+    f1: 'Planetas, casas e aspectos interpretados para o teu perfil único.',
+    f2: 'Número de Vida, Expressão, Alma e muito mais.',
+    f3: 'O teu tipo, estratégia, autoridade e centros definidos.',
+    fn4: 'Agenda Lunar', f4: '8 fases com rituais personalizados pelo teu elemento.',
+    f5: 'Diagnóstico energético e práticas para cada centro.',
+    f6: 'Tiragens diárias com interpretações aprofundadas.',
+    fn7: 'Constelações', f7: 'Mapeamento sistémico familiar guiado.',
+    fn8: 'Leitura de Mão IA', f8: 'Análise das tuas linhas por inteligência artificial.',
+    fn9: 'Ki de 9 Estrelas', f9: 'Sistema japonês de orientação e ciclos de vida.',
+    fn10: 'Diário Terapêutico', f10: 'Reflexão guiada com perguntas personalizadas.',
+    testEyebrow: 'Quem já usou',
+    testTitle: 'O que dizem sobre a Essência',
+    testIntro: 'Feedback real de pessoas que experimentaram a app.',
+    stepsEyebrow: 'Instalação simples',
+    stepsTitle: 'Tens a app no telemóvel em 4 passos',
+    stepsIntro: 'A Essência é uma Progressive Web App — não precisas de App Store nem Google Play.',
+    s1t: 'Compra e deixa o teu email', s1d: 'Preenche o formulário acima com o teu email e completa o pagamento de 14,99€.',
+    s2t: 'Recebe o código de acesso', s2d: 'Em até 24h receberás um email com o teu código único de acesso.',
+    s3t: 'Abre o link no telemóvel', s3d: 'No Safari (iPhone) ou Chrome (Android), abre o link enviado no email e adiciona ao ecrã principal.',
+    s4t: 'Introduz o código e começa', s4d: 'Na primeira abertura, insere o teu código e começa a descobrir quem realmente és.',
+    faqEyebrow: 'Perguntas frequentes',
+    faqTitle: 'Tens dúvidas?',
+    q1: 'Funciona no iPhone e Android?', a1: 'Sim, funciona em qualquer smartphone. Não precisas de App Store nem Google Play.',
+    q2: 'O pagamento é único ou mensal?', a2: 'Pagamento único de 14,99€. Sem subscrições, sem custos escondidos. Acesso vitalício.',
+    q3: 'Os meus dados ficam guardados?', a3: 'Sim. Todos os dados ficam guardados localmente no teu dispositivo. Ninguém tem acesso às tuas informações.',
+    q4: 'Posso usar em mais do que um dispositivo?', a4: 'O código é válido para um dispositivo. Se precisares de mudar de telemóvel, contacta-nos por email.',
+    q5: 'A app está em inglês e espanhol?', a5: 'Sim! Disponível em Português, Inglês e Espanhol. Podes mudar a língua a qualquer momento.',
+    q6: 'Quanto tempo demora a receber o código?', a6: 'Em até 24 horas após confirmação do pagamento. Normalmente muito mais rápido.',
+    ctaEyebrow: 'Começa hoje',
+    ctaH2: 'O teu caminho de<br>auto-conhecimento começa aqui',
+    ctaP: 'Uma ferramenta criada com intenção, para quem quer ir mais fundo no conhecimento de si mesmo.',
+    ctaLabel: 'O teu email para receberes o código',
+    btnCta: '✦ Comprar — 14,99€',
+    ctaNote: 'Não partilhamos o teu email com terceiros.',
+    guarantee: 'Pagamento seguro via SumUp · Acesso vitalício · Suporte por email',
+    footer: 'Essência — Auto-Conhecimento · Criado por <a href="https://www.elekitra.net">Margarida Leite</a> · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a>'
+  },
+  es: {
+    lang: 'es',
+    pageTitle: 'Essência — App de Autoconocimiento',
+    heroEyebrow: 'App de Autoconocimiento',
+    h1: 'Descubre quién<br><em>realmente eres</em>',
+    heroSub: 'Carta Astral, Numerología, Human Design, Chakras, Fases de la Luna y mucho más — todo en tu bolsillo, siempre disponible, sin suscripción mensual.',
+    formLabel: 'Introduce tu email para recibir el código de acceso',
+    btnHero: '✦ Comprar — 14,99€',
+    emailPlaceholder: 'tu-email@ejemplo.com',
+    emailNote: 'Tu email solo se usa para enviarte el código de acceso. No lo compartimos con terceros.',
+    heroPrice: 'Pago único · <strong>14,99€</strong> · Acceso de por vida',
+    formError: 'Por favor introduce un email válido.',
+    featEyebrow: 'Qué incluye',
+    featTitle: 'Más de 20 herramientas de autoconocimiento',
+    featIntro: 'Una biblioteca completa de sistemas ancestrales y modernos, personalizados según tu nombre, fecha y hora de nacimiento.',
+    f1: 'Planetas, casas y aspectos interpretados para tu perfil único.',
+    f2: 'Número de Vida, Expresión, Alma y mucho más.',
+    f3: 'Tu tipo, estrategia, autoridad y centros definidos.',
+    fn4: 'Agenda Lunar', f4: '8 fases con rituales personalizados según tu elemento.',
+    f5: 'Diagnóstico energético y prácticas para cada centro.',
+    f6: 'Tiradas diarias con interpretaciones profundas.',
+    fn7: 'Constelaciones', f7: 'Mapeo sistémico familiar guiado.',
+    fn8: 'Lectura de Mano IA', f8: 'Análisis de tus líneas mediante inteligencia artificial.',
+    fn9: 'Ki de 9 Estrellas', f9: 'Sistema japonés de orientación y ciclos de vida.',
+    fn10: 'Diario Terapéutico', f10: 'Reflexión guiada con preguntas personalizadas.',
+    testEyebrow: 'Quienes ya lo usan',
+    testTitle: 'Lo que dicen sobre Essência',
+    testIntro: 'Opiniones reales de personas que han probado la app.',
+    stepsEyebrow: 'Instalación sencilla',
+    stepsTitle: 'Tienes la app en tu móvil en 4 pasos',
+    stepsIntro: 'Essência es una Progressive Web App — no necesitas App Store ni Google Play.',
+    s1t: 'Compra y deja tu email', s1d: 'Rellena el formulario con tu email y completa el pago de 14,99€.',
+    s2t: 'Recibe el código de acceso', s2d: 'En menos de 24h recibirás un email con tu código único de acceso.',
+    s3t: 'Abre el enlace en tu móvil', s3d: 'En Safari (iPhone) o Chrome (Android), abre el enlace recibido por email y añádelo a la pantalla principal.',
+    s4t: 'Introduce el código y empieza', s4d: 'En la primera apertura, introduce tu código y comienza a descubrir quién realmente eres.',
+    faqEyebrow: 'Preguntas frecuentes',
+    faqTitle: '¿Tienes dudas?',
+    q1: '¿Funciona en iPhone y Android?', a1: 'Sí, funciona en cualquier smartphone. No necesitas App Store ni Google Play.',
+    q2: '¿El pago es único o mensual?', a2: 'Pago único de 14,99€. Sin suscripciones, sin costes ocultos. Acceso de por vida.',
+    q3: '¿Mis datos quedan guardados?', a3: 'Sí. Todos los datos se guardan localmente en tu dispositivo. Nadie tiene acceso a tu información.',
+    q4: '¿Puedo usarla en más de un dispositivo?', a4: 'El código es válido para un dispositivo. Si necesitas cambiar de móvil, contáctanos por email.',
+    q5: '¿La app está en inglés y español?', a5: '¡Sí! Disponible en Portugués, Inglés y Español. Puedes cambiar el idioma en cualquier momento.',
+    q6: '¿Cuánto tarda en llegar el código?', a6: 'Menos de 24 horas tras la confirmación del pago. Normalmente mucho más rápido.',
+    ctaEyebrow: 'Empieza hoy',
+    ctaH2: 'Tu camino de<br>autoconocimiento empieza aquí',
+    ctaP: 'Una herramienta creada con intención, para quien quiere ir más a fondo en el conocimiento de sí mismo.',
+    ctaLabel: 'Tu email para recibir el código',
+    btnCta: '✦ Comprar — 14,99€',
+    ctaNote: 'No compartimos tu email con terceros.',
+    guarantee: 'Pago seguro vía SumUp · Acceso de por vida · Soporte por email',
+    footer: 'Essência — Autoconocimiento · Creado por <a href="https://www.elekitra.net">Margarida Leite</a> · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a>'
+  },
+  en: {
+    lang: 'en',
+    pageTitle: 'Essência — Self-Knowledge App',
+    heroEyebrow: 'Self-Knowledge App',
+    h1: 'Discover who<br><em>you truly are</em>',
+    heroSub: 'Birth Chart, Numerology, Human Design, Chakras, Lunar Phases and much more — always in your pocket, always available, no monthly subscription.',
+    formLabel: 'Enter your email to receive your access code',
+    btnHero: '✦ Buy — 14.99€',
+    emailPlaceholder: 'your-email@example.com',
+    emailNote: 'Your email is only used to send your access code. We never share it with third parties.',
+    heroPrice: 'One-time payment · <strong>14.99€</strong> · Lifetime access',
+    formError: 'Please enter a valid email address.',
+    featEyebrow: "What's included",
+    featTitle: 'Over 20 self-knowledge tools',
+    featIntro: 'A complete library of ancient and modern systems, personalised based on your name, date and time of birth.',
+    f1: 'Planets, houses and aspects interpreted for your unique profile.',
+    f2: 'Life Path, Expression, Soul Urge numbers and more.',
+    f3: 'Your type, strategy, authority and defined centres.',
+    fn4: 'Lunar Calendar', f4: '8 phases with rituals personalised by your element.',
+    f5: 'Energy diagnosis and practices for each centre.',
+    f6: 'Daily spreads with in-depth interpretations.',
+    fn7: 'Constellations', f7: 'Guided family systemic mapping.',
+    fn8: 'AI Palm Reading', f8: 'Analysis of your palm lines using artificial intelligence.',
+    fn9: '9 Star Ki', f9: 'Japanese system of guidance and life cycles.',
+    fn10: 'Therapeutic Journal', f10: 'Guided reflection with personalised questions.',
+    testEyebrow: 'Who uses it',
+    testTitle: 'What people say about Essência',
+    testIntro: 'Real feedback from people who have tried the app.',
+    stepsEyebrow: 'Simple installation',
+    stepsTitle: 'Get the app on your phone in 4 steps',
+    stepsIntro: 'Essência is a Progressive Web App — no App Store or Google Play needed.',
+    s1t: 'Buy and leave your email', s1d: 'Fill in the form with your email and complete the 14.99€ payment.',
+    s2t: 'Receive your access code', s2d: 'Within 24h you will receive an email with your unique access code.',
+    s3t: 'Open the link on your phone', s3d: 'In Safari (iPhone) or Chrome (Android), open the link from the email and add it to your home screen.',
+    s4t: 'Enter the code and start', s4d: 'On first launch, enter your code and begin discovering who you truly are.',
+    faqEyebrow: 'Frequently asked questions',
+    faqTitle: 'Have questions?',
+    q1: 'Does it work on iPhone and Android?', a1: 'Yes, it works on any smartphone. No App Store or Google Play required.',
+    q2: 'Is it a one-time payment or monthly?', a2: 'One-time payment of 14.99€. No subscriptions, no hidden costs. Lifetime access.',
+    q3: 'Is my data saved?', a3: 'Yes. All data is stored locally on your device. Nobody has access to your information.',
+    q4: 'Can I use it on more than one device?', a4: 'The code is valid for one device. If you need to switch phones, contact us by email.',
+    q5: 'Is the app available in English and Spanish?', a5: 'Yes! Available in Portuguese, English and Spanish. You can switch language at any time.',
+    q6: 'How long does it take to receive the code?', a6: 'Within 24 hours of payment confirmation. Usually much faster.',
+    ctaEyebrow: 'Start today',
+    ctaH2: 'Your path of<br>self-knowledge starts here',
+    ctaP: 'A tool created with intention, for those who want to go deeper into knowing themselves.',
+    ctaLabel: 'Your email to receive the access code',
+    btnCta: '✦ Buy — 14.99€',
+    ctaNote: 'We never share your email with third parties.',
+    guarantee: 'Secure payment via SumUp · Lifetime access · Email support',
+    footer: 'Essência — Self-Knowledge · Created by <a href="https://www.elekitra.net">Margarida Leite</a> · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a>'
+  }
+};
+
+// ── APLICAR IDIOMA ────────────────────────────────────────────────────────────
+function setLang(lang) {
+  if (!T[lang]) lang = 'pt';
+  var t = T[lang];
+  var s = function(id, val) { var el = document.getElementById(id); if (el) el.innerHTML = val; };
+  var st = function(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; };
+
+  document.getElementById('html-root').lang = lang;
+  document.title = t.pageTitle;
+
+  // Botões de língua
+  ['pt','es','en'].forEach(function(l) {
+    var b = document.getElementById('lb-'+l);
+    if (b) { b.className = 'lang-btn' + (l === lang ? ' active' : ''); }
+  });
+
+  // Placeholders
+  ['heroEmail','ctaEmail'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.placeholder = t.emailPlaceholder;
+  });
+
+  // HTML fields (innerHTML)
+  s('t-h1', t.h1);
+  s('t-hero-price', t.heroPrice);
+  s('t-footer', t.footer);
+
+  // Text fields (textContent)
+  var fields = {
+    't-eyebrow-hero': t.heroEyebrow, 't-hero-sub': t.heroSub,
+    't-form-label': t.formLabel, 't-btn-hero': t.btnHero,
+    't-email-note': t.emailNote,
+    't-feat-eyebrow': t.featEyebrow, 't-feat-title': t.featTitle, 't-feat-intro': t.featIntro,
+    't-f1': t.f1, 't-f2': t.f2, 't-f3': t.f3,
+    't-fn4': t.fn4, 't-f4': t.f4, 't-f5': t.f5, 't-f6': t.f6,
+    't-fn7': t.fn7, 't-f7': t.f7, 't-fn8': t.fn8, 't-f8': t.f8,
+    't-fn9': t.fn9, 't-f9': t.f9, 't-fn10': t.fn10, 't-f10': t.f10,
+    't-test-eyebrow': t.testEyebrow, 't-test-title': t.testTitle, 't-test-intro': t.testIntro,
+    't-steps-eyebrow': t.stepsEyebrow, 't-steps-title': t.stepsTitle, 't-steps-intro': t.stepsIntro,
+    't-s1t': t.s1t, 't-s1d': t.s1d, 't-s2t': t.s2t, 't-s2d': t.s2d,
+    't-s3t': t.s3t, 't-s3d': t.s3d, 't-s4t': t.s4t, 't-s4d': t.s4d,
+    't-faq-eyebrow': t.faqEyebrow, 't-faq-title': t.faqTitle,
+    't-q1': t.q1, 't-a1': t.a1, 't-q2': t.q2, 't-a2': t.a2,
+    't-q3': t.q3, 't-a3': t.a3, 't-q4': t.q4, 't-a4': t.a4,
+    't-q5': t.q5, 't-a5': t.a5, 't-q6': t.q6, 't-a6': t.a6,
+    't-cta-eyebrow': t.ctaEyebrow, 't-cta-h2': t.ctaH2, 't-cta-p': t.ctaP,
+    't-cta-label': t.ctaLabel, 't-btn-cta': t.btnCta, 't-cta-note': t.ctaNote,
+    't-guarantee': t.guarantee
+  };
+  // ctaH2 tem <br> — usar innerHTML
+  s('t-cta-h2', t.ctaH2);
+  delete fields['t-cta-h2'];
+
+  Object.keys(fields).forEach(function(id) { st(id, fields[id]); });
+
+  // Mensagens de erro (escondidas mas pré-preenchidas)
+  ['heroError','ctaError'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) { el.textContent = t.formError; el.style.display = 'none'; }
+  });
+
+  // Guardar preferência
+  try { localStorage.setItem('essencia_lang', lang); } catch(e) {}
+}
+
+// ── DETECTAR IDIOMA ───────────────────────────────────────────────────────────
+(function() {
+  // 1. URL param: ?lang=en
+  var urlLang = new URLSearchParams(window.location.search).get('lang');
+  // 2. localStorage da app principal
+  var storedLang;
+  try { storedLang = localStorage.getItem('essencia_lang') || localStorage.getItem('currentLang'); } catch(e) {}
+  // 3. Browser language
+  var browserLang = (navigator.language || '').slice(0,2).toLowerCase();
+  var detected = urlLang || storedLang || (browserLang === 'es' ? 'es' : browserLang === 'en' ? 'en' : 'pt');
+  setLang(detected);
+})();
+
+// ── FORMULÁRIOS ───────────────────────────────────────────────────────────────
 function handleForm(formId, emailId, errorId) {
   var form = document.getElementById(formId);
   if (!form) return;
@@ -242,13 +490,10 @@ function handleForm(formId, emailId, errorId) {
       return;
     }
     document.getElementById(errorId).style.display = 'none';
-
-    // Submeter o formulário ao Netlify em background
     var data = new FormData(form);
     fetch('/', { method: 'POST', body: data })
-      .catch(function() {}) // ignorar erros silenciosamente
+      .catch(function() {})
       .finally(function() {
-        // Redirigir para o SumUp
         window.location.href = 'https://pay.sumup.com/b2c/QGCQ6B2I';
       });
   });

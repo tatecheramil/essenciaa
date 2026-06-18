@@ -308,6 +308,11 @@
   <!-- Disclaimer Modal -->
   <div class="disclaimer-overlay" id="disclaimer-overlay" style="display:none">
     <div class="disclaimer-card">
+      <div style="display:flex;justify-content:center;gap:.5rem;margin-bottom:1rem">
+        <button onclick="discLang('pt')" id="disc-lang-pt" style="padding:.3rem .75rem;border-radius:20px;border:1px solid var(--border);background:var(--accent-deep);color:#fff;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.12em;cursor:pointer">PT</button>
+        <button onclick="discLang('es')" id="disc-lang-es" style="padding:.3rem .75rem;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text2);font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.12em;cursor:pointer">ES</button>
+        <button onclick="discLang('en')" id="disc-lang-en" style="padding:.3rem .75rem;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text2);font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.12em;cursor:pointer">EN</button>
+      </div>
       <div class="disclaimer-symbol">✧ ◯ ✧</div>
       <div class="disclaimer-title" id="disc-title">Antes de Entrares</div>
       <div class="disclaimer-text" id="disc-text">
@@ -5490,6 +5495,11 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
   <!-- Disclaimer Modal -->
   <div class="disclaimer-overlay" id="disclaimer-overlay" style="display:none">
     <div class="disclaimer-card">
+      <div style="display:flex;justify-content:center;gap:.5rem;margin-bottom:1rem">
+        <button onclick="discLang('pt')" id="disc-lang-pt" style="padding:.3rem .75rem;border-radius:20px;border:1px solid var(--border);background:var(--accent-deep);color:#fff;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.12em;cursor:pointer">PT</button>
+        <button onclick="discLang('es')" id="disc-lang-es" style="padding:.3rem .75rem;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text2);font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.12em;cursor:pointer">ES</button>
+        <button onclick="discLang('en')" id="disc-lang-en" style="padding:.3rem .75rem;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text2);font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.12em;cursor:pointer">EN</button>
+      </div>
       <div class="disclaimer-symbol">✧ ◯ ✧</div>
       <div class="disclaimer-title" id="disc-title">Antes de Entrares</div>
       <div class="disclaimer-text" id="disc-text">
@@ -11854,6 +11864,8 @@ function renderPerfis() {
     const bemVindaTextStyle='font-size:.88rem;color:var(--text2);line-height:1.7';
     const bemVinda = currentLang==='es'
       ? '<div style="'+bemVindaStyle+'">Bienvenida</div><div style="'+bemVindaTextStyle+'">Crea tu perfil para comenzar el viaje de autoconocimiento. Puedes tener varios perfiles — para ti, para tus hijos, para quien quieras.</div>'
+      : currentLang==='en'
+      ? '<div style="'+bemVindaStyle+'">Welcome</div><div style="'+bemVindaTextStyle+'">Create your profile to begin your journey of self-knowledge. You can have multiple profiles — for yourself, your children, or anyone you like.</div>'
       : '<div style="'+bemVindaStyle+'">Bem-vinda</div><div style="'+bemVindaTextStyle+'">Cria o teu perfil para começar a jornada de autoconhecimento. Podes ter vários perfis — para ti, para os teus filhos, para quem quiseres.</div>';
     lista.innerHTML = '<div style="text-align:center;padding:2rem;background:var(--card);border-radius:16px;border:1px solid var(--border2);margin-bottom:.75rem"><div style="font-size:2rem;margin-bottom:.75rem">🌟</div>'+bemVinda+'</div>';
     return;
@@ -12949,6 +12961,25 @@ function disclaimerEntrar(){
   localStorage.setItem('essencia_disclaimer_v1','accepted');
   var overlay=document.getElementById('disclaimer-overlay');
   if(overlay){overlay.style.opacity='0';overlay.style.transition='opacity .4s';setTimeout(function(){overlay.style.display='none';},400);}
+}
+function discLang(lang){
+  currentLang=lang;
+  // destacar botão activo
+  ['pt','es','en'].forEach(function(l){
+    var b=document.getElementById('disc-lang-'+l);
+    if(b){b.style.background=l===lang?'var(--accent-deep)':'transparent';b.style.color=l===lang?'#fff':'var(--text2)';}
+  });
+  // re-aplicar traduções ao modal
+  var T=TRANSLATIONS[lang]||TRANSLATIONS.pt;
+  var set=function(id,k){var el=document.getElementById(id);if(el&&T[k])el.textContent=T[k];};
+  set('disc-title','disc_titulo');
+  set('disc-check-label','disc_check');
+  set('disc-footer','disc_footer');
+  var btn=document.getElementById('disc-btn');if(btn&&T.disc_btn)btn.innerHTML='✦ &nbsp; '+T.disc_btn;
+  var txt=document.getElementById('disc-text');if(txt&&T.disc_texto)txt.innerHTML=T.disc_texto;
+  // reset checkbox (ao mudar língua o utilizador deve reler)
+  var chk=document.getElementById('disc-check');if(chk){chk.checked=false;}
+  var dbtn=document.getElementById('disc-btn');if(dbtn)dbtn.classList.remove('ready');
 }
 
 
