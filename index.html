@@ -13595,7 +13595,7 @@ function _palmMostrarResultadoGuardado(){
   var maoNome=mao==='esquerda'?(T.palm_mao_esquerda||'esquerda'):(T.palm_mao_direita||'direita');
   var labelData=currentLang==='en'?'Reading saved on ':currentLang==='es'?'Lectura guardada el ':'Leitura guardada a ';
   var labelMao=currentLang==='en'?'hand':currentLang==='es'?'mano':'mão';
-  el.innerHTML='<div style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--border2)">'+labelData+guardado.data+' · '+maoNome+' '+labelMao+'</div>'+guardado.texto;
+  el.innerHTML='<div style="font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--border2)">'+labelData+guardado.data+' · '+maoNome+' '+labelMao+'</div>'+guardado.texto;
   wrap.style.display='block';
   if(tit){tit.textContent=T.palma_ia_resultado_titulo||'✨ Leitura por IA';}
 }
