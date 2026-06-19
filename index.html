@@ -3377,6 +3377,14 @@ function applyLang() {
   const fbSend=document.getElementById('fb-send-btn'); if(fbSend) fbSend.textContent=T.fb_send;
   const fbThanks=document.getElementById('fb-thanks-text'); if(fbThanks) fbThanks.textContent=T.fb_thanks;
   const fbNote=document.getElementById('feedback-note'); if(fbNote) fbNote.placeholder=T.fb_placeholder;
+  // Reforçar a apresentação da leitura de mãos guardada após mudança de idioma
+  // (evita que a tradução da etiqueta de "mão" deixe o resultado sem ser refrescado)
+  try{
+    var _tabPalmaEl=document.getElementById('tab-palma');
+    if(_tabPalmaEl && _tabPalmaEl.style.display==='block' && typeof _palmMostrarResultadoGuardado==='function'){
+      _palmMostrarResultadoGuardado();
+    }
+  }catch(_e){}
   } catch(e) { console.error('applyLang error:', e.message, e.stack); }
 }
 
@@ -8523,6 +8531,14 @@ function applyLang() {
   const fbSend=document.getElementById('fb-send-btn'); if(fbSend) fbSend.textContent=T.fb_send;
   const fbThanks=document.getElementById('fb-thanks-text'); if(fbThanks) fbThanks.textContent=T.fb_thanks;
   const fbNote=document.getElementById('feedback-note'); if(fbNote) fbNote.placeholder=T.fb_placeholder;
+  // Reforçar a apresentação da leitura de mãos guardada após mudança de idioma
+  // (evita que a tradução da etiqueta de "mão" deixe o resultado sem ser refrescado)
+  try{
+    var _tabPalmaEl=document.getElementById('tab-palma');
+    if(_tabPalmaEl && _tabPalmaEl.style.display==='block' && typeof _palmMostrarResultadoGuardado==='function'){
+      _palmMostrarResultadoGuardado();
+    }
+  }catch(_e){}
   } catch(e) { console.error('applyLang error:', e.message, e.stack); }
 }
 
@@ -13541,8 +13557,15 @@ function selectHandIA(hand) {
   palmIAHandType = hand;
   document.getElementById('btn-direita-ia').classList.toggle('active', hand === 'direita');
   document.getElementById('btn-esquerda-ia').classList.toggle('active', hand === 'esquerda');
+  // Esconder sempre o resultado anterior (pode ser de outra mão) antes de decidir o que mostrar
+  var res=document.getElementById('palm-ia-resultado'); if(res) res.style.display='none';
+  var txt=document.getElementById('palm-ia-texto'); if(txt) txt.innerHTML='';
+  var msgEl=document.getElementById('palm-ia-bloqueio-msg'); if(msgEl) msgEl.style.display='none';
+  var retryEl=document.getElementById('palm-ia-retry-btn'); if(retryEl) retryEl.style.display='none';
+  // Se já existe leitura guardada para esta mão, mostrá-la; caso contrário fica vazio
+  if(typeof _palmMostrarResultadoGuardado==='function') _palmMostrarResultadoGuardado();
   // Actualizar info de limite para a mão seleccionada
-  if(palmIAImageBase64) _palmMostrarLimite();
+  _palmMostrarLimite();
 }
 
 function palmFotoSelecionada(input) {
