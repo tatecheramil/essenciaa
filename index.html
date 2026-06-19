@@ -952,8 +952,11 @@
       <div id="palm-ia-resultado" style="display:none">
         <div class="section-title" id="palma-ia-resultado-titulo">✨ Leitura por IA</div>
         <div id="palm-ia-texto" class="palm-ia-resultado-texto"></div>
-        <button onclick="resetPalmIA()" style="width:100%;padding:.85rem;background:transparent;border:1px solid var(--border);border-radius:10px;color:var(--accent);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;margin-top:1rem">
-          📷 Nova análise
+        <div id="palm-ia-bloqueio-msg" style="display:none;margin-top:1rem;text-align:center;font-size:.78rem;color:var(--text3);font-family:'Cormorant Garamond',serif;font-style:italic;padding:.75rem">
+          🔒 <span id="palm-ia-bloqueio-txt">Esta é a tua leitura deste mês para esta mão. Uma nova leitura ficará disponível no próximo mês.</span>
+        </div>
+        <button id="palm-ia-retry-btn" onclick="resetPalmIA()" style="display:none;width:100%;padding:.85rem;background:transparent;border:1px solid var(--border);border-radius:10px;color:var(--accent);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;margin-top:1rem">
+          <span id="palm-ia-retry-txt">↺ Tentar novamente</span>
         </button>
       </div>
     </div><!-- /palm-mode-foto -->
@@ -6139,8 +6142,11 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
       <div id="palm-ia-resultado" style="display:none">
         <div class="section-title" id="palma-ia-resultado-titulo">✨ Leitura por IA</div>
         <div id="palm-ia-texto" class="palm-ia-resultado-texto"></div>
-        <button onclick="resetPalmIA()" style="width:100%;padding:.85rem;background:transparent;border:1px solid var(--border);border-radius:10px;color:var(--accent);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;margin-top:1rem">
-          📷 Nova análise
+        <div id="palm-ia-bloqueio-msg" style="display:none;margin-top:1rem;text-align:center;font-size:.78rem;color:var(--text3);font-family:'Cormorant Garamond',serif;font-style:italic;padding:.75rem">
+          🔒 <span id="palm-ia-bloqueio-txt">Esta é a tua leitura deste mês para esta mão. Uma nova leitura ficará disponível no próximo mês.</span>
+        </div>
+        <button id="palm-ia-retry-btn" onclick="resetPalmIA()" style="display:none;width:100%;padding:.85rem;background:transparent;border:1px solid var(--border);border-radius:10px;color:var(--accent);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;margin-top:1rem">
+          <span id="palm-ia-retry-txt">↺ Tentar novamente</span>
         </button>
       </div>
     </div><!-- /palm-mode-foto -->
@@ -11906,6 +11912,7 @@ function abrirPerfil(id) {
 
   // Guardar qual o perfil activo nesta sessão
   sessionStorage.setItem('perfil_activo_id', id);
+  if(typeof _palmResetEstadoCompleto==='function') _palmResetEstadoCompleto();
 
   // Se o perfil já tem dados calculados, vai directo para resultados
   if(perfil.calculado) {
@@ -11920,6 +11927,7 @@ function abrirPerfil(id) {
 function novoPerfil() {
   const id = gerarId();
   sessionStorage.setItem('perfil_activo_id', id);
+  if(typeof _palmResetEstadoCompleto==='function') _palmResetEstadoCompleto();
   mostrarFormulario(null);
 }
 
@@ -13598,6 +13606,7 @@ function _palmMostrarResultadoGuardado(){
   el.innerHTML='<div style="font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--border2)">'+labelData+guardado.data+' · '+maoNome+' '+labelMao+'</div>'+guardado.texto;
   wrap.style.display='block';
   if(tit){tit.textContent=T.palma_ia_resultado_titulo||'✨ Leitura por IA';}
+  _palmAtualizarMsgBloqueio(true);
 }
 
 // ── Limite mensal de leitura de mãos ─────────────────────────────────────────
@@ -13738,6 +13747,7 @@ Escreve em português europeu, com profundidade mas acessibilidade. Usa um tom c
     _palmGuardarResultado(palmIAHandType||'direita', '<p>' + formatado + '</p>');
     _palmMostrarLimite();
     document.getElementById('palm-ia-resultado').style.display = 'block';
+    _palmAtualizarMsgBloqueio(true);
 
   } catch(e) {
     let msg = e.message || '';
@@ -13756,10 +13766,56 @@ Escreve em português europeu, com profundidade mas acessibilidade. Usa um tom c
       '<div style="color:#c0392b;font-size:.88rem;line-height:1.7;padding:1rem;background:rgba(192,57,43,.06);border-radius:10px;border:1px solid rgba(192,57,43,.15)">' +
       '⚠️ ' + msg + '</div>';
     document.getElementById('palm-ia-resultado').style.display = 'block';
+    _palmAtualizarMsgBloqueio(false);
   } finally {
     document.getElementById('palm-ia-loading').style.display = 'none';
     document.getElementById('palm-analisar-btn').disabled = false;
   }
+}
+
+function _palmAtualizarMsgBloqueio(sucesso){
+  var msgEl=document.getElementById('palm-ia-bloqueio-msg');
+  var retryEl=document.getElementById('palm-ia-retry-btn');
+  var txtEl=document.getElementById('palm-ia-bloqueio-txt');
+  var retryTxtEl=document.getElementById('palm-ia-retry-txt');
+  if(!msgEl||!retryEl) return;
+  if(sucesso){
+    if(txtEl){
+      txtEl.textContent = currentLang==='en'
+        ? 'This is your reading for this month for this hand. A new reading will be available next month.'
+        : currentLang==='es'
+        ? 'Esta es tu lectura de este mes para esta mano. Una nueva lectura estará disponible el próximo mes.'
+        : 'Esta é a tua leitura deste mês para esta mão. Uma nova leitura ficará disponível no próximo mês.';
+    }
+    msgEl.style.display='block';
+    retryEl.style.display='none';
+  } else {
+    if(retryTxtEl){
+      retryTxtEl.textContent = currentLang==='en' ? '↺ Try again' : currentLang==='es' ? '↺ Intentar de nuevo' : '↺ Tentar novamente';
+    }
+    msgEl.style.display='none';
+    retryEl.style.display='block';
+  }
+}
+
+function _palmResetEstadoCompleto() {
+  // Chamado sempre que se muda de perfil (novo ou existente) para impedir
+  // que a foto/resultado de uma pessoa apareça associada a outra.
+  try{
+    palmIAImageBase64 = null;
+    palmIAImageMimeType = 'image/jpeg';
+    palmIAHandType = 'direita';
+    var pv=document.getElementById('palm-preview-wrap'); if(pv) pv.style.display='none';
+    var pvImg=document.getElementById('palm-preview-img'); if(pvImg) pvImg.src='';
+    var btn=document.getElementById('palm-analisar-btn'); if(btn) btn.style.display='none';
+    var res=document.getElementById('palm-ia-resultado'); if(res) res.style.display='none';
+    var txt=document.getElementById('palm-ia-texto'); if(txt) txt.innerHTML='';
+    var load=document.getElementById('palm-ia-loading'); if(load) load.style.display='none';
+    var fi=document.getElementById('palm-file-input'); if(fi) fi.value='';
+    var infoEl=document.getElementById('palm-limite-info'); if(infoEl) infoEl.style.display='none';
+    var bd=document.getElementById('btn-direita-ia'); if(bd) bd.classList.add('active');
+    var be=document.getElementById('btn-esquerda-ia'); if(be) be.classList.remove('active');
+  }catch(e){}
 }
 
 function resetPalmIA() {
@@ -13770,6 +13826,8 @@ function resetPalmIA() {
   document.getElementById('palm-ia-resultado').style.display = 'none';
   document.getElementById('palm-ia-loading').style.display = 'none';
   document.getElementById('palm-file-input').value = '';
+  var msgEl=document.getElementById('palm-ia-bloqueio-msg'); if(msgEl) msgEl.style.display='none';
+  var retryEl=document.getElementById('palm-ia-retry-btn'); if(retryEl) retryEl.style.display='none';
 }
 
 
