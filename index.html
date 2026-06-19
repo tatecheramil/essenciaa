@@ -13602,7 +13602,8 @@ function _palmGuardarResultado(mao, htmlTexto){
     var obj={
       texto: htmlTexto,
       data: now.toLocaleDateString('pt-PT',{day:'2-digit',month:'long',year:'numeric'}),
-      ts: now.getTime()
+      ts: now.getTime(),
+      lang: currentLang||'pt'
     };
     localStorage.setItem(_palmResultadoKey(mao), JSON.stringify(obj));
   }catch(e){}
@@ -13626,7 +13627,22 @@ function _palmMostrarResultadoGuardado(){
   var maoNome=mao==='esquerda'?(T.palm_mao_esquerda||'esquerda'):(T.palm_mao_direita||'direita');
   var labelData=currentLang==='en'?'Reading saved on ':currentLang==='es'?'Lectura guardada el ':'Leitura guardada a ';
   var labelMao=currentLang==='en'?'hand':currentLang==='es'?'mano':'mão';
-  el.innerHTML='<div style="font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--border2)">'+labelData+guardado.data+' · '+maoNome+' '+labelMao+'</div>'+guardado.texto;
+  var avisoIdioma='';
+  if(guardado.lang && guardado.lang!==currentLang){
+    var nomeIdiomaGuardado = guardado.lang==='en'?'inglês':guardado.lang==='es'?'espanhol':'português';
+    if(currentLang==='en'){
+      nomeIdiomaGuardado = guardado.lang==='en'?'English':guardado.lang==='es'?'Spanish':'Portuguese';
+    } else if(currentLang==='es'){
+      nomeIdiomaGuardado = guardado.lang==='en'?'inglés':guardado.lang==='es'?'español':'portugués';
+    }
+    var avisoTxt = currentLang==='en'
+      ? ('Note: this reading was generated in '+nomeIdiomaGuardado+'. To get it in '+(currentLang==='en'?'English':'')+', request a new reading next month.')
+      : currentLang==='es'
+      ? ('Nota: esta lectura fue generada en '+nomeIdiomaGuardado+'. Para obtenerla en español, solicita una nueva lectura el próximo mes.')
+      : ('Nota: esta leitura foi gerada em '+nomeIdiomaGuardado+'. Para a teres em português, pede uma nova leitura no próximo mês.');
+    avisoIdioma='<div style="font-size:.74rem;color:var(--accent2);font-style:italic;margin-bottom:.85rem;padding:.6rem .85rem;background:rgba(74,143,181,0.06);border-radius:8px">ℹ️ '+avisoTxt+'</div>';
+  }
+  el.innerHTML='<div style="font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--border2)">'+labelData+guardado.data+' · '+maoNome+' '+labelMao+'</div>'+avisoIdioma+guardado.texto;
   wrap.style.display='block';
   if(tit){tit.textContent=T.palma_ia_resultado_titulo||'✨ Leitura por IA';}
   _palmAtualizarMsgBloqueio(true);
@@ -13707,17 +13723,62 @@ async function analisarMaoIA() {
   const nome = window._nome || 'a pessoa';
   const solSig = pl.length ? SIGNOS[pl[0].signo] : '';
   const luaSig = pl.length ? SIGNOS[pl[1].signo] : '';
-  const handLabel = palmIAHandType === 'direita'
-    ? 'mão direita (mão activa — revela o que a pessoa faz com o que trouxe)'
-    : 'mão esquerda (mão passiva — revela o que a pessoa trouxe para esta vida)';
+  const _palmPromptLang = currentLang || 'pt';
+  const handLabel = _palmPromptLang==='es'
+    ? (palmIAHandType === 'direita' ? 'mano derecha (mano activa — revela lo que la persona hace con lo que trajo)' : 'mano izquierda (mano pasiva — revela lo que la persona trajo a esta vida)')
+    : _palmPromptLang==='en'
+    ? (palmIAHandType === 'direita' ? 'right hand (active hand — reveals what the person does with what they brought)' : 'left hand (passive hand — reveals what the person brought into this life)')
+    : (palmIAHandType === 'direita' ? 'mão direita (mão activa — revela o que a pessoa faz com o que trouxe)' : 'mão esquerda (mão passiva — revela o que a pessoa trouxe para esta vida)');
 
-  const contextoPerfil = [
-    solSig ? `Sol em ${solSig}` : '',
-    luaSig ? `Lua em ${luaSig}` : '',
-    nums.nV ? `Número de Vida ${nums.nV} (${numInfo(nums.nV).nome})` : '',
-  ].filter(Boolean).join(', ');
+  const contextoPerfil = _palmPromptLang==='es'
+    ? [solSig ? `Sol en ${solSig}` : '', luaSig ? `Luna en ${luaSig}` : '', nums.nV ? `Número de Vida ${nums.nV} (${numInfo(nums.nV).nome})` : ''].filter(Boolean).join(', ')
+    : _palmPromptLang==='en'
+    ? [solSig ? `Sun in ${solSig}` : '', luaSig ? `Moon in ${luaSig}` : '', nums.nV ? `Life Number ${nums.nV} (${numInfo(nums.nV).nome})` : ''].filter(Boolean).join(', ')
+    : [solSig ? `Sol em ${solSig}` : '', luaSig ? `Lua em ${luaSig}` : '', nums.nV ? `Número de Vida ${nums.nV} (${numInfo(nums.nV).nome})` : ''].filter(Boolean).join(', ');
 
-  const prompt = `És uma quiromante com 30 anos de experiência em leitura de mãos. Analisa esta imagem da ${handLabel} de ${nome}.
+  let prompt;
+  if(_palmPromptLang==='es'){
+    prompt = `Eres una quiromante con 30 años de experiencia en lectura de manos. Analiza esta imagen de la ${handLabel} de ${nome}.
+
+${contextoPerfil ? `Contexto astrológico de esta persona: ${contextoPerfil}.` : ''}
+
+Por favor analiza detalladamente:
+
+1. **Línea de la Vida** — longitud, profundidad, interrupciones, desviaciones. ¿Qué revelan sobre la vitalidad y el camino de esta persona?
+
+2. **Línea de la Cabeza** — forma (recta, curvada, bifurcada), longitud, profundidad. ¿Qué revela sobre el estilo de pensamiento y toma de decisiones?
+
+3. **Línea del Corazón** — forma, longitud, dónde empieza y termina. ¿Qué revela sobre la vida emocional y el estilo de amar?
+
+4. **Línea del Destino** — si está presente, dónde empieza y cómo se desarrolla. ¿Qué revela sobre el propósito y camino profesional?
+
+5. **Forma de la mano y dedos** — forma general, longitud de los dedos, montes (Monte de Venus, Monte de Júpiter, etc.). ¿Qué revela sobre la personalidad?
+
+6. **Síntesis y consejo** — integra todo en una lectura coherente y personal para ${nome}. ${contextoPerfil ? `Integra también el contexto astrológico (${contextoPerfil}) para una lectura más rica.` : ''}
+
+Escribe en español, con profundidad pero accesibilidad. Usa un tono cálido, espiritual y constructivo. Estructura la respuesta con subtítulos en formato ### para cada sección.`;
+  } else if(_palmPromptLang==='en'){
+    prompt = `You are a palm reader with 30 years of experience in palmistry. Analyse this image of ${nome}'s ${handLabel}.
+
+${contextoPerfil ? `Astrological context for this person: ${contextoPerfil}.` : ''}
+
+Please analyse in detail:
+
+1. **Life Line** — length, depth, breaks, deviations. What do they reveal about this person's vitality and path?
+
+2. **Head Line** — shape (straight, curved, forked), length, depth. What does it reveal about thinking style and decision-making?
+
+3. **Heart Line** — shape, length, where it starts and ends. What does it reveal about emotional life and loving style?
+
+4. **Fate Line** — if present, where it starts and how it develops. What does it reveal about purpose and career path?
+
+5. **Hand and finger shape** — overall shape, finger length, mounts (Mount of Venus, Mount of Jupiter, etc.). What does it reveal about personality?
+
+6. **Synthesis and advice** — bring it all together into a coherent, personal reading for ${nome}. ${contextoPerfil ? `Also integrate the astrological context (${contextoPerfil}) for a richer reading.` : ''}
+
+Write in English, with depth but accessibility. Use a warm, spiritual and constructive tone. Structure the response with ### subheadings for each section.`;
+  } else {
+    prompt = `És uma quiromante com 30 anos de experiência em leitura de mãos. Analisa esta imagem da ${handLabel} de ${nome}.
 
 ${contextoPerfil ? `Contexto astrológico desta pessoa: ${contextoPerfil}.` : ''}
 
@@ -13736,6 +13797,7 @@ Por favor analisa detalhadamente:
 6. **Síntese e conselho** — integra tudo numa leitura coesa e pessoal para ${nome}. ${contextoPerfil ? `Integra também o contexto astrológico (${contextoPerfil}) para uma leitura mais rica.` : ''}
 
 Escreve em português europeu, com profundidade mas acessibilidade. Usa um tom caloroso, espiritual e construtivo. Estrutura a resposta com subtítulos em formato ### para cada secção.`;
+  }
 
   try {
     const response = await fetch('/.netlify/functions/palm-reading', {
