@@ -13069,7 +13069,7 @@ function leitRender(){
   var grid=document.getElementById('leit-grid');if(!grid)return;
   var btnComprar=currentLang==='es'?'Comprar':currentLang==='en'?'Buy':'Comprar';
   var btnVer=currentLang==='es'?'Ver libro':currentLang==='en'?'View book':'Ver livro';
-  var badgeTxt=currentLang==='es'?'✦ Mi libro':currentLang==='en'?'✦ My book':'✦ O meu livro';
+  var badgeTxt=currentLang==='es'?'✦ Libro destacado':currentLang==='en'?'✦ Featured book':'✦ Livro em destaque';
   var destaque=LIVROS.find(function(l){return l.destaque;});
   if(destaqueWrap&&destaque){
     destaqueWrap.innerHTML='<div class="leit-destaque">'+
@@ -13337,7 +13337,7 @@ function updateDrawerUser(perfilOverride){
   }
 }
 
-function showTab(id,btn){document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');const tab=document.getElementById('tab-'+id);if(tab)tab.style.display='block';if(id==='humandesign'){populateHDPreview();calcularHD();}if(id==='biblioteca')renderBiblioteca();if(id==='diario-terapeutico')renderDiario();if(id==='horoscopo')renderHoroscopo();if(id==='tarot')carregarHistoricoTiragens('tarot');if(id==='runas')carregarHistoricoTiragens('runas');if(id==='parceiro')parcReset();if(id==='solar'){rsPopularPaises();_rsUpdateInfoNote();}if(id==='sono')sonoInit();if(id==='eventos')evInit();if(id==='leituras')leitInit();}
+function showTab(id,btn){document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');const tab=document.getElementById('tab-'+id);if(tab)tab.style.display='block';if(id==='humandesign'){populateHDPreview();calcularHD();}if(id==='biblioteca')renderBiblioteca();if(id==='diario-terapeutico')renderDiario();if(id==='horoscopo')renderHoroscopo();if(id==='tarot')carregarHistoricoTiragens('tarot');if(id==='runas')carregarHistoricoTiragens('runas');if(id==='parceiro')parcReset();if(id==='solar'){rsPopularPaises();_rsUpdateInfoNote();}if(id==='sono')sonoInit();if(id==='eventos')evInit();if(id==='leituras')leitInit();if(id==='palma'){_palmMostrarLimite();_palmMostrarResultadoGuardado();}}
 
 </script>
 
@@ -13560,6 +13560,46 @@ function palmFotoSelecionada(input) {
 }
 
 
+// ── Persistência e limite mensal de leitura de mãos ─────────────────────────
+function _palmResultadoKey(mao){
+  var pid=sessionStorage.getItem('perfil_activo_id')||localStorage.getItem('essencia_ultimo_perfil')||'default';
+  return 'essencia_palm_result_'+pid+'_'+mao;
+}
+function _palmGuardarResultado(mao, htmlTexto){
+  try{
+    var now=new Date();
+    var obj={
+      texto: htmlTexto,
+      data: now.toLocaleDateString('pt-PT',{day:'2-digit',month:'long',year:'numeric'}),
+      ts: now.getTime()
+    };
+    localStorage.setItem(_palmResultadoKey(mao), JSON.stringify(obj));
+  }catch(e){}
+}
+function _palmCarregarResultado(mao){
+  try{
+    var raw=localStorage.getItem(_palmResultadoKey(mao));
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+function _palmMostrarResultadoGuardado(){
+  // Chamada ao abrir o tab: se já existe uma leitura guardada, mostra-a
+  var mao=palmIAHandType||'direita';
+  var guardado=_palmCarregarResultado(mao);
+  if(!guardado) return;
+  var el=document.getElementById('palm-ia-texto');
+  var wrap=document.getElementById('palm-ia-resultado');
+  var tit=document.getElementById('palma-ia-resultado-titulo');
+  if(!el||!wrap) return;
+  var T=TRANSLATIONS[currentLang]||TRANSLATIONS.pt;
+  var maoNome=mao==='esquerda'?(T.palm_mao_esquerda||'esquerda'):(T.palm_mao_direita||'direita');
+  var labelData=currentLang==='en'?'Reading saved on ':currentLang==='es'?'Lectura guardada el ':'Leitura guardada a ';
+  var labelMao=currentLang==='en'?'hand':currentLang==='es'?'mano':'mão';
+  el.innerHTML='<div style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--border2)">'+labelData+guardado.data+' · '+maoNome+' '+labelMao+'</div>'+guardado.texto;
+  wrap.style.display='block';
+  if(tit){tit.textContent=T.palma_ia_resultado_titulo||'✨ Leitura por IA';}
+}
+
 // ── Limite mensal de leitura de mãos ─────────────────────────────────────────
 function _palmLimiteKey(mao){
   var pid=sessionStorage.getItem('perfil_activo_id')||localStorage.getItem('essencia_ultimo_perfil')||'default';
@@ -13694,6 +13734,8 @@ Escreve em português europeu, com profundidade mas acessibilidade. Usa um tom c
     document.getElementById('palm-ia-texto').innerHTML = '<p>' + formatado + '</p>';
     // Registar uso após leitura bem sucedida
     _palmRegistarUso(palmIAHandType||'direita');
+    // Guardar o resultado em localStorage para consulta posterior
+    _palmGuardarResultado(palmIAHandType||'direita', '<p>' + formatado + '</p>');
     _palmMostrarLimite();
     document.getElementById('palm-ia-resultado').style.display = 'block';
 

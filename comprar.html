@@ -4,105 +4,104 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="page-title">Essência — App de Auto-Conhecimento</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500&family=Cormorant+Garamond:ital@0;1&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --deep:   #1a2e3b;
-    --mid:    #2d6a8a;
-    --accent: #4a9bb5;
-    --gold:   #c8a040;
-    --cream:  #f4f0e8;
-    --white:  #ffffff;
-    --text:   #2a3540;
-    --text2:  #5a6a75;
-    --border: rgba(74,155,181,.18);
+    --bg:#f4f8fc; --bg2:#eaf2f8; --bg3:#deeaf4;
+    --card:#ffffff; --card2:#f0f6fb;
+    --accent:#4a8fb5; --accent2:#6aabcc; --accent3:#a8d4e8; --accent-deep:#2d6a8a;
+    --text:#1a2e3d; --text2:#4a6278; --text3:#8aabbf;
+    --border: rgba(74,143,181,0.18); --border2: rgba(74,143,181,0.1);
+    --shadow: 0 2px 20px rgba(74,143,181,0.08); --shadow2: 0 4px 32px rgba(74,143,181,0.12);
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Jost', sans-serif; font-weight: 300; color: var(--text); background: var(--cream); line-height: 1.7; }
+  body { font-family: 'Jost', sans-serif; font-weight: 300; color: var(--text); background: var(--bg); line-height: 1.7; }
 
   /* LANG BAR */
-  .lang-bar { position: fixed; top: 0; right: 0; z-index: 999; display: flex; gap: .35rem; padding: .6rem .85rem; }
-  .lang-btn { padding: .28rem .65rem; border-radius: 20px; border: 1px solid rgba(255,255,255,.25); background: transparent; color: rgba(255,255,255,.55); font-family: 'Cinzel', serif; font-size: .55rem; letter-spacing: .12em; cursor: pointer; transition: all .2s; }
-  .lang-btn.active { background: var(--gold); border-color: var(--gold); color: var(--deep); }
-  .lang-btn:hover:not(.active) { border-color: rgba(255,255,255,.5); color: rgba(255,255,255,.85); }
+  .lang-bar { position: fixed; top: 0; right: 0; z-index: 999; display: flex; gap: .35rem; padding: .7rem .9rem; }
+  .lang-btn { padding: .3rem .7rem; border-radius: 20px; border: 1px solid var(--border); background: var(--card); color: var(--text2); font-family: 'Cinzel', serif; font-size: .55rem; letter-spacing: .12em; cursor: pointer; transition: all .2s; box-shadow: var(--shadow); }
+  .lang-btn.active { background: var(--accent-deep); border-color: var(--accent-deep); color: #fff; }
+  .lang-btn:hover:not(.active) { border-color: var(--accent2); color: var(--accent); }
 
   /* HERO */
-  .hero { background: linear-gradient(160deg, var(--deep) 0%, #0e2030 55%, #1a3545 100%); color: var(--white); text-align: center; padding: 5rem 2rem 4rem; position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 60%, rgba(74,155,181,.12) 0%, transparent 70%); pointer-events: none; }
-  .hero-star { font-size: 2.2rem; margin-bottom: 1.5rem; display: block; animation: pulse 4s ease-in-out infinite; }
-  @keyframes pulse { 0%,100%{opacity:.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.08)} }
-  .hero-eyebrow { font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .4em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
-  .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem,6vw,3.2rem); font-weight: 300; letter-spacing: .06em; line-height: 1.2; margin-bottom: 1.2rem; }
-  .hero h1 em { font-style: normal; color: var(--gold); }
-  .hero-sub { font-size: clamp(.95rem,2.5vw,1.1rem); color: rgba(255,255,255,.72); max-width: 520px; margin: 0 auto 2.5rem; font-weight: 300; }
+  .hero { background: linear-gradient(135deg, var(--bg2), var(--bg3)); text-align: center; padding: 5.5rem 1.5rem 3.5rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(74,143,181,.10) 0%, transparent 60%); pointer-events: none; }
+  .hero-star { font-size: 2rem; margin-bottom: 1.25rem; display: block; color: var(--accent-deep); animation: pulse 4s ease-in-out infinite; position: relative; }
+  @keyframes pulse { 0%,100%{opacity:.65;transform:scale(1)} 50%{opacity:1;transform:scale(1.08)} }
+  .hero-eyebrow { font-family: 'Cinzel', serif; font-size: .62rem; letter-spacing: .35em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.1rem; position: relative; }
+  .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(1.9rem,6vw,3rem); font-weight: 300; letter-spacing: .04em; line-height: 1.25; margin-bottom: 1.1rem; color: var(--text); position: relative; }
+  .hero h1 em { font-style: normal; color: var(--accent-deep); }
+  .hero-sub { font-size: clamp(.92rem,2.5vw,1.05rem); color: var(--text2); max-width: 520px; margin: 0 auto 2.25rem; font-weight: 300; position: relative; }
 
   /* FORMULÁRIO */
-  .email-form-wrap { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.15); border-radius: 16px; padding: 2rem; max-width: 440px; margin: 0 auto; }
-  .email-form-label { font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; display: block; }
+  .email-form-wrap { background: var(--card); border: 1px solid var(--border2); box-shadow: var(--shadow2); border-radius: 18px; padding: 1.9rem; max-width: 440px; margin: 0 auto; position: relative; }
+  .email-form-label { font-family: 'Cinzel', serif; font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent-deep); margin-bottom: .8rem; display: block; }
   .email-form-row { display: flex; gap: .6rem; flex-wrap: wrap; }
-  .email-input { flex: 1; min-width: 180px; padding: .85rem 1rem; border: 1px solid rgba(255,255,255,.2); border-radius: 10px; background: rgba(255,255,255,.08); color: var(--white); font-family: 'Jost', sans-serif; font-size: .9rem; outline: none; }
-  .email-input::placeholder { color: rgba(255,255,255,.4); }
-  .email-input:focus { border-color: var(--gold); background: rgba(255,255,255,.12); }
-  .btn-primary { display: inline-block; background: var(--gold); color: var(--deep); font-family: 'Cinzel', serif; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; text-decoration: none; padding: .85rem 1.8rem; border-radius: 10px; font-weight: 500; border: none; cursor: pointer; transition: transform .2s, box-shadow .2s; white-space: nowrap; }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(200,160,64,.4); }
-  .email-note { font-size: .75rem; color: rgba(255,255,255,.4); margin-top: .8rem; }
-  .hero-price { margin-top: 1.4rem; font-size: .85rem; color: rgba(255,255,255,.5); }
-  .hero-price strong { color: var(--gold); font-size: 1.1rem; font-weight: 400; }
+  .email-input { flex: 1; min-width: 180px; padding: .85rem 1rem; border: 1px solid var(--border); border-radius: 10px; background: var(--bg2); color: var(--text); font-family: 'Jost', sans-serif; font-size: .9rem; outline: none; transition: border-color .2s, box-shadow .2s; }
+  .email-input::placeholder { color: var(--text3); }
+  .email-input:focus { border-color: var(--accent2); box-shadow: 0 0 0 3px rgba(74,143,181,0.1); background: var(--card); }
+  .btn-primary { display: inline-block; background: var(--accent-deep); color: #fff; font-family: 'Cinzel', serif; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; padding: .85rem 1.7rem; border-radius: 10px; font-weight: 500; border: none; cursor: pointer; transition: all .2s; white-space: nowrap; }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74,143,181,.3); }
+  .email-note { font-size: .75rem; color: var(--text3); margin-top: .8rem; }
+  .hero-price { margin-top: 1.3rem; font-size: .85rem; color: var(--text2); position: relative; }
+  .hero-price strong { color: var(--accent-deep); font-size: 1.1rem; font-weight: 400; }
   .form-msg { display: none; margin-top: .8rem; font-size: .82rem; border-radius: 8px; padding: .6rem 1rem; }
-  .form-msg.error { background: rgba(192,57,43,.15); color: #e87a6a; display: block; }
+  .form-msg.error { background: rgba(181,74,74,.08); color: #a85050; border: 1px solid rgba(181,74,74,.2); display: block; }
 
   /* SECTIONS */
-  section { padding: 4rem 1.5rem; max-width: 780px; margin: 0 auto; }
-  .section-eyebrow { font-family: 'Cinzel', serif; font-size: .58rem; letter-spacing: .35em; text-transform: uppercase; color: var(--accent); margin-bottom: .8rem; }
-  .section-title { font-family: 'Cinzel', serif; font-size: clamp(1.3rem,4vw,1.8rem); font-weight: 300; color: var(--deep); margin-bottom: 1rem; line-height: 1.3; }
-  .section-intro { color: var(--text2); font-size: .95rem; margin-bottom: 2.5rem; max-width: 580px; }
+  section { padding: 3.75rem 1.5rem; max-width: 780px; margin: 0 auto; }
+  .section-eyebrow { font-family: 'Cinzel', serif; font-size: .58rem; letter-spacing: .32em; text-transform: uppercase; color: var(--accent); margin-bottom: .8rem; }
+  .section-title { font-family: 'Cinzel', serif; font-size: clamp(1.25rem,4vw,1.7rem); font-weight: 300; color: var(--text); margin-bottom: 1rem; line-height: 1.35; }
+  .section-intro { color: var(--text2); font-size: .92rem; margin-bottom: 2.25rem; max-width: 580px; }
 
   /* FEATURES */
-  .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1rem; }
-  .feature-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 1.4rem 1.2rem; transition: transform .2s, box-shadow .2s; }
-  .feature-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(45,106,138,.08); }
-  .feature-icon { font-size: 1.5rem; margin-bottom: .6rem; display: block; }
-  .feature-name { font-family: 'Cinzel', serif; font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--mid); margin-bottom: .3rem; }
-  .feature-desc { font-size: .82rem; color: var(--text2); line-height: 1.55; }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: .9rem; }
+  .feature-card { background: var(--card); border: 1px solid var(--border2); border-radius: 14px; padding: 1.35rem 1.15rem; transition: transform .2s, box-shadow .2s; }
+  .feature-card:hover { transform: translateY(-3px); box-shadow: var(--shadow2); }
+  .feature-icon { font-size: 1.45rem; margin-bottom: .55rem; display: block; }
+  .feature-name { font-family: 'Cinzel', serif; font-size: .63rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-deep); margin-bottom: .3rem; }
+  .feature-desc { font-size: .8rem; color: var(--text2); line-height: 1.55; }
 
   /* DIVIDER */
-  .divider { text-align: center; padding: 1rem 0; color: var(--accent); font-size: 1.1rem; letter-spacing: .3em; opacity: .5; }
+  .divider { text-align: center; padding: .5rem 0; color: var(--accent3); font-size: 1rem; letter-spacing: .3em; }
 
   /* TESTIMONIALS */
-  .testimonials-section { background: linear-gradient(160deg, var(--deep) 0%, #0e2030 100%); padding: 4rem 1.5rem; }
+  .testimonials-section { background: var(--card2); padding: 3.75rem 1.5rem; border-top: 1px solid var(--border2); border-bottom: 1px solid var(--border2); }
   .testimonials-inner { max-width: 780px; margin: 0 auto; }
-  .testimonials-section .section-title { color: var(--white); }
-  .testimonials-section .section-eyebrow { color: var(--gold); }
-  .testimonials-section .section-intro { color: rgba(255,255,255,.6); }
-  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.2rem; margin-top: 2rem; }
-  .testimonial-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 14px; padding: 1.6rem; }
-  .testimonial-stars { color: var(--gold); font-size: .9rem; margin-bottom: .8rem; }
-  .testimonial-text { font-size: .88rem; color: rgba(255,255,255,.8); line-height: 1.65; margin-bottom: 1rem; font-style: italic; }
-  .testimonial-author { font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.1rem; margin-top: 1.75rem; }
+  .testimonial-card { background: var(--card); border: 1px solid var(--border2); border-radius: 14px; padding: 1.5rem; box-shadow: var(--shadow); }
+  .testimonial-stars { color: var(--accent-deep); font-size: .85rem; margin-bottom: .75rem; }
+  .testimonial-text { font-family: 'Cormorant Garamond', serif; font-size: .98rem; color: var(--text2); line-height: 1.7; margin-bottom: 1rem; font-style: italic; }
+  .testimonial-author { font-family: 'Cinzel', serif; font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); }
 
   /* STEPS */
-  .steps-list { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
-  .step { display: flex; gap: 1.2rem; align-items: flex-start; background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 1.3rem 1.4rem; }
-  .step-num { font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--accent); font-weight: 300; flex-shrink: 0; min-width: 1.8rem; }
-  .step-text strong { display: block; font-family: 'Cinzel', serif; font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--mid); margin-bottom: .2rem; font-weight: 500; }
-  .step-text span { font-size: .88rem; color: var(--text2); }
+  .steps-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-top: 1.75rem; }
+  .step { display: flex; gap: 1.1rem; align-items: flex-start; background: var(--card); border: 1px solid var(--border2); border-radius: 14px; padding: 1.2rem 1.3rem; }
+  .step-num { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--accent3); font-weight: 300; flex-shrink: 0; min-width: 1.7rem; }
+  .step-text strong { display: block; font-family: 'Cinzel', serif; font-size: .63rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-deep); margin-bottom: .25rem; font-weight: 500; }
+  .step-text span { font-size: .86rem; color: var(--text2); }
 
   /* CTA */
-  .cta-section { background: var(--deep); padding: 5rem 1.5rem; text-align: center; color: var(--white); }
-  .cta-section h2 { font-family: 'Cinzel', serif; font-size: clamp(1.4rem,4vw,2rem); font-weight: 300; letter-spacing: .06em; margin-bottom: 1rem; line-height: 1.3; }
-  .cta-section p { color: rgba(255,255,255,.65); font-size: .95rem; margin-bottom: 2rem; max-width: 460px; margin-left: auto; margin-right: auto; }
-  .cta-guarantee { margin-top: 1.2rem; font-size: .78rem; color: rgba(255,255,255,.4); }
-  .cta-email-wrap { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 2rem; max-width: 440px; margin: 0 auto 1.5rem; }
+  .cta-section { background: linear-gradient(135deg, var(--accent-deep), var(--accent2)); padding: 4rem 1.5rem; text-align: center; color: #fff; }
+  .cta-section h2 { font-family: 'Cinzel', serif; font-size: clamp(1.3rem,4vw,1.85rem); font-weight: 300; letter-spacing: .04em; margin-bottom: 1rem; line-height: 1.35; }
+  .cta-section p { color: rgba(255,255,255,.82); font-size: .92rem; margin-bottom: 1.75rem; max-width: 460px; margin-left: auto; margin-right: auto; }
+  .cta-guarantee { margin-top: 1.2rem; font-size: .76rem; color: rgba(255,255,255,.65); }
+  .cta-email-wrap { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22); border-radius: 18px; padding: 1.9rem; max-width: 440px; margin: 0 auto 1.4rem; }
+  .cta-email-wrap .email-input { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.25); color: #fff; }
+  .cta-email-wrap .email-input::placeholder { color: rgba(255,255,255,.5); }
+  .cta-email-wrap .email-input:focus { border-color: #fff; background: rgba(255,255,255,.18); box-shadow: none; }
+  .cta-email-wrap .btn-primary { background: #fff; color: var(--accent-deep); }
+  .cta-email-wrap .btn-primary:hover { background: var(--bg2); }
 
   /* FAQ */
-  .faq-list { display: flex; flex-direction: column; gap: .8rem; margin-top: 2rem; }
-  .faq-item { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem 1.4rem; }
-  .faq-q { font-family: 'Cinzel', serif; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--mid); margin-bottom: .5rem; font-weight: 500; }
-  .faq-a { font-size: .88rem; color: var(--text2); line-height: 1.6; }
+  .faq-list { display: flex; flex-direction: column; gap: .7rem; margin-top: 1.75rem; }
+  .faq-item { background: var(--card); border: 1px solid var(--border2); border-radius: 12px; padding: 1.15rem 1.35rem; }
+  .faq-q { font-family: 'Cinzel', serif; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-deep); margin-bottom: .5rem; font-weight: 500; }
+  .faq-a { font-size: .86rem; color: var(--text2); line-height: 1.6; }
 
-  footer { background: #0d1e28; color: rgba(255,255,255,.35); text-align: center; padding: 2rem 1.5rem; font-size: .75rem; letter-spacing: .05em; }
-  footer a { color: var(--accent); text-decoration: none; }
+  footer { background: var(--card2); color: var(--text3); text-align: center; padding: 1.75rem 1.5rem; font-size: .74rem; letter-spacing: .03em; border-top: 1px solid var(--border2); }
+  footer a { color: var(--accent-deep); text-decoration: none; }
 
   @media (max-width: 480px) {
     .features-grid { grid-template-columns: 1fr 1fr; }
@@ -111,6 +110,7 @@
     .btn-primary { width: 100%; text-align: center; }
   }
 </style>
+</head>
 </head>
 <body>
 
@@ -223,12 +223,12 @@
     <form name="compra-essencia-cta" netlify netlify-honeypot="bot-field" id="ctaForm">
       <input type="hidden" name="form-name" value="compra-essencia-cta">
       <input type="hidden" name="bot-field" style="display:none">
-      <label class="email-form-label" style="color:var(--gold)" id="t-cta-label">O teu email para receberes o código</label>
+      <label class="email-form-label" style="color:#fff" id="t-cta-label">O teu email para receberes o código</label>
       <div class="email-form-row" style="margin-top:.8rem">
         <input type="email" name="email" class="email-input" id="ctaEmail" required>
         <button type="submit" class="btn-primary" id="t-btn-cta">✦ Comprar — 14,99€</button>
       </div>
-      <p class="email-note" style="color:rgba(255,255,255,.35)" id="t-cta-note">Não partilhamos o teu email com terceiros.</p>
+      <p class="email-note" style="color:rgba(255,255,255,.65)" id="t-cta-note">Não partilhamos o teu email com terceiros.</p>
       <div class="form-msg error" id="ctaError"></div>
     </form>
   </div>
@@ -236,7 +236,7 @@
 </div>
 
 <footer>
-  <p id="t-footer">Essência — Auto-Conhecimento · Criado por <a href="https://www.elekitra.net">Margarida Leite</a> · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a></p>
+  <p id="t-footer">Essência — Auto-Conhecimento · Criado por <a href="https://www.elekitra.net">Margarida Leite</a> e Ana Almeida · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a></p>
 </footer>
 
 <script>
@@ -292,7 +292,7 @@ var T = {
     btnCta: '✦ Comprar — 14,99€',
     ctaNote: 'Não partilhamos o teu email com terceiros.',
     guarantee: 'Pagamento seguro via SumUp · Acesso vitalício · Suporte por email',
-    footer: 'Essência — Auto-Conhecimento · Criado por <a href="https://www.elekitra.net">Margarida Leite</a> · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a>'
+    footer: 'Essência — Auto-Conhecimento · Criado por <a href="https://www.elekitra.net">Margarida Leite</a> e Ana Almeida · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a>'
   },
   es: {
     lang: 'es',
@@ -344,7 +344,7 @@ var T = {
     btnCta: '✦ Comprar — 14,99€',
     ctaNote: 'No compartimos tu email con terceros.',
     guarantee: 'Pago seguro vía SumUp · Acceso de por vida · Soporte por email',
-    footer: 'Essência — Autoconocimiento · Creado por <a href="https://www.elekitra.net">Margarida Leite</a> · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a>'
+    footer: 'Essência — Autoconocimiento · Creado por <a href="https://www.elekitra.net">Margarida Leite</a> y Ana Almeida · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a>'
   },
   en: {
     lang: 'en',
@@ -396,7 +396,7 @@ var T = {
     btnCta: '✦ Buy — 14.99€',
     ctaNote: 'We never share your email with third parties.',
     guarantee: 'Secure payment via SumUp · Lifetime access · Email support',
-    footer: 'Essência — Self-Knowledge · Created by <a href="https://www.elekitra.net">Margarida Leite</a> · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a>'
+    footer: 'Essência — Self-Knowledge · Created by <a href="https://www.elekitra.net">Margarida Leite</a> and Ana Almeida · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a>'
   }
 };
 
