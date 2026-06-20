@@ -38,7 +38,11 @@ exports.handler = async function (event, context) {
     }
 
     const { getStore } = require('@netlify/blobs');
-    const store = getStore('essencia-codigos');
+    const store = getStore({
+      name: 'essencia-codigos',
+      siteID: process.env.NETLIFY_SITE_ID,
+      token: process.env.NETLIFY_BLOBS_TOKEN
+    });
 
     let codigoFinal = codigo ? String(codigo).trim().toUpperCase() : gerarCodigo();
 
