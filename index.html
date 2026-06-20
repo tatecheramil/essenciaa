@@ -718,6 +718,8 @@
     <div class="section-title" id="ki-titulo">Os teus números Ki</div>
     <div class="ki-grid" id="ki-grid"></div>
     <div class="interp-box"><div class="interp-label" id="ki-energia-principal-label">A tua energia principal</div><div class="interp-text" id="ki-interp-text"></div></div>
+    <div class="section-title" id="ki-viver-titulo" style="margin-top:1.5rem">Viver a tua Estrela</div>
+    <div id="ki-viver"></div>
   </div>
 
   
@@ -3070,6 +3072,7 @@ function applyLang() {
   // Ki hero
   var _khT=document.getElementById('ki-hero-title');if(_khT)_khT.textContent=T.ki_hero_title||'Astrologia do Ki';
   var _khS=document.getElementById('ki-hero-sub');if(_khS)_khS.textContent=T.ki_hero_sub||'A tua estrela de nascimento e o teu caminho';
+  var _kvT=document.getElementById('ki-viver-titulo');if(_kvT)_kvT.textContent=currentLang==='es'?'Vivir tu Estrella':currentLang==='en'?'Living your Star':'Viver a tua Estrela';
   // Ki tab
   const kiEnPrincipal=document.getElementById('ki-energia-principal-label');
   if(kiEnPrincipal) kiEnPrincipal.textContent=T.ki_energia_principal||'A tua energia principal';
@@ -4007,37 +4010,118 @@ function numInfo(n){const I=NUM_DATA[currentLang]||NUM_DATA.pt;return I[n]||I[9]
 
 const KI_DATA={
   pt:{
-    1:{el:'Água',dir:'Norte',cor:'#4a8fb5',txt:'Profundidade, reflexão e sabedoria. Intuitivo/a e contemplativo/a.'},
-    2:{el:'Terra II',dir:'Sudoeste',cor:'#8a6a3a',txt:'Nutrição, recetividade e cuidado. Tens capacidade de sustentar os outros.'},
-    3:{el:'Trovão',dir:'Leste',cor:'#4a9b6a',txt:'Crescimento, movimento e criatividade. Visão pioneira.'},
-    4:{el:'Vento',dir:'Sudeste',cor:'#6ab4c8',txt:'Gentileza, persistência e comunicação. Dom para a influência subtil.'},
-    5:{el:'Terra Central',dir:'Centro',cor:'#9b7a4a',txt:'Equilíbrio, poder central e transformação. Presença magnética.'},
-    6:{el:'Céu',dir:'Noroeste',cor:'#4a6a9b',txt:'Liderança, autoridade e visão. Líder natural.'},
-    7:{el:'Lago',dir:'Oeste',cor:'#c8a040',txt:'Alegria, prazer e reflexão. Charme natural.'},
-    8:{el:'Montanha',dir:'Nordeste',cor:'#7a8a6a',txt:'Estabilidade, quietude e renovação. Resiliência notável.'},
-    9:{el:'Fogo',dir:'Sul',cor:'#c86a4a',txt:'Clareza, iluminação e visibilidade. Brilho natural.'}
+    1:{el:'Água',dir:'Norte',cor:'#4a8fb5',txt:'Profundidade, reflexão e sabedoria. Intuitivo/a e contemplativo/a.',
+      dicas:[{t:'Protege os teus momentos de silêncio',d:'Precisas de tempo só contigo para processar o que sentes. Sem isso, a tua intuição fica turva.'},
+             {t:'Confia no que sabes sem saber explicar',d:'A tua sabedoria chega muitas vezes como um pressentimento, não como lógica. Aprende a confiar nesse saber silencioso.'},
+             {t:'Deixa-te fluir em vez de forçar',d:'Tal como a água, o teu caminho raramente é uma linha reta. Adapta-te às circunstâncias em vez de insistir num só percurso.'}]},
+    2:{el:'Terra II',dir:'Sudoeste',cor:'#8a6a3a',txt:'Nutrição, recetividade e cuidado. Tens capacidade de sustentar os outros.',
+      dicas:[{t:'Cuida de quem cuida de todos',d:'É fácil esqueceres-te de ti enquanto sustentas os outros. Reserva tempo regular só para a tua própria nutrição.'},
+             {t:'Diz que sim com limites claros',d:'A tua generosidade é um dom, mas sem limites pode esgotar-te. Aprende a ajudar sem te dissolveres no processo.'},
+             {t:'Confia na tua paciência',d:'Onde outros desistem, tu persistes com calma. Usa essa resistência tranquila nos projectos que exigem tempo.'}]},
+    3:{el:'Trovão',dir:'Leste',cor:'#4a9b6a',txt:'Crescimento, movimento e criatividade. Visão pioneira.',
+      dicas:[{t:'Avança mesmo sem todas as respostas',d:'A tua energia é de início, não de espera. Esperar pela certeza total pode fazer-te perder o momento certo.'},
+             {t:'Dá espaço à tua impulsividade criativa',d:'As tuas melhores ideias chegam em rajadas. Tem sempre por perto uma forma de as registar antes que passem.'},
+             {t:'Aceita que nem tudo o que começas continua',d:'Seres pioneiro/a significa abrir caminhos que outros seguem. Nem sempre precisas de terminar tudo o que iniciaste.'}]},
+    4:{el:'Vento',dir:'Sudeste',cor:'#6ab4c8',txt:'Gentileza, persistência e comunicação. Dom para a influência subtil.',
+      dicas:[{t:'Confia na influência silenciosa',d:'Não precisas de impor — a tua forma de comunicar muda as pessoas lentamente, como o vento molda a paisagem.'},
+             {t:'Persiste mesmo sem resultados imediatos',d:'O teu impacto raramente é instantâneo. Continua a semear, mesmo sem ver a colheita de imediato.'},
+             {t:'Adapta o teu discurso a quem te ouve',d:'A tua sensibilidade social é uma ferramenta poderosa. Usa-a para chegares às pessoas à maneira delas, não só à tua.'}]},
+    5:{el:'Terra Central',dir:'Centro',cor:'#9b7a4a',txt:'Equilíbrio, poder central e transformação. Presença magnética.',
+      dicas:[{t:'Aceita o teu papel de equilíbrio',d:'És frequentemente quem une os extremos à tua volta. Não tens de escolher um lado — a tua força está em integrar.'},
+             {t:'Usa a tua presença com intenção',d:'Atrais atenção sem esforço. Sê consciente de como essa presença afecta o espaço e as pessoas à tua volta.'},
+             {t:'Permite-te transformar, não só estabilizar',d:'Sendo o centro não significa ficares imóvel. Tens uma capacidade rara de te reinventares quando é preciso.'}]},
+    6:{el:'Céu',dir:'Noroeste',cor:'#4a6a9b',txt:'Liderança, autoridade e visão. Líder natural.',
+      dicas:[{t:'Aceita o peso da liderança',d:'Outros procuram em ti uma direcção clara. Não fujas desse papel só porque parece pesado.'},
+             {t:'Comunica a tua visão antes de agir',d:'As pessoas seguem-te melhor quando entendem o porquê. Partilha o panorama geral, não só as instruções.'},
+             {t:'Lidera com humildade',d:'A tua autoridade é mais respeitada quando vem acompanhada de escuta genuína, não apenas de comando.'}]},
+    7:{el:'Lago',dir:'Oeste',cor:'#c8a040',txt:'Alegria, prazer e reflexão. Charme natural.',
+      dicas:[{t:'Não subestimes o valor da alegria',d:'Procurar prazer e ligação não é superficialidade — é a forma como recarregas a tua energia vital.'},
+             {t:'Usa o teu charme com propósito',d:'As pessoas sentem-se naturalmente à vontade contigo. Usa essa facilidade para criar pontes, não só boa impressão.'},
+             {t:'Reserva tempo para reflexão depois da festa',d:'Depois de te ligares aos outros, dá-te espaço para reflectires a sós sobre o que viveste.'}]},
+    8:{el:'Montanha',dir:'Nordeste',cor:'#7a8a6a',txt:'Estabilidade, quietude e renovação. Resiliência notável.',
+      dicas:[{t:'Respeita o teu próprio ritmo de mudança',d:'Tal como uma montanha, transformas-te lentamente mas de forma duradoura. Não te compares a quem muda mais rápido.'},
+             {t:'Usa a quietude como força, não como fuga',d:'Parar não é desistir — é como reúnes a tua resiliência. Permite-te momentos de pausa sem culpa.'},
+             {t:'Confia na tua capacidade de resistir',d:'Onde outros vacilam, tu manténs-te firme. É essa estabilidade que as pessoas procuram em ti nos momentos difíceis.'}]},
+    9:{el:'Fogo',dir:'Sul',cor:'#c86a4a',txt:'Clareza, iluminação e visibilidade. Brilho natural.',
+      dicas:[{t:'Aceita ser vista/o',d:'A tua energia naturalmente atrai atenção. Resistir a isso gasta mais energia do que simplesmente brilhar.'},
+             {t:'Usa a tua clareza para iluminar, não para expor',d:'Vês as coisas com nitidez — partilha essa clareza de forma que ajude os outros a verem também, sem os fazer sentir expostos.'},
+             {t:'Cuida do combustível antes de arderes',d:'O fogo precisa de alimento constante. Protege as tuas fontes de energia para não te esgotares a brilhar para os outros.'}]}
   },
   es:{
-    1:{el:'Agua',dir:'Norte',cor:'#4a8fb5',txt:'Profundidad, reflexión y sabiduría. Intuitivo/a y contemplativo/a.'},
-    2:{el:'Tierra II',dir:'Suroeste',cor:'#8a6a3a',txt:'Nutrición, receptividad y cuidado. Tienes capacidad de sostener a los demás.'},
-    3:{el:'Trueno',dir:'Este',cor:'#4a9b6a',txt:'Crecimiento, movimiento y creatividad. Visión pionera.'},
-    4:{el:'Viento',dir:'Sureste',cor:'#6ab4c8',txt:'Gentileza, persistencia y comunicación. Don para la influencia sutil.'},
-    5:{el:'Tierra Central',dir:'Centro',cor:'#9b7a4a',txt:'Equilibrio, poder central y transformación. Presencia magnética.'},
-    6:{el:'Cielo',dir:'Noroeste',cor:'#4a6a9b',txt:'Liderazgo, autoridad y visión. Líder natural.'},
-    7:{el:'Lago',dir:'Oeste',cor:'#c8a040',txt:'Alegría, placer y reflexión. Encanto natural.'},
-    8:{el:'Montaña',dir:'Nordeste',cor:'#7a8a6a',txt:'Estabilidad, quietud y renovación. Resiliencia notable.'},
-    9:{el:'Fuego',dir:'Sur',cor:'#c86a4a',txt:'Claridad, iluminación y visibilidad. Brillo natural.'}
+    1:{el:'Agua',dir:'Norte',cor:'#4a8fb5',txt:'Profundidad, reflexión y sabiduría. Intuitivo/a y contemplativo/a.',
+      dicas:[{t:'Protege tus momentos de silencio',d:'Necesitas tiempo solo/a contigo para procesar lo que sientes. Sin eso, tu intuición se nubla.'},
+             {t:'Confía en lo que sabes sin saber explicarlo',d:'Tu sabiduría llega muchas veces como una corazonada, no como lógica. Aprende a confiar en ese saber silencioso.'},
+             {t:'Déjate fluir en vez de forzar',d:'Como el agua, tu camino raramente es una línea recta. Adáptate a las circunstancias en vez de insistir en un solo trayecto.'}]},
+    2:{el:'Tierra II',dir:'Suroeste',cor:'#8a6a3a',txt:'Nutrición, receptividad y cuidado. Tienes capacidad de sostener a los demás.',
+      dicas:[{t:'Cuida de quien cuida de todos',d:'Es fácil olvidarte de ti mientras sostienes a los demás. Reserva tiempo regular solo para tu propia nutrición.'},
+             {t:'Di que sí con límites claros',d:'Tu generosidad es un don, pero sin límites puede agotarte. Aprende a ayudar sin disolverte en el proceso.'},
+             {t:'Confía en tu paciencia',d:'Donde otros se rinden, tú persistes con calma. Usa esa resistencia tranquila en los proyectos que exigen tiempo.'}]},
+    3:{el:'Trueno',dir:'Este',cor:'#4a9b6a',txt:'Crecimiento, movimiento y creatividad. Visión pionera.',
+      dicas:[{t:'Avanza aunque no tengas todas las respuestas',d:'Tu energía es de inicio, no de espera. Esperar la certeza total puede hacerte perder el momento adecuado.'},
+             {t:'Da espacio a tu impulsividad creativa',d:'Tus mejores ideas llegan en rachas. Tén siempre cerca una forma de anotarlas antes de que se escapen.'},
+             {t:'Acepta que no todo lo que empiezas continúa',d:'Ser pionero/a significa abrir caminos que otros siguen. No siempre necesitas terminar todo lo que iniciaste.'}]},
+    4:{el:'Viento',dir:'Sureste',cor:'#6ab4c8',txt:'Gentileza, persistencia y comunicación. Don para la influencia sutil.',
+      dicas:[{t:'Confía en la influencia silenciosa',d:'No necesitas imponer — tu forma de comunicar cambia a las personas lentamente, como el viento moldea el paisaje.'},
+             {t:'Persiste aunque no veas resultados inmediatos',d:'Tu impacto raramente es instantáneo. Sigue sembrando, aunque no veas la cosecha de inmediato.'},
+             {t:'Adapta tu discurso a quien te escucha',d:'Tu sensibilidad social es una herramienta poderosa. Úsala para llegar a las personas a su manera, no solo a la tuya.'}]},
+    5:{el:'Tierra Central',dir:'Centro',cor:'#9b7a4a',txt:'Equilibrio, poder central y transformación. Presencia magnética.',
+      dicas:[{t:'Acepta tu papel de equilibrio',d:'Eres frecuentemente quien une los extremos a tu alrededor. No tienes que elegir un lado — tu fuerza está en integrar.'},
+             {t:'Usa tu presencia con intención',d:'Atraes atención sin esfuerzo. Sé consciente de cómo esa presencia afecta el espacio y a las personas a tu alrededor.'},
+             {t:'Permítete transformar, no solo estabilizar',d:'Ser el centro no significa quedarte inmóvil. Tienes una capacidad rara de reinventarte cuando es necesario.'}]},
+    6:{el:'Cielo',dir:'Noroeste',cor:'#4a6a9b',txt:'Liderazgo, autoridad y visión. Líder natural.',
+      dicas:[{t:'Acepta el peso del liderazgo',d:'Otros buscan en ti una dirección clara. No huyas de ese papel solo porque parece pesado.'},
+             {t:'Comunica tu visión antes de actuar',d:'Las personas te siguen mejor cuando entienden el porqué. Comparte el panorama general, no solo las instrucciones.'},
+             {t:'Lidera con humildad',d:'Tu autoridad es más respetada cuando viene acompañada de escucha genuina, no solo de mando.'}]},
+    7:{el:'Lago',dir:'Oeste',cor:'#c8a040',txt:'Alegría, placer y reflexión. Encanto natural.',
+      dicas:[{t:'No subestimes el valor de la alegría',d:'Buscar placer y conexión no es superficialidad — es la forma en que recargas tu energía vital.'},
+             {t:'Usa tu encanto con propósito',d:'Las personas se sienten naturalmente a gusto contigo. Usa esa facilidad para crear puentes, no solo buena impresión.'},
+             {t:'Reserva tiempo para la reflexión después de la fiesta',d:'Después de conectar con los demás, dáte espacio para reflexionar a solas sobre lo vivido.'}]},
+    8:{el:'Montaña',dir:'Nordeste',cor:'#7a8a6a',txt:'Estabilidad, quietud y renovación. Resiliencia notable.',
+      dicas:[{t:'Respeta tu propio ritmo de cambio',d:'Como una montaña, te transformas lentamente pero de forma duradera. No te compares con quien cambia más rápido.'},
+             {t:'Usa la quietud como fuerza, no como huida',d:'Detenerte no es rendirte — es cómo reúnes tu resiliencia. Permítete momentos de pausa sin culpa.'},
+             {t:'Confía en tu capacidad de resistir',d:'Donde otros vacilan, tú te mantienes firme. Es esa estabilidad la que las personas buscan en ti en los momentos difíciles.'}]},
+    9:{el:'Fuego',dir:'Sur',cor:'#c86a4a',txt:'Claridad, iluminación y visibilidad. Brillo natural.',
+      dicas:[{t:'Acepta ser vista/o',d:'Tu energía naturalmente atrae atención. Resistirte a eso gasta más energía que simplemente brillar.'},
+             {t:'Usa tu claridad para iluminar, no para exponer',d:'Ves las cosas con nitidez — comparte esa claridad de forma que ayude a los demás a ver también, sin hacerlos sentir expuestos.'},
+             {t:'Cuida el combustible antes de arder',d:'El fuego necesita alimento constante. Protege tus fuentes de energía para no agotarte brillando para los demás.'}]}
   },
   en:{
-    1:{el:'Water',dir:'North',cor:'#4a8fb5',txt:'Depth, reflection and wisdom. Intuitive and contemplative.'},
-    2:{el:'Earth II',dir:'Southwest',cor:'#8a6a3a',txt:'Nourishment, receptivity and care. You have the capacity to sustain others.'},
-    3:{el:'Thunder',dir:'East',cor:'#4a9b6a',txt:'Growth, movement and creativity. Pioneering vision.'},
-    4:{el:'Wind',dir:'Southeast',cor:'#6a9b4a',txt:'Persistence, communication and gentleness. You plant seeds that grow slowly but surely.'},
-    5:{el:'Earth V',dir:'Centre',cor:'#9b8a4a',txt:'Balance, mediation and stability. You are the centre that holds.'},
-    6:{el:'Metal I',dir:'Northwest',cor:'#8a8a9b',txt:'Leadership, responsibility and clarity. Strong sense of duty.'},
-    7:{el:'Metal II',dir:'West',cor:'#9b6a8a',txt:'Joy, expression and socialising. Natural communicator.'},
-    8:{el:'Earth VIII',dir:'Northeast',cor:'#7a8a6a',txt:'Stability, stillness and renewal. Notable resilience.'},
-    9:{el:'Fire',dir:'South',cor:'#c86a4a',txt:'Clarity, illumination and visibility. Natural brilliance.'}
+    1:{el:'Water',dir:'North',cor:'#4a8fb5',txt:'Depth, reflection and wisdom. Intuitive and contemplative.',
+      dicas:[{t:'Protect your moments of silence',d:'You need time alone to process what you feel. Without it, your intuition grows cloudy.'},
+             {t:'Trust what you know without being able to explain it',d:'Your wisdom often arrives as a hunch, not as logic. Learn to trust that quiet knowing.'},
+             {t:'Let yourself flow instead of forcing',d:'Like water, your path is rarely a straight line. Adapt to circumstances instead of insisting on a single route.'}]},
+    2:{el:'Earth II',dir:'Southwest',cor:'#8a6a3a',txt:'Nourishment, receptivity and care. You have the capacity to sustain others.',
+      dicas:[{t:'Take care of the one who cares for everyone',d:'It is easy to forget yourself while sustaining others. Set aside regular time just for your own nourishment.'},
+             {t:'Say yes with clear boundaries',d:'Your generosity is a gift, but without limits it can drain you. Learn to help without dissolving yourself in the process.'},
+             {t:'Trust your patience',d:'Where others give up, you persist calmly. Use that quiet endurance on projects that demand time.'}]},
+    3:{el:'Thunder',dir:'East',cor:'#4a9b6a',txt:'Growth, movement and creativity. Pioneering vision.',
+      dicas:[{t:'Move forward even without all the answers',d:'Your energy is one of initiation, not waiting. Holding out for total certainty can make you miss the right moment.'},
+             {t:'Make room for your creative impulsiveness',d:'Your best ideas arrive in bursts. Always keep a way to capture them before they pass.'},
+             {t:'Accept that not everything you start continues',d:'Being a pioneer means opening paths that others follow. You do not always need to finish everything you began.'}]},
+    4:{el:'Wind',dir:'Southeast',cor:'#6a9b4a',txt:'Persistence, communication and gentleness. You plant seeds that grow slowly but surely.',
+      dicas:[{t:'Trust your quiet influence',d:'You do not need to impose — your way of communicating changes people slowly, the way wind shapes a landscape.'},
+             {t:'Persist even without immediate results',d:'Your impact is rarely instant. Keep planting, even when you cannot see the harvest right away.'},
+             {t:'Adapt your message to whoever is listening',d:'Your social sensitivity is a powerful tool. Use it to reach people in their own way, not only yours.'}]},
+    5:{el:'Earth V',dir:'Centre',cor:'#9b8a4a',txt:'Balance, mediation and stability. You are the centre that holds.',
+      dicas:[{t:'Accept your role as a balancing point',d:'You are often the one who holds the extremes around you together. You do not have to pick a side — your strength is in integrating.'},
+             {t:'Use your presence with intention',d:'You draw attention without effort. Be mindful of how that presence affects the space and people around you.'},
+             {t:'Allow yourself to transform, not just stabilise',d:'Being the centre does not mean staying still. You have a rare capacity to reinvent yourself when needed.'}]},
+    6:{el:'Metal I',dir:'Northwest',cor:'#8a8a9b',txt:'Leadership, responsibility and clarity. Strong sense of duty.',
+      dicas:[{t:'Accept the weight of leadership',d:'Others look to you for clear direction. Do not run from that role just because it feels heavy.'},
+             {t:'Communicate your vision before acting',d:'People follow you better when they understand why. Share the bigger picture, not only the instructions.'},
+             {t:'Lead with humility',d:'Your authority is more respected when paired with genuine listening, not only command.'}]},
+    7:{el:'Metal II',dir:'West',cor:'#9b6a8a',txt:'Joy, expression and socialising. Natural communicator.',
+      dicas:[{t:'Do not underestimate the value of joy',d:'Seeking pleasure and connection is not shallow — it is how you recharge your vital energy.'},
+             {t:'Use your charm with purpose',d:'People feel naturally at ease with you. Use that ease to build bridges, not just a good impression.'},
+             {t:'Set aside time to reflect after socialising',d:'After connecting with others, give yourself space to reflect alone on what you experienced.'}]},
+    8:{el:'Earth VIII',dir:'Northeast',cor:'#7a8a6a',txt:'Stability, stillness and renewal. Notable resilience.',
+      dicas:[{t:'Respect your own pace of change',d:'Like a mountain, you transform slowly but lastingly. Do not compare yourself to those who change faster.'},
+             {t:'Use stillness as strength, not escape',d:'Stopping is not giving up — it is how you gather your resilience. Allow yourself moments of pause without guilt.'},
+             {t:'Trust your capacity to endure',d:'Where others waver, you remain steady. That stability is what people seek in you during hard times.'}]},
+    9:{el:'Fire',dir:'South',cor:'#c86a4a',txt:'Clarity, illumination and visibility. Natural brilliance.',
+      dicas:[{t:'Accept being seen',d:'Your energy naturally draws attention. Resisting that costs more energy than simply shining.'},
+             {t:'Use your clarity to illuminate, not to expose',d:'You see things sharply — share that clarity in a way that helps others see too, without making them feel exposed.'},
+             {t:'Tend the fuel before you burn out',d:'Fire needs constant feeding. Protect your energy sources so you do not exhaust yourself shining for others.'}]}
   }
 };
 function getKI(){return KI_DATA[currentLang]||KI_DATA.pt;}
@@ -5916,6 +6000,8 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
     <div class="section-title" id="ki-titulo">Os teus números Ki</div>
     <div class="ki-grid" id="ki-grid"></div>
     <div class="interp-box"><div class="interp-label" id="ki-energia-principal-label">A tua energia principal</div><div class="interp-text" id="ki-interp-text"></div></div>
+    <div class="section-title" id="ki-viver-titulo" style="margin-top:1.5rem">Viver a tua Estrela</div>
+    <div id="ki-viver"></div>
   </div>
 
   
@@ -8224,6 +8310,7 @@ function applyLang() {
   // Ki hero
   var _khT=document.getElementById('ki-hero-title');if(_khT)_khT.textContent=T.ki_hero_title||'Astrologia do Ki';
   var _khS=document.getElementById('ki-hero-sub');if(_khS)_khS.textContent=T.ki_hero_sub||'A tua estrela de nascimento e o teu caminho';
+  var _kvT=document.getElementById('ki-viver-titulo');if(_kvT)_kvT.textContent=currentLang==='es'?'Vivir tu Estrella':currentLang==='en'?'Living your Star':'Viver a tua Estrela';
   // Ki tab
   const kiEnPrincipal=document.getElementById('ki-energia-principal-label');
   if(kiEnPrincipal) kiEnPrincipal.textContent=T.ki_energia_principal||'A tua energia principal';
@@ -9161,37 +9248,118 @@ function numInfo(n){const I=NUM_DATA[currentLang]||NUM_DATA.pt;return I[n]||I[9]
 
 const KI_DATA={
   pt:{
-    1:{el:'Água',dir:'Norte',cor:'#4a8fb5',txt:'Profundidade, reflexão e sabedoria. Intuitivo/a e contemplativo/a.'},
-    2:{el:'Terra II',dir:'Sudoeste',cor:'#8a6a3a',txt:'Nutrição, recetividade e cuidado. Tens capacidade de sustentar os outros.'},
-    3:{el:'Trovão',dir:'Leste',cor:'#4a9b6a',txt:'Crescimento, movimento e criatividade. Visão pioneira.'},
-    4:{el:'Vento',dir:'Sudeste',cor:'#6ab4c8',txt:'Gentileza, persistência e comunicação. Dom para a influência subtil.'},
-    5:{el:'Terra Central',dir:'Centro',cor:'#9b7a4a',txt:'Equilíbrio, poder central e transformação. Presença magnética.'},
-    6:{el:'Céu',dir:'Noroeste',cor:'#4a6a9b',txt:'Liderança, autoridade e visão. Líder natural.'},
-    7:{el:'Lago',dir:'Oeste',cor:'#c8a040',txt:'Alegria, prazer e reflexão. Charme natural.'},
-    8:{el:'Montanha',dir:'Nordeste',cor:'#7a8a6a',txt:'Estabilidade, quietude e renovação. Resiliência notável.'},
-    9:{el:'Fogo',dir:'Sul',cor:'#c86a4a',txt:'Clareza, iluminação e visibilidade. Brilho natural.'}
+    1:{el:'Água',dir:'Norte',cor:'#4a8fb5',txt:'Profundidade, reflexão e sabedoria. Intuitivo/a e contemplativo/a.',
+      dicas:[{t:'Protege os teus momentos de silêncio',d:'Precisas de tempo só contigo para processar o que sentes. Sem isso, a tua intuição fica turva.'},
+             {t:'Confia no que sabes sem saber explicar',d:'A tua sabedoria chega muitas vezes como um pressentimento, não como lógica. Aprende a confiar nesse saber silencioso.'},
+             {t:'Deixa-te fluir em vez de forçar',d:'Tal como a água, o teu caminho raramente é uma linha reta. Adapta-te às circunstâncias em vez de insistir num só percurso.'}]},
+    2:{el:'Terra II',dir:'Sudoeste',cor:'#8a6a3a',txt:'Nutrição, recetividade e cuidado. Tens capacidade de sustentar os outros.',
+      dicas:[{t:'Cuida de quem cuida de todos',d:'É fácil esqueceres-te de ti enquanto sustentas os outros. Reserva tempo regular só para a tua própria nutrição.'},
+             {t:'Diz que sim com limites claros',d:'A tua generosidade é um dom, mas sem limites pode esgotar-te. Aprende a ajudar sem te dissolveres no processo.'},
+             {t:'Confia na tua paciência',d:'Onde outros desistem, tu persistes com calma. Usa essa resistência tranquila nos projectos que exigem tempo.'}]},
+    3:{el:'Trovão',dir:'Leste',cor:'#4a9b6a',txt:'Crescimento, movimento e criatividade. Visão pioneira.',
+      dicas:[{t:'Avança mesmo sem todas as respostas',d:'A tua energia é de início, não de espera. Esperar pela certeza total pode fazer-te perder o momento certo.'},
+             {t:'Dá espaço à tua impulsividade criativa',d:'As tuas melhores ideias chegam em rajadas. Tem sempre por perto uma forma de as registar antes que passem.'},
+             {t:'Aceita que nem tudo o que começas continua',d:'Seres pioneiro/a significa abrir caminhos que outros seguem. Nem sempre precisas de terminar tudo o que iniciaste.'}]},
+    4:{el:'Vento',dir:'Sudeste',cor:'#6ab4c8',txt:'Gentileza, persistência e comunicação. Dom para a influência subtil.',
+      dicas:[{t:'Confia na influência silenciosa',d:'Não precisas de impor — a tua forma de comunicar muda as pessoas lentamente, como o vento molda a paisagem.'},
+             {t:'Persiste mesmo sem resultados imediatos',d:'O teu impacto raramente é instantâneo. Continua a semear, mesmo sem ver a colheita de imediato.'},
+             {t:'Adapta o teu discurso a quem te ouve',d:'A tua sensibilidade social é uma ferramenta poderosa. Usa-a para chegares às pessoas à maneira delas, não só à tua.'}]},
+    5:{el:'Terra Central',dir:'Centro',cor:'#9b7a4a',txt:'Equilíbrio, poder central e transformação. Presença magnética.',
+      dicas:[{t:'Aceita o teu papel de equilíbrio',d:'És frequentemente quem une os extremos à tua volta. Não tens de escolher um lado — a tua força está em integrar.'},
+             {t:'Usa a tua presença com intenção',d:'Atrais atenção sem esforço. Sê consciente de como essa presença afecta o espaço e as pessoas à tua volta.'},
+             {t:'Permite-te transformar, não só estabilizar',d:'Sendo o centro não significa ficares imóvel. Tens uma capacidade rara de te reinventares quando é preciso.'}]},
+    6:{el:'Céu',dir:'Noroeste',cor:'#4a6a9b',txt:'Liderança, autoridade e visão. Líder natural.',
+      dicas:[{t:'Aceita o peso da liderança',d:'Outros procuram em ti uma direcção clara. Não fujas desse papel só porque parece pesado.'},
+             {t:'Comunica a tua visão antes de agir',d:'As pessoas seguem-te melhor quando entendem o porquê. Partilha o panorama geral, não só as instruções.'},
+             {t:'Lidera com humildade',d:'A tua autoridade é mais respeitada quando vem acompanhada de escuta genuína, não apenas de comando.'}]},
+    7:{el:'Lago',dir:'Oeste',cor:'#c8a040',txt:'Alegria, prazer e reflexão. Charme natural.',
+      dicas:[{t:'Não subestimes o valor da alegria',d:'Procurar prazer e ligação não é superficialidade — é a forma como recarregas a tua energia vital.'},
+             {t:'Usa o teu charme com propósito',d:'As pessoas sentem-se naturalmente à vontade contigo. Usa essa facilidade para criar pontes, não só boa impressão.'},
+             {t:'Reserva tempo para reflexão depois da festa',d:'Depois de te ligares aos outros, dá-te espaço para reflectires a sós sobre o que viveste.'}]},
+    8:{el:'Montanha',dir:'Nordeste',cor:'#7a8a6a',txt:'Estabilidade, quietude e renovação. Resiliência notável.',
+      dicas:[{t:'Respeita o teu próprio ritmo de mudança',d:'Tal como uma montanha, transformas-te lentamente mas de forma duradoura. Não te compares a quem muda mais rápido.'},
+             {t:'Usa a quietude como força, não como fuga',d:'Parar não é desistir — é como reúnes a tua resiliência. Permite-te momentos de pausa sem culpa.'},
+             {t:'Confia na tua capacidade de resistir',d:'Onde outros vacilam, tu manténs-te firme. É essa estabilidade que as pessoas procuram em ti nos momentos difíceis.'}]},
+    9:{el:'Fogo',dir:'Sul',cor:'#c86a4a',txt:'Clareza, iluminação e visibilidade. Brilho natural.',
+      dicas:[{t:'Aceita ser vista/o',d:'A tua energia naturalmente atrai atenção. Resistir a isso gasta mais energia do que simplesmente brilhar.'},
+             {t:'Usa a tua clareza para iluminar, não para expor',d:'Vês as coisas com nitidez — partilha essa clareza de forma que ajude os outros a verem também, sem os fazer sentir expostos.'},
+             {t:'Cuida do combustível antes de arderes',d:'O fogo precisa de alimento constante. Protege as tuas fontes de energia para não te esgotares a brilhar para os outros.'}]}
   },
   es:{
-    1:{el:'Agua',dir:'Norte',cor:'#4a8fb5',txt:'Profundidad, reflexión y sabiduría. Intuitivo/a y contemplativo/a.'},
-    2:{el:'Tierra II',dir:'Suroeste',cor:'#8a6a3a',txt:'Nutrición, receptividad y cuidado. Tienes capacidad de sostener a los demás.'},
-    3:{el:'Trueno',dir:'Este',cor:'#4a9b6a',txt:'Crecimiento, movimiento y creatividad. Visión pionera.'},
-    4:{el:'Viento',dir:'Sureste',cor:'#6ab4c8',txt:'Gentileza, persistencia y comunicación. Don para la influencia sutil.'},
-    5:{el:'Tierra Central',dir:'Centro',cor:'#9b7a4a',txt:'Equilibrio, poder central y transformación. Presencia magnética.'},
-    6:{el:'Cielo',dir:'Noroeste',cor:'#4a6a9b',txt:'Liderazgo, autoridad y visión. Líder natural.'},
-    7:{el:'Lago',dir:'Oeste',cor:'#c8a040',txt:'Alegría, placer y reflexión. Encanto natural.'},
-    8:{el:'Montaña',dir:'Nordeste',cor:'#7a8a6a',txt:'Estabilidad, quietud y renovación. Resiliencia notable.'},
-    9:{el:'Fuego',dir:'Sur',cor:'#c86a4a',txt:'Claridad, iluminación y visibilidad. Brillo natural.'}
+    1:{el:'Agua',dir:'Norte',cor:'#4a8fb5',txt:'Profundidad, reflexión y sabiduría. Intuitivo/a y contemplativo/a.',
+      dicas:[{t:'Protege tus momentos de silencio',d:'Necesitas tiempo solo/a contigo para procesar lo que sientes. Sin eso, tu intuición se nubla.'},
+             {t:'Confía en lo que sabes sin saber explicarlo',d:'Tu sabiduría llega muchas veces como una corazonada, no como lógica. Aprende a confiar en ese saber silencioso.'},
+             {t:'Déjate fluir en vez de forzar',d:'Como el agua, tu camino raramente es una línea recta. Adáptate a las circunstancias en vez de insistir en un solo trayecto.'}]},
+    2:{el:'Tierra II',dir:'Suroeste',cor:'#8a6a3a',txt:'Nutrición, receptividad y cuidado. Tienes capacidad de sostener a los demás.',
+      dicas:[{t:'Cuida de quien cuida de todos',d:'Es fácil olvidarte de ti mientras sostienes a los demás. Reserva tiempo regular solo para tu propia nutrición.'},
+             {t:'Di que sí con límites claros',d:'Tu generosidad es un don, pero sin límites puede agotarte. Aprende a ayudar sin disolverte en el proceso.'},
+             {t:'Confía en tu paciencia',d:'Donde otros se rinden, tú persistes con calma. Usa esa resistencia tranquila en los proyectos que exigen tiempo.'}]},
+    3:{el:'Trueno',dir:'Este',cor:'#4a9b6a',txt:'Crecimiento, movimiento y creatividad. Visión pionera.',
+      dicas:[{t:'Avanza aunque no tengas todas las respuestas',d:'Tu energía es de inicio, no de espera. Esperar la certeza total puede hacerte perder el momento adecuado.'},
+             {t:'Da espacio a tu impulsividad creativa',d:'Tus mejores ideas llegan en rachas. Tén siempre cerca una forma de anotarlas antes de que se escapen.'},
+             {t:'Acepta que no todo lo que empiezas continúa',d:'Ser pionero/a significa abrir caminos que otros siguen. No siempre necesitas terminar todo lo que iniciaste.'}]},
+    4:{el:'Viento',dir:'Sureste',cor:'#6ab4c8',txt:'Gentileza, persistencia y comunicación. Don para la influencia sutil.',
+      dicas:[{t:'Confía en la influencia silenciosa',d:'No necesitas imponer — tu forma de comunicar cambia a las personas lentamente, como el viento moldea el paisaje.'},
+             {t:'Persiste aunque no veas resultados inmediatos',d:'Tu impacto raramente es instantáneo. Sigue sembrando, aunque no veas la cosecha de inmediato.'},
+             {t:'Adapta tu discurso a quien te escucha',d:'Tu sensibilidad social es una herramienta poderosa. Úsala para llegar a las personas a su manera, no solo a la tuya.'}]},
+    5:{el:'Tierra Central',dir:'Centro',cor:'#9b7a4a',txt:'Equilibrio, poder central y transformación. Presencia magnética.',
+      dicas:[{t:'Acepta tu papel de equilibrio',d:'Eres frecuentemente quien une los extremos a tu alrededor. No tienes que elegir un lado — tu fuerza está en integrar.'},
+             {t:'Usa tu presencia con intención',d:'Atraes atención sin esfuerzo. Sé consciente de cómo esa presencia afecta el espacio y a las personas a tu alrededor.'},
+             {t:'Permítete transformar, no solo estabilizar',d:'Ser el centro no significa quedarte inmóvil. Tienes una capacidad rara de reinventarte cuando es necesario.'}]},
+    6:{el:'Cielo',dir:'Noroeste',cor:'#4a6a9b',txt:'Liderazgo, autoridad y visión. Líder natural.',
+      dicas:[{t:'Acepta el peso del liderazgo',d:'Otros buscan en ti una dirección clara. No huyas de ese papel solo porque parece pesado.'},
+             {t:'Comunica tu visión antes de actuar',d:'Las personas te siguen mejor cuando entienden el porqué. Comparte el panorama general, no solo las instrucciones.'},
+             {t:'Lidera con humildad',d:'Tu autoridad es más respetada cuando viene acompañada de escucha genuina, no solo de mando.'}]},
+    7:{el:'Lago',dir:'Oeste',cor:'#c8a040',txt:'Alegría, placer y reflexión. Encanto natural.',
+      dicas:[{t:'No subestimes el valor de la alegría',d:'Buscar placer y conexión no es superficialidad — es la forma en que recargas tu energía vital.'},
+             {t:'Usa tu encanto con propósito',d:'Las personas se sienten naturalmente a gusto contigo. Usa esa facilidad para crear puentes, no solo buena impresión.'},
+             {t:'Reserva tiempo para la reflexión después de la fiesta',d:'Después de conectar con los demás, dáte espacio para reflexionar a solas sobre lo vivido.'}]},
+    8:{el:'Montaña',dir:'Nordeste',cor:'#7a8a6a',txt:'Estabilidad, quietud y renovación. Resiliencia notable.',
+      dicas:[{t:'Respeta tu propio ritmo de cambio',d:'Como una montaña, te transformas lentamente pero de forma duradera. No te compares con quien cambia más rápido.'},
+             {t:'Usa la quietud como fuerza, no como huida',d:'Detenerte no es rendirte — es cómo reúnes tu resiliencia. Permítete momentos de pausa sin culpa.'},
+             {t:'Confía en tu capacidad de resistir',d:'Donde otros vacilan, tú te mantienes firme. Es esa estabilidad la que las personas buscan en ti en los momentos difíciles.'}]},
+    9:{el:'Fuego',dir:'Sur',cor:'#c86a4a',txt:'Claridad, iluminación y visibilidad. Brillo natural.',
+      dicas:[{t:'Acepta ser vista/o',d:'Tu energía naturalmente atrae atención. Resistirte a eso gasta más energía que simplemente brillar.'},
+             {t:'Usa tu claridad para iluminar, no para exponer',d:'Ves las cosas con nitidez — comparte esa claridad de forma que ayude a los demás a ver también, sin hacerlos sentir expuestos.'},
+             {t:'Cuida el combustible antes de arder',d:'El fuego necesita alimento constante. Protege tus fuentes de energía para no agotarte brillando para los demás.'}]}
   },
   en:{
-    1:{el:'Water',dir:'North',cor:'#4a8fb5',txt:'Depth, reflection and wisdom. Intuitive and contemplative.'},
-    2:{el:'Earth II',dir:'Southwest',cor:'#8a6a3a',txt:'Nourishment, receptivity and care. You have the capacity to sustain others.'},
-    3:{el:'Thunder',dir:'East',cor:'#4a9b6a',txt:'Growth, movement and creativity. Pioneering vision.'},
-    4:{el:'Wind',dir:'Southeast',cor:'#6a9b4a',txt:'Persistence, communication and gentleness. You plant seeds that grow slowly but surely.'},
-    5:{el:'Earth V',dir:'Centre',cor:'#9b8a4a',txt:'Balance, mediation and stability. You are the centre that holds.'},
-    6:{el:'Metal I',dir:'Northwest',cor:'#8a8a9b',txt:'Leadership, responsibility and clarity. Strong sense of duty.'},
-    7:{el:'Metal II',dir:'West',cor:'#9b6a8a',txt:'Joy, expression and socialising. Natural communicator.'},
-    8:{el:'Earth VIII',dir:'Northeast',cor:'#7a8a6a',txt:'Stability, stillness and renewal. Notable resilience.'},
-    9:{el:'Fire',dir:'South',cor:'#c86a4a',txt:'Clarity, illumination and visibility. Natural brilliance.'}
+    1:{el:'Water',dir:'North',cor:'#4a8fb5',txt:'Depth, reflection and wisdom. Intuitive and contemplative.',
+      dicas:[{t:'Protect your moments of silence',d:'You need time alone to process what you feel. Without it, your intuition grows cloudy.'},
+             {t:'Trust what you know without being able to explain it',d:'Your wisdom often arrives as a hunch, not as logic. Learn to trust that quiet knowing.'},
+             {t:'Let yourself flow instead of forcing',d:'Like water, your path is rarely a straight line. Adapt to circumstances instead of insisting on a single route.'}]},
+    2:{el:'Earth II',dir:'Southwest',cor:'#8a6a3a',txt:'Nourishment, receptivity and care. You have the capacity to sustain others.',
+      dicas:[{t:'Take care of the one who cares for everyone',d:'It is easy to forget yourself while sustaining others. Set aside regular time just for your own nourishment.'},
+             {t:'Say yes with clear boundaries',d:'Your generosity is a gift, but without limits it can drain you. Learn to help without dissolving yourself in the process.'},
+             {t:'Trust your patience',d:'Where others give up, you persist calmly. Use that quiet endurance on projects that demand time.'}]},
+    3:{el:'Thunder',dir:'East',cor:'#4a9b6a',txt:'Growth, movement and creativity. Pioneering vision.',
+      dicas:[{t:'Move forward even without all the answers',d:'Your energy is one of initiation, not waiting. Holding out for total certainty can make you miss the right moment.'},
+             {t:'Make room for your creative impulsiveness',d:'Your best ideas arrive in bursts. Always keep a way to capture them before they pass.'},
+             {t:'Accept that not everything you start continues',d:'Being a pioneer means opening paths that others follow. You do not always need to finish everything you began.'}]},
+    4:{el:'Wind',dir:'Southeast',cor:'#6a9b4a',txt:'Persistence, communication and gentleness. You plant seeds that grow slowly but surely.',
+      dicas:[{t:'Trust your quiet influence',d:'You do not need to impose — your way of communicating changes people slowly, the way wind shapes a landscape.'},
+             {t:'Persist even without immediate results',d:'Your impact is rarely instant. Keep planting, even when you cannot see the harvest right away.'},
+             {t:'Adapt your message to whoever is listening',d:'Your social sensitivity is a powerful tool. Use it to reach people in their own way, not only yours.'}]},
+    5:{el:'Earth V',dir:'Centre',cor:'#9b8a4a',txt:'Balance, mediation and stability. You are the centre that holds.',
+      dicas:[{t:'Accept your role as a balancing point',d:'You are often the one who holds the extremes around you together. You do not have to pick a side — your strength is in integrating.'},
+             {t:'Use your presence with intention',d:'You draw attention without effort. Be mindful of how that presence affects the space and people around you.'},
+             {t:'Allow yourself to transform, not just stabilise',d:'Being the centre does not mean staying still. You have a rare capacity to reinvent yourself when needed.'}]},
+    6:{el:'Metal I',dir:'Northwest',cor:'#8a8a9b',txt:'Leadership, responsibility and clarity. Strong sense of duty.',
+      dicas:[{t:'Accept the weight of leadership',d:'Others look to you for clear direction. Do not run from that role just because it feels heavy.'},
+             {t:'Communicate your vision before acting',d:'People follow you better when they understand why. Share the bigger picture, not only the instructions.'},
+             {t:'Lead with humility',d:'Your authority is more respected when paired with genuine listening, not only command.'}]},
+    7:{el:'Metal II',dir:'West',cor:'#9b6a8a',txt:'Joy, expression and socialising. Natural communicator.',
+      dicas:[{t:'Do not underestimate the value of joy',d:'Seeking pleasure and connection is not shallow — it is how you recharge your vital energy.'},
+             {t:'Use your charm with purpose',d:'People feel naturally at ease with you. Use that ease to build bridges, not just a good impression.'},
+             {t:'Set aside time to reflect after socialising',d:'After connecting with others, give yourself space to reflect alone on what you experienced.'}]},
+    8:{el:'Earth VIII',dir:'Northeast',cor:'#7a8a6a',txt:'Stability, stillness and renewal. Notable resilience.',
+      dicas:[{t:'Respect your own pace of change',d:'Like a mountain, you transform slowly but lastingly. Do not compare yourself to those who change faster.'},
+             {t:'Use stillness as strength, not escape',d:'Stopping is not giving up — it is how you gather your resilience. Allow yourself moments of pause without guilt.'},
+             {t:'Trust your capacity to endure',d:'Where others waver, you remain steady. That stability is what people seek in you during hard times.'}]},
+    9:{el:'Fire',dir:'South',cor:'#c86a4a',txt:'Clarity, illumination and visibility. Natural brilliance.',
+      dicas:[{t:'Accept being seen',d:'Your energy naturally draws attention. Resisting that costs more energy than simply shining.'},
+             {t:'Use your clarity to illuminate, not to expose',d:'You see things sharply — share that clarity in a way that helps others see too, without making them feel exposed.'},
+             {t:'Tend the fuel before you burn out',d:'Fire needs constant feeding. Protect your energy sources so you do not exhaust yourself shining for others.'}]}
   }
 };
 function getKI(){return KI_DATA[currentLang]||KI_DATA.pt;}
@@ -11017,7 +11185,7 @@ function getHDTipo(tipo){
 const HNC={1:'Investigador',2:'Eremita',3:'Mártir',4:'Oportunista',5:'Herético',6:'Modelo de Papel'};
 const HND={1:'Precisas de base sólida antes de agires.',2:'Precisas de tempo a sós.',3:'Aprendes por tentativa e erro.',4:'As oportunidades chegam pelas relações.',5:'Gere as expectativas dos outros.',6:'Após os 40 anos, tornas-te modelo de papel.'};
 const HDC=[{nome:'Cabeça',def:{cor:'#e67e22',desc:'Tens pressão mental constante.'},indef:{cor:'#d5d8dc',desc:'Recebes e amplias a inspiração dos outros.'}},{nome:'Ajna',def:{cor:'#f1c40f',desc:'A tua forma de processar é consistente.'},indef:{cor:'#d5d8dc',desc:'Tens flexibilidade de mente.'}},{nome:'Garganta',def:{cor:'#2980b9',desc:'A tua voz e manifestação são consistentes.'},indef:{cor:'#d5d8dc',desc:'A tua comunicação adapta-se ao contexto.'}},{nome:'G/Self',def:{cor:'#c0392b',desc:'Tens direcção e identidade claras.'},indef:{cor:'#d5d8dc',desc:'A tua identidade é fluida.'}},{nome:'Coração',def:{cor:'#8e44ad',desc:'Tens força de vontade consistente.'},indef:{cor:'#d5d8dc',desc:'Não precisas de provar o teu valor.'}},{nome:'Plexo Solar',def:{cor:'#e74c3c',desc:'As tuas emoções têm ciclos claros.'},indef:{cor:'#d5d8dc',desc:'Absorves as emoções dos outros.'}},{nome:'Sacral',def:{cor:'#27ae60',desc:'Tens energia vital sustentada.'},indef:{cor:'#d5d8dc',desc:'A tua energia varia.'}},{nome:'Baço',def:{cor:'#2ecc71',desc:'Tens intuição instintiva.'},indef:{cor:'#d5d8dc',desc:'Podes segurar o que não é saudável.'}},{nome:'Raiz',def:{cor:'#795548',desc:'Tens pressão adrenal consistente.'},indef:{cor:'#d5d8dc',desc:'Não te deixes pressionar pela urgência dos outros.'}}];
-function calcularHD(){const dia=window._dia||1,mes=window._mes||1,ano=window._ano||1990;const tm=document.getElementById('hd-tipo-manual').value;let tipo=tm;if(!tipo){const s=(dia*mes+ano)%100;if(s<8)tipo='Manifestador';else if(s<45)tipo='Gerador';else if(s<78)tipo='Gerador Manifestante';else if(s<98)tipo='Projectado';else tipo='Reflector';}const hd=getHDTipo(tipo),pl=window._planetas||[],nV=window._nums?window._nums.nV:5,ss=pl.length?SIGNOS[pl[0].signo]:'o teu signo',se=pl.length?SIGN_EL[pl[0].signo]:'Fogo',pl2=((dia+mes)%6)+1,seed2=(dia+mes*ano)%512,cs=HDC.map((_,i)=>((seed2>>i)&1)===1);document.getElementById('hd-type-hero').setAttribute('style','background:'+hd.bg+';border-radius:16px;padding:2rem;text-align:center;margin-bottom:1.5rem;color:#fff;');document.getElementById('hd-type-hero').innerHTML='<div style="font-size:2.5rem;margin-bottom:.5rem">⬡</div><div class="hd-type-big">'+translateHdTipo(tipo)+'</div><div class="hd-type-sub">'+hd.pct+' '+(currentLang==="es"?"de la población":currentLang==="en"?"of the population":"da população")+' · '+t("hd_signature_label")+': '+hd.signature+'</div><div class="hd-type-strategy">'+t("hd_strategy_label")+': '+hd.strategy+'</div>';document.getElementById('hd-grid').innerHTML=[{l:t('hd_strategy_label'),v:hd.strategy,d:currentLang==='es'?'Cómo navegas con menos resistencia.':currentLang==='en'?'How you navigate with less resistance.':'Como navigas com menos resistência.'},{l:t('hd_authority_label'),v:hd.authority,d:currentLang==='es'?'Cómo tomas tus mejores decisiones.':currentLang==='en'?'How you make your best decisions.':'Como tomas as tuas melhores decisões.'},{l:t('hd_signature_label'),v:hd.signature,d:currentLang==='es'?'Cómo te sientes cuando estás alineado/a.':currentLang==='en'?'How you feel when you are aligned.':'Como te sentes quando estás alinhado/a.'},{l:t('hd_notself_label'),v:hd.notSelf,d:currentLang==='es'?'Señal de que estás fuera del alineamiento.':currentLang==='en'?'Sign that you are out of alignment.':'Sinal de que estás fora do alinhamento.'},{l:currentLang==='es'?'Perfil':currentLang==='en'?'Profile':'Perfil',v:pl2+'/'+(pl2<6?pl2+1:1)+' — '+HNC[pl2],d:HND[pl2]},{l:'Sol natal',v:ss+' · '+se,d:'Integra-se com o teu Tipo '+translateHdTipo(tipo)+'.'}].map(x=>'<div class="hd-card"><div class="hd-card-label">'+x.l+'</div><div class="hd-card-val">'+x.v+'</div><div class="hd-card-desc">'+x.d+'</div></div>').join('');drawBodygraph(cs);document.getElementById('hd-centres').innerHTML='<div class="hd-centres-grid">'+HDC.map((c,i)=>{const d=cs[i],info=d?c.def:c.indef;return'<div class="hd-centre-card"><div class="hd-centre-dot" style="background:'+info.cor+'"></div><div><div class="hd-centre-name">'+c.nome+'</div><div class="hd-centre-state" style="color:'+(d?'#27ae60':'#95a5a6')+'">'+( d?'Definido':'Indefinido')+'</div><div class="hd-centre-desc">'+info.desc+'</div></div></div>';}).join('')+'</div>';document.getElementById('hd-living').innerHTML=hd.living.map(li=>'<div class="hd-living-card"><div class="hd-living-title">✦ '+(currentLang==="es"?"Consejo práctico":currentLang==="en"?"Practical tip":"Conselho prático")+'</div><div class="hd-living-text">'+li+'</div></div>').join('');document.getElementById('hd-integracao').textContent=(currentLang==="en"?"As "+translateHdTipo(tipo)+" with Sun in "+ss+" ("+se+") and Life Path "+nV+", "+hd.desc.split('.')[0]+". The energy of "+se+(se==="Fire"?" intensifies your capacity for action":se==="Earth"?" anchors your strategy":se==="Air"?" expands your communication":" deepens your sensitivity")+" in the context of your Type.":currentLang==="es"?"Como "+translateHdTipo(tipo)+" con Sol en "+ss+" ("+se+") y Número de Vida "+nV+", "+hd.desc.split('.')[0]+". La energía de "+se+(se==="Fuego"?" intensifica tu capacidad de acción":se==="Tierra"?" ancla tu estrategia":se==="Aire"?" expande tu comunicación":" profundiza tu sensibilidad")+" en el contexto de tu Tipo.":"Como "+translateHdTipo(tipo)+" com Sol em "+ss+" ("+se+") e Número de Vida "+nV+", "+hd.desc.split('.')[0]+". A energia de "+se+(se==="Fogo"?" intensifica a tua capacidade de acção":se==="Terra"?" ancora a tua estratégia":se==="Ar"?" expande a tua comunicação":" aprofunda a tua sensibilidade")+" no contexto do teu Tipo.");document.getElementById('hd-form-section').style.display='none';document.getElementById('hd-result-section').style.display='block';window._hdTipo=tipo;renderSintHero(window._nome||'',window._planetas,window._nums,window._ki,window._ennTipo||'?',tipo);updateSinteseChips();}
+function calcularHD(){const dia=window._dia||1,mes=window._mes||1,ano=window._ano||1990;const tm=document.getElementById('hd-tipo-manual').value;let tipo=tm;if(!tipo){const s=(dia*mes+ano)%100;if(s<8)tipo='Manifestador';else if(s<45)tipo='Gerador';else if(s<78)tipo='Gerador Manifestante';else if(s<98)tipo='Projectado';else tipo='Reflector';}const hd=getHDTipo(tipo),pl=window._planetas||[],nV=window._nums?window._nums.nV:5,ss=pl.length?SIGNOS[pl[0].signo]:'o teu signo',se=pl.length?SIGN_EL[pl[0].signo]:'Fogo',pl2=((dia+mes)%6)+1,seed2=(dia+mes*ano)%512,cs=HDC.map((_,i)=>((seed2>>i)&1)===1);document.getElementById('hd-type-hero').setAttribute('style','background:'+hd.bg+';border-radius:16px;padding:2rem;text-align:center;margin-bottom:1.5rem;color:#fff;');document.getElementById('hd-type-hero').innerHTML='<div style="font-size:2.5rem;margin-bottom:.5rem">⬡</div><div class="hd-type-big">'+translateHdTipo(tipo)+'</div><div class="hd-type-sub">'+hd.pct+' '+(currentLang==="es"?"de la población":currentLang==="en"?"of the population":"da população")+' · '+t("hd_signature_label")+': '+hd.signature+'</div><div class="hd-type-strategy">'+t("hd_strategy_label")+': '+hd.strategy+'</div>';document.getElementById('hd-grid').innerHTML=[{l:t('hd_strategy_label'),v:hd.strategy,d:currentLang==='es'?'Cómo navegas con menos resistencia.':currentLang==='en'?'How you navigate with less resistance.':'Como navigas com menos resistência.'},{l:t('hd_authority_label'),v:hd.authority,d:currentLang==='es'?'Cómo tomas tus mejores decisiones.':currentLang==='en'?'How you make your best decisions.':'Como tomas as tuas melhores decisões.'},{l:t('hd_signature_label'),v:hd.signature,d:currentLang==='es'?'Cómo te sientes cuando estás alineado/a.':currentLang==='en'?'How you feel when you are aligned.':'Como te sentes quando estás alinhado/a.'},{l:t('hd_notself_label'),v:hd.notSelf,d:currentLang==='es'?'Señal de que estás fuera del alineamiento.':currentLang==='en'?'Sign that you are out of alignment.':'Sinal de que estás fora do alinhamento.'},{l:currentLang==='es'?'Perfil':currentLang==='en'?'Profile':'Perfil',v:pl2+'/'+(pl2<6?pl2+1:1)+' — '+HNC[pl2],d:HND[pl2]},{l:'Sol natal',v:ss+' · '+se,d:'Integra-se com o teu Tipo '+translateHdTipo(tipo)+'.'}].map(x=>'<div class="hd-card"><div class="hd-card-label">'+x.l+'</div><div class="hd-card-val">'+x.v+'</div><div class="hd-card-desc">'+x.d+'</div></div>').join('');drawBodygraph(cs);document.getElementById('hd-centres').innerHTML='<div class="hd-centres-grid">'+HDC.map((c,i)=>{const d=cs[i],info=d?c.def:c.indef;return'<div class="hd-centre-card"><div class="hd-centre-dot" style="background:'+info.cor+'"></div><div><div class="hd-centre-name">'+c.nome+'</div><div class="hd-centre-state" style="color:'+(d?'#27ae60':'#95a5a6')+'">'+( d?'Definido':'Indefinido')+'</div><div class="hd-centre-desc">'+info.desc+'</div></div></div>';}).join('')+'</div>';document.getElementById('hd-living').innerHTML=hd.living.map(li=>'<div class="hd-living-card"><div class="hd-living-title">✦ '+(li.t||(currentLang==="es"?"Consejo práctico":currentLang==="en"?"Practical tip":"Conselho prático"))+'</div><div class="hd-living-text">'+(li.d||li)+'</div></div>').join('');document.getElementById('hd-integracao').textContent=(currentLang==="en"?"As "+translateHdTipo(tipo)+" with Sun in "+ss+" ("+se+") and Life Path "+nV+", "+hd.desc.split('.')[0]+". The energy of "+se+(se==="Fire"?" intensifies your capacity for action":se==="Earth"?" anchors your strategy":se==="Air"?" expands your communication":" deepens your sensitivity")+" in the context of your Type.":currentLang==="es"?"Como "+translateHdTipo(tipo)+" con Sol en "+ss+" ("+se+") y Número de Vida "+nV+", "+hd.desc.split('.')[0]+". La energía de "+se+(se==="Fuego"?" intensifica tu capacidad de acción":se==="Tierra"?" ancla tu estrategia":se==="Aire"?" expande tu comunicación":" profundiza tu sensibilidad")+" en el contexto de tu Tipo.":"Como "+translateHdTipo(tipo)+" com Sol em "+ss+" ("+se+") e Número de Vida "+nV+", "+hd.desc.split('.')[0]+". A energia de "+se+(se==="Fogo"?" intensifica a tua capacidade de acção":se==="Terra"?" ancora a tua estratégia":se==="Ar"?" expande a tua comunicação":" aprofunda a tua sensibilidade")+" no contexto do teu Tipo.");document.getElementById('hd-form-section').style.display='none';document.getElementById('hd-result-section').style.display='block';window._hdTipo=tipo;renderSintHero(window._nome||'',window._planetas,window._nums,window._ki,window._ennTipo||'?',tipo);updateSinteseChips();}
 function refazerHD(){document.getElementById('hd-result-section').style.display='none';document.getElementById('hd-form-section').style.display='block';document.getElementById('hd-tipo-manual').value='';}
 function calcHDSilent(){
   var dia=window._dia||1,mes=window._mes||1,ano=window._ano||1990;
@@ -12045,6 +12213,12 @@ function restaurarSessao(perfil) {
       '<div class="ki-card"><div class="ki-num">'+ki.principal+'</div><div class="ki-label">'+t('ki_estrela_principal')+'</div><div class="ki-element">'+kiP.el+' · '+kiP.dir+'</div><div class="ki-desc">'+kiP.txt.split('.')[0]+'.</div></div>'+
       '<div class="ki-card"><div class="ki-num">'+ki.mensal+'</div><div class="ki-label">'+t('ki_estrela_caracter')+'</div><div class="ki-element">'+kiM.el+' · '+kiM.dir+'</div><div class="ki-desc">'+kiM.txt.split('.')[0]+'.</div></div>';
     document.getElementById('ki-interp-text').textContent = t('ki_interp_pre')+ki.principal+' — '+kiP.el+'. '+kiP.txt+t('ki_interp_mid')+ki.mensal+' — '+kiM.el+' — '+kiM.txt.toLowerCase();
+    var _kiViverTit2=currentLang==='es'?'Vivir tu Estrella':currentLang==='en'?'Living your Star':'Viver a tua Estrela';
+    var _kiViverEl2=document.getElementById('ki-viver-titulo');if(_kiViverEl2)_kiViverEl2.textContent=_kiViverTit2;
+    var _kiViverWrap2=document.getElementById('ki-viver');
+    if(_kiViverWrap2&&kiP.dicas){
+      _kiViverWrap2.innerHTML=kiP.dicas.map(function(dc){return '<div class="hd-living-card"><div class="hd-living-title">✦ '+dc.t+'</div><div class="hd-living-text">'+dc.d+'</div></div>';}).join('');
+    }
   }
 
   const nums = window._nums;
@@ -12291,6 +12465,12 @@ function calcular(){
   const kiP=KI_EL[ki.principal],kiM=KI_EL[ki.mensal];
   document.getElementById('ki-grid').innerHTML='<div class="ki-card"><div class="ki-num">'+ki.principal+'</div><div class="ki-label">Estrela Principal</div><div class="ki-element">'+kiP.el+' · '+kiP.dir+'</div><div class="ki-desc">'+kiP.txt.split('.')[0]+'.</div></div><div class="ki-card"><div class="ki-num">'+ki.mensal+'</div><div class="ki-label">Estrela de Carácter</div><div class="ki-element">'+kiM.el+' · '+kiM.dir+'</div><div class="ki-desc">'+kiM.txt.split('.')[0]+'.</div></div>';
   document.getElementById('ki-interp-text').textContent='A tua Estrela Principal é a '+ki.principal+' — '+kiP.el+'. '+kiP.txt+' A Estrela de Carácter '+ki.mensal+' — '+kiM.el+' — '+kiM.txt.toLowerCase();
+  var _kiViverTit=currentLang==='es'?'Vivir tu Estrella':currentLang==='en'?'Living your Star':'Viver a tua Estrela';
+  var _kiViverEl=document.getElementById('ki-viver-titulo');if(_kiViverEl)_kiViverEl.textContent=_kiViverTit;
+  var _kiViverWrap=document.getElementById('ki-viver');
+  if(_kiViverWrap&&kiP.dicas){
+    _kiViverWrap.innerHTML=kiP.dicas.map(function(dc){return '<div class="hd-living-card"><div class="hd-living-title">✦ '+dc.t+'</div><div class="hd-living-text">'+dc.d+'</div></div>';}).join('');
+  }
   // Numerologia
   const nV=numVida(dia,mes,ano),nD=numDestino(nome),nA=numAlma(nome),nAno=anoPessoal(dia,mes);window._nums={nV,nD,nA,nAno};
   document.getElementById('num-hero').innerHTML=[{n:nV,l:t('num_vida')},{n:nD,l:t('num_destino')},{n:nA,l:t('num_alma')},{n:nAno,l:t('num_ano_pessoal')+' '+new Date().getFullYear()}].map(x=>'<div class="num-card"><div class="num-big">'+x.n+'</div><div class="num-label">'+x.l+'</div><div class="num-sublabel">'+numInfo(x.n).nome+'</div></div>').join('');
