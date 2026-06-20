@@ -1,0 +1,8 @@
+{
+  "name": "essencia-functions",
+  "version": "1.0.0",
+  "description": "Dependências das funções Netlify da app Essência",
+  "dependencies": {
+    "@netlify/blobs": "^7.0.0"
+  }
+}

@@ -14182,17 +14182,9 @@ function calcularComLang() {
         btn.disabled=false;btn.textContent='Activar';
       }
     } catch(e){
-      if(codigo.match(/^ESS-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/)){
-        localStorage.setItem('_ess_acesso','1');
-        localStorage.setItem('_ess_codigo',codigo);
-        localStorage.setItem('_ess_validar_online','1');
-        setCookie('_ess_acesso','1',365);
-        esconderEcra();
-      } else {
-        erroEl.textContent='Sem ligação. Formato: ESS-XXXX-XXXX-XXXX';
-        erroEl.style.display='block';
-        btn.disabled=false;btn.textContent='Activar';
-      }
+      erroEl.textContent='Não foi possível ligar ao servidor. Verifica a tua ligação à internet e tenta novamente.';
+      erroEl.style.display='block';
+      btn.disabled=false;btn.textContent='Activar';
     }
   };
 
