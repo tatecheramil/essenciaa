@@ -62,7 +62,7 @@ exports.handler = async function (event, context) {
     }
 
     await store.setJSON(codigoFinal, {
-      dispositivo: null,
+      dispositivos: [],
       criadoEm: new Date().toISOString(),
       activadoEm: null
     });

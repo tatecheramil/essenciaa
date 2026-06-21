@@ -1,9 +1,16 @@
 // netlify/functions/validate-code.js
 //
-// Valida um código de acesso e associa-o ao PRIMEIRO dispositivo que o activar.
-// Tentativas seguintes com um dispositivo diferente são rejeitadas.
+// Valida um código de acesso. Cada código pode ser activado em até
+// DEVICE_LIMIT dispositivos diferentes (por defeito: 2) — o suficiente
+// para cobrir reinstalações da app ou troca de telemóvel, mas continua a
+// impedir que o mesmo código seja partilhado livremente por muitas pessoas.
 //
-// Requer a dependência "@netlify/blobs" (ver package.json / instruções em baixo).
+// Podes ajustar o limite criando a variável de ambiente DEVICE_LIMIT no
+// Netlify (ex: "3"). Sem essa variável, o limite por defeito é 2.
+//
+// Requer a dependência "@netlify/blobs".
+
+const MAX_DISPOSITIVOS = parseInt(process.env.DEVICE_LIMIT || '2', 10);
 
 exports.handler = async function (event, context) {
   if (event.httpMethod !== 'POST') {
@@ -57,10 +64,25 @@ exports.handler = async function (event, context) {
       };
     }
 
-    // Primeira activação — associa este dispositivo ao código, de forma permanente
-    if (!registo.dispositivo) {
-      registo.dispositivo = dispositivo;
-      registo.activadoEm = new Date().toISOString();
+    // Migração automática de registos antigos (campo único "dispositivo")
+    if (!Array.isArray(registo.dispositivos)) {
+      registo.dispositivos = registo.dispositivo ? [registo.dispositivo] : [];
+    }
+
+    // Este dispositivo já está autorizado para este código — entra normalmente
+    if (registo.dispositivos.includes(dispositivo)) {
+      return {
+        statusCode: 200,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ valido: true })
+      };
+    }
+
+    // Dispositivo novo — há lugar disponível dentro do limite permitido
+    if (registo.dispositivos.length < MAX_DISPOSITIVOS) {
+      registo.dispositivos.push(dispositivo);
+      if (!registo.activadoEm) registo.activadoEm = new Date().toISOString();
+      registo.ultimaActivacaoEm = new Date().toISOString();
       await store.setJSON(codigoLimpo, registo);
 
       return {
@@ -70,22 +92,13 @@ exports.handler = async function (event, context) {
       };
     }
 
-    // Mesmo dispositivo a voltar a validar (ex: reinstalou a app, limpou cache)
-    if (registo.dispositivo === dispositivo) {
-      return {
-        statusCode: 200,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ valido: true })
-      };
-    }
-
-    // Dispositivo diferente — bloqueado
+    // Limite de dispositivos atingido — bloqueado
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         valido: false,
-        erro: 'Este código já está activo noutro dispositivo. Se precisares de ajuda, contacta-nos por email.'
+        erro: 'Este código já atingiu o número máximo de dispositivos permitidos. Se precisares de ajuda, contacta-nos por email.'
       })
     };
 
