@@ -46,6 +46,12 @@
   .email-note { font-size: .75rem; color: var(--text3); margin-top: .8rem; }
   .hero-price { margin-top: 1.3rem; font-size: .85rem; color: var(--text2); position: relative; }
   .hero-price strong { color: var(--accent-deep); font-size: 1.1rem; font-weight: 400; }
+  .pay-choice-row { display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center; }
+  .pay-btn { flex: 1; min-width: 160px; text-align: center; }
+  .pay-btn-paypal { background: #ffc439; color: #003087; }
+  .pay-btn-paypal:hover { background: #f2b633; color: #003087; }
+  .cta-email-wrap .pay-btn-paypal { background: #ffc439; color: #003087; }
+  .cta-email-wrap .pay-btn-paypal:hover { background: #f2b633; }
   .form-msg { display: none; margin-top: .8rem; font-size: .82rem; border-radius: 8px; padding: .6rem 1rem; }
   .form-msg.error { background: rgba(181,74,74,.08); color: #a85050; border: 1px solid rgba(181,74,74,.2); display: block; }
 
@@ -140,6 +146,15 @@
     <div class="form-msg error" id="heroError"></div>
   </form>
 
+  <div class="pay-choice" id="heroPayChoice" style="display:none;max-width:440px;margin:1rem auto 0;background:var(--card);border:1px solid var(--border2);box-shadow:var(--shadow2);border-radius:18px;padding:1.5rem">
+    <p class="email-form-label" id="t-pay-choice-label" style="text-align:center">Como queres pagar?</p>
+    <div class="pay-choice-row">
+      <a class="btn-primary pay-btn" href="https://pay.sumup.com/b2c/QGCQ6B2I" target="_blank" rel="noopener" id="t-pay-card">💳 Cartão / MB WAY</a>
+      <a class="btn-primary pay-btn pay-btn-paypal" href="https://paypal.me/tatechera/14.99EUR" target="_blank" rel="noopener" id="t-pay-paypal">🅿️ PayPal</a>
+    </div>
+    <p class="email-note" id="t-pay-note" style="text-align:center;margin-top:.8rem">Pagamento em euros (€). Se pagares de fora da Zona Euro, o valor é convertido automaticamente pelo teu banco ou pela PayPal.</p>
+  </div>
+
   <p class="hero-price" id="t-hero-price">Pagamento único · <strong>14,99€</strong></p>
 </header>
 
@@ -218,7 +233,7 @@
     <div class="faq-item"><p class="faq-q" id="t-q1">Funciona no iPhone e Android?</p><p class="faq-a" id="t-a1">Sim, funciona em qualquer smartphone. Não precisas de App Store nem Google Play.</p></div>
     <div class="faq-item"><p class="faq-q" id="t-q2">O pagamento é único ou mensal?</p><p class="faq-a" id="t-a2">Pagamento único de 14,99€, sem subscrições. O preço dá acesso à versão atual da app. Futuras atualizações com novas funcionalidades poderão ter um custo adicional.</p></div>
     <div class="faq-item"><p class="faq-q" id="t-q3">Os meus dados ficam guardados?</p><p class="faq-a" id="t-a3">Sim. Todos os dados ficam guardados localmente no teu dispositivo. Ninguém tem acesso às tuas informações.</p></div>
-    <div class="faq-item"><p class="faq-q" id="t-q4">Posso usar em mais do que um dispositivo?</p><p class="faq-a" id="t-a4">O código é válido para um dispositivo. Se precisares de mudar de telemóvel, contacta-nos por email.</p></div>
+    <div class="faq-item"><p class="faq-q" id="t-q4">Posso usar em mais do que um dispositivo?</p><p class="faq-a" id="t-a4">O código pode ser usado em até 2 dispositivos (por exemplo, se mudares de telemóvel). Se precisares de mais, contacta-nos por email.</p></div>
     <div class="faq-item"><p class="faq-q" id="t-q5">A app está em inglês e espanhol?</p><p class="faq-a" id="t-a5">Sim! Disponível em Português, Inglês e Espanhol. Podes mudar a língua a qualquer momento.</p></div>
     <div class="faq-item"><p class="faq-q" id="t-q6">Quanto tempo demora a receber o código?</p><p class="faq-a" id="t-a6">Em até 24 horas após confirmação do pagamento. Normalmente muito mais rápido.</p></div>
   </div>
@@ -241,8 +256,16 @@
       <p class="email-note" style="color:rgba(255,255,255,.65)" id="t-cta-note">Não partilhamos o teu email com terceiros.</p>
       <div class="form-msg error" id="ctaError"></div>
     </form>
+    <div class="pay-choice" id="ctaPayChoice" style="display:none">
+      <p class="email-form-label" style="color:#fff;text-align:center" id="t-pay-choice-label-cta">Como queres pagar?</p>
+      <div class="pay-choice-row" style="margin-top:.6rem">
+        <a class="btn-primary pay-btn" href="https://pay.sumup.com/b2c/QGCQ6B2I" target="_blank" rel="noopener" id="t-pay-card-cta">💳 Cartão / MB WAY</a>
+        <a class="btn-primary pay-btn pay-btn-paypal" href="https://paypal.me/tatechera/14.99EUR" target="_blank" rel="noopener" id="t-pay-paypal-cta">🅿️ PayPal</a>
+      </div>
+      <p class="email-note" style="color:rgba(255,255,255,.65);text-align:center;margin-top:.8rem" id="t-pay-note-cta">Pagamento em euros (€). Se pagares de fora da Zona Euro, o valor é convertido automaticamente pelo teu banco ou pela PayPal.</p>
+    </div>
   </div>
-  <p class="cta-guarantee" id="t-guarantee">Pagamento seguro via SumUp · Suporte por email</p>
+  <p class="cta-guarantee" id="t-guarantee">Pagamento seguro · Suporte por email</p>
 </div>
 
 <footer>
@@ -292,7 +315,7 @@ var T = {
     q1: 'Funciona no iPhone e Android?', a1: 'Sim, funciona em qualquer smartphone. Não precisas de App Store nem Google Play.',
     q2: 'O pagamento é único ou mensal?', a2: 'Pagamento único de 14,99€, sem subscrições. O preço dá acesso à versão atual da app. Futuras atualizações com novas funcionalidades poderão ter um custo adicional.',
     q3: 'Os meus dados ficam guardados?', a3: 'Sim. Todos os dados ficam guardados localmente no teu dispositivo. Ninguém tem acesso às tuas informações.',
-    q4: 'Posso usar em mais do que um dispositivo?', a4: 'O código é válido para um dispositivo. Se precisares de mudar de telemóvel, contacta-nos por email.',
+    q4: 'Posso usar em mais do que um dispositivo?', a4: 'O código pode ser usado em até 2 dispositivos (por exemplo, se mudares de telemóvel). Se precisares de mais, contacta-nos por email.',
     q5: 'A app está em inglês e espanhol?', a5: 'Sim! Disponível em Português, Inglês e Espanhol. Podes mudar a língua a qualquer momento.',
     q6: 'Quanto tempo demora a receber o código?', a6: 'Em até 24 horas após confirmação do pagamento. Normalmente muito mais rápido.',
     ctaEyebrow: 'Começa hoje',
@@ -301,7 +324,11 @@ var T = {
     ctaLabel: 'O teu email para receberes o código',
     btnCta: '✦ Comprar — 14,99€',
     ctaNote: 'Não partilhamos o teu email com terceiros.',
-    guarantee: 'Pagamento seguro via SumUp · Suporte por email',
+    guarantee: 'Pagamento seguro · Suporte por email',
+    payChoiceLabel: 'Como queres pagar?',
+    payCard: '💳 Cartão / MB WAY',
+    payPaypal: '🅿️ PayPal',
+    payNote: 'Pagamento em euros (€). Se pagares de fora da Zona Euro, o valor é convertido automaticamente pelo teu banco ou pela PayPal.',
     footer: 'Essência — Auto-Conhecimento · Criado por <a href="https://www.elekitra.net">Margarida Leite</a> e Ana Almeida · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a>'
   },
   es: {
@@ -344,7 +371,7 @@ var T = {
     q1: '¿Funciona en iPhone y Android?', a1: 'Sí, funciona en cualquier smartphone. No necesitas App Store ni Google Play.',
     q2: '¿El pago es único o mensual?', a2: 'Pago único de 14,99€, sin suscripciones. El precio da acceso a la versión actual de la app. Futuras actualizaciones con nuevas funcionalidades podrán tener un coste adicional.',
     q3: '¿Mis datos quedan guardados?', a3: 'Sí. Todos los datos se guardan localmente en tu dispositivo. Nadie tiene acceso a tu información.',
-    q4: '¿Puedo usarla en más de un dispositivo?', a4: 'El código es válido para un dispositivo. Si necesitas cambiar de móvil, contáctanos por email.',
+    q4: '¿Puedo usarla en más de un dispositivo?', a4: 'El código se puede usar en hasta 2 dispositivos (por ejemplo, si cambias de móvil). Si necesitas más, contáctanos por email.',
     q5: '¿La app está en inglés y español?', a5: '¡Sí! Disponible en Portugués, Inglés y Español. Puedes cambiar el idioma en cualquier momento.',
     q6: '¿Cuánto tarda en llegar el código?', a6: 'Menos de 24 horas tras la confirmación del pago. Normalmente mucho más rápido.',
     ctaEyebrow: 'Empieza hoy',
@@ -353,7 +380,11 @@ var T = {
     ctaLabel: 'Tu email para recibir el código',
     btnCta: '✦ Comprar — 14,99€',
     ctaNote: 'No compartimos tu email con terceros.',
-    guarantee: 'Pago seguro vía SumUp · Soporte por email',
+    guarantee: 'Pago seguro · Soporte por email',
+    payChoiceLabel: '¿Cómo quieres pagar?',
+    payCard: '💳 Tarjeta / MB WAY',
+    payPaypal: '🅿️ PayPal',
+    payNote: 'Pago en euros (€). Si pagas desde fuera de la Zona Euro, el importe se convierte automáticamente por tu banco o por PayPal.',
     footer: 'Essência — Autoconocimiento · Creado por <a href="https://www.elekitra.net">Margarida Leite</a> y Ana Almeida · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a>'
   },
   en: {
@@ -396,7 +427,7 @@ var T = {
     q1: 'Does it work on iPhone and Android?', a1: 'Yes, it works on any smartphone. No App Store or Google Play required.',
     q2: 'Is it a one-time payment or monthly?', a2: 'One-time payment of 14.99€, no subscriptions. The price gives access to the current version of the app. Future updates with new features may carry an additional cost.',
     q3: 'Is my data saved?', a3: 'Yes. All data is stored locally on your device. Nobody has access to your information.',
-    q4: 'Can I use it on more than one device?', a4: 'The code is valid for one device. If you need to switch phones, contact us by email.',
+    q4: 'Can I use it on more than one device?', a4: 'The code can be used on up to 2 devices (for example, if you switch phones). If you need more, contact us by email.',
     q5: 'Is the app available in English and Spanish?', a5: 'Yes! Available in Portuguese, English and Spanish. You can switch language at any time.',
     q6: 'How long does it take to receive the code?', a6: 'Within 24 hours of payment confirmation. Usually much faster.',
     ctaEyebrow: 'Start today',
@@ -405,7 +436,11 @@ var T = {
     ctaLabel: 'Your email to receive the access code',
     btnCta: '✦ Buy — 14.99€',
     ctaNote: 'We never share your email with third parties.',
-    guarantee: 'Secure payment via SumUp · Email support',
+    guarantee: 'Secure payment · Email support',
+    payChoiceLabel: 'How would you like to pay?',
+    payCard: '💳 Card / MB WAY',
+    payPaypal: '🅿️ PayPal',
+    payNote: 'Payment in euros (€). If paying from outside the Eurozone, the amount is automatically converted by your bank or by PayPal.',
     footer: 'Essência — Self-Knowledge · Created by <a href="https://www.elekitra.net">Margarida Leite</a> and Ana Almeida · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a>'
   }
 };
@@ -457,7 +492,9 @@ function setLang(lang) {
     't-q5': t.q5, 't-a5': t.a5, 't-q6': t.q6, 't-a6': t.a6,
     't-cta-eyebrow': t.ctaEyebrow, 't-cta-h2': t.ctaH2, 't-cta-p': t.ctaP,
     't-cta-label': t.ctaLabel, 't-btn-cta': t.btnCta, 't-cta-note': t.ctaNote,
-    't-guarantee': t.guarantee
+    't-guarantee': t.guarantee,
+    't-pay-choice-label': t.payChoiceLabel, 't-pay-card': t.payCard, 't-pay-paypal': t.payPaypal, 't-pay-note': t.payNote,
+    't-pay-choice-label-cta': t.payChoiceLabel, 't-pay-card-cta': t.payCard, 't-pay-paypal-cta': t.payPaypal, 't-pay-note-cta': t.payNote
   };
   // ctaH2 tem <br> — usar innerHTML
   s('t-cta-h2', t.ctaH2);
@@ -489,7 +526,7 @@ function setLang(lang) {
 })();
 
 // ── FORMULÁRIOS ───────────────────────────────────────────────────────────────
-function handleForm(formId, emailId, errorId) {
+function handleForm(formId, emailId, errorId, payChoiceId) {
   var form = document.getElementById(formId);
   if (!form) return;
   form.addEventListener('submit', function(e) {
@@ -504,13 +541,15 @@ function handleForm(formId, emailId, errorId) {
     fetch('/', { method: 'POST', body: data })
       .catch(function() {})
       .finally(function() {
-        window.location.href = 'https://pay.sumup.com/b2c/QGCQ6B2I';
+        form.style.display = 'none';
+        var pc = document.getElementById(payChoiceId);
+        if (pc) pc.style.display = 'block';
       });
   });
 }
 
-handleForm('heroForm', 'heroEmail', 'heroError');
-handleForm('ctaForm', 'ctaEmail', 'ctaError');
+handleForm('heroForm', 'heroEmail', 'heroError', 'heroPayChoice');
+handleForm('ctaForm', 'ctaEmail', 'ctaError', 'ctaPayChoice');
 </script>
 
 </body>
