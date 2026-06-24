@@ -493,7 +493,7 @@
       <button class="drawer-item" id="di-enneagram" onclick="drawerNav('enneagram')"><span class="drawer-item-icon">◯</span><span id="ditem-enneagram">Eneagrama</span></button>
       <button class="drawer-item" id="di-humandesign" onclick="drawerNav('humandesign')"><span class="drawer-item-icon">⬡</span><span id="ditem-humandesign">Human Design</span></button>
       <button class="drawer-item" id="di-chakras" onclick="drawerNav('chakras')"><span class="drawer-item-icon">🌈</span><span id="ditem-chakras">Chakras</span></button>
-      <button class="drawer-item" id="di-lunar" onclick="drawerNav('lunar')"><span class="drawer-item-icon">🌙</span><span id="ditem-lunar">Agenda Lunar</span></button>
+      <button class="drawer-item" id="di-palma" onclick="drawerNav('palma')"><span class="drawer-item-icon">✋</span><span id="ditem-palma">Leitura de Mãos</span></button>
     </div>
 
     <!-- FERRAMENTAS -->
@@ -505,11 +505,12 @@
       <button class="drawer-item" id="di-frequencias" onclick="drawerNav('frequencias')" style="display:none"><span class="drawer-item-icon">〜</span><span id="ditem-frequencias">Frequências</span></button>
       <button class="drawer-item" id="di-tarot" onclick="drawerNav('tarot')"><span class="drawer-item-icon">🃏</span><span id="ditem-tarot">Tarot</span></button>
       <button class="drawer-item" id="di-runas" onclick="drawerNav('runas')"><span class="drawer-item-icon">ᚱ</span><span id="ditem-runas">Runas</span></button>
-      <button class="drawer-item" id="di-palma" onclick="drawerNav('palma')"><span class="drawer-item-icon">✋</span><span id="ditem-palma">Leitura de Mãos</span></button>
+      <button class="drawer-item" id="di-lunar" onclick="drawerNav('lunar')"><span class="drawer-item-icon">🌙</span><span id="ditem-lunar">Agenda Lunar</span></button>
       <button class="drawer-item" id="di-constelacoes" onclick="drawerNav('constelacoes')"><span class="drawer-item-icon">🌳</span><span id="ditem-constelacoes">Constelações</span></button>
       <button class="drawer-item" id="di-parceiro" onclick="drawerNav('parceiro')"><span class="drawer-item-icon">♡</span><span id="ditem-parceiro">Parceiro</span></button>
       <button class="drawer-item" id="di-diario-terapeutico" onclick="drawerNav('diario-terapeutico')"><span class="drawer-item-icon">✍</span><span id="ditem-diario-terapeutico">Diário</span></button>
       <button class="drawer-item" id="di-sono" onclick="drawerNav('sono')"><span class="drawer-item-icon">🌙</span><span id="ditem-sono">Sono</span></button>
+      <button class="drawer-item" id="di-fengshui" onclick="drawerNav('fengshui')"><span class="drawer-item-icon">🏠</span><span id="ditem-fengshui">Feng Shui</span></button>
     </div>
 
     <!-- APOIO -->
@@ -1065,7 +1066,8 @@
       <button class="btn-primary" id="chakra-btn-calc" style="max-width:400px;margin:0 auto;display:block" onclick="calcularChakras()">✦ &nbsp;Ver o meu diagnóstico&nbsp; ✦</button>
     </div>
     <div id="chakra-results" style="display:none">
-      <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">
+        <div id="chakra-data-guardado" style="font-size:.72rem;color:var(--text3);font-style:italic"></div>
         <button class="btn-back" id="chakra-btn-refazer" onclick="refazerChakras()">↺ Refazer diagnóstico</button>
       </div>
       <div id="chakra-diagnostic" style="margin-bottom:1.5rem"></div>
@@ -1073,6 +1075,35 @@
       <div id="chakra-details"></div>
       <div class="section-title" id="chakra-praticas-titulo" style="margin-top:1.5rem">Práticas de equilíbrio recomendadas</div>
       <div id="chakra-practices"></div>
+    </div>
+  </div>
+
+  <div id="tab-fengshui" class="tab-content" style="display:none">
+    <div class="chakra-hero">
+      <div class="tab-hero-icon">🏠</div>
+      <div>
+        <div class="tab-hero-title" id="fs-hero-title">Feng Shui</div>
+        <div class="tab-hero-sub" id="fs-hero-sub">A energia do teu espaço, em equilíbrio com a tua vida</div>
+      </div>
+    </div>
+    <div id="fs-questionnaire">
+      <div class="interp-box" style="margin-bottom:1.5rem">
+        <div class="interp-label" id="fs-diag-label">Como está a energia da tua casa?</div>
+        <div class="interp-text" id="fs-intro-txt">Responde a estas perguntas simples sobre o teu espaço. No final, vais receber sugestões práticas e fáceis de aplicar para harmonizares cada zona — sem grandes obras, só pequenos ajustes conscientes.</div>
+      </div>
+      <div id="fs-questions-list"></div>
+      <button class="btn-primary" id="fs-btn-calc" style="max-width:420px;margin:0 auto;display:block" onclick="calcularFengShui()">🏠 &nbsp;<span id="fs-btn-calc-txt">Ver o meu diagnóstico</span>&nbsp; 🏠</button>
+    </div>
+    <div id="fs-results" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">
+        <div id="fs-data-guardado" style="font-size:.72rem;color:var(--text3);font-style:italic"></div>
+        <button class="btn-back" id="fs-btn-refazer" onclick="refazerFengShui()">↺ <span id="fs-btn-refazer-txt">Refazer diagnóstico</span></button>
+      </div>
+      <div id="fs-reflexao-box" class="interp-box" style="margin-bottom:1.5rem"></div>
+      <div id="fs-ki-box" style="display:none;margin-bottom:1.5rem"></div>
+      <div id="fs-diagnostic" style="margin-bottom:1.5rem"></div>
+      <div class="section-title" id="fs-sugestoes-titulo">Sugestões práticas para harmonizar</div>
+      <div id="fs-practices"></div>
     </div>
   </div>
 
@@ -1289,7 +1320,8 @@
 
     
     <div id="const-result-section" style="display:none">
-      <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">
+        <div id="const-data-guardado" style="font-size:.72rem;color:var(--text3);font-style:italic"></div>
         <button class="btn-back" onclick="refazerConstelacoes()" id="const-btn-refazer">↺ Refazer questionário</button>
       </div>
       <div id="const-score-overview" style="margin-bottom:1.5rem"></div>
@@ -1414,6 +1446,31 @@
             <input type="number" id="parc-inp-mes" placeholder="Mês" min="1" max="12"/>
             <input type="number" id="parc-inp-ano" placeholder="Ano" min="1900" max="2024"/>
           </div>
+        </div>
+        <div style="font-size:.74rem;color:var(--text3);line-height:1.5;margin:.75rem 0 .5rem" id="parc-asc-intro">Opcional — se souberes a hora e o local de nascimento, a análise passa a incluir também o Ascendente, ficando mais completa. Sem isto, a análise continua a funcionar normalmente.</div>
+        <div class="field">
+          <label id="parc-lbl-hora">Hora de nascimento (opcional)</label>
+          <input type="time" id="parc-inp-hora" style="width:100%"/>
+        </div>
+        <div class="field">
+          <label id="parc-lbl-pais">País de nascimento (opcional)</label>
+          <select id="parc-inp-pais" onchange="parcAtualizarCidades()" style="margin-bottom:.6rem">
+            <option value="">— Selecciona o país —</option>
+          </select>
+          <label id="parc-lbl-cidade" style="margin-top:.5rem;display:block">Cidade</label>
+          <select id="parc-inp-cidade" onchange="parcEscolherCidade()">
+            <option value="">— Selecciona primeiro o país —</option>
+          </select>
+          <div id="parc-cidade-manual-area" style="display:none;margin-top:.5rem">
+            <div style="display:flex;gap:.5rem">
+              <input type="text" id="parc-cidade-manual-input" placeholder="Escreve o nome da cidade..."
+                style="flex:1;padding:.6rem .8rem;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-family:'Jost',sans-serif;font-size:.85rem;outline:none"
+                onkeydown="if(event.key==='Enter')procurarCidadeManualParc()">
+              <button onclick="procurarCidadeManualParc()" style="padding:.6rem 1rem;background:var(--accent-deep);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.1em;cursor:pointer;white-space:nowrap">Procurar</button>
+            </div>
+            <div id="parc-cidade-manual-result" style="font-size:.8rem;margin-top:.4rem;min-height:1.2rem"></div>
+          </div>
+          <div id="parc-cidade-coords" style="display:none;margin-top:.4rem;font-size:.72rem;color:var(--accent2)"></div>
         </div>
       </div>
       <button class="btn-primary" id="parc-btn-analisar-novo" onclick="analisarParceiro('novo')">
@@ -3179,6 +3236,20 @@ function applyLang() {
     set('ditem-emocional','Como me Sinto','Cómo me Siento','How I Feel');
     var _tabEmoEl=document.getElementById('tab-emocional');
     if(_tabEmoEl&&_tabEmoEl.style.display==='block'&&typeof emoInit==='function')emoInit();
+    // Traduções da secção "Feng Shui"
+    set('fs-hero-title','Feng Shui','Feng Shui','Feng Shui');
+    set('fs-hero-sub','A energia do teu espaço, em equilíbrio com a tua vida','La energía de tu espacio, en equilibrio con tu vida','The energy of your space, in balance with your life');
+    set('fs-diag-label','Como está a energia da tua casa?','¿Cómo está la energía de tu casa?','How is the energy of your home?');
+    set('fs-intro-txt','Responde a estas perguntas simples sobre o teu espaço. No final, vais receber sugestões práticas e fáceis de aplicar para harmonizares cada zona — sem grandes obras, só pequenos ajustes conscientes.','Responde a estas preguntas simples sobre tu espacio. Al final, recibirás sugerencias prácticas y fáciles de aplicar para armonizar cada zona — sin grandes obras, solo pequeños ajustes conscientes.','Answer these simple questions about your space. At the end, you will get practical, easy-to-apply suggestions to harmonise each area — no major work needed, just small mindful adjustments.');
+    set('fs-btn-calc-txt','Ver o meu diagnóstico','Ver mi diagnóstico','See my diagnosis');
+    set('fs-btn-refazer-txt','Refazer diagnóstico','Repetir diagnóstico','Redo diagnosis');
+    set('fs-sugestoes-titulo','Sugestões práticas para harmonizar','Sugerencias prácticas para armonizar','Practical suggestions to harmonise');
+    set('ditem-fengshui','Feng Shui','Feng Shui','Feng Shui');
+    var _tabFsEl=document.getElementById('tab-fengshui');
+    if(_tabFsEl&&_tabFsEl.style.display==='block'){
+      if(typeof renderFengShuiQuestionnaire==='function')renderFengShuiQuestionnaire();
+      if(typeof _fsMostrarResultadoGuardado==='function')_fsMostrarResultadoGuardado();
+    }
   })();
 
   // Ki tab
@@ -4152,115 +4223,142 @@ const KI_DATA={
     1:{el:'Água',dir:'Norte',cor:'#4a8fb5',txt:'Profundidade, reflexão e sabedoria. Intuitivo/a e contemplativo/a.',
       dicas:[{t:'Protege os teus momentos de silêncio',d:'Precisas de tempo só contigo para processar o que sentes. Sem isso, a tua intuição fica turva.'},
              {t:'Confia no que sabes sem saber explicar',d:'A tua sabedoria chega muitas vezes como um pressentimento, não como lógica. Aprende a confiar nesse saber silencioso.'},
-             {t:'Deixa-te fluir em vez de forçar',d:'Tal como a água, o teu caminho raramente é uma linha reta. Adapta-te às circunstâncias em vez de insistir num só percurso.'}]},
+             {t:'Deixa-te fluir em vez de forçar',d:'Tal como a água, o teu caminho raramente é uma linha reta. Adapta-te às circunstâncias em vez de insistir num só percurso.'},
+             {t:'Orienta-te para Norte nos momentos de descanso',d:'Em Feng Shui, o Norte está associado à energia da Água — sempre que possível, orienta a cama ou o teu canto de descanso nessa direcção.'}]},
     2:{el:'Terra II',dir:'Sudoeste',cor:'#8a6a3a',txt:'Nutrição, recetividade e cuidado. Tens capacidade de sustentar os outros.',
       dicas:[{t:'Cuida de quem cuida de todos',d:'É fácil esqueceres-te de ti enquanto sustentas os outros. Reserva tempo regular só para a tua própria nutrição.'},
              {t:'Diz que sim com limites claros',d:'A tua generosidade é um dom, mas sem limites pode esgotar-te. Aprende a ajudar sem te dissolveres no processo.'},
-             {t:'Confia na tua paciência',d:'Onde outros desistem, tu persistes com calma. Usa essa resistência tranquila nos projectos que exigem tempo.'}]},
+             {t:'Confia na tua paciência',d:'Onde outros desistem, tu persistes com calma. Usa essa resistência tranquila nos projectos que exigem tempo.'},
+             {t:'Cria um canto a Sudoeste só teu',d:'O Sudoeste é a tua direcção pessoal — um pequeno espaço com tons terrosos nessa zona de casa ajuda-te a recarregar a energia de cuidado que dás aos outros.'}]},
     3:{el:'Trovão',dir:'Leste',cor:'#4a9b6a',txt:'Crescimento, movimento e criatividade. Visão pioneira.',
       dicas:[{t:'Avança mesmo sem todas as respostas',d:'A tua energia é de início, não de espera. Esperar pela certeza total pode fazer-te perder o momento certo.'},
              {t:'Dá espaço à tua impulsividade criativa',d:'As tuas melhores ideias chegam em rajadas. Tem sempre por perto uma forma de as registar antes que passem.'},
-             {t:'Aceita que nem tudo o que começas continua',d:'Seres pioneiro/a significa abrir caminhos que outros seguem. Nem sempre precisas de terminar tudo o que iniciaste.'}]},
+             {t:'Aceita que nem tudo o que começas continua',d:'Seres pioneiro/a significa abrir caminhos que outros seguem. Nem sempre precisas de terminar tudo o que iniciaste.'},
+             {t:'Deixa entrar a luz da manhã, a Leste',d:'O Leste é a tua direcção — um espaço com boa luz matinal voltado para essa zona alimenta a tua energia de crescimento e iniciativa.'}]},
     4:{el:'Vento',dir:'Sudeste',cor:'#6ab4c8',txt:'Gentileza, persistência e comunicação. Dom para a influência subtil.',
       dicas:[{t:'Confia na influência silenciosa',d:'Não precisas de impor — a tua forma de comunicar muda as pessoas lentamente, como o vento molda a paisagem.'},
              {t:'Persiste mesmo sem resultados imediatos',d:'O teu impacto raramente é instantâneo. Continua a semear, mesmo sem ver a colheita de imediato.'},
-             {t:'Adapta o teu discurso a quem te ouve',d:'A tua sensibilidade social é uma ferramenta poderosa. Usa-a para chegares às pessoas à maneira delas, não só à tua.'}]},
+             {t:'Adapta o teu discurso a quem te ouve',d:'A tua sensibilidade social é uma ferramenta poderosa. Usa-a para chegares às pessoas à maneira delas, não só à tua.'},
+             {t:'Cuida da zona a Sudeste de casa',d:'É tradicionalmente a tua direcção — plantas ou um pequeno espaço verde nessa zona ajudam a sustentar a tua influência silenciosa.'}]},
     5:{el:'Terra Central',dir:'Centro',cor:'#9b7a4a',txt:'Equilíbrio, poder central e transformação. Presença magnética.',
       dicas:[{t:'Aceita o teu papel de equilíbrio',d:'És frequentemente quem une os extremos à tua volta. Não tens de escolher um lado — a tua força está em integrar.'},
              {t:'Usa a tua presença com intenção',d:'Atrais atenção sem esforço. Sê consciente de como essa presença afecta o espaço e as pessoas à tua volta.'},
-             {t:'Permite-te transformar, não só estabilizar',d:'Sendo o centro não significa ficares imóvel. Tens uma capacidade rara de te reinventares quando é preciso.'}]},
+             {t:'Permite-te transformar, não só estabilizar',d:'Sendo o centro não significa ficares imóvel. Tens uma capacidade rara de te reinventares quando é preciso.'},
+             {t:'Valoriza o centro da tua casa',d:'Como ponto de equilíbrio do sistema, beneficias de manter o centro de casa (normalmente a sala) arrumado e desafogado — é onde a tua energia se estabiliza.'}]},
     6:{el:'Céu',dir:'Noroeste',cor:'#4a6a9b',txt:'Liderança, autoridade e visão. Líder natural.',
       dicas:[{t:'Aceita o peso da liderança',d:'Outros procuram em ti uma direcção clara. Não fujas desse papel só porque parece pesado.'},
              {t:'Comunica a tua visão antes de agir',d:'As pessoas seguem-te melhor quando entendem o porquê. Partilha o panorama geral, não só as instruções.'},
-             {t:'Lidera com humildade',d:'A tua autoridade é mais respeitada quando vem acompanhada de escuta genuína, não apenas de comando.'}]},
+             {t:'Lidera com humildade',d:'A tua autoridade é mais respeitada quando vem acompanhada de escuta genuína, não apenas de comando.'},
+             {t:'A zona a Noroeste apoia a tua liderança',d:'Tons metálicos ou brancos nessa zona de casa podem reforçar a clareza de visão que trazes às decisões.'}]},
     7:{el:'Lago',dir:'Oeste',cor:'#c8a040',txt:'Alegria, prazer e reflexão. Charme natural.',
       dicas:[{t:'Não subestimes o valor da alegria',d:'Procurar prazer e ligação não é superficialidade — é a forma como recarregas a tua energia vital.'},
              {t:'Usa o teu charme com propósito',d:'As pessoas sentem-se naturalmente à vontade contigo. Usa essa facilidade para criar pontes, não só boa impressão.'},
-             {t:'Reserva tempo para reflexão depois da festa',d:'Depois de te ligares aos outros, dá-te espaço para reflectires a sós sobre o que viveste.'}]},
+             {t:'Reserva tempo para reflexão depois da festa',d:'Depois de te ligares aos outros, dá-te espaço para reflectires a sós sobre o que viveste.'},
+             {t:'Cria um espaço de convívio a Oeste',d:'Esta direcção favorece a tua energia social — um canto convidativo nessa zona de casa ajuda-te a recarregar através da ligação aos outros.'}]},
     8:{el:'Montanha',dir:'Nordeste',cor:'#7a8a6a',txt:'Estabilidade, quietude e renovação. Resiliência notável.',
       dicas:[{t:'Respeita o teu próprio ritmo de mudança',d:'Tal como uma montanha, transformas-te lentamente mas de forma duradoura. Não te compares a quem muda mais rápido.'},
              {t:'Usa a quietude como força, não como fuga',d:'Parar não é desistir — é como reúnes a tua resiliência. Permite-te momentos de pausa sem culpa.'},
-             {t:'Confia na tua capacidade de resistir',d:'Onde outros vacilam, tu manténs-te firme. É essa estabilidade que as pessoas procuram em ti nos momentos difíceis.'}]},
+             {t:'Confia na tua capacidade de resistir',d:'Onde outros vacilam, tu manténs-te firme. É essa estabilidade que as pessoas procuram em ti nos momentos difíceis.'},
+             {t:'A zona a Nordeste é o teu refúgio natural',d:'Um espaço calmo e simples nessa direcção apoia a tua necessidade de estabilidade e renovação silenciosa.'}]},
     9:{el:'Fogo',dir:'Sul',cor:'#c86a4a',txt:'Clareza, iluminação e visibilidade. Brilho natural.',
       dicas:[{t:'Aceita ser vista/o',d:'A tua energia naturalmente atrai atenção. Resistir a isso gasta mais energia do que simplesmente brilhar.'},
              {t:'Usa a tua clareza para iluminar, não para expor',d:'Vês as coisas com nitidez — partilha essa clareza de forma que ajude os outros a verem também, sem os fazer sentir expostos.'},
-             {t:'Cuida do combustível antes de arderes',d:'O fogo precisa de alimento constante. Protege as tuas fontes de energia para não te esgotares a brilhar para os outros.'}]}
+             {t:'Cuida do combustível antes de arderes',d:'O fogo precisa de alimento constante. Protege as tuas fontes de energia para não te esgotares a brilhar para os outros.'},
+             {t:'Deixa a luz do Sul chegar até ti',d:'Espaços virados a Sul, bem iluminados, alimentam o teu brilho natural — evita escurecer demasiado essa zona de casa.'}]}
   },
   es:{
     1:{el:'Agua',dir:'Norte',cor:'#4a8fb5',txt:'Profundidad, reflexión y sabiduría. Intuitivo/a y contemplativo/a.',
       dicas:[{t:'Protege tus momentos de silencio',d:'Necesitas tiempo solo/a contigo para procesar lo que sientes. Sin eso, tu intuición se nubla.'},
              {t:'Confía en lo que sabes sin saber explicarlo',d:'Tu sabiduría llega muchas veces como una corazonada, no como lógica. Aprende a confiar en ese saber silencioso.'},
-             {t:'Déjate fluir en vez de forzar',d:'Como el agua, tu camino raramente es una línea recta. Adáptate a las circunstancias en vez de insistir en un solo trayecto.'}]},
+             {t:'Déjate fluir en vez de forzar',d:'Como el agua, tu camino raramente es una línea recta. Adáptate a las circunstancias en vez de insistir en un solo trayecto.'},
+             {t:'Orienta tu descanso hacia el Norte',d:'En Feng Shui, el Norte está asociado a la energía del Agua — siempre que sea posible, orienta la cama o tu rincón de descanso hacia esa dirección.'}]},
     2:{el:'Tierra II',dir:'Suroeste',cor:'#8a6a3a',txt:'Nutrición, receptividad y cuidado. Tienes capacidad de sostener a los demás.',
       dicas:[{t:'Cuida de quien cuida de todos',d:'Es fácil olvidarte de ti mientras sostienes a los demás. Reserva tiempo regular solo para tu propia nutrición.'},
              {t:'Di que sí con límites claros',d:'Tu generosidad es un don, pero sin límites puede agotarte. Aprende a ayudar sin disolverte en el proceso.'},
-             {t:'Confía en tu paciencia',d:'Donde otros se rinden, tú persistes con calma. Usa esa resistencia tranquila en los proyectos que exigen tiempo.'}]},
+             {t:'Confía en tu paciencia',d:'Donde otros se rinden, tú persistes con calma. Usa esa resistencia tranquila en los proyectos que exigen tiempo.'},
+             {t:'Crea un rincón al Suroeste solo para ti',d:'El Suroeste es tu dirección personal — un pequeño espacio con tonos terrosos en esa zona te ayuda a recargar la energía de cuidado que das a los demás.'}]},
     3:{el:'Trueno',dir:'Este',cor:'#4a9b6a',txt:'Crecimiento, movimiento y creatividad. Visión pionera.',
       dicas:[{t:'Avanza aunque no tengas todas las respuestas',d:'Tu energía es de inicio, no de espera. Esperar la certeza total puede hacerte perder el momento adecuado.'},
              {t:'Da espacio a tu impulsividad creativa',d:'Tus mejores ideas llegan en rachas. Tén siempre cerca una forma de anotarlas antes de que se escapen.'},
-             {t:'Acepta que no todo lo que empiezas continúa',d:'Ser pionero/a significa abrir caminos que otros siguen. No siempre necesitas terminar todo lo que iniciaste.'}]},
+             {t:'Acepta que no todo lo que empiezas continúa',d:'Ser pionero/a significa abrir caminos que otros siguen. No siempre necesitas terminar todo lo que iniciaste.'},
+             {t:'Deja entrar la luz de la mañana, al Este',d:'El Este es tu dirección — un espacio con buena luz matinal hacia esa zona alimenta tu energía de crecimiento e iniciativa.'}]},
     4:{el:'Viento',dir:'Sureste',cor:'#6ab4c8',txt:'Gentileza, persistencia y comunicación. Don para la influencia sutil.',
       dicas:[{t:'Confía en la influencia silenciosa',d:'No necesitas imponer — tu forma de comunicar cambia a las personas lentamente, como el viento moldea el paisaje.'},
              {t:'Persiste aunque no veas resultados inmediatos',d:'Tu impacto raramente es instantáneo. Sigue sembrando, aunque no veas la cosecha de inmediato.'},
-             {t:'Adapta tu discurso a quien te escucha',d:'Tu sensibilidad social es una herramienta poderosa. Úsala para llegar a las personas a su manera, no solo a la tuya.'}]},
+             {t:'Adapta tu discurso a quien te escucha',d:'Tu sensibilidad social es una herramienta poderosa. Úsala para llegar a las personas a su manera, no solo a la tuya.'},
+             {t:'Cuida la zona al Sureste de tu casa',d:'Es tradicionalmente tu dirección — plantas o un pequeño espacio verde en esa zona ayudan a sostener tu influencia silenciosa.'}]},
     5:{el:'Tierra Central',dir:'Centro',cor:'#9b7a4a',txt:'Equilibrio, poder central y transformación. Presencia magnética.',
       dicas:[{t:'Acepta tu papel de equilibrio',d:'Eres frecuentemente quien une los extremos a tu alrededor. No tienes que elegir un lado — tu fuerza está en integrar.'},
              {t:'Usa tu presencia con intención',d:'Atraes atención sin esfuerzo. Sé consciente de cómo esa presencia afecta el espacio y a las personas a tu alrededor.'},
-             {t:'Permítete transformar, no solo estabilizar',d:'Ser el centro no significa quedarte inmóvil. Tienes una capacidad rara de reinventarte cuando es necesario.'}]},
+             {t:'Permítete transformar, no solo estabilizar',d:'Ser el centro no significa quedarte inmóvil. Tienes una capacidad rara de reinventarte cuando es necesario.'},
+             {t:'Valora el centro de tu casa',d:'Como punto de equilibrio del sistema, te beneficia mantener el centro de casa (normalmente el salón) ordenado y despejado — es donde tu energía se estabiliza.'}]},
     6:{el:'Cielo',dir:'Noroeste',cor:'#4a6a9b',txt:'Liderazgo, autoridad y visión. Líder natural.',
       dicas:[{t:'Acepta el peso del liderazgo',d:'Otros buscan en ti una dirección clara. No huyas de ese papel solo porque parece pesado.'},
              {t:'Comunica tu visión antes de actuar',d:'Las personas te siguen mejor cuando entienden el porqué. Comparte el panorama general, no solo las instrucciones.'},
-             {t:'Lidera con humildad',d:'Tu autoridad es más respetada cuando viene acompañada de escucha genuina, no solo de mando.'}]},
+             {t:'Lidera con humildad',d:'Tu autoridad es más respetada cuando viene acompañada de escucha genuina, no solo de mando.'},
+             {t:'La zona al Noroeste apoya tu liderazgo',d:'Tonos metálicos o blancos en esa zona de casa pueden reforzar la claridad de visión que aportas a las decisiones.'}]},
     7:{el:'Lago',dir:'Oeste',cor:'#c8a040',txt:'Alegría, placer y reflexión. Encanto natural.',
       dicas:[{t:'No subestimes el valor de la alegría',d:'Buscar placer y conexión no es superficialidad — es la forma en que recargas tu energía vital.'},
              {t:'Usa tu encanto con propósito',d:'Las personas se sienten naturalmente a gusto contigo. Usa esa facilidad para crear puentes, no solo buena impresión.'},
-             {t:'Reserva tiempo para la reflexión después de la fiesta',d:'Después de conectar con los demás, dáte espacio para reflexionar a solas sobre lo vivido.'}]},
+             {t:'Reserva tiempo para la reflexión después de la fiesta',d:'Después de conectar con los demás, dáte espacio para reflexionar a solas sobre lo vivido.'},
+             {t:'Crea un espacio de convivencia al Oeste',d:'Esta dirección favorece tu energía social — un rincón acogedor en esa zona te ayuda a recargar a través de la conexión con los demás.'}]},
     8:{el:'Montaña',dir:'Nordeste',cor:'#7a8a6a',txt:'Estabilidad, quietud y renovación. Resiliencia notable.',
       dicas:[{t:'Respeta tu propio ritmo de cambio',d:'Como una montaña, te transformas lentamente pero de forma duradera. No te compares con quien cambia más rápido.'},
              {t:'Usa la quietud como fuerza, no como huida',d:'Detenerte no es rendirte — es cómo reúnes tu resiliencia. Permítete momentos de pausa sin culpa.'},
-             {t:'Confía en tu capacidad de resistir',d:'Donde otros vacilan, tú te mantienes firme. Es esa estabilidad la que las personas buscan en ti en los momentos difíciles.'}]},
+             {t:'Confía en tu capacidad de resistir',d:'Donde otros vacilan, tú te mantienes firme. Es esa estabilidad la que las personas buscan en ti en los momentos difíciles.'},
+             {t:'La zona al Noreste es tu refugio natural',d:'Un espacio calmo y simple en esa dirección apoya tu necesidad de estabilidad y renovación silenciosa.'}]},
     9:{el:'Fuego',dir:'Sur',cor:'#c86a4a',txt:'Claridad, iluminación y visibilidad. Brillo natural.',
       dicas:[{t:'Acepta ser vista/o',d:'Tu energía naturalmente atrae atención. Resistirte a eso gasta más energía que simplemente brillar.'},
              {t:'Usa tu claridad para iluminar, no para exponer',d:'Ves las cosas con nitidez — comparte esa claridad de forma que ayude a los demás a ver también, sin hacerlos sentir expuestos.'},
-             {t:'Cuida el combustible antes de arder',d:'El fuego necesita alimento constante. Protege tus fuentes de energía para no agotarte brillando para los demás.'}]}
+             {t:'Cuida el combustible antes de arder',d:'El fuego necesita alimento constante. Protege tus fuentes de energía para no agotarte brillando para los demás.'},
+             {t:'Deja que la luz del Sur llegue hasta ti',d:'Espacios orientados al Sur, bien iluminados, alimentan tu brillo natural — evita oscurecer demasiado esa zona de casa.'}]}
   },
   en:{
     1:{el:'Water',dir:'North',cor:'#4a8fb5',txt:'Depth, reflection and wisdom. Intuitive and contemplative.',
       dicas:[{t:'Protect your moments of silence',d:'You need time alone to process what you feel. Without it, your intuition grows cloudy.'},
              {t:'Trust what you know without being able to explain it',d:'Your wisdom often arrives as a hunch, not as logic. Learn to trust that quiet knowing.'},
-             {t:'Let yourself flow instead of forcing',d:'Like water, your path is rarely a straight line. Adapt to circumstances instead of insisting on a single route.'}]},
+             {t:'Let yourself flow instead of forcing',d:'Like water, your path is rarely a straight line. Adapt to circumstances instead of insisting on a single route.'},
+             {t:'Orient your rest toward the North',d:'In Feng Shui, North is linked to Water energy — whenever possible, orient your bed or resting corner in that direction.'}]},
     2:{el:'Earth II',dir:'Southwest',cor:'#8a6a3a',txt:'Nourishment, receptivity and care. You have the capacity to sustain others.',
       dicas:[{t:'Take care of the one who cares for everyone',d:'It is easy to forget yourself while sustaining others. Set aside regular time just for your own nourishment.'},
              {t:'Say yes with clear boundaries',d:'Your generosity is a gift, but without limits it can drain you. Learn to help without dissolving yourself in the process.'},
-             {t:'Trust your patience',d:'Where others give up, you persist calmly. Use that quiet endurance on projects that demand time.'}]},
+             {t:'Trust your patience',d:'Where others give up, you persist calmly. Use that quiet endurance on projects that demand time.'},
+             {t:'Create a Southwest corner just for you',d:'Southwest is your personal direction — a small space with earthy tones in that area helps you recharge the caring energy you give to others.'}]},
     3:{el:'Thunder',dir:'East',cor:'#4a9b6a',txt:'Growth, movement and creativity. Pioneering vision.',
       dicas:[{t:'Move forward even without all the answers',d:'Your energy is one of initiation, not waiting. Holding out for total certainty can make you miss the right moment.'},
              {t:'Make room for your creative impulsiveness',d:'Your best ideas arrive in bursts. Always keep a way to capture them before they pass.'},
-             {t:'Accept that not everything you start continues',d:'Being a pioneer means opening paths that others follow. You do not always need to finish everything you began.'}]},
+             {t:'Accept that not everything you start continues',d:'Being a pioneer means opening paths that others follow. You do not always need to finish everything you began.'},
+             {t:'Let the morning light in, to the East',d:'East is your direction — a space with good morning light facing that way feeds your energy of growth and initiative.'}]},
     4:{el:'Wind',dir:'Southeast',cor:'#6a9b4a',txt:'Persistence, communication and gentleness. You plant seeds that grow slowly but surely.',
       dicas:[{t:'Trust your quiet influence',d:'You do not need to impose — your way of communicating changes people slowly, the way wind shapes a landscape.'},
              {t:'Persist even without immediate results',d:'Your impact is rarely instant. Keep planting, even when you cannot see the harvest right away.'},
-             {t:'Adapt your message to whoever is listening',d:'Your social sensitivity is a powerful tool. Use it to reach people in their own way, not only yours.'}]},
+             {t:'Adapt your message to whoever is listening',d:'Your social sensitivity is a powerful tool. Use it to reach people in their own way, not only yours.'},
+             {t:'Take care of the Southeast area of your home',d:'It is traditionally your direction — plants or a small green space there help sustain your quiet influence.'}]},
     5:{el:'Earth V',dir:'Centre',cor:'#9b8a4a',txt:'Balance, mediation and stability. You are the centre that holds.',
       dicas:[{t:'Accept your role as a balancing point',d:'You are often the one who holds the extremes around you together. You do not have to pick a side — your strength is in integrating.'},
              {t:'Use your presence with intention',d:'You draw attention without effort. Be mindful of how that presence affects the space and people around you.'},
-             {t:'Allow yourself to transform, not just stabilise',d:'Being the centre does not mean staying still. You have a rare capacity to reinvent yourself when needed.'}]},
+             {t:'Allow yourself to transform, not just stabilise',d:'Being the centre does not mean staying still. You have a rare capacity to reinvent yourself when needed.'},
+             {t:'Value the centre of your home',d:'As the system\u2019s balancing point, you benefit from keeping the centre of your home (usually the living room) tidy and uncluttered — it is where your energy stabilises.'}]},
     6:{el:'Metal I',dir:'Northwest',cor:'#8a8a9b',txt:'Leadership, responsibility and clarity. Strong sense of duty.',
       dicas:[{t:'Accept the weight of leadership',d:'Others look to you for clear direction. Do not run from that role just because it feels heavy.'},
              {t:'Communicate your vision before acting',d:'People follow you better when they understand why. Share the bigger picture, not only the instructions.'},
-             {t:'Lead with humility',d:'Your authority is more respected when paired with genuine listening, not only command.'}]},
+             {t:'Lead with humility',d:'Your authority is more respected when paired with genuine listening, not only command.'},
+             {t:'The Northwest area supports your leadership',d:'Metallic or white tones in that part of your home can reinforce the clarity of vision you bring to decisions.'}]},
     7:{el:'Metal II',dir:'West',cor:'#9b6a8a',txt:'Joy, expression and socialising. Natural communicator.',
       dicas:[{t:'Do not underestimate the value of joy',d:'Seeking pleasure and connection is not shallow — it is how you recharge your vital energy.'},
              {t:'Use your charm with purpose',d:'People feel naturally at ease with you. Use that ease to build bridges, not just a good impression.'},
-             {t:'Set aside time to reflect after socialising',d:'After connecting with others, give yourself space to reflect alone on what you experienced.'}]},
+             {t:'Set aside time to reflect after socialising',d:'After connecting with others, give yourself space to reflect alone on what you experienced.'},
+             {t:'Create a gathering space to the West',d:'This direction favours your social energy — a welcoming corner in that area helps you recharge through connection with others.'}]},
     8:{el:'Earth VIII',dir:'Northeast',cor:'#7a8a6a',txt:'Stability, stillness and renewal. Notable resilience.',
       dicas:[{t:'Respect your own pace of change',d:'Like a mountain, you transform slowly but lastingly. Do not compare yourself to those who change faster.'},
              {t:'Use stillness as strength, not escape',d:'Stopping is not giving up — it is how you gather your resilience. Allow yourself moments of pause without guilt.'},
-             {t:'Trust your capacity to endure',d:'Where others waver, you remain steady. That stability is what people seek in you during hard times.'}]},
+             {t:'Trust your capacity to endure',d:'Where others waver, you remain steady. That stability is what people seek in you during hard times.'},
+             {t:'The Northeast area is your natural refuge',d:'A calm, simple space in that direction supports your need for stability and quiet renewal.'}]},
     9:{el:'Fire',dir:'South',cor:'#c86a4a',txt:'Clarity, illumination and visibility. Natural brilliance.',
       dicas:[{t:'Accept being seen',d:'Your energy naturally draws attention. Resisting that costs more energy than simply shining.'},
              {t:'Use your clarity to illuminate, not to expose',d:'You see things sharply — share that clarity in a way that helps others see too, without making them feel exposed.'},
-             {t:'Tend the fuel before you burn out',d:'Fire needs constant feeding. Protect your energy sources so you do not exhaust yourself shining for others.'}]}
+             {t:'Tend the fuel before you burn out',d:'Fire needs constant feeding. Protect your energy sources so you do not exhaust yourself shining for others.'},
+             {t:'Let Southern light reach you',d:'South-facing, well-lit spaces feed your natural brilliance — avoid keeping that part of your home too dark.'}]}
   }
 };
 function getKI(){return KI_DATA[currentLang]||KI_DATA.pt;}
@@ -4424,7 +4522,316 @@ const CKQ_DATA={
 function getCKQ(){return CKQ_DATA[currentLang]||CKQ_DATA.pt;}
 function renderChakraQuestionnaire(){const _ckq=getCKQ(),_cks=getCHAKRAS();document.getElementById('chakra-questions-list').innerHTML=_ckq.map((q,qi)=>{const ch=_cks.find(c=>c.id===q.c);return'<div class="q-card" style="margin-bottom:.85rem"><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem"><span>'+ch.emoji+'</span><span style="font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:'+ch.cor+'">'+ch.nome+'</span></div><div class="q-text">'+(qi+1)+'. '+q.txt+'</div><div class="q-options">'+q.o.map((o,oi)=>'<label class="q-opt" id="copt-'+qi+'-'+oi+'" onclick="selectChakraOpt('+qi+','+oi+',this)"><input type="radio" name="cq'+qi+'" value="'+oi+'">'+o+'</label>').join('')+'</div></div>';}).join('');}
 function selectChakraOpt(qi,oi,el){document.querySelectorAll('[id^="copt-'+qi+'-"]').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');}
-function calcularChakras(){const raw={raiz:[],sacral:[],plexo:[],coracao:[],garganta:[],terceiro:[],coroa:[]};let ans=0;getCKQ().forEach((q,qi)=>{const sel=document.querySelector('input[name="cq'+qi+'"]:checked');if(sel){ans++;raw[q.c].push(parseInt(sel.value));}});if(ans<10){alert(currentLang==="es"?'Por favor responde al menos 10 preguntas.':currentLang==="en"?'Please answer at least 10 questions.':'Por favor responde pelo menos a 10 perguntas.');return;}const pM=[20,40,70,95],scores={};getCHAKRAS().forEach(c=>{const v=raw[c.id];scores[c.id]=v.length===0?50:Math.round(v.map(x=>pM[x]).reduce((a,b)=>a+b,0)/v.length);});document.getElementById('chakra-questionnaire').style.display='none';document.getElementById('chakra-results').style.display='block';renderChakraResults(scores);}
+function _chakraResultadoKey(){
+  const pid=sessionStorage.getItem('perfil_activo_id')||localStorage.getItem('essencia_ultimo_perfil')||'default';
+  return 'essencia_chakra_resultado_'+pid;
+}
+function _chakraGuardarResultado(scores){
+  try{localStorage.setItem(_chakraResultadoKey(),JSON.stringify({scores,ts:Date.now()}));}catch(e){}
+}
+function _chakraCarregarResultado(){
+  try{const raw=localStorage.getItem(_chakraResultadoKey());return raw?JSON.parse(raw):null;}catch(e){return null;}
+}
+function _chakraMostrarResultadoGuardado(){
+  const guardado=_chakraCarregarResultado();
+  if(!guardado)return false;
+  document.getElementById('chakra-questionnaire').style.display='none';
+  document.getElementById('chakra-results').style.display='block';
+  renderChakraResults(guardado.scores);
+  const notaEl=document.getElementById('chakra-data-guardado');
+  if(notaEl&&guardado.ts){
+    const d=new Date(guardado.ts);
+    const dataStr=d.toLocaleDateString(currentLang==='en'?'en-GB':currentLang==='es'?'es-ES':'pt-PT',{day:'2-digit',month:'long',year:'numeric'});
+    notaEl.textContent=(currentLang==='en'?'Saved diagnosis from ':currentLang==='es'?'Diagnóstico guardado el ':'Diagnóstico guardado a ')+dataStr;
+  }
+  return true;
+}
+// ════════════════════════════════════════════════════════════════
+// FENG SHUI — diagnóstico simples da casa + sugestões práticas
+// ════════════════════════════════════════════════════════════════
+const FS_PERGUNTAS = {
+  pt:[
+    {cat:'entrada',txt:'Como é a tua porta de entrada principal?',o:[{t:'Bem visível, acessível e desimpedida',p:100},{t:'Um pouco escondida ou difícil de aceder',p:55},{t:'Bloqueada por objectos ou obstáculos',p:20}]},
+    {cat:'entrada',txt:'O que vês logo que entras em casa?',o:[{t:'Um espaço aberto e acolhedor',p:100},{t:'Uma parede ou obstáculo de frente à porta',p:50},{t:'Desarrumação ou caos visual',p:20}]},
+    {cat:'entrada',txt:'Há sapatos, lixo ou desarrumação junto à entrada?',o:[{t:'Não, está sempre arrumada',p:100},{t:'Por vezes',p:55},{t:'Sim, frequentemente',p:20}]},
+    {cat:'quarto',txt:'A tua cama está alinhada directamente com a porta do quarto (vês a porta a partir dos pés da cama)?',o:[{t:'Não',p:100},{t:'Sim',p:40}]},
+    {cat:'quarto',txt:'Tens espelhos a reflectir a cama enquanto dormes?',o:[{t:'Não',p:100},{t:'Sim',p:45}]},
+    {cat:'quarto',txt:'Tens televisão, computador ou vários aparelhos eletrónicos no quarto?',o:[{t:'Não, o quarto é só para descansar',p:100},{t:'Tenho um ou dois',p:60},{t:'Tenho vários, sempre ligados',p:25}]},
+    {cat:'casa',txt:'Como é a luz natural em tua casa?',o:[{t:'Bastante luz natural durante o dia',p:100},{t:'Luz moderada',p:60},{t:'Pouca ou quase nenhuma',p:25}]},
+    {cat:'casa',txt:'Tens plantas vivas em casa?',o:[{t:'Sim, várias e bem cuidadas',p:100},{t:'Algumas',p:65},{t:'Não tenho',p:30}]},
+    {cat:'casa',txt:'Como descreverias o nível de desarrumação em geral?',o:[{t:'Organizada, cada coisa no seu lugar',p:100},{t:'Alguma desorganização pontual',p:55},{t:'Bastante desarrumação',p:20}]},
+    {cat:'energia',txt:'Há água visível em casa (aquário, fonte, ou imagens de água)?',o:[{t:'Sim',p:90},{t:'Não',p:60}]},
+    {cat:'energia',txt:'Quais as cores predominantes em casa?',o:[{t:'Tons claros e neutros, com alguns toques de cor',p:100},{t:'Cores muito vivas e variadas por todo o espaço',p:55},{t:'Tons escuros e pesados predominam',p:40}]},
+    {cat:'energia',txt:'De forma geral, sentes que a energia em casa é...',o:[{t:'Calma e equilibrada',p:100},{t:'Um pouco agitada',p:55},{t:'Pesada ou estagnada',p:25}]}
+  ],
+  es:[
+    {cat:'entrada',txt:'¿Cómo es tu puerta de entrada principal?',o:[{t:'Bien visible, accesible y despejada',p:100},{t:'Algo escondida o difícil de acceder',p:55},{t:'Bloqueada por objetos u obstáculos',p:20}]},
+    {cat:'entrada',txt:'¿Qué ves justo al entrar en casa?',o:[{t:'Un espacio abierto y acogedor',p:100},{t:'Una pared u obstáculo frente a la puerta',p:50},{t:'Desorden o caos visual',p:20}]},
+    {cat:'entrada',txt:'¿Hay zapatos, basura o desorden junto a la entrada?',o:[{t:'No, siempre está ordenada',p:100},{t:'A veces',p:55},{t:'Sí, con frecuencia',p:20}]},
+    {cat:'quarto',txt:'¿Tu cama está alineada directamente con la puerta del dormitorio (ves la puerta desde los pies de la cama)?',o:[{t:'No',p:100},{t:'Sí',p:40}]},
+    {cat:'quarto',txt:'¿Tienes espejos que reflejan la cama mientras duermes?',o:[{t:'No',p:100},{t:'Sí',p:45}]},
+    {cat:'quarto',txt:'¿Tienes televisión, ordenador o varios aparatos electrónicos en el dormitorio?',o:[{t:'No, el dormitorio es solo para descansar',p:100},{t:'Tengo uno o dos',p:60},{t:'Tengo varios, siempre encendidos',p:25}]},
+    {cat:'casa',txt:'¿Cómo es la luz natural en tu casa?',o:[{t:'Bastante luz natural durante el día',p:100},{t:'Luz moderada',p:60},{t:'Poca o casi ninguna',p:25}]},
+    {cat:'casa',txt:'¿Tienes plantas vivas en casa?',o:[{t:'Sí, varias y bien cuidadas',p:100},{t:'Algunas',p:65},{t:'No tengo',p:30}]},
+    {cat:'casa',txt:'¿Cómo describirías el nivel de desorden en general?',o:[{t:'Organizada, cada cosa en su lugar',p:100},{t:'Algo de desorden puntual',p:55},{t:'Bastante desorden',p:20}]},
+    {cat:'energia',txt:'¿Hay agua visible en casa (acuario, fuente, o imágenes de agua)?',o:[{t:'Sí',p:90},{t:'No',p:60}]},
+    {cat:'energia',txt:'¿Cuáles son los colores predominantes en casa?',o:[{t:'Tonos claros y neutros, con algunos toques de color',p:100},{t:'Colores muy vivos y variados por todo el espacio',p:55},{t:'Predominan tonos oscuros y pesados',p:40}]},
+    {cat:'energia',txt:'En general, ¿sientes que la energía en casa es...?',o:[{t:'Calma y equilibrada',p:100},{t:'Algo agitada',p:55},{t:'Pesada o estancada',p:25}]}
+  ],
+  en:[
+    {cat:'entrada',txt:'What is your main front door like?',o:[{t:'Clearly visible, accessible and unobstructed',p:100},{t:'A bit hidden or hard to access',p:55},{t:'Blocked by objects or obstacles',p:20}]},
+    {cat:'entrada',txt:'What do you see right when you walk into your home?',o:[{t:'An open, welcoming space',p:100},{t:'A wall or obstacle directly facing the door',p:50},{t:'Clutter or visual chaos',p:20}]},
+    {cat:'entrada',txt:'Are there shoes, trash or clutter near the entrance?',o:[{t:'No, it is always tidy',p:100},{t:'Sometimes',p:55},{t:'Yes, often',p:20}]},
+    {cat:'quarto',txt:'Is your bed directly aligned with the bedroom door (you can see the door from the foot of the bed)?',o:[{t:'No',p:100},{t:'Yes',p:40}]},
+    {cat:'quarto',txt:'Do you have mirrors reflecting your bed while you sleep?',o:[{t:'No',p:100},{t:'Yes',p:45}]},
+    {cat:'quarto',txt:'Do you have a TV, computer or several electronic devices in your bedroom?',o:[{t:'No, the bedroom is just for resting',p:100},{t:'I have one or two',p:60},{t:'I have several, always on',p:25}]},
+    {cat:'casa',txt:'How is the natural light in your home?',o:[{t:'Plenty of natural light during the day',p:100},{t:'Moderate light',p:60},{t:'Little to almost none',p:25}]},
+    {cat:'casa',txt:'Do you have living plants at home?',o:[{t:'Yes, several and well cared for',p:100},{t:'A few',p:65},{t:'None',p:30}]},
+    {cat:'casa',txt:'How would you describe the overall level of clutter?',o:[{t:'Organised, everything has its place',p:100},{t:'Some occasional disorganisation',p:55},{t:'Quite a lot of clutter',p:20}]},
+    {cat:'energia',txt:'Is there visible water at home (aquarium, fountain, or water imagery)?',o:[{t:'Yes',p:90},{t:'No',p:60}]},
+    {cat:'energia',txt:'What are the predominant colours in your home?',o:[{t:'Light, neutral tones with some colour accents',p:100},{t:'Very bright, varied colours throughout',p:55},{t:'Dark, heavy tones predominate',p:40}]},
+    {cat:'energia',txt:'Overall, do you feel the energy at home is...?',o:[{t:'Calm and balanced',p:100},{t:'A bit agitated',p:55},{t:'Heavy or stagnant',p:25}]}
+  ]
+};
+
+const FS_DICAS = {
+  pt:{
+    entrada:[
+      {t:'Liberta o caminho até à porta',d:'Remove objectos que bloqueiem a entrada — a energia (e as oportunidades) entram pela porta principal, tal como tu.'},
+      {t:'Cria um pequeno ponto de boas-vindas',d:'Um tapete limpo, uma luz acolhedora ou uma planta perto da porta ajudam a "convidar" energia nova para dentro de casa.'}
+    ],
+    quarto:[
+      {t:'Evita a cama alinhada com a porta',d:'Se possível, desloca a cama para que os pés não fiquem a apontar directamente para a porta — esta posição é tradicionalmente associada a sono mais agitado.'},
+      {t:'Reposiciona espelhos que reflectem a cama',d:'Em Feng Shui, dormir de frente para um espelho é visto como algo que perturba o descanso. Um simples reposicionamento pode ajudar.'},
+      {t:'Reduz os ecrãs no quarto',d:'Aparelhos eletrónicos mantêm o quarto num estado de "alerta". Experimenta desligá-los completamente à noite, em vez de em standby.'}
+    ],
+    casa:[
+      {t:'Deixa entrar mais luz natural',d:'Abre as cortinas durante o dia, ou usa espelhos pequenos para reflectir a luz que já tens para zonas mais escuras.'},
+      {t:'Acrescenta uma planta de fácil cuidado',d:'Plantas como jade, lírio-da-paz ou pothos trazem vida ao espaço e são difíceis de matar — boas para começar.'},
+      {t:'Escolhe uma zona pequena para arrumar esta semana',d:'Não precisas de arrumar a casa toda de uma vez. Uma gaveta ou uma superfície já faz diferença na forma como a energia circula.'}
+    ],
+    energia:[
+      {t:'Areja a casa todos os dias',d:'Mesmo 5 a 10 minutos com as janelas abertas ajudam a renovar o ar e a energia estagnada.'},
+      {t:'Equilibra as cores do espaço',d:'Uma base neutra com pontos de cor (em almofadas, quadros ou plantas) tende a criar mais equilíbrio do que cores muito intensas por toda a casa.'},
+      {t:'Introduz um elemento de água com calma',d:'Uma pequena fonte, um aquário simples, ou até uma imagem de água, podem ajudar a trazer mais fluidez e calma ao espaço.'}
+    ],
+    geral:{t:'Pequenas mudanças, feitas com intenção',d:'Não precisas de mudar tudo de uma vez — o Feng Shui valoriza ajustes pequenos e conscientes, feitos ao teu ritmo.'}
+  },
+  es:{
+    entrada:[
+      {t:'Libera el camino hasta la puerta',d:'Retira objetos que bloqueen la entrada — la energía (y las oportunidades) entran por la puerta principal, igual que tú.'},
+      {t:'Crea un pequeño punto de bienvenida',d:'Una alfombra limpia, una luz acogedora o una planta cerca de la puerta ayudan a "invitar" energía nueva a casa.'}
+    ],
+    quarto:[
+      {t:'Evita la cama alineada con la puerta',d:'Si es posible, desplaza la cama para que los pies no apunten directamente a la puerta — esta posición se asocia tradicionalmente a un sueño más agitado.'},
+      {t:'Reposiciona espejos que reflejan la cama',d:'En Feng Shui, dormir frente a un espejo se considera algo que perturba el descanso. Un simple cambio de posición puede ayudar.'},
+      {t:'Reduce las pantallas en el dormitorio',d:'Los aparatos electrónicos mantienen el dormitorio en estado de "alerta". Prueba a apagarlos por completo de noche, en vez de dejarlos en espera.'}
+    ],
+    casa:[
+      {t:'Deja entrar más luz natural',d:'Abre las cortinas durante el día, o usa espejos pequeños para reflejar la luz que ya tienes hacia las zonas más oscuras.'},
+      {t:'Añade una planta fácil de cuidar',d:'Plantas como el jade, el lirio de la paz o el potos traen vida al espacio y son difíciles de matar — buenas para empezar.'},
+      {t:'Elige una zona pequeña para ordenar esta semana',d:'No necesitas ordenar toda la casa de una vez. Un cajón o una superficie ya marca la diferencia en cómo circula la energía.'}
+    ],
+    energia:[
+      {t:'Ventila la casa todos los días',d:'Incluso 5 a 10 minutos con las ventanas abiertas ayudan a renovar el aire y la energía estancada.'},
+      {t:'Equilibra los colores del espacio',d:'Una base neutra con toques de color (en cojines, cuadros o plantas) suele crear más equilibrio que colores muy intensos por toda la casa.'},
+      {t:'Introduce un elemento de agua con calma',d:'Una pequeña fuente, un acuario sencillo, o incluso una imagen de agua, pueden ayudar a traer más fluidez y calma al espacio.'}
+    ],
+    geral:{t:'Pequeños cambios, hechos con intención',d:'No necesitas cambiarlo todo de una vez — el Feng Shui valora los ajustes pequeños y conscientes, hechos a tu ritmo.'}
+  },
+  en:{
+    entrada:[
+      {t:'Clear the path to your front door',d:'Remove anything blocking the entrance — energy (and opportunities) come in through the main door, just like you do.'},
+      {t:'Create a small welcoming touch',d:'A clean mat, a warm light or a plant near the door help "invite" fresh energy into the home.'}
+    ],
+    quarto:[
+      {t:'Avoid the bed aligned with the door',d:'If possible, move the bed so your feet do not point directly at the door — this position is traditionally linked to more restless sleep.'},
+      {t:'Reposition mirrors that reflect the bed',d:'In Feng Shui, sleeping facing a mirror is seen as disruptive to rest. A simple repositioning can help.'},
+      {t:'Cut down on screens in the bedroom',d:'Electronic devices keep the bedroom in an "alert" state. Try turning them off completely at night, instead of leaving them on standby.'}
+    ],
+    casa:[
+      {t:'Let in more natural light',d:'Open curtains during the day, or use small mirrors to bounce existing light toward darker areas.'},
+      {t:'Add an easy-care plant',d:'Plants like jade, peace lily or pothos bring life to a space and are hard to kill — good ones to start with.'},
+      {t:'Pick one small area to tidy this week',d:'You do not need to tidy the whole house at once. One drawer or surface already changes how energy flows.'}
+    ],
+    energia:[
+      {t:'Air out the home every day',d:'Even 5 to 10 minutes with windows open helps refresh stagnant air and energy.'},
+      {t:'Balance the colours in your space',d:'A neutral base with pops of colour (in cushions, art or plants) tends to create more balance than very intense colours throughout.'},
+      {t:'Introduce a calm water element',d:'A small fountain, a simple aquarium, or even an image of water, can help bring more flow and calm to the space.'}
+    ],
+    geral:{t:'Small changes, made with intention',d:'You do not need to change everything at once — Feng Shui values small, conscious adjustments, made at your own pace.'}
+  }
+};
+
+const FS_REFLEXAO = {
+  pt:{
+    baixo:'A tua casa parece estar a pedir alguma atenção. Pequenos ajustes, feitos com calma, podem trazer mais equilíbrio ao espaço — e, com ele, à forma como te sentes nele.',
+    medio:'A tua casa tem uma base equilibrada, com algumas zonas que beneficiariam de pequenos ajustes. Olha às sugestões abaixo para os próximos passos.',
+    alto:'A tua casa parece estar bem harmonizada! Continua a prestar atenção aos pequenos detalhes — o Feng Shui é uma prática contínua, não um destino final.'
+  },
+  es:{
+    baixo:'Tu casa parece estar pidiendo algo de atención. Pequeños ajustes, hechos con calma, pueden traer más equilibrio al espacio — y, con él, a cómo te sientes en él.',
+    medio:'Tu casa tiene una base equilibrada, con algunas zonas que se beneficiarían de pequeños ajustes. Mira las sugerencias de abajo para los próximos pasos.',
+    alto:'¡Tu casa parece estar bien armonizada! Sigue prestando atención a los pequeños detalles — el Feng Shui es una práctica continua, no un destino final.'
+  },
+  en:{
+    baixo:'Your home seems to be asking for some attention. Small adjustments, made calmly, can bring more balance to the space — and, with it, to how you feel in it.',
+    medio:'Your home has a balanced foundation, with a few areas that would benefit from small adjustments. Check the suggestions below for next steps.',
+    alto:'Your home seems well harmonised! Keep paying attention to the small details — Feng Shui is an ongoing practice, not a final destination.'
+  }
+};
+
+function _fsResultadoKey(){
+  const pid=sessionStorage.getItem('perfil_activo_id')||localStorage.getItem('essencia_ultimo_perfil')||'default';
+  return 'essencia_fengshui_resultado_'+pid;
+}
+function _fsGuardarResultado(scores){
+  try{localStorage.setItem(_fsResultadoKey(),JSON.stringify({scores,ts:Date.now()}));}catch(e){}
+}
+function _fsCarregarResultado(){
+  try{const raw=localStorage.getItem(_fsResultadoKey());return raw?JSON.parse(raw):null;}catch(e){return null;}
+}
+function _fsMostrarResultadoGuardado(){
+  const guardado=_fsCarregarResultado();
+  if(!guardado)return false;
+  document.getElementById('fs-questionnaire').style.display='none';
+  document.getElementById('fs-results').style.display='block';
+  renderFengShuiResults(guardado.scores);
+  const notaEl=document.getElementById('fs-data-guardado');
+  if(notaEl&&guardado.ts){
+    const d=new Date(guardado.ts);
+    const dataStr=d.toLocaleDateString(currentLang==='en'?'en-GB':currentLang==='es'?'es-ES':'pt-PT',{day:'2-digit',month:'long',year:'numeric'});
+    notaEl.textContent=(currentLang==='en'?'Saved diagnosis from ':currentLang==='es'?'Diagnóstico guardado el ':'Diagnóstico guardado a ')+dataStr;
+  }
+  return true;
+}
+
+function getFSQ(){return FS_PERGUNTAS[currentLang]||FS_PERGUNTAS.pt;}
+
+function renderFengShuiQuestionnaire(){
+  const qs=getFSQ();
+  const catIcons={entrada:'🚪',quarto:'🛏️',casa:'🏡',energia:'🌿'};
+  document.getElementById('fs-questions-list').innerHTML=qs.map((q,qi)=>{
+    return '<div class="q-card" style="margin-bottom:.85rem">'+
+      '<div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem"><span>'+(catIcons[q.cat]||'✦')+'</span></div>'+
+      '<div class="q-text">'+(qi+1)+'. '+q.txt+'</div>'+
+      '<div class="q-options">'+q.o.map((o,oi)=>
+        '<label class="q-opt" id="fsopt-'+qi+'-'+oi+'" onclick="selectFSOpt('+qi+','+oi+',this)"><input type="radio" name="fsq'+qi+'" value="'+oi+'">'+o.t+'</label>'
+      ).join('')+'</div></div>';
+  }).join('');
+}
+
+function selectFSOpt(qi,oi,el){
+  document.querySelectorAll('[id^="fsopt-'+qi+'-"]').forEach(l=>l.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function calcularFengShui(){
+  const qs=getFSQ();
+  const raw={entrada:[],quarto:[],casa:[],energia:[]};
+  let ans=0;
+  qs.forEach((q,qi)=>{
+    const sel=document.querySelector('input[name="fsq'+qi+'"]:checked');
+    if(sel){ans++;raw[q.cat].push(q.o[parseInt(sel.value)].p);}
+  });
+  if(ans<8){
+    alert(currentLang==='es'?'Por favor responde al menos 8 preguntas.':currentLang==='en'?'Please answer at least 8 questions.':'Por favor responde pelo menos a 8 perguntas.');
+    return;
+  }
+  const scores={};
+  Object.keys(raw).forEach(cat=>{
+    const v=raw[cat];
+    scores[cat]=v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length):70;
+  });
+  _fsGuardarResultado(scores);
+  document.getElementById('fs-questionnaire').style.display='none';
+  document.getElementById('fs-results').style.display='block';
+  const notaEl=document.getElementById('fs-data-guardado'); if(notaEl)notaEl.textContent='';
+  renderFengShuiResults(scores);
+}
+
+function refazerFengShui(){
+  document.getElementById('fs-results').style.display='none';
+  document.getElementById('fs-questionnaire').style.display='block';
+  document.querySelectorAll('[id^="fsopt-"]').forEach(e=>e.classList.remove('selected'));
+  document.querySelectorAll('input[type=radio][name^="fsq"]').forEach(e=>{e.checked=false;});
+}
+
+function renderFengShuiResults(scores){
+  const dicasL=FS_DICAS[currentLang]||FS_DICAS.pt;
+  const reflexaoL=FS_REFLEXAO[currentLang]||FS_REFLEXAO.pt;
+  const catNomes=currentLang==='es'
+    ?{entrada:'Entrada',quarto:'Dormitorio',casa:'Casa en general',energia:'Energía'}
+    :currentLang==='en'
+    ?{entrada:'Entrance',quarto:'Bedroom',casa:'Home in general',energia:'Energy'}
+    :{entrada:'Entrada',quarto:'Quarto',casa:'Casa em geral',energia:'Energia'};
+  const catIcons={entrada:'🚪',quarto:'🛏️',casa:'🏡',energia:'🌿'};
+  const cats=['entrada','quarto','casa','energia'];
+
+  const harmonia=Math.round(cats.reduce((a,c)=>a+(scores[c]||70),0)/cats.length);
+  const tier=harmonia<45?'baixo':harmonia<75?'medio':'alto';
+  document.getElementById('fs-reflexao-box').innerHTML=
+    '<div class="interp-label">'+(currentLang==='en'?'Overall harmony':currentLang==='es'?'Armonía general':'Harmonia geral')+' · '+harmonia+'%</div>'+
+    '<div class="interp-text">'+reflexaoL[tier]+'</div>';
+
+  // Ligação com a Astrologia do Ki, se já tiver sido calculada para este perfil
+  const kiBox=document.getElementById('fs-ki-box');
+  if(kiBox){
+    const kiNum=(window._ki&&window._ki.principal)?window._ki.principal:null;
+    if(kiNum&&typeof KI_EL!=='undefined'&&KI_EL[kiNum]){
+      const kiInfo=KI_EL[kiNum];
+      const elementoStar={1:'agua',2:'terra',3:'madeira',4:'madeira',5:'terra',6:'metal',7:'metal',8:'terra',9:'fogo'};
+      const wux=elementoStar[kiNum]||'terra';
+      const guiaWux={
+        agua:{tit:currentLang==='en'?'Water energy':currentLang==='es'?'Energía de Agua':'Energia de Água',
+              txt:currentLang==='en'?'Dark, bluish tones, fluid shapes and mirrored or glass surfaces tend to harmonise well with your personal energy.':currentLang==='es'?'Tonos oscuros y azulados, formas fluidas y superficies espejadas o de cristal tienden a armonizar bien con tu energía personal.':'Tons escuros e azulados, formas fluidas e superfícies espelhadas ou de vidro tendem a harmonizar-se bem com a tua energia pessoal.'},
+        madeira:{tit:currentLang==='en'?'Wood energy':currentLang==='es'?'Energía de Madera':'Energia de Madeira',
+              txt:currentLang==='en'?'Green tones, living plants and natural materials like raw wood reinforce your energy of growth.':currentLang==='es'?'Tonos verdes, plantas vivas y materiales naturales como la madera cruda refuerzan tu energía de crecimiento.':'Tons verdes, plantas vivas e materiais naturais como madeira em bruto reforçam a tua energia de crescimento.'},
+        fogo:{tit:currentLang==='en'?'Fire energy':currentLang==='es'?'Energía de Fuego':'Energia de Fogo',
+              txt:currentLang==='en'?'Red, orange or golden tones, and good lighting, tend to feed your natural brilliance.':currentLang==='es'?'Tonos rojos, anaranjados o dorados, y buena iluminación, tienden a alimentar tu brillo natural.':'Tons vermelhos, alaranjados ou dourados, e boa iluminação, tendem a alimentar o teu brilho natural.'},
+        terra:{tit:currentLang==='en'?'Earth energy':currentLang==='es'?'Energía de Tierra':'Energia de Terra',
+              txt:currentLang==='en'?'Earthy tones, ceramics and stable, square shapes help ground and balance your energy.':currentLang==='es'?'Tonos terrosos, cerámica y formas estables o cuadradas ayudan a anclar y equilibrar tu energía.':'Tons terrosos, cerâmica e formas estáveis ou quadradas ajudam a ancorar e a equilibrar a tua energia.'},
+        metal:{tit:currentLang==='en'?'Metal energy':currentLang==='es'?'Energía de Metal':'Energia de Metal',
+              txt:currentLang==='en'?'White, grey or golden tones, and metallic or round-shaped objects, tend to support the clarity you bring with you.':currentLang==='es'?'Tonos blancos, grises o dorados, y objetos metálicos o de formas redondas, tienden a apoyar la claridad que traes contigo.':'Tons branco, cinza ou dourado, e objectos metálicos ou de formas redondas, tendem a apoiar a clareza que trazes contigo.'}
+      };
+      const g=guiaWux[wux];
+      const lblDir=currentLang==='en'?'Your personal direction, according to your Ki, is':currentLang==='es'?'Tu dirección personal, según tu Ki, es':'A tua direcção pessoal, segundo o teu Ki, é';
+      const lblDirSugestao=currentLang==='en'?'— a good area of your home to start with small adjustments.':currentLang==='es'?'— una buena zona de tu casa para empezar con pequeños ajustes.':'— uma boa zona da tua casa para começares por pequenos ajustes.';
+      kiBox.style.display='block';
+      kiBox.innerHTML='<div class="interp-box"><div class="interp-label">✦ '+g.tit+' · '+(currentLang==='en'?'Ki Astrology':'Ki Astral')+'</div>'+
+        '<div class="interp-text">'+g.txt+' '+lblDir+' <strong>'+kiInfo.dir+'</strong> '+lblDirSugestao+'</div></div>';
+    } else {
+      kiBox.style.display='none';
+    }
+  }
+
+  document.getElementById('fs-diagnostic').innerHTML='<div class="chakra-overview"><div class="chakra-bar-wrap">'+
+    '<div style="font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem">'+
+    (currentLang==='en'?'Harmony by area':currentLang==='es'?'Armonía por área':'Harmonia por área')+'</div>'+
+    cats.map(c=>'<div class="chakra-row"><div class="chakra-dot" style="background:var(--accent-deep)"></div>'+
+      '<div class="chakra-row-name" style="font-size:.58rem">'+catIcons[c]+' '+catNomes[c]+'</div>'+
+      '<div class="chakra-bar-bg"><div class="chakra-bar-fill" style="width:'+scores[c]+'%;background:var(--accent-deep)"></div></div>'+
+      '<div class="chakra-pct">'+scores[c]+'%</div></div>').join('')+
+    '</div></div>';
+
+  // Mostrar dicas para as 1-2 áreas mais baixas (abaixo de 75%), e a dica geral no final
+  const ordenado=[...cats].sort((a,b)=>scores[a]-scores[b]);
+  const areasAtencao=ordenado.filter(c=>scores[c]<75).slice(0,2);
+  const areasParaMostrar=areasAtencao.length?areasAtencao:[ordenado[0]];
+
+  let html='';
+  areasParaMostrar.forEach(cat=>{
+    html+='<div style="font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);margin:1rem 0 .5rem">'+catIcons[cat]+' '+catNomes[cat]+'</div>';
+    (dicasL[cat]||[]).forEach(dc=>{
+      html+='<div class="emo-dica-card"><div class="emo-dica-titulo">✦ '+dc.t+'</div><div class="emo-dica-texto">'+dc.d+'</div></div>';
+    });
+  });
+  html+='<div style="font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);margin:1rem 0 .5rem">✦ '+(currentLang==='en'?'In general':currentLang==='es'?'En general':'Em geral')+'</div>';
+  html+='<div class="emo-dica-card"><div class="emo-dica-titulo">✦ '+dicasL.geral.t+'</div><div class="emo-dica-texto">'+dicasL.geral.d+'</div></div>';
+  document.getElementById('fs-practices').innerHTML=html;
+}
+
+function calcularChakras(){const raw={raiz:[],sacral:[],plexo:[],coracao:[],garganta:[],terceiro:[],coroa:[]};let ans=0;getCKQ().forEach((q,qi)=>{const sel=document.querySelector('input[name="cq'+qi+'"]:checked');if(sel){ans++;raw[q.c].push(parseInt(sel.value));}});if(ans<10){alert(currentLang==="es"?'Por favor responde al menos 10 preguntas.':currentLang==="en"?'Please answer at least 10 questions.':'Por favor responde pelo menos a 10 perguntas.');return;}const pM=[20,40,70,95],scores={};getCHAKRAS().forEach(c=>{const v=raw[c.id];scores[c.id]=v.length===0?50:Math.round(v.map(x=>pM[x]).reduce((a,b)=>a+b,0)/v.length);});_chakraGuardarResultado(scores);document.getElementById('chakra-questionnaire').style.display='none';document.getElementById('chakra-results').style.display='block';const _ckNotaEl=document.getElementById('chakra-data-guardado');if(_ckNotaEl)_ckNotaEl.textContent='';renderChakraResults(scores);}
 function refazerChakras(){document.getElementById('chakra-results').style.display='none';document.getElementById('chakra-questionnaire').style.display='block';document.querySelectorAll('[id^="copt-"]').forEach(e=>e.classList.remove('selected'));document.querySelectorAll('input[type=radio][name^="cq"]').forEach(e=>{e.checked=false;});}
 function renderChakraResults(sc){document.getElementById('chakra-diagnostic').innerHTML='<div class="chakra-overview"><div class="chakra-bar-wrap"><div style="font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem">Nível de activação</div>'+getCHAKRAS().map(c=>'<div class="chakra-row"><div class="chakra-dot" style="background:'+c.cor+'"></div><div class="chakra-row-name" style="font-size:.58rem">'+c.nome.replace('Chakra ','').replace(' do','')+'</div><div class="chakra-bar-bg"><div class="chakra-bar-fill" style="width:'+sc[c.id]+'%;background:'+c.cor+'"></div></div><div class="chakra-pct">'+sc[c.id]+'%</div></div>').join('')+'</div><div><div class="interp-box" style="margin-bottom:.75rem"><div class="interp-label">Chakra mais activo</div><div class="interp-text">'+getCHAKRAS().reduce((a,c)=>sc[c.id]>sc[a.id]?c:a).emoji+' '+getCHAKRAS().reduce((a,c)=>sc[c.id]>sc[a.id]?c:a).nome+' — '+getCHAKRAS().reduce((a,c)=>sc[c.id]>sc[a.id]?c:a).ativo+'</div></div><div class="interp-box"><div class="interp-label">A necessitar atenção</div><div class="interp-text">'+getCHAKRAS().reduce((a,c)=>sc[c.id]<sc[a.id]?c:a).emoji+' '+getCHAKRAS().reduce((a,c)=>sc[c.id]<sc[a.id]?c:a).nome+' — '+getCHAKRAS().reduce((a,c)=>sc[c.id]<sc[a.id]?c:a).baixo+'</div></div></div></div>';document.getElementById('chakra-details').innerHTML=getCHAKRAS().map(c=>{const s=sc[c.id],sl=s>=70?'status-active':s>=45?'status-balanced':'status-low',st=s>=70?(currentLang==="es"?'Activo':currentLang==="en"?'Active':'Activo'):s>=45?(currentLang==="es"?'Equilibrado':currentLang==="en"?'Balanced':'Equilibrado'):(currentLang==="es"?'Necesita cuidado':currentLang==="en"?'Needs care':'A necessitar cuidado');return'<div class="chakra-card"><div class="chakra-icon-big" style="background:'+c.cor+'20;border:2px solid '+c.cor+'40">'+c.emoji+'</div><div style="flex:1"><div class="chakra-card-name" style="color:'+c.cor+'">'+c.nome+'</div><div class="chakra-card-sanskrit">'+c.sanskrit+' · '+c.temas+'</div><span class="chakra-card-status '+sl+'">'+st+' · '+s+'%</span><div class="chakra-card-desc">'+(s>=70?c.ativo:s>=45?(currentLang==="es"?'Razonablemente equilibrado.':currentLang==="en"?'Reasonably balanced.':'Razoavelmente equilibrado.'):c.baixo)+'</div></div></div>';}).join('');const sorted=[...getCHAKRAS()].sort((a,b)=>sc[a.id]-sc[b.id]);document.getElementById('chakra-practices').innerHTML=sorted.slice(0,3).map(c=>'<div class="practice-card"><div class="practice-title"><span class="practice-chakra-tag" style="background:'+c.cor+'"></span>'+c.nome+'</div><div class="practice-text"><strong>Prática:</strong> '+c.pratica+'<br><strong>'+(currentLang==="es"?'Cristales':currentLang==="en"?'Crystals':'Cristais')+':</strong> '+c.cristal+'<br><em>"'+c.afirmacao+'"</em></div></div>').join('');}
 function renderChakras(){renderChakraQuestionnaire();}
@@ -5432,7 +5839,11 @@ function _emoMostrarResultado(entry,jaExistia){
 
   // Texto do botão de refazer (caso já exista check-in hoje, oferece repetir)
   const refazerTxt=document.getElementById('emo-btn-refazer-txt');
-  if(refazerTxt)refazerTxt.textContent=jaExistia?(T.emo_btn_refazer_existe||'Refazer o check-in de hoje'):(T.emo_btn_refazer||'Fazer novo check-in');
+  if(refazerTxt){
+    refazerTxt.textContent = jaExistia
+      ? (currentLang==='es'?'Repetir el check-in de hoy':currentLang==='en'?'Redo today\u2019s check-in':'Refazer o check-in de hoje')
+      : (currentLang==='es'?'Hacer nuevo check-in':currentLang==='en'?'Do a new check-in':'Fazer novo check-in');
+  }
 }
 
 function emoRefazer(){
@@ -6171,7 +6582,7 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
       <button class="drawer-item" id="di-enneagram" onclick="drawerNav('enneagram')"><span class="drawer-item-icon">◯</span><span id="ditem-enneagram">Eneagrama</span></button>
       <button class="drawer-item" id="di-humandesign" onclick="drawerNav('humandesign')"><span class="drawer-item-icon">⬡</span><span id="ditem-humandesign">Human Design</span></button>
       <button class="drawer-item" id="di-chakras" onclick="drawerNav('chakras')"><span class="drawer-item-icon">🌈</span><span id="ditem-chakras">Chakras</span></button>
-      <button class="drawer-item" id="di-lunar" onclick="drawerNav('lunar')"><span class="drawer-item-icon">🌙</span><span id="ditem-lunar">Agenda Lunar</span></button>
+      <button class="drawer-item" id="di-palma" onclick="drawerNav('palma')"><span class="drawer-item-icon">✋</span><span id="ditem-palma">Leitura de Mãos</span></button>
     </div>
 
     <!-- FERRAMENTAS -->
@@ -6183,11 +6594,12 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
       <button class="drawer-item" id="di-frequencias" onclick="drawerNav('frequencias')" style="display:none"><span class="drawer-item-icon">〜</span><span id="ditem-frequencias">Frequências</span></button>
       <button class="drawer-item" id="di-tarot" onclick="drawerNav('tarot')"><span class="drawer-item-icon">🃏</span><span id="ditem-tarot">Tarot</span></button>
       <button class="drawer-item" id="di-runas" onclick="drawerNav('runas')"><span class="drawer-item-icon">ᚱ</span><span id="ditem-runas">Runas</span></button>
-      <button class="drawer-item" id="di-palma" onclick="drawerNav('palma')"><span class="drawer-item-icon">✋</span><span id="ditem-palma">Leitura de Mãos</span></button>
+      <button class="drawer-item" id="di-lunar" onclick="drawerNav('lunar')"><span class="drawer-item-icon">🌙</span><span id="ditem-lunar">Agenda Lunar</span></button>
       <button class="drawer-item" id="di-constelacoes" onclick="drawerNav('constelacoes')"><span class="drawer-item-icon">🌳</span><span id="ditem-constelacoes">Constelações</span></button>
       <button class="drawer-item" id="di-parceiro" onclick="drawerNav('parceiro')"><span class="drawer-item-icon">♡</span><span id="ditem-parceiro">Parceiro</span></button>
       <button class="drawer-item" id="di-diario-terapeutico" onclick="drawerNav('diario-terapeutico')"><span class="drawer-item-icon">✍</span><span id="ditem-diario-terapeutico">Diário</span></button>
       <button class="drawer-item" id="di-sono" onclick="drawerNav('sono')"><span class="drawer-item-icon">🌙</span><span id="ditem-sono">Sono</span></button>
+      <button class="drawer-item" id="di-fengshui" onclick="drawerNav('fengshui')"><span class="drawer-item-icon">🏠</span><span id="ditem-fengshui">Feng Shui</span></button>
     </div>
 
     <!-- APOIO -->
@@ -6743,7 +7155,8 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
       <button class="btn-primary" id="chakra-btn-calc" style="max-width:400px;margin:0 auto;display:block" onclick="calcularChakras()">✦ &nbsp;Ver o meu diagnóstico&nbsp; ✦</button>
     </div>
     <div id="chakra-results" style="display:none">
-      <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">
+        <div id="chakra-data-guardado" style="font-size:.72rem;color:var(--text3);font-style:italic"></div>
         <button class="btn-back" id="chakra-btn-refazer" onclick="refazerChakras()">↺ Refazer diagnóstico</button>
       </div>
       <div id="chakra-diagnostic" style="margin-bottom:1.5rem"></div>
@@ -6751,6 +7164,35 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
       <div id="chakra-details"></div>
       <div class="section-title" id="chakra-praticas-titulo" style="margin-top:1.5rem">Práticas de equilíbrio recomendadas</div>
       <div id="chakra-practices"></div>
+    </div>
+  </div>
+
+  <div id="tab-fengshui" class="tab-content" style="display:none">
+    <div class="chakra-hero">
+      <div class="tab-hero-icon">🏠</div>
+      <div>
+        <div class="tab-hero-title" id="fs-hero-title">Feng Shui</div>
+        <div class="tab-hero-sub" id="fs-hero-sub">A energia do teu espaço, em equilíbrio com a tua vida</div>
+      </div>
+    </div>
+    <div id="fs-questionnaire">
+      <div class="interp-box" style="margin-bottom:1.5rem">
+        <div class="interp-label" id="fs-diag-label">Como está a energia da tua casa?</div>
+        <div class="interp-text" id="fs-intro-txt">Responde a estas perguntas simples sobre o teu espaço. No final, vais receber sugestões práticas e fáceis de aplicar para harmonizares cada zona — sem grandes obras, só pequenos ajustes conscientes.</div>
+      </div>
+      <div id="fs-questions-list"></div>
+      <button class="btn-primary" id="fs-btn-calc" style="max-width:420px;margin:0 auto;display:block" onclick="calcularFengShui()">🏠 &nbsp;<span id="fs-btn-calc-txt">Ver o meu diagnóstico</span>&nbsp; 🏠</button>
+    </div>
+    <div id="fs-results" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">
+        <div id="fs-data-guardado" style="font-size:.72rem;color:var(--text3);font-style:italic"></div>
+        <button class="btn-back" id="fs-btn-refazer" onclick="refazerFengShui()">↺ <span id="fs-btn-refazer-txt">Refazer diagnóstico</span></button>
+      </div>
+      <div id="fs-reflexao-box" class="interp-box" style="margin-bottom:1.5rem"></div>
+      <div id="fs-ki-box" style="display:none;margin-bottom:1.5rem"></div>
+      <div id="fs-diagnostic" style="margin-bottom:1.5rem"></div>
+      <div class="section-title" id="fs-sugestoes-titulo">Sugestões práticas para harmonizar</div>
+      <div id="fs-practices"></div>
     </div>
   </div>
 
@@ -6967,7 +7409,8 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
 
     
     <div id="const-result-section" style="display:none">
-      <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">
+        <div id="const-data-guardado" style="font-size:.72rem;color:var(--text3);font-style:italic"></div>
         <button class="btn-back" onclick="refazerConstelacoes()" id="const-btn-refazer">↺ Refazer questionário</button>
       </div>
       <div id="const-score-overview" style="margin-bottom:1.5rem"></div>
@@ -7069,6 +7512,31 @@ function startFreq(){ toggleFreq(); } charset="UTF-8">
             <input type="number" id="parc-inp-mes" placeholder="Mês" min="1" max="12"/>
             <input type="number" id="parc-inp-ano" placeholder="Ano" min="1900" max="2024"/>
           </div>
+        </div>
+        <div style="font-size:.74rem;color:var(--text3);line-height:1.5;margin:.75rem 0 .5rem" id="parc-asc-intro">Opcional — se souberes a hora e o local de nascimento, a análise passa a incluir também o Ascendente, ficando mais completa. Sem isto, a análise continua a funcionar normalmente.</div>
+        <div class="field">
+          <label id="parc-lbl-hora">Hora de nascimento (opcional)</label>
+          <input type="time" id="parc-inp-hora" style="width:100%"/>
+        </div>
+        <div class="field">
+          <label id="parc-lbl-pais">País de nascimento (opcional)</label>
+          <select id="parc-inp-pais" onchange="parcAtualizarCidades()" style="margin-bottom:.6rem">
+            <option value="">— Selecciona o país —</option>
+          </select>
+          <label id="parc-lbl-cidade" style="margin-top:.5rem;display:block">Cidade</label>
+          <select id="parc-inp-cidade" onchange="parcEscolherCidade()">
+            <option value="">— Selecciona primeiro o país —</option>
+          </select>
+          <div id="parc-cidade-manual-area" style="display:none;margin-top:.5rem">
+            <div style="display:flex;gap:.5rem">
+              <input type="text" id="parc-cidade-manual-input" placeholder="Escreve o nome da cidade..."
+                style="flex:1;padding:.6rem .8rem;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-family:'Jost',sans-serif;font-size:.85rem;outline:none"
+                onkeydown="if(event.key==='Enter')procurarCidadeManualParc()">
+              <button onclick="procurarCidadeManualParc()" style="padding:.6rem 1rem;background:var(--accent-deep);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.1em;cursor:pointer;white-space:nowrap">Procurar</button>
+            </div>
+            <div id="parc-cidade-manual-result" style="font-size:.8rem;margin-top:.4rem;min-height:1.2rem"></div>
+          </div>
+          <div id="parc-cidade-coords" style="display:none;margin-top:.4rem;font-size:.72rem;color:var(--accent2)"></div>
         </div>
       </div>
       <button class="btn-primary" id="parc-btn-analisar-novo" onclick="analisarParceiro('novo')">
@@ -8813,6 +9281,20 @@ function applyLang() {
     set('ditem-emocional','Como me Sinto','Cómo me Siento','How I Feel');
     var _tabEmoEl=document.getElementById('tab-emocional');
     if(_tabEmoEl&&_tabEmoEl.style.display==='block'&&typeof emoInit==='function')emoInit();
+    // Traduções da secção "Feng Shui"
+    set('fs-hero-title','Feng Shui','Feng Shui','Feng Shui');
+    set('fs-hero-sub','A energia do teu espaço, em equilíbrio com a tua vida','La energía de tu espacio, en equilibrio con tu vida','The energy of your space, in balance with your life');
+    set('fs-diag-label','Como está a energia da tua casa?','¿Cómo está la energía de tu casa?','How is the energy of your home?');
+    set('fs-intro-txt','Responde a estas perguntas simples sobre o teu espaço. No final, vais receber sugestões práticas e fáceis de aplicar para harmonizares cada zona — sem grandes obras, só pequenos ajustes conscientes.','Responde a estas preguntas simples sobre tu espacio. Al final, recibirás sugerencias prácticas y fáciles de aplicar para armonizar cada zona — sin grandes obras, solo pequeños ajustes conscientes.','Answer these simple questions about your space. At the end, you will get practical, easy-to-apply suggestions to harmonise each area — no major work needed, just small mindful adjustments.');
+    set('fs-btn-calc-txt','Ver o meu diagnóstico','Ver mi diagnóstico','See my diagnosis');
+    set('fs-btn-refazer-txt','Refazer diagnóstico','Repetir diagnóstico','Redo diagnosis');
+    set('fs-sugestoes-titulo','Sugestões práticas para harmonizar','Sugerencias prácticas para armonizar','Practical suggestions to harmonise');
+    set('ditem-fengshui','Feng Shui','Feng Shui','Feng Shui');
+    var _tabFsEl=document.getElementById('tab-fengshui');
+    if(_tabFsEl&&_tabFsEl.style.display==='block'){
+      if(typeof renderFengShuiQuestionnaire==='function')renderFengShuiQuestionnaire();
+      if(typeof _fsMostrarResultadoGuardado==='function')_fsMostrarResultadoGuardado();
+    }
   })();
 
   // Ki tab
@@ -9786,115 +10268,142 @@ const KI_DATA={
     1:{el:'Água',dir:'Norte',cor:'#4a8fb5',txt:'Profundidade, reflexão e sabedoria. Intuitivo/a e contemplativo/a.',
       dicas:[{t:'Protege os teus momentos de silêncio',d:'Precisas de tempo só contigo para processar o que sentes. Sem isso, a tua intuição fica turva.'},
              {t:'Confia no que sabes sem saber explicar',d:'A tua sabedoria chega muitas vezes como um pressentimento, não como lógica. Aprende a confiar nesse saber silencioso.'},
-             {t:'Deixa-te fluir em vez de forçar',d:'Tal como a água, o teu caminho raramente é uma linha reta. Adapta-te às circunstâncias em vez de insistir num só percurso.'}]},
+             {t:'Deixa-te fluir em vez de forçar',d:'Tal como a água, o teu caminho raramente é uma linha reta. Adapta-te às circunstâncias em vez de insistir num só percurso.'},
+             {t:'Orienta-te para Norte nos momentos de descanso',d:'Em Feng Shui, o Norte está associado à energia da Água — sempre que possível, orienta a cama ou o teu canto de descanso nessa direcção.'}]},
     2:{el:'Terra II',dir:'Sudoeste',cor:'#8a6a3a',txt:'Nutrição, recetividade e cuidado. Tens capacidade de sustentar os outros.',
       dicas:[{t:'Cuida de quem cuida de todos',d:'É fácil esqueceres-te de ti enquanto sustentas os outros. Reserva tempo regular só para a tua própria nutrição.'},
              {t:'Diz que sim com limites claros',d:'A tua generosidade é um dom, mas sem limites pode esgotar-te. Aprende a ajudar sem te dissolveres no processo.'},
-             {t:'Confia na tua paciência',d:'Onde outros desistem, tu persistes com calma. Usa essa resistência tranquila nos projectos que exigem tempo.'}]},
+             {t:'Confia na tua paciência',d:'Onde outros desistem, tu persistes com calma. Usa essa resistência tranquila nos projectos que exigem tempo.'},
+             {t:'Cria um canto a Sudoeste só teu',d:'O Sudoeste é a tua direcção pessoal — um pequeno espaço com tons terrosos nessa zona de casa ajuda-te a recarregar a energia de cuidado que dás aos outros.'}]},
     3:{el:'Trovão',dir:'Leste',cor:'#4a9b6a',txt:'Crescimento, movimento e criatividade. Visão pioneira.',
       dicas:[{t:'Avança mesmo sem todas as respostas',d:'A tua energia é de início, não de espera. Esperar pela certeza total pode fazer-te perder o momento certo.'},
              {t:'Dá espaço à tua impulsividade criativa',d:'As tuas melhores ideias chegam em rajadas. Tem sempre por perto uma forma de as registar antes que passem.'},
-             {t:'Aceita que nem tudo o que começas continua',d:'Seres pioneiro/a significa abrir caminhos que outros seguem. Nem sempre precisas de terminar tudo o que iniciaste.'}]},
+             {t:'Aceita que nem tudo o que começas continua',d:'Seres pioneiro/a significa abrir caminhos que outros seguem. Nem sempre precisas de terminar tudo o que iniciaste.'},
+             {t:'Deixa entrar a luz da manhã, a Leste',d:'O Leste é a tua direcção — um espaço com boa luz matinal voltado para essa zona alimenta a tua energia de crescimento e iniciativa.'}]},
     4:{el:'Vento',dir:'Sudeste',cor:'#6ab4c8',txt:'Gentileza, persistência e comunicação. Dom para a influência subtil.',
       dicas:[{t:'Confia na influência silenciosa',d:'Não precisas de impor — a tua forma de comunicar muda as pessoas lentamente, como o vento molda a paisagem.'},
              {t:'Persiste mesmo sem resultados imediatos',d:'O teu impacto raramente é instantâneo. Continua a semear, mesmo sem ver a colheita de imediato.'},
-             {t:'Adapta o teu discurso a quem te ouve',d:'A tua sensibilidade social é uma ferramenta poderosa. Usa-a para chegares às pessoas à maneira delas, não só à tua.'}]},
+             {t:'Adapta o teu discurso a quem te ouve',d:'A tua sensibilidade social é uma ferramenta poderosa. Usa-a para chegares às pessoas à maneira delas, não só à tua.'},
+             {t:'Cuida da zona a Sudeste de casa',d:'É tradicionalmente a tua direcção — plantas ou um pequeno espaço verde nessa zona ajudam a sustentar a tua influência silenciosa.'}]},
     5:{el:'Terra Central',dir:'Centro',cor:'#9b7a4a',txt:'Equilíbrio, poder central e transformação. Presença magnética.',
       dicas:[{t:'Aceita o teu papel de equilíbrio',d:'És frequentemente quem une os extremos à tua volta. Não tens de escolher um lado — a tua força está em integrar.'},
              {t:'Usa a tua presença com intenção',d:'Atrais atenção sem esforço. Sê consciente de como essa presença afecta o espaço e as pessoas à tua volta.'},
-             {t:'Permite-te transformar, não só estabilizar',d:'Sendo o centro não significa ficares imóvel. Tens uma capacidade rara de te reinventares quando é preciso.'}]},
+             {t:'Permite-te transformar, não só estabilizar',d:'Sendo o centro não significa ficares imóvel. Tens uma capacidade rara de te reinventares quando é preciso.'},
+             {t:'Valoriza o centro da tua casa',d:'Como ponto de equilíbrio do sistema, beneficias de manter o centro de casa (normalmente a sala) arrumado e desafogado — é onde a tua energia se estabiliza.'}]},
     6:{el:'Céu',dir:'Noroeste',cor:'#4a6a9b',txt:'Liderança, autoridade e visão. Líder natural.',
       dicas:[{t:'Aceita o peso da liderança',d:'Outros procuram em ti uma direcção clara. Não fujas desse papel só porque parece pesado.'},
              {t:'Comunica a tua visão antes de agir',d:'As pessoas seguem-te melhor quando entendem o porquê. Partilha o panorama geral, não só as instruções.'},
-             {t:'Lidera com humildade',d:'A tua autoridade é mais respeitada quando vem acompanhada de escuta genuína, não apenas de comando.'}]},
+             {t:'Lidera com humildade',d:'A tua autoridade é mais respeitada quando vem acompanhada de escuta genuína, não apenas de comando.'},
+             {t:'A zona a Noroeste apoia a tua liderança',d:'Tons metálicos ou brancos nessa zona de casa podem reforçar a clareza de visão que trazes às decisões.'}]},
     7:{el:'Lago',dir:'Oeste',cor:'#c8a040',txt:'Alegria, prazer e reflexão. Charme natural.',
       dicas:[{t:'Não subestimes o valor da alegria',d:'Procurar prazer e ligação não é superficialidade — é a forma como recarregas a tua energia vital.'},
              {t:'Usa o teu charme com propósito',d:'As pessoas sentem-se naturalmente à vontade contigo. Usa essa facilidade para criar pontes, não só boa impressão.'},
-             {t:'Reserva tempo para reflexão depois da festa',d:'Depois de te ligares aos outros, dá-te espaço para reflectires a sós sobre o que viveste.'}]},
+             {t:'Reserva tempo para reflexão depois da festa',d:'Depois de te ligares aos outros, dá-te espaço para reflectires a sós sobre o que viveste.'},
+             {t:'Cria um espaço de convívio a Oeste',d:'Esta direcção favorece a tua energia social — um canto convidativo nessa zona de casa ajuda-te a recarregar através da ligação aos outros.'}]},
     8:{el:'Montanha',dir:'Nordeste',cor:'#7a8a6a',txt:'Estabilidade, quietude e renovação. Resiliência notável.',
       dicas:[{t:'Respeita o teu próprio ritmo de mudança',d:'Tal como uma montanha, transformas-te lentamente mas de forma duradoura. Não te compares a quem muda mais rápido.'},
              {t:'Usa a quietude como força, não como fuga',d:'Parar não é desistir — é como reúnes a tua resiliência. Permite-te momentos de pausa sem culpa.'},
-             {t:'Confia na tua capacidade de resistir',d:'Onde outros vacilam, tu manténs-te firme. É essa estabilidade que as pessoas procuram em ti nos momentos difíceis.'}]},
+             {t:'Confia na tua capacidade de resistir',d:'Onde outros vacilam, tu manténs-te firme. É essa estabilidade que as pessoas procuram em ti nos momentos difíceis.'},
+             {t:'A zona a Nordeste é o teu refúgio natural',d:'Um espaço calmo e simples nessa direcção apoia a tua necessidade de estabilidade e renovação silenciosa.'}]},
     9:{el:'Fogo',dir:'Sul',cor:'#c86a4a',txt:'Clareza, iluminação e visibilidade. Brilho natural.',
       dicas:[{t:'Aceita ser vista/o',d:'A tua energia naturalmente atrai atenção. Resistir a isso gasta mais energia do que simplesmente brilhar.'},
              {t:'Usa a tua clareza para iluminar, não para expor',d:'Vês as coisas com nitidez — partilha essa clareza de forma que ajude os outros a verem também, sem os fazer sentir expostos.'},
-             {t:'Cuida do combustível antes de arderes',d:'O fogo precisa de alimento constante. Protege as tuas fontes de energia para não te esgotares a brilhar para os outros.'}]}
+             {t:'Cuida do combustível antes de arderes',d:'O fogo precisa de alimento constante. Protege as tuas fontes de energia para não te esgotares a brilhar para os outros.'},
+             {t:'Deixa a luz do Sul chegar até ti',d:'Espaços virados a Sul, bem iluminados, alimentam o teu brilho natural — evita escurecer demasiado essa zona de casa.'}]}
   },
   es:{
     1:{el:'Agua',dir:'Norte',cor:'#4a8fb5',txt:'Profundidad, reflexión y sabiduría. Intuitivo/a y contemplativo/a.',
       dicas:[{t:'Protege tus momentos de silencio',d:'Necesitas tiempo solo/a contigo para procesar lo que sientes. Sin eso, tu intuición se nubla.'},
              {t:'Confía en lo que sabes sin saber explicarlo',d:'Tu sabiduría llega muchas veces como una corazonada, no como lógica. Aprende a confiar en ese saber silencioso.'},
-             {t:'Déjate fluir en vez de forzar',d:'Como el agua, tu camino raramente es una línea recta. Adáptate a las circunstancias en vez de insistir en un solo trayecto.'}]},
+             {t:'Déjate fluir en vez de forzar',d:'Como el agua, tu camino raramente es una línea recta. Adáptate a las circunstancias en vez de insistir en un solo trayecto.'},
+             {t:'Orienta tu descanso hacia el Norte',d:'En Feng Shui, el Norte está asociado a la energía del Agua — siempre que sea posible, orienta la cama o tu rincón de descanso hacia esa dirección.'}]},
     2:{el:'Tierra II',dir:'Suroeste',cor:'#8a6a3a',txt:'Nutrición, receptividad y cuidado. Tienes capacidad de sostener a los demás.',
       dicas:[{t:'Cuida de quien cuida de todos',d:'Es fácil olvidarte de ti mientras sostienes a los demás. Reserva tiempo regular solo para tu propia nutrición.'},
              {t:'Di que sí con límites claros',d:'Tu generosidad es un don, pero sin límites puede agotarte. Aprende a ayudar sin disolverte en el proceso.'},
-             {t:'Confía en tu paciencia',d:'Donde otros se rinden, tú persistes con calma. Usa esa resistencia tranquila en los proyectos que exigen tiempo.'}]},
+             {t:'Confía en tu paciencia',d:'Donde otros se rinden, tú persistes con calma. Usa esa resistencia tranquila en los proyectos que exigen tiempo.'},
+             {t:'Crea un rincón al Suroeste solo para ti',d:'El Suroeste es tu dirección personal — un pequeño espacio con tonos terrosos en esa zona te ayuda a recargar la energía de cuidado que das a los demás.'}]},
     3:{el:'Trueno',dir:'Este',cor:'#4a9b6a',txt:'Crecimiento, movimiento y creatividad. Visión pionera.',
       dicas:[{t:'Avanza aunque no tengas todas las respuestas',d:'Tu energía es de inicio, no de espera. Esperar la certeza total puede hacerte perder el momento adecuado.'},
              {t:'Da espacio a tu impulsividad creativa',d:'Tus mejores ideas llegan en rachas. Tén siempre cerca una forma de anotarlas antes de que se escapen.'},
-             {t:'Acepta que no todo lo que empiezas continúa',d:'Ser pionero/a significa abrir caminos que otros siguen. No siempre necesitas terminar todo lo que iniciaste.'}]},
+             {t:'Acepta que no todo lo que empiezas continúa',d:'Ser pionero/a significa abrir caminos que otros siguen. No siempre necesitas terminar todo lo que iniciaste.'},
+             {t:'Deja entrar la luz de la mañana, al Este',d:'El Este es tu dirección — un espacio con buena luz matinal hacia esa zona alimenta tu energía de crecimiento e iniciativa.'}]},
     4:{el:'Viento',dir:'Sureste',cor:'#6ab4c8',txt:'Gentileza, persistencia y comunicación. Don para la influencia sutil.',
       dicas:[{t:'Confía en la influencia silenciosa',d:'No necesitas imponer — tu forma de comunicar cambia a las personas lentamente, como el viento moldea el paisaje.'},
              {t:'Persiste aunque no veas resultados inmediatos',d:'Tu impacto raramente es instantáneo. Sigue sembrando, aunque no veas la cosecha de inmediato.'},
-             {t:'Adapta tu discurso a quien te escucha',d:'Tu sensibilidad social es una herramienta poderosa. Úsala para llegar a las personas a su manera, no solo a la tuya.'}]},
+             {t:'Adapta tu discurso a quien te escucha',d:'Tu sensibilidad social es una herramienta poderosa. Úsala para llegar a las personas a su manera, no solo a la tuya.'},
+             {t:'Cuida la zona al Sureste de tu casa',d:'Es tradicionalmente tu dirección — plantas o un pequeño espacio verde en esa zona ayudan a sostener tu influencia silenciosa.'}]},
     5:{el:'Tierra Central',dir:'Centro',cor:'#9b7a4a',txt:'Equilibrio, poder central y transformación. Presencia magnética.',
       dicas:[{t:'Acepta tu papel de equilibrio',d:'Eres frecuentemente quien une los extremos a tu alrededor. No tienes que elegir un lado — tu fuerza está en integrar.'},
              {t:'Usa tu presencia con intención',d:'Atraes atención sin esfuerzo. Sé consciente de cómo esa presencia afecta el espacio y a las personas a tu alrededor.'},
-             {t:'Permítete transformar, no solo estabilizar',d:'Ser el centro no significa quedarte inmóvil. Tienes una capacidad rara de reinventarte cuando es necesario.'}]},
+             {t:'Permítete transformar, no solo estabilizar',d:'Ser el centro no significa quedarte inmóvil. Tienes una capacidad rara de reinventarte cuando es necesario.'},
+             {t:'Valora el centro de tu casa',d:'Como punto de equilibrio del sistema, te beneficia mantener el centro de casa (normalmente el salón) ordenado y despejado — es donde tu energía se estabiliza.'}]},
     6:{el:'Cielo',dir:'Noroeste',cor:'#4a6a9b',txt:'Liderazgo, autoridad y visión. Líder natural.',
       dicas:[{t:'Acepta el peso del liderazgo',d:'Otros buscan en ti una dirección clara. No huyas de ese papel solo porque parece pesado.'},
              {t:'Comunica tu visión antes de actuar',d:'Las personas te siguen mejor cuando entienden el porqué. Comparte el panorama general, no solo las instrucciones.'},
-             {t:'Lidera con humildad',d:'Tu autoridad es más respetada cuando viene acompañada de escucha genuina, no solo de mando.'}]},
+             {t:'Lidera con humildad',d:'Tu autoridad es más respetada cuando viene acompañada de escucha genuina, no solo de mando.'},
+             {t:'La zona al Noroeste apoya tu liderazgo',d:'Tonos metálicos o blancos en esa zona de casa pueden reforzar la claridad de visión que aportas a las decisiones.'}]},
     7:{el:'Lago',dir:'Oeste',cor:'#c8a040',txt:'Alegría, placer y reflexión. Encanto natural.',
       dicas:[{t:'No subestimes el valor de la alegría',d:'Buscar placer y conexión no es superficialidad — es la forma en que recargas tu energía vital.'},
              {t:'Usa tu encanto con propósito',d:'Las personas se sienten naturalmente a gusto contigo. Usa esa facilidad para crear puentes, no solo buena impresión.'},
-             {t:'Reserva tiempo para la reflexión después de la fiesta',d:'Después de conectar con los demás, dáte espacio para reflexionar a solas sobre lo vivido.'}]},
+             {t:'Reserva tiempo para la reflexión después de la fiesta',d:'Después de conectar con los demás, dáte espacio para reflexionar a solas sobre lo vivido.'},
+             {t:'Crea un espacio de convivencia al Oeste',d:'Esta dirección favorece tu energía social — un rincón acogedor en esa zona te ayuda a recargar a través de la conexión con los demás.'}]},
     8:{el:'Montaña',dir:'Nordeste',cor:'#7a8a6a',txt:'Estabilidad, quietud y renovación. Resiliencia notable.',
       dicas:[{t:'Respeta tu propio ritmo de cambio',d:'Como una montaña, te transformas lentamente pero de forma duradera. No te compares con quien cambia más rápido.'},
              {t:'Usa la quietud como fuerza, no como huida',d:'Detenerte no es rendirte — es cómo reúnes tu resiliencia. Permítete momentos de pausa sin culpa.'},
-             {t:'Confía en tu capacidad de resistir',d:'Donde otros vacilan, tú te mantienes firme. Es esa estabilidad la que las personas buscan en ti en los momentos difíciles.'}]},
+             {t:'Confía en tu capacidad de resistir',d:'Donde otros vacilan, tú te mantienes firme. Es esa estabilidad la que las personas buscan en ti en los momentos difíciles.'},
+             {t:'La zona al Noreste es tu refugio natural',d:'Un espacio calmo y simple en esa dirección apoya tu necesidad de estabilidad y renovación silenciosa.'}]},
     9:{el:'Fuego',dir:'Sur',cor:'#c86a4a',txt:'Claridad, iluminación y visibilidad. Brillo natural.',
       dicas:[{t:'Acepta ser vista/o',d:'Tu energía naturalmente atrae atención. Resistirte a eso gasta más energía que simplemente brillar.'},
              {t:'Usa tu claridad para iluminar, no para exponer',d:'Ves las cosas con nitidez — comparte esa claridad de forma que ayude a los demás a ver también, sin hacerlos sentir expuestos.'},
-             {t:'Cuida el combustible antes de arder',d:'El fuego necesita alimento constante. Protege tus fuentes de energía para no agotarte brillando para los demás.'}]}
+             {t:'Cuida el combustible antes de arder',d:'El fuego necesita alimento constante. Protege tus fuentes de energía para no agotarte brillando para los demás.'},
+             {t:'Deja que la luz del Sur llegue hasta ti',d:'Espacios orientados al Sur, bien iluminados, alimentan tu brillo natural — evita oscurecer demasiado esa zona de casa.'}]}
   },
   en:{
     1:{el:'Water',dir:'North',cor:'#4a8fb5',txt:'Depth, reflection and wisdom. Intuitive and contemplative.',
       dicas:[{t:'Protect your moments of silence',d:'You need time alone to process what you feel. Without it, your intuition grows cloudy.'},
              {t:'Trust what you know without being able to explain it',d:'Your wisdom often arrives as a hunch, not as logic. Learn to trust that quiet knowing.'},
-             {t:'Let yourself flow instead of forcing',d:'Like water, your path is rarely a straight line. Adapt to circumstances instead of insisting on a single route.'}]},
+             {t:'Let yourself flow instead of forcing',d:'Like water, your path is rarely a straight line. Adapt to circumstances instead of insisting on a single route.'},
+             {t:'Orient your rest toward the North',d:'In Feng Shui, North is linked to Water energy — whenever possible, orient your bed or resting corner in that direction.'}]},
     2:{el:'Earth II',dir:'Southwest',cor:'#8a6a3a',txt:'Nourishment, receptivity and care. You have the capacity to sustain others.',
       dicas:[{t:'Take care of the one who cares for everyone',d:'It is easy to forget yourself while sustaining others. Set aside regular time just for your own nourishment.'},
              {t:'Say yes with clear boundaries',d:'Your generosity is a gift, but without limits it can drain you. Learn to help without dissolving yourself in the process.'},
-             {t:'Trust your patience',d:'Where others give up, you persist calmly. Use that quiet endurance on projects that demand time.'}]},
+             {t:'Trust your patience',d:'Where others give up, you persist calmly. Use that quiet endurance on projects that demand time.'},
+             {t:'Create a Southwest corner just for you',d:'Southwest is your personal direction — a small space with earthy tones in that area helps you recharge the caring energy you give to others.'}]},
     3:{el:'Thunder',dir:'East',cor:'#4a9b6a',txt:'Growth, movement and creativity. Pioneering vision.',
       dicas:[{t:'Move forward even without all the answers',d:'Your energy is one of initiation, not waiting. Holding out for total certainty can make you miss the right moment.'},
              {t:'Make room for your creative impulsiveness',d:'Your best ideas arrive in bursts. Always keep a way to capture them before they pass.'},
-             {t:'Accept that not everything you start continues',d:'Being a pioneer means opening paths that others follow. You do not always need to finish everything you began.'}]},
+             {t:'Accept that not everything you start continues',d:'Being a pioneer means opening paths that others follow. You do not always need to finish everything you began.'},
+             {t:'Let the morning light in, to the East',d:'East is your direction — a space with good morning light facing that way feeds your energy of growth and initiative.'}]},
     4:{el:'Wind',dir:'Southeast',cor:'#6a9b4a',txt:'Persistence, communication and gentleness. You plant seeds that grow slowly but surely.',
       dicas:[{t:'Trust your quiet influence',d:'You do not need to impose — your way of communicating changes people slowly, the way wind shapes a landscape.'},
              {t:'Persist even without immediate results',d:'Your impact is rarely instant. Keep planting, even when you cannot see the harvest right away.'},
-             {t:'Adapt your message to whoever is listening',d:'Your social sensitivity is a powerful tool. Use it to reach people in their own way, not only yours.'}]},
+             {t:'Adapt your message to whoever is listening',d:'Your social sensitivity is a powerful tool. Use it to reach people in their own way, not only yours.'},
+             {t:'Take care of the Southeast area of your home',d:'It is traditionally your direction — plants or a small green space there help sustain your quiet influence.'}]},
     5:{el:'Earth V',dir:'Centre',cor:'#9b8a4a',txt:'Balance, mediation and stability. You are the centre that holds.',
       dicas:[{t:'Accept your role as a balancing point',d:'You are often the one who holds the extremes around you together. You do not have to pick a side — your strength is in integrating.'},
              {t:'Use your presence with intention',d:'You draw attention without effort. Be mindful of how that presence affects the space and people around you.'},
-             {t:'Allow yourself to transform, not just stabilise',d:'Being the centre does not mean staying still. You have a rare capacity to reinvent yourself when needed.'}]},
+             {t:'Allow yourself to transform, not just stabilise',d:'Being the centre does not mean staying still. You have a rare capacity to reinvent yourself when needed.'},
+             {t:'Value the centre of your home',d:'As the system\u2019s balancing point, you benefit from keeping the centre of your home (usually the living room) tidy and uncluttered — it is where your energy stabilises.'}]},
     6:{el:'Metal I',dir:'Northwest',cor:'#8a8a9b',txt:'Leadership, responsibility and clarity. Strong sense of duty.',
       dicas:[{t:'Accept the weight of leadership',d:'Others look to you for clear direction. Do not run from that role just because it feels heavy.'},
              {t:'Communicate your vision before acting',d:'People follow you better when they understand why. Share the bigger picture, not only the instructions.'},
-             {t:'Lead with humility',d:'Your authority is more respected when paired with genuine listening, not only command.'}]},
+             {t:'Lead with humility',d:'Your authority is more respected when paired with genuine listening, not only command.'},
+             {t:'The Northwest area supports your leadership',d:'Metallic or white tones in that part of your home can reinforce the clarity of vision you bring to decisions.'}]},
     7:{el:'Metal II',dir:'West',cor:'#9b6a8a',txt:'Joy, expression and socialising. Natural communicator.',
       dicas:[{t:'Do not underestimate the value of joy',d:'Seeking pleasure and connection is not shallow — it is how you recharge your vital energy.'},
              {t:'Use your charm with purpose',d:'People feel naturally at ease with you. Use that ease to build bridges, not just a good impression.'},
-             {t:'Set aside time to reflect after socialising',d:'After connecting with others, give yourself space to reflect alone on what you experienced.'}]},
+             {t:'Set aside time to reflect after socialising',d:'After connecting with others, give yourself space to reflect alone on what you experienced.'},
+             {t:'Create a gathering space to the West',d:'This direction favours your social energy — a welcoming corner in that area helps you recharge through connection with others.'}]},
     8:{el:'Earth VIII',dir:'Northeast',cor:'#7a8a6a',txt:'Stability, stillness and renewal. Notable resilience.',
       dicas:[{t:'Respect your own pace of change',d:'Like a mountain, you transform slowly but lastingly. Do not compare yourself to those who change faster.'},
              {t:'Use stillness as strength, not escape',d:'Stopping is not giving up — it is how you gather your resilience. Allow yourself moments of pause without guilt.'},
-             {t:'Trust your capacity to endure',d:'Where others waver, you remain steady. That stability is what people seek in you during hard times.'}]},
+             {t:'Trust your capacity to endure',d:'Where others waver, you remain steady. That stability is what people seek in you during hard times.'},
+             {t:'The Northeast area is your natural refuge',d:'A calm, simple space in that direction supports your need for stability and quiet renewal.'}]},
     9:{el:'Fire',dir:'South',cor:'#c86a4a',txt:'Clarity, illumination and visibility. Natural brilliance.',
       dicas:[{t:'Accept being seen',d:'Your energy naturally draws attention. Resisting that costs more energy than simply shining.'},
              {t:'Use your clarity to illuminate, not to expose',d:'You see things sharply — share that clarity in a way that helps others see too, without making them feel exposed.'},
-             {t:'Tend the fuel before you burn out',d:'Fire needs constant feeding. Protect your energy sources so you do not exhaust yourself shining for others.'}]}
+             {t:'Tend the fuel before you burn out',d:'Fire needs constant feeding. Protect your energy sources so you do not exhaust yourself shining for others.'},
+             {t:'Let Southern light reach you',d:'South-facing, well-lit spaces feed your natural brilliance — avoid keeping that part of your home too dark.'}]}
   }
 };
 function getKI(){return KI_DATA[currentLang]||KI_DATA.pt;}
@@ -10058,7 +10567,316 @@ const CKQ_DATA={
 function getCKQ(){return CKQ_DATA[currentLang]||CKQ_DATA.pt;}
 function renderChakraQuestionnaire(){const _ckq=getCKQ(),_cks=getCHAKRAS();document.getElementById('chakra-questions-list').innerHTML=_ckq.map((q,qi)=>{const ch=_cks.find(c=>c.id===q.c);return'<div class="q-card" style="margin-bottom:.85rem"><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem"><span>'+ch.emoji+'</span><span style="font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:'+ch.cor+'">'+ch.nome+'</span></div><div class="q-text">'+(qi+1)+'. '+q.txt+'</div><div class="q-options">'+q.o.map((o,oi)=>'<label class="q-opt" id="copt-'+qi+'-'+oi+'" onclick="selectChakraOpt('+qi+','+oi+',this)"><input type="radio" name="cq'+qi+'" value="'+oi+'">'+o+'</label>').join('')+'</div></div>';}).join('');}
 function selectChakraOpt(qi,oi,el){document.querySelectorAll('[id^="copt-'+qi+'-"]').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');}
-function calcularChakras(){const raw={raiz:[],sacral:[],plexo:[],coracao:[],garganta:[],terceiro:[],coroa:[]};let ans=0;getCKQ().forEach((q,qi)=>{const sel=document.querySelector('input[name="cq'+qi+'"]:checked');if(sel){ans++;raw[q.c].push(parseInt(sel.value));}});if(ans<10){alert(currentLang==="es"?'Por favor responde al menos 10 preguntas.':currentLang==="en"?'Please answer at least 10 questions.':'Por favor responde pelo menos a 10 perguntas.');return;}const pM=[20,40,70,95],scores={};getCHAKRAS().forEach(c=>{const v=raw[c.id];scores[c.id]=v.length===0?50:Math.round(v.map(x=>pM[x]).reduce((a,b)=>a+b,0)/v.length);});document.getElementById('chakra-questionnaire').style.display='none';document.getElementById('chakra-results').style.display='block';renderChakraResults(scores);}
+function _chakraResultadoKey(){
+  const pid=sessionStorage.getItem('perfil_activo_id')||localStorage.getItem('essencia_ultimo_perfil')||'default';
+  return 'essencia_chakra_resultado_'+pid;
+}
+function _chakraGuardarResultado(scores){
+  try{localStorage.setItem(_chakraResultadoKey(),JSON.stringify({scores,ts:Date.now()}));}catch(e){}
+}
+function _chakraCarregarResultado(){
+  try{const raw=localStorage.getItem(_chakraResultadoKey());return raw?JSON.parse(raw):null;}catch(e){return null;}
+}
+function _chakraMostrarResultadoGuardado(){
+  const guardado=_chakraCarregarResultado();
+  if(!guardado)return false;
+  document.getElementById('chakra-questionnaire').style.display='none';
+  document.getElementById('chakra-results').style.display='block';
+  renderChakraResults(guardado.scores);
+  const notaEl=document.getElementById('chakra-data-guardado');
+  if(notaEl&&guardado.ts){
+    const d=new Date(guardado.ts);
+    const dataStr=d.toLocaleDateString(currentLang==='en'?'en-GB':currentLang==='es'?'es-ES':'pt-PT',{day:'2-digit',month:'long',year:'numeric'});
+    notaEl.textContent=(currentLang==='en'?'Saved diagnosis from ':currentLang==='es'?'Diagnóstico guardado el ':'Diagnóstico guardado a ')+dataStr;
+  }
+  return true;
+}
+// ════════════════════════════════════════════════════════════════
+// FENG SHUI — diagnóstico simples da casa + sugestões práticas
+// ════════════════════════════════════════════════════════════════
+const FS_PERGUNTAS = {
+  pt:[
+    {cat:'entrada',txt:'Como é a tua porta de entrada principal?',o:[{t:'Bem visível, acessível e desimpedida',p:100},{t:'Um pouco escondida ou difícil de aceder',p:55},{t:'Bloqueada por objectos ou obstáculos',p:20}]},
+    {cat:'entrada',txt:'O que vês logo que entras em casa?',o:[{t:'Um espaço aberto e acolhedor',p:100},{t:'Uma parede ou obstáculo de frente à porta',p:50},{t:'Desarrumação ou caos visual',p:20}]},
+    {cat:'entrada',txt:'Há sapatos, lixo ou desarrumação junto à entrada?',o:[{t:'Não, está sempre arrumada',p:100},{t:'Por vezes',p:55},{t:'Sim, frequentemente',p:20}]},
+    {cat:'quarto',txt:'A tua cama está alinhada directamente com a porta do quarto (vês a porta a partir dos pés da cama)?',o:[{t:'Não',p:100},{t:'Sim',p:40}]},
+    {cat:'quarto',txt:'Tens espelhos a reflectir a cama enquanto dormes?',o:[{t:'Não',p:100},{t:'Sim',p:45}]},
+    {cat:'quarto',txt:'Tens televisão, computador ou vários aparelhos eletrónicos no quarto?',o:[{t:'Não, o quarto é só para descansar',p:100},{t:'Tenho um ou dois',p:60},{t:'Tenho vários, sempre ligados',p:25}]},
+    {cat:'casa',txt:'Como é a luz natural em tua casa?',o:[{t:'Bastante luz natural durante o dia',p:100},{t:'Luz moderada',p:60},{t:'Pouca ou quase nenhuma',p:25}]},
+    {cat:'casa',txt:'Tens plantas vivas em casa?',o:[{t:'Sim, várias e bem cuidadas',p:100},{t:'Algumas',p:65},{t:'Não tenho',p:30}]},
+    {cat:'casa',txt:'Como descreverias o nível de desarrumação em geral?',o:[{t:'Organizada, cada coisa no seu lugar',p:100},{t:'Alguma desorganização pontual',p:55},{t:'Bastante desarrumação',p:20}]},
+    {cat:'energia',txt:'Há água visível em casa (aquário, fonte, ou imagens de água)?',o:[{t:'Sim',p:90},{t:'Não',p:60}]},
+    {cat:'energia',txt:'Quais as cores predominantes em casa?',o:[{t:'Tons claros e neutros, com alguns toques de cor',p:100},{t:'Cores muito vivas e variadas por todo o espaço',p:55},{t:'Tons escuros e pesados predominam',p:40}]},
+    {cat:'energia',txt:'De forma geral, sentes que a energia em casa é...',o:[{t:'Calma e equilibrada',p:100},{t:'Um pouco agitada',p:55},{t:'Pesada ou estagnada',p:25}]}
+  ],
+  es:[
+    {cat:'entrada',txt:'¿Cómo es tu puerta de entrada principal?',o:[{t:'Bien visible, accesible y despejada',p:100},{t:'Algo escondida o difícil de acceder',p:55},{t:'Bloqueada por objetos u obstáculos',p:20}]},
+    {cat:'entrada',txt:'¿Qué ves justo al entrar en casa?',o:[{t:'Un espacio abierto y acogedor',p:100},{t:'Una pared u obstáculo frente a la puerta',p:50},{t:'Desorden o caos visual',p:20}]},
+    {cat:'entrada',txt:'¿Hay zapatos, basura o desorden junto a la entrada?',o:[{t:'No, siempre está ordenada',p:100},{t:'A veces',p:55},{t:'Sí, con frecuencia',p:20}]},
+    {cat:'quarto',txt:'¿Tu cama está alineada directamente con la puerta del dormitorio (ves la puerta desde los pies de la cama)?',o:[{t:'No',p:100},{t:'Sí',p:40}]},
+    {cat:'quarto',txt:'¿Tienes espejos que reflejan la cama mientras duermes?',o:[{t:'No',p:100},{t:'Sí',p:45}]},
+    {cat:'quarto',txt:'¿Tienes televisión, ordenador o varios aparatos electrónicos en el dormitorio?',o:[{t:'No, el dormitorio es solo para descansar',p:100},{t:'Tengo uno o dos',p:60},{t:'Tengo varios, siempre encendidos',p:25}]},
+    {cat:'casa',txt:'¿Cómo es la luz natural en tu casa?',o:[{t:'Bastante luz natural durante el día',p:100},{t:'Luz moderada',p:60},{t:'Poca o casi ninguna',p:25}]},
+    {cat:'casa',txt:'¿Tienes plantas vivas en casa?',o:[{t:'Sí, varias y bien cuidadas',p:100},{t:'Algunas',p:65},{t:'No tengo',p:30}]},
+    {cat:'casa',txt:'¿Cómo describirías el nivel de desorden en general?',o:[{t:'Organizada, cada cosa en su lugar',p:100},{t:'Algo de desorden puntual',p:55},{t:'Bastante desorden',p:20}]},
+    {cat:'energia',txt:'¿Hay agua visible en casa (acuario, fuente, o imágenes de agua)?',o:[{t:'Sí',p:90},{t:'No',p:60}]},
+    {cat:'energia',txt:'¿Cuáles son los colores predominantes en casa?',o:[{t:'Tonos claros y neutros, con algunos toques de color',p:100},{t:'Colores muy vivos y variados por todo el espacio',p:55},{t:'Predominan tonos oscuros y pesados',p:40}]},
+    {cat:'energia',txt:'En general, ¿sientes que la energía en casa es...?',o:[{t:'Calma y equilibrada',p:100},{t:'Algo agitada',p:55},{t:'Pesada o estancada',p:25}]}
+  ],
+  en:[
+    {cat:'entrada',txt:'What is your main front door like?',o:[{t:'Clearly visible, accessible and unobstructed',p:100},{t:'A bit hidden or hard to access',p:55},{t:'Blocked by objects or obstacles',p:20}]},
+    {cat:'entrada',txt:'What do you see right when you walk into your home?',o:[{t:'An open, welcoming space',p:100},{t:'A wall or obstacle directly facing the door',p:50},{t:'Clutter or visual chaos',p:20}]},
+    {cat:'entrada',txt:'Are there shoes, trash or clutter near the entrance?',o:[{t:'No, it is always tidy',p:100},{t:'Sometimes',p:55},{t:'Yes, often',p:20}]},
+    {cat:'quarto',txt:'Is your bed directly aligned with the bedroom door (you can see the door from the foot of the bed)?',o:[{t:'No',p:100},{t:'Yes',p:40}]},
+    {cat:'quarto',txt:'Do you have mirrors reflecting your bed while you sleep?',o:[{t:'No',p:100},{t:'Yes',p:45}]},
+    {cat:'quarto',txt:'Do you have a TV, computer or several electronic devices in your bedroom?',o:[{t:'No, the bedroom is just for resting',p:100},{t:'I have one or two',p:60},{t:'I have several, always on',p:25}]},
+    {cat:'casa',txt:'How is the natural light in your home?',o:[{t:'Plenty of natural light during the day',p:100},{t:'Moderate light',p:60},{t:'Little to almost none',p:25}]},
+    {cat:'casa',txt:'Do you have living plants at home?',o:[{t:'Yes, several and well cared for',p:100},{t:'A few',p:65},{t:'None',p:30}]},
+    {cat:'casa',txt:'How would you describe the overall level of clutter?',o:[{t:'Organised, everything has its place',p:100},{t:'Some occasional disorganisation',p:55},{t:'Quite a lot of clutter',p:20}]},
+    {cat:'energia',txt:'Is there visible water at home (aquarium, fountain, or water imagery)?',o:[{t:'Yes',p:90},{t:'No',p:60}]},
+    {cat:'energia',txt:'What are the predominant colours in your home?',o:[{t:'Light, neutral tones with some colour accents',p:100},{t:'Very bright, varied colours throughout',p:55},{t:'Dark, heavy tones predominate',p:40}]},
+    {cat:'energia',txt:'Overall, do you feel the energy at home is...?',o:[{t:'Calm and balanced',p:100},{t:'A bit agitated',p:55},{t:'Heavy or stagnant',p:25}]}
+  ]
+};
+
+const FS_DICAS = {
+  pt:{
+    entrada:[
+      {t:'Liberta o caminho até à porta',d:'Remove objectos que bloqueiem a entrada — a energia (e as oportunidades) entram pela porta principal, tal como tu.'},
+      {t:'Cria um pequeno ponto de boas-vindas',d:'Um tapete limpo, uma luz acolhedora ou uma planta perto da porta ajudam a "convidar" energia nova para dentro de casa.'}
+    ],
+    quarto:[
+      {t:'Evita a cama alinhada com a porta',d:'Se possível, desloca a cama para que os pés não fiquem a apontar directamente para a porta — esta posição é tradicionalmente associada a sono mais agitado.'},
+      {t:'Reposiciona espelhos que reflectem a cama',d:'Em Feng Shui, dormir de frente para um espelho é visto como algo que perturba o descanso. Um simples reposicionamento pode ajudar.'},
+      {t:'Reduz os ecrãs no quarto',d:'Aparelhos eletrónicos mantêm o quarto num estado de "alerta". Experimenta desligá-los completamente à noite, em vez de em standby.'}
+    ],
+    casa:[
+      {t:'Deixa entrar mais luz natural',d:'Abre as cortinas durante o dia, ou usa espelhos pequenos para reflectir a luz que já tens para zonas mais escuras.'},
+      {t:'Acrescenta uma planta de fácil cuidado',d:'Plantas como jade, lírio-da-paz ou pothos trazem vida ao espaço e são difíceis de matar — boas para começar.'},
+      {t:'Escolhe uma zona pequena para arrumar esta semana',d:'Não precisas de arrumar a casa toda de uma vez. Uma gaveta ou uma superfície já faz diferença na forma como a energia circula.'}
+    ],
+    energia:[
+      {t:'Areja a casa todos os dias',d:'Mesmo 5 a 10 minutos com as janelas abertas ajudam a renovar o ar e a energia estagnada.'},
+      {t:'Equilibra as cores do espaço',d:'Uma base neutra com pontos de cor (em almofadas, quadros ou plantas) tende a criar mais equilíbrio do que cores muito intensas por toda a casa.'},
+      {t:'Introduz um elemento de água com calma',d:'Uma pequena fonte, um aquário simples, ou até uma imagem de água, podem ajudar a trazer mais fluidez e calma ao espaço.'}
+    ],
+    geral:{t:'Pequenas mudanças, feitas com intenção',d:'Não precisas de mudar tudo de uma vez — o Feng Shui valoriza ajustes pequenos e conscientes, feitos ao teu ritmo.'}
+  },
+  es:{
+    entrada:[
+      {t:'Libera el camino hasta la puerta',d:'Retira objetos que bloqueen la entrada — la energía (y las oportunidades) entran por la puerta principal, igual que tú.'},
+      {t:'Crea un pequeño punto de bienvenida',d:'Una alfombra limpia, una luz acogedora o una planta cerca de la puerta ayudan a "invitar" energía nueva a casa.'}
+    ],
+    quarto:[
+      {t:'Evita la cama alineada con la puerta',d:'Si es posible, desplaza la cama para que los pies no apunten directamente a la puerta — esta posición se asocia tradicionalmente a un sueño más agitado.'},
+      {t:'Reposiciona espejos que reflejan la cama',d:'En Feng Shui, dormir frente a un espejo se considera algo que perturba el descanso. Un simple cambio de posición puede ayudar.'},
+      {t:'Reduce las pantallas en el dormitorio',d:'Los aparatos electrónicos mantienen el dormitorio en estado de "alerta". Prueba a apagarlos por completo de noche, en vez de dejarlos en espera.'}
+    ],
+    casa:[
+      {t:'Deja entrar más luz natural',d:'Abre las cortinas durante el día, o usa espejos pequeños para reflejar la luz que ya tienes hacia las zonas más oscuras.'},
+      {t:'Añade una planta fácil de cuidar',d:'Plantas como el jade, el lirio de la paz o el potos traen vida al espacio y son difíciles de matar — buenas para empezar.'},
+      {t:'Elige una zona pequeña para ordenar esta semana',d:'No necesitas ordenar toda la casa de una vez. Un cajón o una superficie ya marca la diferencia en cómo circula la energía.'}
+    ],
+    energia:[
+      {t:'Ventila la casa todos los días',d:'Incluso 5 a 10 minutos con las ventanas abiertas ayudan a renovar el aire y la energía estancada.'},
+      {t:'Equilibra los colores del espacio',d:'Una base neutra con toques de color (en cojines, cuadros o plantas) suele crear más equilibrio que colores muy intensos por toda la casa.'},
+      {t:'Introduce un elemento de agua con calma',d:'Una pequeña fuente, un acuario sencillo, o incluso una imagen de agua, pueden ayudar a traer más fluidez y calma al espacio.'}
+    ],
+    geral:{t:'Pequeños cambios, hechos con intención',d:'No necesitas cambiarlo todo de una vez — el Feng Shui valora los ajustes pequeños y conscientes, hechos a tu ritmo.'}
+  },
+  en:{
+    entrada:[
+      {t:'Clear the path to your front door',d:'Remove anything blocking the entrance — energy (and opportunities) come in through the main door, just like you do.'},
+      {t:'Create a small welcoming touch',d:'A clean mat, a warm light or a plant near the door help "invite" fresh energy into the home.'}
+    ],
+    quarto:[
+      {t:'Avoid the bed aligned with the door',d:'If possible, move the bed so your feet do not point directly at the door — this position is traditionally linked to more restless sleep.'},
+      {t:'Reposition mirrors that reflect the bed',d:'In Feng Shui, sleeping facing a mirror is seen as disruptive to rest. A simple repositioning can help.'},
+      {t:'Cut down on screens in the bedroom',d:'Electronic devices keep the bedroom in an "alert" state. Try turning them off completely at night, instead of leaving them on standby.'}
+    ],
+    casa:[
+      {t:'Let in more natural light',d:'Open curtains during the day, or use small mirrors to bounce existing light toward darker areas.'},
+      {t:'Add an easy-care plant',d:'Plants like jade, peace lily or pothos bring life to a space and are hard to kill — good ones to start with.'},
+      {t:'Pick one small area to tidy this week',d:'You do not need to tidy the whole house at once. One drawer or surface already changes how energy flows.'}
+    ],
+    energia:[
+      {t:'Air out the home every day',d:'Even 5 to 10 minutes with windows open helps refresh stagnant air and energy.'},
+      {t:'Balance the colours in your space',d:'A neutral base with pops of colour (in cushions, art or plants) tends to create more balance than very intense colours throughout.'},
+      {t:'Introduce a calm water element',d:'A small fountain, a simple aquarium, or even an image of water, can help bring more flow and calm to the space.'}
+    ],
+    geral:{t:'Small changes, made with intention',d:'You do not need to change everything at once — Feng Shui values small, conscious adjustments, made at your own pace.'}
+  }
+};
+
+const FS_REFLEXAO = {
+  pt:{
+    baixo:'A tua casa parece estar a pedir alguma atenção. Pequenos ajustes, feitos com calma, podem trazer mais equilíbrio ao espaço — e, com ele, à forma como te sentes nele.',
+    medio:'A tua casa tem uma base equilibrada, com algumas zonas que beneficiariam de pequenos ajustes. Olha às sugestões abaixo para os próximos passos.',
+    alto:'A tua casa parece estar bem harmonizada! Continua a prestar atenção aos pequenos detalhes — o Feng Shui é uma prática contínua, não um destino final.'
+  },
+  es:{
+    baixo:'Tu casa parece estar pidiendo algo de atención. Pequeños ajustes, hechos con calma, pueden traer más equilibrio al espacio — y, con él, a cómo te sientes en él.',
+    medio:'Tu casa tiene una base equilibrada, con algunas zonas que se beneficiarían de pequeños ajustes. Mira las sugerencias de abajo para los próximos pasos.',
+    alto:'¡Tu casa parece estar bien armonizada! Sigue prestando atención a los pequeños detalles — el Feng Shui es una práctica continua, no un destino final.'
+  },
+  en:{
+    baixo:'Your home seems to be asking for some attention. Small adjustments, made calmly, can bring more balance to the space — and, with it, to how you feel in it.',
+    medio:'Your home has a balanced foundation, with a few areas that would benefit from small adjustments. Check the suggestions below for next steps.',
+    alto:'Your home seems well harmonised! Keep paying attention to the small details — Feng Shui is an ongoing practice, not a final destination.'
+  }
+};
+
+function _fsResultadoKey(){
+  const pid=sessionStorage.getItem('perfil_activo_id')||localStorage.getItem('essencia_ultimo_perfil')||'default';
+  return 'essencia_fengshui_resultado_'+pid;
+}
+function _fsGuardarResultado(scores){
+  try{localStorage.setItem(_fsResultadoKey(),JSON.stringify({scores,ts:Date.now()}));}catch(e){}
+}
+function _fsCarregarResultado(){
+  try{const raw=localStorage.getItem(_fsResultadoKey());return raw?JSON.parse(raw):null;}catch(e){return null;}
+}
+function _fsMostrarResultadoGuardado(){
+  const guardado=_fsCarregarResultado();
+  if(!guardado)return false;
+  document.getElementById('fs-questionnaire').style.display='none';
+  document.getElementById('fs-results').style.display='block';
+  renderFengShuiResults(guardado.scores);
+  const notaEl=document.getElementById('fs-data-guardado');
+  if(notaEl&&guardado.ts){
+    const d=new Date(guardado.ts);
+    const dataStr=d.toLocaleDateString(currentLang==='en'?'en-GB':currentLang==='es'?'es-ES':'pt-PT',{day:'2-digit',month:'long',year:'numeric'});
+    notaEl.textContent=(currentLang==='en'?'Saved diagnosis from ':currentLang==='es'?'Diagnóstico guardado el ':'Diagnóstico guardado a ')+dataStr;
+  }
+  return true;
+}
+
+function getFSQ(){return FS_PERGUNTAS[currentLang]||FS_PERGUNTAS.pt;}
+
+function renderFengShuiQuestionnaire(){
+  const qs=getFSQ();
+  const catIcons={entrada:'🚪',quarto:'🛏️',casa:'🏡',energia:'🌿'};
+  document.getElementById('fs-questions-list').innerHTML=qs.map((q,qi)=>{
+    return '<div class="q-card" style="margin-bottom:.85rem">'+
+      '<div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem"><span>'+(catIcons[q.cat]||'✦')+'</span></div>'+
+      '<div class="q-text">'+(qi+1)+'. '+q.txt+'</div>'+
+      '<div class="q-options">'+q.o.map((o,oi)=>
+        '<label class="q-opt" id="fsopt-'+qi+'-'+oi+'" onclick="selectFSOpt('+qi+','+oi+',this)"><input type="radio" name="fsq'+qi+'" value="'+oi+'">'+o.t+'</label>'
+      ).join('')+'</div></div>';
+  }).join('');
+}
+
+function selectFSOpt(qi,oi,el){
+  document.querySelectorAll('[id^="fsopt-'+qi+'-"]').forEach(l=>l.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function calcularFengShui(){
+  const qs=getFSQ();
+  const raw={entrada:[],quarto:[],casa:[],energia:[]};
+  let ans=0;
+  qs.forEach((q,qi)=>{
+    const sel=document.querySelector('input[name="fsq'+qi+'"]:checked');
+    if(sel){ans++;raw[q.cat].push(q.o[parseInt(sel.value)].p);}
+  });
+  if(ans<8){
+    alert(currentLang==='es'?'Por favor responde al menos 8 preguntas.':currentLang==='en'?'Please answer at least 8 questions.':'Por favor responde pelo menos a 8 perguntas.');
+    return;
+  }
+  const scores={};
+  Object.keys(raw).forEach(cat=>{
+    const v=raw[cat];
+    scores[cat]=v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length):70;
+  });
+  _fsGuardarResultado(scores);
+  document.getElementById('fs-questionnaire').style.display='none';
+  document.getElementById('fs-results').style.display='block';
+  const notaEl=document.getElementById('fs-data-guardado'); if(notaEl)notaEl.textContent='';
+  renderFengShuiResults(scores);
+}
+
+function refazerFengShui(){
+  document.getElementById('fs-results').style.display='none';
+  document.getElementById('fs-questionnaire').style.display='block';
+  document.querySelectorAll('[id^="fsopt-"]').forEach(e=>e.classList.remove('selected'));
+  document.querySelectorAll('input[type=radio][name^="fsq"]').forEach(e=>{e.checked=false;});
+}
+
+function renderFengShuiResults(scores){
+  const dicasL=FS_DICAS[currentLang]||FS_DICAS.pt;
+  const reflexaoL=FS_REFLEXAO[currentLang]||FS_REFLEXAO.pt;
+  const catNomes=currentLang==='es'
+    ?{entrada:'Entrada',quarto:'Dormitorio',casa:'Casa en general',energia:'Energía'}
+    :currentLang==='en'
+    ?{entrada:'Entrance',quarto:'Bedroom',casa:'Home in general',energia:'Energy'}
+    :{entrada:'Entrada',quarto:'Quarto',casa:'Casa em geral',energia:'Energia'};
+  const catIcons={entrada:'🚪',quarto:'🛏️',casa:'🏡',energia:'🌿'};
+  const cats=['entrada','quarto','casa','energia'];
+
+  const harmonia=Math.round(cats.reduce((a,c)=>a+(scores[c]||70),0)/cats.length);
+  const tier=harmonia<45?'baixo':harmonia<75?'medio':'alto';
+  document.getElementById('fs-reflexao-box').innerHTML=
+    '<div class="interp-label">'+(currentLang==='en'?'Overall harmony':currentLang==='es'?'Armonía general':'Harmonia geral')+' · '+harmonia+'%</div>'+
+    '<div class="interp-text">'+reflexaoL[tier]+'</div>';
+
+  // Ligação com a Astrologia do Ki, se já tiver sido calculada para este perfil
+  const kiBox=document.getElementById('fs-ki-box');
+  if(kiBox){
+    const kiNum=(window._ki&&window._ki.principal)?window._ki.principal:null;
+    if(kiNum&&typeof KI_EL!=='undefined'&&KI_EL[kiNum]){
+      const kiInfo=KI_EL[kiNum];
+      const elementoStar={1:'agua',2:'terra',3:'madeira',4:'madeira',5:'terra',6:'metal',7:'metal',8:'terra',9:'fogo'};
+      const wux=elementoStar[kiNum]||'terra';
+      const guiaWux={
+        agua:{tit:currentLang==='en'?'Water energy':currentLang==='es'?'Energía de Agua':'Energia de Água',
+              txt:currentLang==='en'?'Dark, bluish tones, fluid shapes and mirrored or glass surfaces tend to harmonise well with your personal energy.':currentLang==='es'?'Tonos oscuros y azulados, formas fluidas y superficies espejadas o de cristal tienden a armonizar bien con tu energía personal.':'Tons escuros e azulados, formas fluidas e superfícies espelhadas ou de vidro tendem a harmonizar-se bem com a tua energia pessoal.'},
+        madeira:{tit:currentLang==='en'?'Wood energy':currentLang==='es'?'Energía de Madera':'Energia de Madeira',
+              txt:currentLang==='en'?'Green tones, living plants and natural materials like raw wood reinforce your energy of growth.':currentLang==='es'?'Tonos verdes, plantas vivas y materiales naturales como la madera cruda refuerzan tu energía de crecimiento.':'Tons verdes, plantas vivas e materiais naturais como madeira em bruto reforçam a tua energia de crescimento.'},
+        fogo:{tit:currentLang==='en'?'Fire energy':currentLang==='es'?'Energía de Fuego':'Energia de Fogo',
+              txt:currentLang==='en'?'Red, orange or golden tones, and good lighting, tend to feed your natural brilliance.':currentLang==='es'?'Tonos rojos, anaranjados o dorados, y buena iluminación, tienden a alimentar tu brillo natural.':'Tons vermelhos, alaranjados ou dourados, e boa iluminação, tendem a alimentar o teu brilho natural.'},
+        terra:{tit:currentLang==='en'?'Earth energy':currentLang==='es'?'Energía de Tierra':'Energia de Terra',
+              txt:currentLang==='en'?'Earthy tones, ceramics and stable, square shapes help ground and balance your energy.':currentLang==='es'?'Tonos terrosos, cerámica y formas estables o cuadradas ayudan a anclar y equilibrar tu energía.':'Tons terrosos, cerâmica e formas estáveis ou quadradas ajudam a ancorar e a equilibrar a tua energia.'},
+        metal:{tit:currentLang==='en'?'Metal energy':currentLang==='es'?'Energía de Metal':'Energia de Metal',
+              txt:currentLang==='en'?'White, grey or golden tones, and metallic or round-shaped objects, tend to support the clarity you bring with you.':currentLang==='es'?'Tonos blancos, grises o dorados, y objetos metálicos o de formas redondas, tienden a apoyar la claridad que traes contigo.':'Tons branco, cinza ou dourado, e objectos metálicos ou de formas redondas, tendem a apoiar a clareza que trazes contigo.'}
+      };
+      const g=guiaWux[wux];
+      const lblDir=currentLang==='en'?'Your personal direction, according to your Ki, is':currentLang==='es'?'Tu dirección personal, según tu Ki, es':'A tua direcção pessoal, segundo o teu Ki, é';
+      const lblDirSugestao=currentLang==='en'?'— a good area of your home to start with small adjustments.':currentLang==='es'?'— una buena zona de tu casa para empezar con pequeños ajustes.':'— uma boa zona da tua casa para começares por pequenos ajustes.';
+      kiBox.style.display='block';
+      kiBox.innerHTML='<div class="interp-box"><div class="interp-label">✦ '+g.tit+' · '+(currentLang==='en'?'Ki Astrology':'Ki Astral')+'</div>'+
+        '<div class="interp-text">'+g.txt+' '+lblDir+' <strong>'+kiInfo.dir+'</strong> '+lblDirSugestao+'</div></div>';
+    } else {
+      kiBox.style.display='none';
+    }
+  }
+
+  document.getElementById('fs-diagnostic').innerHTML='<div class="chakra-overview"><div class="chakra-bar-wrap">'+
+    '<div style="font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem">'+
+    (currentLang==='en'?'Harmony by area':currentLang==='es'?'Armonía por área':'Harmonia por área')+'</div>'+
+    cats.map(c=>'<div class="chakra-row"><div class="chakra-dot" style="background:var(--accent-deep)"></div>'+
+      '<div class="chakra-row-name" style="font-size:.58rem">'+catIcons[c]+' '+catNomes[c]+'</div>'+
+      '<div class="chakra-bar-bg"><div class="chakra-bar-fill" style="width:'+scores[c]+'%;background:var(--accent-deep)"></div></div>'+
+      '<div class="chakra-pct">'+scores[c]+'%</div></div>').join('')+
+    '</div></div>';
+
+  // Mostrar dicas para as 1-2 áreas mais baixas (abaixo de 75%), e a dica geral no final
+  const ordenado=[...cats].sort((a,b)=>scores[a]-scores[b]);
+  const areasAtencao=ordenado.filter(c=>scores[c]<75).slice(0,2);
+  const areasParaMostrar=areasAtencao.length?areasAtencao:[ordenado[0]];
+
+  let html='';
+  areasParaMostrar.forEach(cat=>{
+    html+='<div style="font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);margin:1rem 0 .5rem">'+catIcons[cat]+' '+catNomes[cat]+'</div>';
+    (dicasL[cat]||[]).forEach(dc=>{
+      html+='<div class="emo-dica-card"><div class="emo-dica-titulo">✦ '+dc.t+'</div><div class="emo-dica-texto">'+dc.d+'</div></div>';
+    });
+  });
+  html+='<div style="font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);margin:1rem 0 .5rem">✦ '+(currentLang==='en'?'In general':currentLang==='es'?'En general':'Em geral')+'</div>';
+  html+='<div class="emo-dica-card"><div class="emo-dica-titulo">✦ '+dicasL.geral.t+'</div><div class="emo-dica-texto">'+dicasL.geral.d+'</div></div>';
+  document.getElementById('fs-practices').innerHTML=html;
+}
+
+function calcularChakras(){const raw={raiz:[],sacral:[],plexo:[],coracao:[],garganta:[],terceiro:[],coroa:[]};let ans=0;getCKQ().forEach((q,qi)=>{const sel=document.querySelector('input[name="cq'+qi+'"]:checked');if(sel){ans++;raw[q.c].push(parseInt(sel.value));}});if(ans<10){alert(currentLang==="es"?'Por favor responde al menos 10 preguntas.':currentLang==="en"?'Please answer at least 10 questions.':'Por favor responde pelo menos a 10 perguntas.');return;}const pM=[20,40,70,95],scores={};getCHAKRAS().forEach(c=>{const v=raw[c.id];scores[c.id]=v.length===0?50:Math.round(v.map(x=>pM[x]).reduce((a,b)=>a+b,0)/v.length);});_chakraGuardarResultado(scores);document.getElementById('chakra-questionnaire').style.display='none';document.getElementById('chakra-results').style.display='block';const _ckNotaEl=document.getElementById('chakra-data-guardado');if(_ckNotaEl)_ckNotaEl.textContent='';renderChakraResults(scores);}
 function refazerChakras(){document.getElementById('chakra-results').style.display='none';document.getElementById('chakra-questionnaire').style.display='block';document.querySelectorAll('[id^="copt-"]').forEach(e=>e.classList.remove('selected'));document.querySelectorAll('input[type=radio][name^="cq"]').forEach(e=>{e.checked=false;});}
 function renderChakraResults(sc){document.getElementById('chakra-diagnostic').innerHTML='<div class="chakra-overview"><div class="chakra-bar-wrap"><div style="font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem">Nível de activação</div>'+getCHAKRAS().map(c=>'<div class="chakra-row"><div class="chakra-dot" style="background:'+c.cor+'"></div><div class="chakra-row-name" style="font-size:.58rem">'+c.nome.replace('Chakra ','').replace(' do','')+'</div><div class="chakra-bar-bg"><div class="chakra-bar-fill" style="width:'+sc[c.id]+'%;background:'+c.cor+'"></div></div><div class="chakra-pct">'+sc[c.id]+'%</div></div>').join('')+'</div><div><div class="interp-box" style="margin-bottom:.75rem"><div class="interp-label">Chakra mais activo</div><div class="interp-text">'+getCHAKRAS().reduce((a,c)=>sc[c.id]>sc[a.id]?c:a).emoji+' '+getCHAKRAS().reduce((a,c)=>sc[c.id]>sc[a.id]?c:a).nome+' — '+getCHAKRAS().reduce((a,c)=>sc[c.id]>sc[a.id]?c:a).ativo+'</div></div><div class="interp-box"><div class="interp-label">A necessitar atenção</div><div class="interp-text">'+getCHAKRAS().reduce((a,c)=>sc[c.id]<sc[a.id]?c:a).emoji+' '+getCHAKRAS().reduce((a,c)=>sc[c.id]<sc[a.id]?c:a).nome+' — '+getCHAKRAS().reduce((a,c)=>sc[c.id]<sc[a.id]?c:a).baixo+'</div></div></div></div>';document.getElementById('chakra-details').innerHTML=getCHAKRAS().map(c=>{const s=sc[c.id],sl=s>=70?'status-active':s>=45?'status-balanced':'status-low',st=s>=70?(currentLang==="es"?'Activo':currentLang==="en"?'Active':'Activo'):s>=45?(currentLang==="es"?'Equilibrado':currentLang==="en"?'Balanced':'Equilibrado'):(currentLang==="es"?'Necesita cuidado':currentLang==="en"?'Needs care':'A necessitar cuidado');return'<div class="chakra-card"><div class="chakra-icon-big" style="background:'+c.cor+'20;border:2px solid '+c.cor+'40">'+c.emoji+'</div><div style="flex:1"><div class="chakra-card-name" style="color:'+c.cor+'">'+c.nome+'</div><div class="chakra-card-sanskrit">'+c.sanskrit+' · '+c.temas+'</div><span class="chakra-card-status '+sl+'">'+st+' · '+s+'%</span><div class="chakra-card-desc">'+(s>=70?c.ativo:s>=45?(currentLang==="es"?'Razonablemente equilibrado.':currentLang==="en"?'Reasonably balanced.':'Razoavelmente equilibrado.'):c.baixo)+'</div></div></div>';}).join('');const sorted=[...getCHAKRAS()].sort((a,b)=>sc[a.id]-sc[b.id]);document.getElementById('chakra-practices').innerHTML=sorted.slice(0,3).map(c=>'<div class="practice-card"><div class="practice-title"><span class="practice-chakra-tag" style="background:'+c.cor+'"></span>'+c.nome+'</div><div class="practice-text"><strong>Prática:</strong> '+c.pratica+'<br><strong>'+(currentLang==="es"?'Cristales':currentLang==="en"?'Crystals':'Cristais')+':</strong> '+c.cristal+'<br><em>"'+c.afirmacao+'"</em></div></div>').join('');}
 function renderChakras(){renderChakraQuestionnaire();}
@@ -10917,7 +11735,11 @@ function _emoMostrarResultado(entry,jaExistia){
 
   // Texto do botão de refazer (caso já exista check-in hoje, oferece repetir)
   const refazerTxt=document.getElementById('emo-btn-refazer-txt');
-  if(refazerTxt)refazerTxt.textContent=jaExistia?(T.emo_btn_refazer_existe||'Refazer o check-in de hoje'):(T.emo_btn_refazer||'Fazer novo check-in');
+  if(refazerTxt){
+    refazerTxt.textContent = jaExistia
+      ? (currentLang==='es'?'Repetir el check-in de hoy':currentLang==='en'?'Redo today\u2019s check-in':'Refazer o check-in de hoje')
+      : (currentLang==='es'?'Hacer nuevo check-in':currentLang==='en'?'Do a new check-in':'Fazer novo check-in');
+  }
 }
 
 function emoRefazer(){
@@ -11326,6 +12148,7 @@ function parcModo(modo){
   }
   document.getElementById('parc-btn-'+modo).classList.add('active');
   document.getElementById('parc-section-'+modo).style.display='block';
+  if(modo==='novo'&&typeof parcPopularPaises==='function')parcPopularPaises();
 }
 
 function parcSelectPerfil(id){
@@ -11353,6 +12176,91 @@ function parcReset(){
     const _btn=document.getElementById('parc-btn-'+m);
     if(_btn) _btn.classList.remove('active');
   });
+  ['parc-inp-nome','parc-inp-dia','parc-inp-mes','parc-inp-ano','parc-inp-hora'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.value='';
+  });
+  const pSel=document.getElementById('parc-inp-pais'); if(pSel) pSel.value='';
+  const cSel=document.getElementById('parc-inp-cidade'); if(cSel) cSel.innerHTML='<option value="">— Selecciona primeiro o país —</option>';
+  const cc=document.getElementById('parc-cidade-coords'); if(cc) cc.style.display='none';
+  const ma=document.getElementById('parc-cidade-manual-area'); if(ma) ma.style.display='none';
+}
+
+function parcPopularPaises(){
+  const sel=document.getElementById('parc-inp-pais');
+  if(!sel||sel.options.length>1)return;
+  const ph=currentLang==='es'?'— Selecciona el país —':currentLang==='en'?'— Select country —':'— Selecciona o país —';
+  sel.options[0].text=ph;
+  Object.keys(PAISES_CIDADES).sort().forEach(p=>{
+    const o=document.createElement('option');o.value=p;o.textContent=p;sel.appendChild(o);
+  });
+}
+
+function parcAtualizarCidades(){
+  const pais=document.getElementById('parc-inp-pais').value;
+  const sel=document.getElementById('parc-inp-cidade');
+  const ph=currentLang==='es'?'— Selecciona la ciudad —':currentLang==='en'?'— Select city —':'— Selecciona a cidade —';
+  sel.innerHTML='<option value="">'+ph+'</option>';
+  document.getElementById('parc-cidade-coords').style.display='none';
+  const ma=document.getElementById('parc-cidade-manual-area');if(ma)ma.style.display='none';
+  if(!pais||!PAISES_CIDADES[pais])return;
+  Object.keys(PAISES_CIDADES[pais].cidades).sort().forEach(c=>{
+    const o=document.createElement('option');o.value=c;o.textContent=c;sel.appendChild(o);
+  });
+  const oM=document.createElement('option');oM.value='__manual__';oM.textContent='✏️ Outra cidade...';sel.appendChild(oM);
+}
+
+function parcEscolherCidade(){
+  const pais=document.getElementById('parc-inp-pais').value;
+  const cid=document.getElementById('parc-inp-cidade').value;
+  const cc=document.getElementById('parc-cidade-coords');
+  const ma=document.getElementById('parc-cidade-manual-area');
+  if(!pais||!cid){cc.style.display='none';if(ma)ma.style.display='none';return;}
+  if(cid==='__manual__'){
+    cc.style.display='none';
+    if(ma){ma.style.display='block';document.getElementById('parc-cidade-manual-input').focus();}
+    return;
+  }
+  if(ma)ma.style.display='none';
+  if(!PAISES_CIDADES[pais])return;
+  const data=PAISES_CIDADES[pais].cidades[cid];
+  if(!data)return;
+  cc.style.display='block';
+  cc.textContent='📍 '+cid+', '+pais+' ('+data.lat.toFixed(2)+'°N, '+data.lon.toFixed(2)+'°E)';
+}
+
+async function procurarCidadeManualParc(){
+  const pais=document.getElementById('parc-inp-pais').value;
+  const query=document.getElementById('parc-cidade-manual-input').value.trim();
+  const resultEl=document.getElementById('parc-cidade-manual-result');
+  if(!query){resultEl.textContent='Por favor escreve o nome da cidade.';resultEl.style.color='#c0392b';return;}
+  resultEl.textContent='A procurar...';resultEl.style.color='var(--text3)';
+  try{
+    const url='https://nominatim.openstreetmap.org/search?q='+encodeURIComponent(query+(pais?', '+pais:''))+'&format=json&limit=1&accept-language=pt';
+    const resp=await fetch(url,{headers:{'User-Agent':'Essencia-App/1.0'}});
+    const data=await resp.json();
+    if(!data||data.length===0){
+      resultEl.textContent='Cidade não encontrada. Tenta com o nome em inglês ou adiciona o país.';
+      resultEl.style.color='#c0392b';return;
+    }
+    const r=data[0];
+    const lat=parseFloat(r.lat),lon=parseFloat(r.lon);
+    const nome=r.display_name.split(',')[0].trim();
+    if(pais&&PAISES_CIDADES[pais]){
+      PAISES_CIDADES[pais].cidades[nome]={lat:lat,lon:lon};
+      const cidSel=document.getElementById('parc-inp-cidade');
+      let found=false;
+      for(let i=0;i<cidSel.options.length;i++){if(cidSel.options[i].value===nome){cidSel.value=nome;found=true;break;}}
+      if(!found){const o=document.createElement('option');o.value=nome;o.textContent=nome;cidSel.insertBefore(o,cidSel.lastElementChild);cidSel.value=nome;}
+    }
+    const el=document.getElementById('parc-cidade-coords');
+    el.style.display='block';
+    el.textContent='📍 '+nome+' · '+lat.toFixed(2)+'°N '+Math.abs(lon).toFixed(2)+'°'+(lon<0?'W':'E');
+    document.getElementById('parc-cidade-manual-area').style.display='none';
+    resultEl.textContent='';
+  }catch(e){
+    resultEl.textContent='Erro ao procurar. Verifica a ligação à internet.';
+    resultEl.style.color='#c0392b';
+  }
 }
 
 function analisarParceiro(modo){
@@ -11365,8 +12273,9 @@ function analisarParceiro(modo){
   const myHd=window._hdTipo||'—';
   const mySigNo=myPl.length?myPl[0].signo:0;
   const myLuaSigNo=myPl.length>1?myPl[1].signo:0;
+  const myAscSigNo=(window._ascendente!=null)?Math.floor(window._ascendente/30):null;
 
-  let pNome='',pNV=0,pSigNo=0,pLuaSigNo=0,pKi=1,pDia=0,pMes=0,pAno=1990;
+  let pNome='',pNV=0,pSigNo=0,pLuaSigNo=0,pKi=1,pDia=0,pMes=0,pAno=1990,pAscSigNo=null;
   const isGenerico=(modo==='generico');
 
   if(!isGenerico){
@@ -11375,6 +12284,18 @@ function analisarParceiro(modo){
       const p=carregarPerfis().find(x=>x.id===_parcSelected);
       if(!p)return;
       pNome=p.nome; pDia=p.dia; pMes=p.mes; pAno=p.ano;
+      pNV=numVida(pDia,pMes,pAno);
+      // Usar dados reais já calculados e guardados deste perfil, em vez de aproximações
+      const pPlReal=p._planetas||[];
+      if(pPlReal.length){
+        pSigNo=pPlReal[0].signo;
+        pLuaSigNo=pPlReal.length>1?pPlReal[1].signo:Math.floor(moonLon(pDia,pMes,pAno,12)/30);
+      } else {
+        pSigNo=signoFromDate(pDia,pMes,pAno);
+        pLuaSigNo=Math.floor(moonLon(pDia,pMes,pAno,12)/30);
+      }
+      pKi=(p._ki&&p._ki.principal)?p._ki.principal:kiFromDate(pAno);
+      pAscSigNo=(p._ascendente!=null)?Math.floor(p._ascendente/30):null;
     } else {
       pNome=document.getElementById('parc-inp-nome').value.trim();
       pDia=parseInt(document.getElementById('parc-inp-dia').value)||0;
@@ -11383,11 +12304,31 @@ function analisarParceiro(modo){
       if(!pNome||!pDia||!pMes||!pAno){
         alert(currentLang==='es'?'Completa el nombre y la fecha.':currentLang==='en'?'Please fill in name and date.':'Preenche o nome e a data.');return;
       }
+      pNV=numVida(pDia,pMes,pAno);
+      pSigNo=signoFromDate(pDia,pMes,pAno);
+      // Posição lunar real (a partir da data; usa meio-dia se não houver hora exacta) em vez de aproximação por signo solar
+      let pHoraUT=12;
+      const pHoraVal=document.getElementById('parc-inp-hora')?document.getElementById('parc-inp-hora').value:'';
+      const pPais=document.getElementById('parc-inp-pais')?document.getElementById('parc-inp-pais').value:'';
+      const pCidade=document.getElementById('parc-inp-cidade')?document.getElementById('parc-inp-cidade').value:'';
+      const pCidadeData=(pPais&&PAISES_CIDADES[pPais])?PAISES_CIDADES[pPais].cidades[pCidade]:null;
+      if(pHoraVal&&pCidadeData){
+        const parts=pHoraVal.split(':');
+        const hNum=parseInt(parts[0]),mNum=parseInt(parts[1]);
+        if(!isNaN(hNum)&&!isNaN(mNum)){
+          const horaDecLocal=hNum+mNum/60;
+          const offset=getLocalUTOffset(pDia,pMes,pAno,pPais,pCidadeData);
+          pHoraUT=horaDecLocal-offset;
+          if(pHoraUT<0)pHoraUT+=24; if(pHoraUT>=24)pHoraUT-=24;
+          // Com hora e local, calcular também o Ascendente real
+          const pJD=julianDay(pDia,pMes,pAno,pHoraUT);
+          const pAscDeg=calcAscendant(pJD,pCidadeData.lat,pCidadeData.lon);
+          pAscSigNo=Math.floor(pAscDeg/30);
+        }
+      }
+      pLuaSigNo=Math.floor(moonLon(pDia,pMes,pAno,pHoraUT)/30);
+      pKi=kiFromDate(pAno);
     }
-    pNV=numVida(pDia,pMes,pAno);
-    pSigNo=signoFromDate(pDia,pMes,pAno);
-    pLuaSigNo=(pSigNo+4)%12; // approximate
-    pKi=kiFromDate(pAno);
   }
 
   // Render results
@@ -11403,8 +12344,8 @@ function analisarParceiro(modo){
   if(isGenerico){
     renderGenerico(myNome,myNums,myNI,mySigNo,myLuaSigNo,myKi,myEnn,myHd,signos,NI);
   } else {
-    renderCompatibilidade(myNome,myNums,myNI,mySigNo,myLuaSigNo,myKi,myEnn,myHd,
-                          pNome,pNV,pSigNo,pLuaSigNo,pKi,signos,NI);
+    renderCompatibilidade(myNome,myNums,myNI,mySigNo,myLuaSigNo,myKi,myEnn,myHd,myAscSigNo,
+                          pNome,pNV,pSigNo,pLuaSigNo,pKi,pAscSigNo,signos,NI);
   }
 }
 
@@ -11421,15 +12362,21 @@ function scoreLabel(pct){
   return currentLang==='es'?'Desafiante':currentLang==='en'?'Challenging':'Desafiante';
 }
 
-function renderCompatibilidade(myNome,myNums,myNI,mySigNo,myLuaSigNo,myKi,myEnn,myHd,
-                                 pNome,pNV,pSigNo,pLuaSigNo,pKi,signos,NI){
+function renderCompatibilidade(myNome,myNums,myNI,mySigNo,myLuaSigNo,myKi,myEnn,myHd,myAscSigNo,
+                                 pNome,pNV,pSigNo,pLuaSigNo,pKi,pAscSigNo,signos,NI){
   const pNI=NI[pNV]||NI[9];
   // Scores
   const numScore=COMPAT_NUM.score[myNums.nV-1]?COMPAT_NUM.score[myNums.nV-1][pNV-1]||60:60;
   const elemScore=COMPAT_ELEM.score[EL_MAP[mySigNo]]?COMPAT_ELEM.score[EL_MAP[mySigNo]][EL_MAP[pSigNo]]||60:60;
   const luaScore=COMPAT_ELEM.score[EL_MAP[myLuaSigNo]]?COMPAT_ELEM.score[EL_MAP[myLuaSigNo]][EL_MAP[pLuaSigNo]]||60:60;
   const kiScore=myKi.principal===pKi?85:Math.abs(myKi.principal-pKi)<=2?70:55;
-  const total=Math.round((numScore*0.35+elemScore*0.25+luaScore*0.25+kiScore*0.15));
+  const temAsc=(myAscSigNo!=null&&pAscSigNo!=null);
+  const ascScore=temAsc?(COMPAT_ELEM.score[EL_MAP[myAscSigNo]]?COMPAT_ELEM.score[EL_MAP[myAscSigNo]][EL_MAP[pAscSigNo]]||60:60):null;
+  // Pesos: quando há Ascendente disponível, ele entra com peso semelhante ao Sol/Lua;
+  // quando não há (faltam hora/local de uma das pessoas), redistribui-se proporcionalmente.
+  const total=temAsc
+    ? Math.round(numScore*0.25+elemScore*0.20+luaScore*0.20+ascScore*0.20+kiScore*0.15)
+    : Math.round(numScore*0.35+elemScore*0.25+luaScore*0.25+kiScore*0.15);
 
   const EL_NOMES=currentLang==='es'?['Fuego','Tierra','Aire','Agua']:currentLang==='en'?['Fire','Earth','Air','Water']:['Fogo','Terra','Ar','Água'];
   const elNome=EL_NOMES[EL_MAP[mySigNo]]; const pElNome=EL_NOMES[EL_MAP[pSigNo]];
@@ -11441,6 +12388,7 @@ function renderCompatibilidade(myNome,myNums,myNI,mySigNo,myLuaSigNo,myKi,myEnn,
     elem:currentLang==='es'?'Elementos solares':currentLang==='en'?'Solar elements':'Elementos solares',
     lua:currentLang==='es'?'Energía lunar':currentLang==='en'?'Lunar energy':'Energia lunar',
     ki:currentLang==='es'?'Ki Astral':currentLang==='en'?'Ki Astral':'Ki Astral',
+    asc:currentLang==='es'?'Ascendente':currentLang==='en'?'Ascendant':'Ascendente',
     perfil1:currentLang==='es'?'Tu perfil':currentLang==='en'?'Your profile':'O teu perfil',
     perfil2:currentLang==='es'?'Perfil de':currentLang==='en'?'Profile of':'Perfil de',
     oQuePrecisas:currentLang==='es'?'Lo que buscas':currentLang==='en'?'What you seek':'O que procuras',
@@ -11468,13 +12416,13 @@ function renderCompatibilidade(myNome,myNums,myNI,mySigNo,myLuaSigNo,myKi,myEnn,
       <div class="parc-person-card">
         <div class="parc-person-avatar" style="background:#4a8fb5">${myNome.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()}</div>
         <div class="parc-person-nome">${myNome}</div>
-        <div class="parc-person-info">☉ ${signos[mySigNo]} · ∞ ${myNums.nV}</div>
+        <div class="parc-person-info">☉ ${signos[mySigNo]} · ∞ ${myNums.nV}${myAscSigNo!=null?' · ↑ '+signos[myAscSigNo]:''}</div>
       </div>
       <div class="parc-heart">♡</div>
       <div class="parc-person-card">
         <div class="parc-person-avatar" style="background:#c07090">${pNome.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()}</div>
         <div class="parc-person-nome">${pNome}</div>
-        <div class="parc-person-info">☉ ${signos[pSigNo]} · ∞ ${pNV}</div>
+        <div class="parc-person-info">☉ ${signos[pSigNo]} · ∞ ${pNV}${pAscSigNo!=null?' · ↑ '+signos[pAscSigNo]:''}</div>
       </div>
     </div>
 
@@ -11506,6 +12454,19 @@ function renderCompatibilidade(myNome,myNums,myNI,mySigNo,myLuaSigNo,myKi,myEnn,
       <div style="font-size:.72rem;color:var(--accent);margin-bottom:.3rem">${scoreLabel(luaScore)}</div>
       <div class="interp-text">${luaCompatTxt(EL_MAP[myLuaSigNo],EL_MAP[pLuaSigNo])}</div>
     </div>
+
+    ${temAsc ? `
+    <div class="interp-box" style="margin-bottom:.75rem">
+      <div class="interp-label">↑ ${lbl.asc} · ${signos[myAscSigNo]} + ${signos[pAscSigNo]}</div>
+      ${scoreBar(ascScore,'#6aabcc')}
+      <div style="font-size:.72rem;color:var(--accent);margin-bottom:.3rem">${scoreLabel(ascScore)}</div>
+      <div class="interp-text">${ascCompatTxt(EL_MAP[myAscSigNo],EL_MAP[pAscSigNo])}</div>
+    </div>
+    ` : `
+    <div style="font-size:.74rem;color:var(--text3);line-height:1.6;margin-bottom:.75rem;text-align:center;font-style:italic;padding:0 .5rem">
+      ${currentLang==='en'?'Ascendant not included — birth time and place were not available for one or both people.':currentLang==='es'?'Ascendente no incluido — no se dispuso de la hora y el lugar de nacimiento de una o ambas personas.':'Ascendente não incluído — não havia hora e local de nascimento disponíveis de uma ou ambas as pessoas.'}
+    </div>
+    `}
 
     <div class="interp-box" style="margin-bottom:1.25rem">
       <div class="interp-label">✦ ${lbl.ki} · ${myKi.principal} + ${pKi}</div>
@@ -11560,6 +12521,14 @@ function kiCompatTxt(k1,k2){
   if(k1===k2)return currentLang==='es'?'Mismo número Ki — vibración energética idéntica. Comprensión inmediata y ritmos compartidos.':currentLang==='en'?'Same Ki number — identical energetic vibration. Immediate understanding and shared rhythms.':'Mesmo número Ki — vibração energética idêntica. Compreensão imediata e ritmos partilhados.';
   if(Math.abs(k1-k2)<=2)return currentLang==='es'?'Números Ki próximos — energías armoniosas con pequeñas diferencias que enriquecen.':currentLang==='en'?'Close Ki numbers — harmonious energies with small enriching differences.':'Números Ki próximos — energias harmoniosas com pequenas diferenças que enriquecem.';
   return currentLang==='es'?'Números Ki distantes — perspectivas muy diferentes que pueden ser complementarias si se valoran.':currentLang==='en'?'Distant Ki numbers — very different perspectives that can complement each other if valued.':'Números Ki distantes — perspectivas muito diferentes que podem ser complementares se valorizadas.';
+}
+
+function ascCompatTxt(e1,e2){
+  if(e1===e2)return currentLang==='es'?'Vuestros Ascendentes comparten el mismo elemento — la forma como os mostráis al mundo y reaccionáis instintivamente es muy parecida, lo que facilita la sintonía desde el primer encuentro.':currentLang==='en'?'Your Ascendants share the same element — the way you present yourselves to the world and react instinctively is very similar, making it easy to click from the first meeting.':'Os vossos Ascendentes partilham o mesmo elemento — a forma como se mostram ao mundo e reagem por instinto é muito semelhante, o que facilita a sintonia desde o primeiro encontro.';
+  const opp=[[0,3],[1,2]];
+  if(opp.some(p=>(p[0]===e1&&p[1]===e2)||(p[0]===e2&&p[1]===e1)))
+    return currentLang==='es'?'Ascendentes en elementos opuestos — las primeras impresiones que dan pueden parecer contradictorias, pero esa tensión inicial suele despertar curiosidad e atracción mutua.':currentLang==='en'?'Ascendants in opposite elements — the first impressions you give off may seem contradictory, but that initial tension often sparks curiosity and mutual attraction.':'Ascendentes em elementos opostos — as primeiras impressões que dão podem parecer contraditórias, mas essa tensão inicial costuma despertar curiosidade e atracção mútua.';
+  return currentLang==='es'?'Vuestros Ascendentes tienen estilos distintos pero compatibles de reaccionar al mundo — cada uno aporta una forma diferente de abordar las situaciones del día a día.':currentLang==='en'?'Your Ascendants have different but compatible styles of reacting to the world — each brings a different way of approaching everyday situations.':'Os vossos Ascendentes têm estilos distintos mas compatíveis de reagir ao mundo — cada um traz uma forma diferente de abordar as situações do dia a dia.';
 }
 
 function renderGenerico(myNome,myNums,myNI,mySigNo,myLuaSigNo,myKi,myEnn,myHd,signos,NI){
@@ -12003,8 +12972,8 @@ function populateHDPreview(){const el=document.getElementById('hd-data-preview')
 
 // ── CONSTELAÇÕES ──
 const CB_DATA={
-  pt:[{id:'b1',ps:[{id:'mae',txt:'Como descreves a tua relação com a tua mãe?',opts:[{txt:'Próxima e amorosa',s:{vinculo:3,mae:3}},{txt:'Distante ou ausente',s:{vinculo:1,mae:1,abandono:2}},{txt:'Conflituosa ou tensa',s:{conflito:3,mae:1}},{txt:'Emaranhada',s:{emaranhamento:3,mae:2}}]},{id:'pai',txt:'Como descreves a tua relação com o teu pai?',opts:[{txt:'Próxima e suportiva',s:{vinculo:3,pai:3}},{txt:'Distante ou ausente',s:{vinculo:1,pai:1,abandono:2}},{txt:'Autoritário ou crítico',s:{conflito:3,pai:1}},{txt:'Ausente por morte ou abandono',s:{abandono:3,pai:0,perda:3}}]},{id:'pais',txt:'Como era a relação entre os teus pais?',opts:[{txt:'Harmoniosa',s:{vinculo:2}},{txt:'Distante ou fria',s:{conflito:1,abandono:1}},{txt:'Conflituosa — discussões',s:{conflito:3,trauma:2}},{txt:'Separados com dificuldades',s:{perda:2,conflito:1}}]},{id:'irmaos',txt:'Como é/era a dinâmica com os teus irmãos?',opts:[{txt:'Não tenho irmãos',s:{isolamento:1}},{txt:'Relação próxima e de apoio',s:{vinculo:2}},{txt:'Rivalidade ou comparação constante',s:{conflito:2,exclusao:1}},{txt:'Relação distante',s:{abandono:1,isolamento:1}}]}]},{id:'b2',ps:[{id:'amor',txt:'Nos teus relacionamentos amorosos, que padrão reconheces?',opts:[{txt:'Estáveis e equilibrados',s:{vinculo:3}},{txt:'Atraio pessoas indisponíveis',s:{abandono:3}},{txt:'Intensos que terminam com ruptura',s:{conflito:3,trauma:2}},{txt:'Cuido excessivamente dos outros',s:{emaranhamento:3}}]},{id:'trabalho',txt:'Na vida profissional, que padrão reconheces?',opts:[{txt:'Estabilidade e progresso',s:{vinculo:2}},{txt:'Sabotagem do sucesso',s:{lealdade:3,exclusao:2}},{txt:'Dificuldade com dinheiro',s:{lealdade:2,trauma:1}},{txt:'Conflito com figuras de autoridade',s:{conflito:3,pai:1}}]},{id:'emocao',txt:'Que emoção parece herdar-te inexplicavelmente?',opts:[{txt:'Tristeza ou melancolia sem razão',s:{perda:3,lealdade:2}},{txt:'Ansiedade ou sensação de perigo',s:{trauma:3,abandono:2}},{txt:'Raiva desproporcional',s:{conflito:3,exclusao:2}},{txt:'Culpa ou vergonha inexplicável',s:{lealdade:3,exclusao:3}}]},{id:'lealdades',txt:'Reconheces lealdades invisíveis à família?',opts:[{txt:'Não — faço escolhas independentes',s:{vinculo:2}},{txt:'Sim — repito padrões dos meus pais',s:{lealdade:3,emaranhamento:2}},{txt:'Sim — sinto que não mereço mais',s:{lealdade:3,exclusao:2}},{txt:'Sim — sinto-me responsável pela felicidade deles',s:{emaranhamento:3,lealdade:2}}]}]},{id:'b3',ps:[{id:'excluidos',txt:'Na tua família existe alguém de quem não se fala?',opts:[{txt:'Não — a família é aberta',s:{vinculo:1}},{txt:'Sim — familiar afastado ou rejeitado',s:{exclusao:3,lealdade:2}},{txt:'Sim — alguém que morreu tragicamente',s:{perda:3,exclusao:3,trauma:2}},{txt:'Há áreas que são tabu',s:{exclusao:2,lealdade:1}}]},{id:'segredos',txt:'Há segredos não falados na tua família?',opts:[{txt:'Não',s:{vinculo:1}},{txt:'Sim — relacionado com identidade',s:{exclusao:3,trauma:2}},{txt:'Sim — violência ou tragédia',s:{trauma:3,exclusao:2}},{txt:'Sim — perdas ou mortes não choradas',s:{perda:3,exclusao:2}}]},{id:'trauma',txt:'Tens conhecimento de traumas nas gerações anteriores?',opts:[{txt:'Não',s:{vinculo:1}},{txt:'Sim — guerra ou migração forçada',s:{trauma:3,perda:2}},{txt:'Sim — pobreza extrema',s:{trauma:2,lealdade:2}},{txt:'Sim — violência ou abuso recorrente',s:{trauma:3,conflito:2}}]}]},{id:'b4',ps:[{id:'lugar',txt:'Qual sentes ser o teu "lugar" na família?',opts:[{txt:'Sinto que pertenço',s:{vinculo:3}},{txt:'O mediador/a — resolvo conflitos',s:{emaranhamento:3,lealdade:2}},{txt:'A ovelha negra',s:{exclusao:3,conflito:2}},{txt:'O cuidador/a',s:{emaranhamento:3,lealdade:3}}]},{id:'vida',txt:'Sentes que estás a viver a tua própria vida?',opts:[{txt:'Sim — as minhas escolhas reflectem quem sou',s:{vinculo:3}},{txt:'Parcialmente',s:{lealdade:2,emaranhamento:1}},{txt:'Raramente — vivo para cumprir expectativas',s:{emaranhamento:3,lealdade:3}},{txt:'Não — sinto-me completamente perdido/a',s:{exclusao:3,trauma:2,emaranhamento:2}}]},{id:'corpo',txt:'Como o teu corpo carrega a história familiar?',opts:[{txt:'Não reconheço padrões físicos',s:{vinculo:2}},{txt:'Tenho sintomas que se repetem na família',s:{lealdade:2,trauma:2}},{txt:'Sinto tensão que associo a emoções familiares',s:{trauma:2,emaranhamento:1}},{txt:'Distanciei-me do meu corpo',s:{trauma:3,abandono:2}}]}]}],
-  es:[{id:'b1',ps:[{id:'mae',txt:'¿Cómo describes tu relación con tu madre?',opts:[{txt:'Cercana y amorosa',s:{vinculo:3,mae:3}},{txt:'Distante o ausente',s:{vinculo:1,mae:1,abandono:2}},{txt:'Conflictiva o tensa',s:{conflito:3,mae:1}},{txt:'Enredada',s:{emaranhamento:3,mae:2}}]},{id:'pai',txt:'¿Cómo describes tu relación con tu padre?',opts:[{txt:'Cercana y de apoyo',s:{vinculo:3,pai:3}},{txt:'Distante o ausente',s:{vinculo:1,pai:1,abandono:2}},{txt:'Autoritario o crítico',s:{conflito:3,pai:1}},{txt:'Ausente por muerte o abandono',s:{abandono:3,pai:0,perda:3}}]},{id:'pais',txt:'¿Cómo era la relación entre tus padres?',opts:[{txt:'Armoniosa',s:{vinculo:2}},{txt:'Distante o fría',s:{conflito:1,abandono:1}},{txt:'Conflictiva — discusiones',s:{conflito:3,trauma:2}},{txt:'Separados con dificultades',s:{perda:2,conflito:1}}]},{id:'irmaos',txt:'¿Cómo es/era la dinámica con tus hermanos?',opts:[{txt:'No tengo hermanos',s:{isolamento:1}},{txt:'Relación cercana y de apoyo',s:{vinculo:2}},{txt:'Rivalidad o comparación constante',s:{conflito:2,exclusao:1}},{txt:'Relación distante',s:{abandono:1,isolamento:1}}]}]},{id:'b2',ps:[{id:'amor',txt:'En tus relaciones amorosas, ¿qué patrón reconoces?',opts:[{txt:'Estables y equilibradas',s:{vinculo:3}},{txt:'Atraigo personas no disponibles',s:{abandono:3}},{txt:'Intensas que terminan con ruptura',s:{conflito:3,trauma:2}},{txt:'Cuido excesivamente a los demás',s:{emaranhamento:3}}]},{id:'trabalho',txt:'En la vida profesional, ¿qué patrón reconoces?',opts:[{txt:'Estabilidad y progreso',s:{vinculo:2}},{txt:'Sabotaje del éxito',s:{lealdade:3,exclusao:2}},{txt:'Dificultad con el dinero',s:{lealdade:2,trauma:1}},{txt:'Conflicto con figuras de autoridad',s:{conflito:3,pai:1}}]},{id:'emocao',txt:'¿Qué emoción parece heredarte inexplicablemente?',opts:[{txt:'Tristeza o melancolía sin razón',s:{perda:3,lealdade:2}},{txt:'Ansiedad o sensación de peligro',s:{trauma:3,abandono:2}},{txt:'Rabia desproporcionada',s:{conflito:3,exclusao:2}},{txt:'Culpa o vergüenza inexplicable',s:{lealdade:3,exclusao:3}}]},{id:'lealdades',txt:'¿Reconoces lealtades invisibles a la familia?',opts:[{txt:'No — tomo decisiones independientes',s:{vinculo:2}},{txt:'Sí — repito patrones de mis padres',s:{lealdade:3,emaranhamento:2}},{txt:'Sí — siento que no merezco más',s:{lealdade:3,exclusao:2}},{txt:'Sí — me siento responsable de su felicidad',s:{emaranhamento:3,lealdade:2}}]}]},{id:'b3',ps:[{id:'excluidos',txt:'¿En tu familia existe alguien de quien no se habla?',opts:[{txt:'No — la familia es abierta',s:{vinculo:1}},{txt:'Sí — familiar alejado o rechazado',s:{exclusao:3,lealdade:2}},{txt:'Sí — alguien que murió trágicamente',s:{perda:3,exclusao:3,trauma:2}},{txt:'Hay áreas que son tabú',s:{exclusao:2,lealdade:1}}]},{id:'segredos',txt:'¿Hay secretos no hablados en tu familia?',opts:[{txt:'No',s:{vinculo:1}},{txt:'Sí — relacionado con identidad',s:{exclusao:3,trauma:2}},{txt:'Sí — violencia o tragedia',s:{trauma:3,exclusao:2}},{txt:'Sí — pérdidas o muertes no lloradas',s:{perda:3,exclusao:2}}]},{id:'trauma',txt:'¿Tienes conocimiento de traumas en generaciones anteriores?',opts:[{txt:'No',s:{vinculo:1}},{txt:'Sí — guerra o migración forzada',s:{trauma:3,perda:2}},{txt:'Sí — pobreza extrema',s:{trauma:2,lealdade:2}},{txt:'Sí — violencia o abuso recurrente',s:{trauma:3,conflito:2}}]}]},{id:'b4',ps:[{id:'lugar',txt:'¿Cuál sientes que es tu "lugar" en la familia?',opts:[{txt:'Siento que pertenezco',s:{vinculo:3}},{txt:'El mediador/a — resuelvo conflictos',s:{emaranhamento:3,lealdade:2}},{txt:'La oveja negra',s:{exclusao:3,conflito:2}},{txt:'El cuidador/a',s:{emaranhamento:3,lealdade:3}}]},{id:'vida',txt:'¿Sientes que estás viviendo tu propia vida?',opts:[{txt:'Sí — mis elecciones reflejan quién soy',s:{vinculo:3}},{txt:'Parcialmente',s:{lealdade:2,emaranhamento:1}},{txt:'Raramente — vivo para cumplir expectativas',s:{emaranhamento:3,lealdade:3}},{txt:'No — me siento completamente perdido/a',s:{exclusao:3,trauma:2,emaranhamento:2}}]},{id:'corpo',txt:'¿Cómo lleva tu cuerpo la historia familiar?',opts:[{txt:'No reconozco patrones físicos',s:{vinculo:2}},{txt:'Tengo síntomas que se repiten en la familia',s:{lealdade:2,trauma:2}},{txt:'Siento tensión que asocio a emociones familiares',s:{trauma:2,emaranhamento:1}},{txt:'Me distancié de mi cuerpo',s:{trauma:3,abandono:2}}]}]}],
+  pt:[{id:'b1',ps:[{id:'mae',txt:'Pensando em toda a tua vida (incluindo infância), como descreves a tua relação com a tua mãe?',opts:[{txt:'Próxima e amorosa',s:{vinculo:3,mae:3}},{txt:'Presente mas emocionalmente distante',s:{vinculo:1,mae:1,abandono:1}},{txt:'Conflituosa ou tensa',s:{conflito:3,mae:1}},{txt:'Emaranhada (demasiado envolvida ou dependente)',s:{emaranhamento:3,mae:2}},{txt:'Ausente — por separação, abandono ou falecimento',s:{abandono:3,mae:0,perda:2}}]},{id:'pai',txt:'Pensando em toda a tua vida (incluindo infância), como descreves a tua relação com o teu pai?',opts:[{txt:'Próxima e suportiva',s:{vinculo:3,pai:3}},{txt:'Presente mas emocionalmente distante',s:{vinculo:1,pai:1,abandono:1}},{txt:'Autoritário ou crítico',s:{conflito:3,pai:1}},{txt:'Ausente — por separação, abandono ou falecimento',s:{abandono:3,pai:0,perda:3}}]},{id:'pais',txt:'Como era a relação entre os teus pais?',opts:[{txt:'Harmoniosa',s:{vinculo:2}},{txt:'Distante ou fria',s:{conflito:1,abandono:1}},{txt:'Conflituosa — discussões',s:{conflito:3,trauma:2}},{txt:'Separados com dificuldades',s:{perda:2,conflito:1}}]},{id:'irmaos',txt:'Como é/era a dinâmica com os teus irmãos?',opts:[{txt:'Não tenho irmãos',s:{isolamento:1}},{txt:'Relação próxima e de apoio',s:{vinculo:2}},{txt:'Rivalidade ou comparação constante',s:{conflito:2,exclusao:1}},{txt:'Relação distante',s:{abandono:1,isolamento:1}}]}]},{id:'b2',ps:[{id:'amor',txt:'Nos teus relacionamentos amorosos, que padrão reconheces?',opts:[{txt:'Estáveis e equilibrados',s:{vinculo:3}},{txt:'Atraio pessoas indisponíveis',s:{abandono:3}},{txt:'Intensos que terminam com ruptura',s:{conflito:3,trauma:2}},{txt:'Cuido excessivamente dos outros',s:{emaranhamento:3}}]},{id:'trabalho',txt:'Na vida profissional, que padrão reconheces?',opts:[{txt:'Estabilidade e progresso',s:{vinculo:2}},{txt:'Sabotagem do sucesso',s:{lealdade:3,exclusao:2}},{txt:'Dificuldade com dinheiro',s:{lealdade:2,trauma:1}},{txt:'Conflito com figuras de autoridade',s:{conflito:3,pai:1}}]},{id:'emocao',txt:'Que emoção parece herdar-te inexplicavelmente?',opts:[{txt:'Tristeza ou melancolia sem razão',s:{perda:3,lealdade:2}},{txt:'Ansiedade ou sensação de perigo',s:{trauma:3,abandono:2}},{txt:'Raiva desproporcional',s:{conflito:3,exclusao:2}},{txt:'Culpa ou vergonha inexplicável',s:{lealdade:3,exclusao:3}}]},{id:'lealdades',txt:'Reconheces lealdades invisíveis à família?',opts:[{txt:'Não — faço escolhas independentes',s:{vinculo:2}},{txt:'Sim — repito padrões dos meus pais',s:{lealdade:3,emaranhamento:2}},{txt:'Sim — sinto que não mereço mais',s:{lealdade:3,exclusao:2}},{txt:'Sim — sinto-me responsável pela felicidade deles',s:{emaranhamento:3,lealdade:2}}]}]},{id:'b3',ps:[{id:'excluidos',txt:'Na tua família existe alguém de quem não se fala?',opts:[{txt:'Não — a família é aberta',s:{vinculo:1}},{txt:'Sim — familiar afastado ou rejeitado',s:{exclusao:3,lealdade:2}},{txt:'Sim — alguém que morreu tragicamente',s:{perda:3,exclusao:3,trauma:2}},{txt:'Há áreas que são tabu',s:{exclusao:2,lealdade:1}}]},{id:'segredos',txt:'Há segredos não falados na tua família?',opts:[{txt:'Não',s:{vinculo:1}},{txt:'Sim — relacionado com identidade',s:{exclusao:3,trauma:2}},{txt:'Sim — violência ou tragédia',s:{trauma:3,exclusao:2}},{txt:'Sim — perdas ou mortes não choradas',s:{perda:3,exclusao:2}}]},{id:'trauma',txt:'Tens conhecimento de traumas nas gerações anteriores?',opts:[{txt:'Não',s:{vinculo:1}},{txt:'Sim — guerra ou migração forçada',s:{trauma:3,perda:2}},{txt:'Sim — pobreza extrema',s:{trauma:2,lealdade:2}},{txt:'Sim — violência ou abuso recorrente',s:{trauma:3,conflito:2}}]}]},{id:'b4',ps:[{id:'lugar',txt:'Pensando na família em que cresceste (pais e irmãos), qual sentes ser o teu "lugar" nela?',opts:[{txt:'Sinto que pertenço',s:{vinculo:3}},{txt:'O mediador/a — resolvo conflitos',s:{emaranhamento:3,lealdade:2}},{txt:'A ovelha negra',s:{exclusao:3,conflito:2}},{txt:'O cuidador/a',s:{emaranhamento:3,lealdade:3}}]},{id:'vida',txt:'Sentes que estás a viver a tua própria vida?',opts:[{txt:'Sim — as minhas escolhas reflectem quem sou',s:{vinculo:3}},{txt:'Parcialmente',s:{lealdade:2,emaranhamento:1}},{txt:'Raramente — vivo para cumprir expectativas',s:{emaranhamento:3,lealdade:3}},{txt:'Não — sinto-me completamente perdido/a',s:{exclusao:3,trauma:2,emaranhamento:2}}]},{id:'corpo',txt:'Como o teu corpo carrega a história familiar?',opts:[{txt:'Não reconheço padrões físicos',s:{vinculo:2}},{txt:'Tenho sintomas que se repetem na família',s:{lealdade:2,trauma:2}},{txt:'Sinto tensão que associo a emoções familiares',s:{trauma:2,emaranhamento:1}},{txt:'Distanciei-me do meu corpo',s:{trauma:3,abandono:2}}]}]}],
+  es:[{id:'b1',ps:[{id:'mae',txt:'Pensando en toda tu vida (incluyendo la infancia), ¿cómo describes tu relación con tu madre?',opts:[{txt:'Cercana y amorosa',s:{vinculo:3,mae:3}},{txt:'Presente pero emocionalmente distante',s:{vinculo:1,mae:1,abandono:1}},{txt:'Conflictiva o tensa',s:{conflito:3,mae:1}},{txt:'Enredada (demasiado involucrada o dependiente)',s:{emaranhamento:3,mae:2}},{txt:'Ausente — por separación, abandono o fallecimiento',s:{abandono:3,mae:0,perda:2}}]},{id:'pai',txt:'Pensando en toda tu vida (incluyendo la infancia), ¿cómo describes tu relación con tu padre?',opts:[{txt:'Cercana y de apoyo',s:{vinculo:3,pai:3}},{txt:'Presente pero emocionalmente distante',s:{vinculo:1,pai:1,abandono:1}},{txt:'Autoritario o crítico',s:{conflito:3,pai:1}},{txt:'Ausente — por separación, abandono o fallecimiento',s:{abandono:3,pai:0,perda:3}}]},{id:'pais',txt:'¿Cómo era la relación entre tus padres?',opts:[{txt:'Armoniosa',s:{vinculo:2}},{txt:'Distante o fría',s:{conflito:1,abandono:1}},{txt:'Conflictiva — discusiones',s:{conflito:3,trauma:2}},{txt:'Separados con dificultades',s:{perda:2,conflito:1}}]},{id:'irmaos',txt:'¿Cómo es/era la dinámica con tus hermanos?',opts:[{txt:'No tengo hermanos',s:{isolamento:1}},{txt:'Relación cercana y de apoyo',s:{vinculo:2}},{txt:'Rivalidad o comparación constante',s:{conflito:2,exclusao:1}},{txt:'Relación distante',s:{abandono:1,isolamento:1}}]}]},{id:'b2',ps:[{id:'amor',txt:'En tus relaciones amorosas, ¿qué patrón reconoces?',opts:[{txt:'Estables y equilibradas',s:{vinculo:3}},{txt:'Atraigo personas no disponibles',s:{abandono:3}},{txt:'Intensas que terminan con ruptura',s:{conflito:3,trauma:2}},{txt:'Cuido excesivamente a los demás',s:{emaranhamento:3}}]},{id:'trabalho',txt:'En la vida profesional, ¿qué patrón reconoces?',opts:[{txt:'Estabilidad y progreso',s:{vinculo:2}},{txt:'Sabotaje del éxito',s:{lealdade:3,exclusao:2}},{txt:'Dificultad con el dinero',s:{lealdade:2,trauma:1}},{txt:'Conflicto con figuras de autoridad',s:{conflito:3,pai:1}}]},{id:'emocao',txt:'¿Qué emoción parece heredarte inexplicablemente?',opts:[{txt:'Tristeza o melancolía sin razón',s:{perda:3,lealdade:2}},{txt:'Ansiedad o sensación de peligro',s:{trauma:3,abandono:2}},{txt:'Rabia desproporcionada',s:{conflito:3,exclusao:2}},{txt:'Culpa o vergüenza inexplicable',s:{lealdade:3,exclusao:3}}]},{id:'lealdades',txt:'¿Reconoces lealtades invisibles a la familia?',opts:[{txt:'No — tomo decisiones independientes',s:{vinculo:2}},{txt:'Sí — repito patrones de mis padres',s:{lealdade:3,emaranhamento:2}},{txt:'Sí — siento que no merezco más',s:{lealdade:3,exclusao:2}},{txt:'Sí — me siento responsable de su felicidad',s:{emaranhamento:3,lealdade:2}}]}]},{id:'b3',ps:[{id:'excluidos',txt:'¿En tu familia existe alguien de quien no se habla?',opts:[{txt:'No — la familia es abierta',s:{vinculo:1}},{txt:'Sí — familiar alejado o rechazado',s:{exclusao:3,lealdade:2}},{txt:'Sí — alguien que murió trágicamente',s:{perda:3,exclusao:3,trauma:2}},{txt:'Hay áreas que son tabú',s:{exclusao:2,lealdade:1}}]},{id:'segredos',txt:'¿Hay secretos no hablados en tu familia?',opts:[{txt:'No',s:{vinculo:1}},{txt:'Sí — relacionado con identidad',s:{exclusao:3,trauma:2}},{txt:'Sí — violencia o tragedia',s:{trauma:3,exclusao:2}},{txt:'Sí — pérdidas o muertes no lloradas',s:{perda:3,exclusao:2}}]},{id:'trauma',txt:'¿Tienes conocimiento de traumas en generaciones anteriores?',opts:[{txt:'No',s:{vinculo:1}},{txt:'Sí — guerra o migración forzada',s:{trauma:3,perda:2}},{txt:'Sí — pobreza extrema',s:{trauma:2,lealdade:2}},{txt:'Sí — violencia o abuso recurrente',s:{trauma:3,conflito:2}}]}]},{id:'b4',ps:[{id:'lugar',txt:'Pensando en la familia en la que creciste (padres y hermanos), ¿cuál sientes que es tu "lugar" en ella?',opts:[{txt:'Siento que pertenezco',s:{vinculo:3}},{txt:'El mediador/a — resuelvo conflictos',s:{emaranhamento:3,lealdade:2}},{txt:'La oveja negra',s:{exclusao:3,conflito:2}},{txt:'El cuidador/a',s:{emaranhamento:3,lealdade:3}}]},{id:'vida',txt:'¿Sientes que estás viviendo tu propia vida?',opts:[{txt:'Sí — mis elecciones reflejan quién soy',s:{vinculo:3}},{txt:'Parcialmente',s:{lealdade:2,emaranhamento:1}},{txt:'Raramente — vivo para cumplir expectativas',s:{emaranhamento:3,lealdade:3}},{txt:'No — me siento completamente perdido/a',s:{exclusao:3,trauma:2,emaranhamento:2}}]},{id:'corpo',txt:'¿Cómo lleva tu cuerpo la historia familiar?',opts:[{txt:'No reconozco patrones físicos',s:{vinculo:2}},{txt:'Tengo síntomas que se repiten en la familia',s:{lealdade:2,trauma:2}},{txt:'Siento tensión que asocio a emociones familiares',s:{trauma:2,emaranhamento:1}},{txt:'Me distancié de mi cuerpo',s:{trauma:3,abandono:2}}]}]}],
   en:[
     {id:'b1',ps:[
       {id:'mae',txt:'How would you describe your relationship with your mother?',opts:[{txt:'Close and loving',s:{vinculo:3,mae:3}},{txt:'Distant or absent',s:{vinculo:1,mae:1,abandono:2}},{txt:'Conflictual or tense',s:{conflito:3,mae:1}},{txt:'Enmeshed',s:{emaranhamento:3,mae:2}}]},
@@ -12066,7 +13035,31 @@ const PI_DATA={
 function getPI(){return PI_DATA[currentLang]||PI_DATA.pt;}
 function renderConstQuestionnaire(){getCB().forEach((b,bi)=>{const c=document.getElementById('const-q-bloco'+(bi+1));if(!c)return;c.innerHTML=b.ps.map((q,qi)=>{const qid='cq_'+b.id+'_'+q.id;return'<div class="const-q"><div class="const-q-text">'+(qi+1)+'. '+q.txt+'</div><div class="const-q-opts">'+q.opts.map((o,oi)=>'<label class="const-opt" id="'+qid+'_'+oi+'" onclick="selectConstOpt(\''+qid+'\','+oi+',this)"><input type="radio" name="'+qid+'" value="'+oi+'">'+o.txt+'</label>').join('')+'</div></div>';}).join('');});}
 function selectConstOpt(qid,oi,el){document.querySelectorAll('[id^="'+qid+'_"]').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');}
-function calcularConstelacoes(){const sc={vinculo:0,emaranhamento:0,lealdade:0,exclusao:0,conflito:0,trauma:0,perda:0,abandono:0,isolamento:0,mae:0,pai:0};let ans=0;getCB().forEach(b=>{b.ps.forEach(q=>{const name='cq_'+b.id+'_'+q.id,sel=document.querySelector('input[name="'+name+'"]:checked');if(sel){ans++;const s=q.opts[parseInt(sel.value)].s;Object.entries(s).forEach(([k,v])=>{if(sc[k]!==undefined)sc[k]+=v;});}});});if(ans<8){alert(t('const_min_respostas'));return;}const mp={vinculo:9,emaranhamento:9,lealdade:9,exclusao:9,conflito:9,trauma:9,perda:9,abandono:9,isolamento:3};const pct={};Object.keys(mp).forEach(k=>{pct[k]=Math.min(100,Math.round((sc[k]||0)/mp[k]*100));});document.getElementById('const-form-section').style.display='none';document.getElementById('const-result-section').style.display='block';renderConstResults(sc,pct);}
+function _constResultadoKey(){
+  const pid=sessionStorage.getItem('perfil_activo_id')||localStorage.getItem('essencia_ultimo_perfil')||'default';
+  return 'essencia_const_resultado_'+pid;
+}
+function _constGuardarResultado(sc,pct){
+  try{localStorage.setItem(_constResultadoKey(),JSON.stringify({sc,pct,ts:Date.now()}));}catch(e){}
+}
+function _constCarregarResultado(){
+  try{const raw=localStorage.getItem(_constResultadoKey());return raw?JSON.parse(raw):null;}catch(e){return null;}
+}
+function _constMostrarResultadoGuardado(){
+  const guardado=_constCarregarResultado();
+  if(!guardado)return false;
+  document.getElementById('const-form-section').style.display='none';
+  document.getElementById('const-result-section').style.display='block';
+  renderConstResults(guardado.sc,guardado.pct);
+  const notaEl=document.getElementById('const-data-guardado');
+  if(notaEl&&guardado.ts){
+    const d=new Date(guardado.ts);
+    const dataStr=d.toLocaleDateString(currentLang==='en'?'en-GB':currentLang==='es'?'es-ES':'pt-PT',{day:'2-digit',month:'long',year:'numeric'});
+    notaEl.textContent=(currentLang==='en'?'Saved analysis from ':currentLang==='es'?'Análisis guardado el ':'Análise guardada a ')+dataStr;
+  }
+  return true;
+}
+function calcularConstelacoes(){const sc={vinculo:0,emaranhamento:0,lealdade:0,exclusao:0,conflito:0,trauma:0,perda:0,abandono:0,isolamento:0,mae:0,pai:0};let ans=0;getCB().forEach(b=>{b.ps.forEach(q=>{const name='cq_'+b.id+'_'+q.id,sel=document.querySelector('input[name="'+name+'"]:checked');if(sel){ans++;const s=q.opts[parseInt(sel.value)].s;Object.entries(s).forEach(([k,v])=>{if(sc[k]!==undefined)sc[k]+=v;});}});});if(ans<8){alert(t('const_min_respostas'));return;}const mp={vinculo:9,emaranhamento:9,lealdade:9,exclusao:9,conflito:9,trauma:9,perda:9,abandono:9,isolamento:3};const pct={};Object.keys(mp).forEach(k=>{pct[k]=Math.min(100,Math.round((sc[k]||0)/mp[k]*100));});_constGuardarResultado(sc,pct);document.getElementById('const-form-section').style.display='none';document.getElementById('const-result-section').style.display='block';const _notaEl=document.getElementById('const-data-guardado');if(_notaEl)_notaEl.textContent='';renderConstResults(sc,pct);}
 function refazerConstelacoes(){document.getElementById('const-result-section').style.display='none';document.getElementById('const-form-section').style.display='block';document.querySelectorAll('.const-opt').forEach(e=>e.classList.remove('selected'));document.querySelectorAll('input[type=radio][name^="cq_"]').forEach(e=>{e.checked=false;});}
 function renderConstResults(sc,pct){
   const _dl=currentLang==='en'?{vinculo:'Connection & security',emaranhamento:'Entanglement',lealdade:'Loyalties',exclusao:'Exclusion',conflito:'Conflict',trauma:'Generational trauma',perda:'Grief',abandono:'Abandonment',isolamento:'Isolation'}:currentLang==='es'?{vinculo:'Vínculo y seguridad',emaranhamento:'Enredo',lealdade:'Lealtades',exclusao:'Exclusión',conflito:'Conflicto',trauma:'Trauma generacional',perda:'Duelo',abandono:'Abandono',isolamento:'Aislamiento'}:{vinculo:'Vínculo e segurança',emaranhamento:'Emaranhamento',lealdade:'Lealdades',exclusao:'Exclusão',conflito:'Conflito',trauma:'Trauma geracional',perda:'Luto',abandono:'Abandono',isolamento:'Isolamento'};
@@ -13116,6 +14109,7 @@ function restaurarSessao(perfil) {
   renderMeditacoes(pl[0].signo, nums ? nums.nV : 5);
   renderFrequencias(pl[0].signo, nums ? nums.nV : 5);
   renderConstQuestionnaire();
+  if(typeof renderFengShuiQuestionnaire==='function')renderFengShuiQuestionnaire();
   initRunaSpread();
   initTarotSpread();
   drawPalmSVG();
@@ -14585,7 +15579,7 @@ function updateDrawerUser(perfilOverride){
   }
 }
 
-function showTab(id,btn){document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');const tab=document.getElementById('tab-'+id);if(tab)tab.style.display='block';if(id==='humandesign'){populateHDPreview();calcularHD();}if(id==='biblioteca')renderBiblioteca();if(id==='diario-terapeutico')renderDiario();if(id==='horoscopo')renderHoroscopo();if(id==='tarot')carregarHistoricoTiragens('tarot');if(id==='runas')carregarHistoricoTiragens('runas');if(id==='parceiro')parcReset();if(id==='solar'){rsPopularPaises();_rsUpdateInfoNote();}if(id==='sono')sonoInit();if(id==='eventos')evInit();if(id==='leituras')leitInit();if(id==='palma'){_palmMostrarLimite();_palmMostrarResultadoGuardado();}if(id==='emocional')emoInit();}
+function showTab(id,btn){document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');const tab=document.getElementById('tab-'+id);if(tab)tab.style.display='block';if(id==='humandesign'){populateHDPreview();calcularHD();}if(id==='biblioteca')renderBiblioteca();if(id==='diario-terapeutico')renderDiario();if(id==='horoscopo')renderHoroscopo();if(id==='tarot')carregarHistoricoTiragens('tarot');if(id==='runas')carregarHistoricoTiragens('runas');if(id==='parceiro')parcReset();if(id==='solar'){rsPopularPaises();_rsUpdateInfoNote();}if(id==='sono')sonoInit();if(id==='eventos')evInit();if(id==='leituras')leitInit();if(id==='palma'){_palmMostrarLimite();_palmMostrarResultadoGuardado();}if(id==='emocional')emoInit();if(id==='constelacoes'){if(typeof _constMostrarResultadoGuardado==='function')_constMostrarResultadoGuardado();}if(id==='chakras'){if(typeof _chakraMostrarResultadoGuardado==='function')_chakraMostrarResultadoGuardado();}if(id==='fengshui'){renderFengShuiQuestionnaire();if(typeof _fsMostrarResultadoGuardado==='function')_fsMostrarResultadoGuardado();}}
 
 </script>
 
@@ -15072,6 +16066,8 @@ Escreve em português europeu, com profundidade mas acessibilidade. Usa um tom c
       msg = currentLang==='en'?'Too many requests. Please wait a moment and try again.':currentLang==='es'?'Demasiadas solicitudes. Espera un momento e inténtalo de nuevo.':'Demasiados pedidos. Aguarda um momento e tenta novamente.';
     } else if(msg.includes('400')) {
       msg = currentLang==='en'?'The image could not be processed. Please try a clearer photo.':currentLang==='es'?'No se pudo procesar la imagen. Prueba con una foto más clara.':'A imagem não pôde ser processada. Tenta com uma foto mais nítida.';
+    } else if(msg.includes('504') || msg.includes('Gateway') || msg.includes('timeout') || msg.includes('Timeout')) {
+      msg = currentLang==='en'?'The analysis took too long and timed out. Try taking a clearer, well-lit photo of your hand (avoid shadows or blur) and try again.':currentLang==='es'?'El análisis tardó demasiado y se agotó el tiempo. Intenta tomar una foto más nítida y bien iluminada de tu mano (evita sombras o desenfoque) y vuelve a intentarlo.':'A análise demorou demasiado tempo e foi interrompida. Tenta tirar uma foto mais nítida e bem iluminada da tua mão (evita sombras ou imagem desfocada) e tenta novamente.';
     } else if(msg.includes('fetch') || msg.includes('network') || msg.includes('Failed') || msg.includes('CORS')) {
       msg = currentLang==='en'?'Connection error. Please check your internet connection and try again.':currentLang==='es'?'Error de conexión. Verifica tu conexión a internet e inténtalo de nuevo.':'Erro de ligação. Verifica a tua conexão à internet e tenta novamente.';
     } else {
