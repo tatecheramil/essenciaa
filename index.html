@@ -1367,6 +1367,7 @@
             <button class="freq-dur-btn" onclick="setDuration(0,this)">∞</button>
           </div>
           <div class="freq-countdown" id="freq-countdown" style="display:none"></div>
+          <audio id="freq-silent-unlock" preload="auto" style="display:none" src="data:audio/wav;base64,UklGRiQAAAAWQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA="></audio>
           <div id="freq-ios-warn" style="display:none;background:rgba(74,143,181,0.08);border:1px solid var(--border);border-radius:10px;padding:.85rem;text-align:center;margin-bottom:.75rem;font-size:.8rem;color:var(--text2)">
             🔊 Toca aqui para activar o áudio<br>
             <button onclick="fxUnlockAudio()" style="margin-top:.5rem;padding:.5rem 1.25rem;background:var(--accent-deep);border:none;border-radius:8px;color:#fff;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.12em;cursor:pointer">Activar Áudio</button>
@@ -6655,7 +6656,18 @@ function fxUnlockAudio(){
   if(_fxUnlocked) return;
   if(!_fxEnsureCtx()) return;
   var ctx=fxCtx;
-  // Tocar buffer silencioso — desbloqueia o contexto no iOS
+  // Truque 1: tocar um <audio> HTML real (não Web Audio) — isto é o que mais
+  // fiavelmente "abre" a sessão de áudio no iOS quando a app está instalada
+  // a partir do ecrã principal (modo standalone).
+  try{
+    var silentEl=document.getElementById('freq-silent-unlock');
+    if(silentEl){
+      silentEl.currentTime=0;
+      var p=silentEl.play();
+      if(p&&typeof p.catch==='function') p.catch(function(){});
+    }
+  }catch(e){}
+  // Truque 2: tocar buffer silencioso via Web Audio — desbloqueia o AudioContext
   try{
     var buf=ctx.createBuffer(1,ctx.sampleRate,ctx.sampleRate);
     var src=ctx.createBufferSource();
@@ -6666,6 +6678,15 @@ function fxUnlockAudio(){
   // Esconder aviso iOS
   var warn=document.getElementById('freq-ios-warn');
   if(warn) warn.style.display='none';
+}
+
+// Deteta se a app está a correr instalada a partir do ecrã principal (modo
+// standalone), onde o desbloqueio automático de áudio é menos fiável no iOS.
+// Nesse caso, mostramos sempre o aviso/botão de activação por defeito.
+function _fxIsStandalone(){
+  try{
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  }catch(e){ return false; }
 }
 
 function toggleFreq(){
@@ -10589,7 +10610,7 @@ function updateDrawerUser(perfilOverride){
   }
 }
 
-function showTab(id,btn){document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');const tab=document.getElementById('tab-'+id);if(tab)tab.style.display='block';if(id==='humandesign'){populateHDPreview();calcularHD();}if(id==='biblioteca')renderBiblioteca();if(id==='diario-terapeutico')renderDiario();if(id==='horoscopo')renderHoroscopo();if(id==='tarot')carregarHistoricoTiragens('tarot');if(id==='runas')carregarHistoricoTiragens('runas');if(id==='parceiro')parcReset();if(id==='solar'){rsPopularPaises();_rsUpdateInfoNote();}if(id==='sono')sonoInit();if(id==='eventos')evInit();if(id==='leituras')leitInit();if(id==='palma'){_palmMostrarLimite();_palmMostrarResultadoGuardado();}if(id==='emocional')emoInit();if(id==='constelacoes'){if(typeof _constMostrarResultadoGuardado==='function')_constMostrarResultadoGuardado();}if(id==='chakras'){if(typeof _chakraMostrarResultadoGuardado==='function')_chakraMostrarResultadoGuardado();}if(id==='fengshui'){renderFengShuiQuestionnaire();if(typeof _fsMostrarResultadoGuardado==='function')_fsMostrarResultadoGuardado();}if(id==='sonhos'){if(typeof renderSonhosGrid==='function')renderSonhosGrid();}if(id==='anjos'){if(typeof renderAnjosGrid==='function')renderAnjosGrid();}if(id==='packs'){if(typeof renderPacks==='function')renderPacks();}}
+function showTab(id,btn){document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');const tab=document.getElementById('tab-'+id);if(tab)tab.style.display='block';if(id==='humandesign'){populateHDPreview();calcularHD();}if(id==='biblioteca')renderBiblioteca();if(id==='diario-terapeutico')renderDiario();if(id==='horoscopo')renderHoroscopo();if(id==='tarot')carregarHistoricoTiragens('tarot');if(id==='runas')carregarHistoricoTiragens('runas');if(id==='parceiro')parcReset();if(id==='solar'){rsPopularPaises();_rsUpdateInfoNote();}if(id==='sono')sonoInit();if(id==='eventos')evInit();if(id==='leituras')leitInit();if(id==='palma'){_palmMostrarLimite();_palmMostrarResultadoGuardado();}if(id==='emocional')emoInit();if(id==='constelacoes'){if(typeof _constMostrarResultadoGuardado==='function')_constMostrarResultadoGuardado();}if(id==='chakras'){if(typeof _chakraMostrarResultadoGuardado==='function')_chakraMostrarResultadoGuardado();}if(id==='fengshui'){renderFengShuiQuestionnaire();if(typeof _fsMostrarResultadoGuardado==='function')_fsMostrarResultadoGuardado();}if(id==='sonhos'){if(typeof renderSonhosGrid==='function')renderSonhosGrid();}if(id==='anjos'){if(typeof renderAnjosGrid==='function')renderAnjosGrid();}if(id==='packs'){if(typeof renderPacks==='function')renderPacks();}if(id==='frequencias'){if(typeof _fxIsStandalone==='function'&&_fxIsStandalone()&&!_fxUnlocked){var fw=document.getElementById('freq-ios-warn');if(fw)fw.style.display='block';}}}
 
 </script>
 
