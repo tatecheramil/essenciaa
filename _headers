@@ -1,0 +1,3 @@
+/audio/*.m4a
+  Content-Type: audio/mp4
+  Access-Control-Allow-Origin: *
