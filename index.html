@@ -140,6 +140,43 @@
 .fs-ia-resultado-texto h3:first-child{margin-top:0}
 .fs-ia-resultado-texto p{margin:.5rem 0;line-height:1.85}
 .fs-ia-resultado-texto strong{color:var(--accent-deep);font-weight:500}
+/* ── INTERPRETAÇÃO DE SONHOS POR IA (texto, sem foto) ────────────────────── */
+.sonhos-mode-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;background:var(--bg2);border-radius:12px;padding:.3rem}
+.sonhos-mode-btn{flex:1;padding:.65rem;background:transparent;border:none;border-radius:9px;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);cursor:pointer;transition:all .2s}
+.sonhos-mode-btn.active{background:var(--card);color:var(--accent-deep);box-shadow:0 1px 6px rgba(74,143,181,.15)}
+.sonhos-ia-intro{text-align:center;padding:1.5rem 1rem;margin-bottom:1.5rem;background:linear-gradient(135deg,rgba(74,143,181,.08),rgba(106,171,204,.06));border-radius:16px;border:1px solid var(--border2)}
+.sonhos-ia-icon{font-size:2.5rem;margin-bottom:.5rem}
+.sonhos-ia-titulo{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:.35rem}
+.sonhos-ia-sub{font-size:.85rem;color:var(--text2);line-height:1.65}
+.sonhos-ia-textarea{width:100%;min-height:160px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;font-family:'Jost',sans-serif;font-size:.9rem;color:var(--text);resize:vertical;outline:none;transition:border-color .3s,box-shadow .3s;margin-bottom:1rem}
+.sonhos-ia-textarea:focus{border-color:var(--accent2);background:var(--card);box-shadow:0 0 0 3px rgba(74,143,181,.08)}
+.sonhos-ia-textarea::placeholder{color:var(--text3);font-style:italic}
+.sonhos-ia-loading-icon{font-size:2rem;color:var(--accent);animation:pulse 1.5s ease-in-out infinite}
+.sonhos-ia-resultado-texto{font-family:'Cormorant Garamond',serif;font-size:1rem;line-height:1.85;color:var(--text2);background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:1.5rem}
+.sonhos-ia-resultado-texto h3{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-deep);margin:1.25rem 0 .5rem;border-bottom:1px solid var(--border2);padding-bottom:.4rem}
+.sonhos-ia-resultado-texto h3:first-child{margin-top:0}
+.sonhos-ia-resultado-texto p{margin:.5rem 0;line-height:1.85}
+.sonhos-ia-resultado-texto strong{color:var(--accent-deep);font-weight:500}
+/* ── DIÁRIO TERAPÊUTICO: guia, temas, prompt por humor, sequência ────────── */
+.diario-guia-card{background:var(--card2);border:1px solid var(--border2);border-radius:14px;margin-bottom:1.5rem;overflow:hidden}
+.diario-guia-toggle{width:100%;background:transparent;border:none;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);text-align:left}
+.diario-guia-toggle:hover{color:var(--accent)}
+.diario-guia-arrow{transition:transform .2s;flex-shrink:0;margin-left:.75rem}
+.diario-guia-arrow.open{transform:rotate(180deg)}
+.diario-guia-conteudo{padding:0 1.25rem 1.25rem}
+.diario-guia-tip{display:flex;gap:.6rem;align-items:flex-start;font-size:.85rem;color:var(--text2);line-height:1.6;margin-bottom:.65rem}
+.diario-guia-tip:last-child{margin-bottom:0}
+.diario-guia-tip-icon{flex-shrink:0;margin-top:.1rem}
+.diario-streak{font-size:.78rem;color:var(--accent2);font-style:italic;margin-bottom:1rem;text-align:center;padding:.5rem;background:rgba(74,143,181,0.05);border-radius:10px}
+.diario-temas-label{font-size:.68rem;letter-spacing:.08em;color:var(--text3);text-transform:uppercase;margin:.85rem 0 .5rem;display:block}
+.diario-tema-chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.5rem}
+.diario-tema-chip{background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:.5rem 1rem;font-size:.72rem;color:var(--text2);cursor:pointer;transition:all .15s;font-family:'Jost',sans-serif}
+.diario-tema-chip:hover{border-color:var(--accent2);background:var(--card2);color:var(--accent-deep)}
+.diario-tema-chip.active{border-color:var(--accent2);background:var(--accent-deep);color:#fff}
+.diario-tema-prompts{margin:.6rem 0;display:flex;flex-direction:column;gap:.4rem}
+.diario-prompt-chip{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:.6rem .9rem;font-size:.82rem;color:var(--text2);cursor:pointer;display:flex;align-items:flex-start;gap:.5rem;text-align:left;transition:all .15s}
+.diario-prompt-chip:hover{border-color:var(--accent2);background:var(--card)}
+.diario-mood-prompt-chip{background:rgba(74,143,181,0.08);border:1px solid var(--accent3);border-radius:20px;padding:.55rem 1rem;font-size:.84rem;color:var(--accent-deep);cursor:pointer;display:inline-flex;align-items:center;gap:.45rem;margin-bottom:.6rem}
 
 .privacy-link{background:none;border:none;color:var(--accent);font-size:0.82rem;cursor:pointer;padding:0;text-decoration:underline;font-family:'Jost',sans-serif}
 
@@ -537,6 +574,7 @@
     <div class="drawer-group" id="cat-apoio">
       <button class="drawer-item" id="di-eventos" onclick="drawerNav('eventos')"><span class="drawer-item-icon">✦</span><span id="ditem-eventos">Eventos</span></button>
       <button class="drawer-item" id="di-terapeutas" onclick="drawerNav('terapeutas')"><span class="drawer-item-icon">♡</span><span id="ditem-terapeutas">Consultas</span></button>
+      <button class="drawer-item" id="di-packs" onclick="drawerNav('packs')"><span class="drawer-item-icon">🎁</span><span id="ditem-packs">Packs Terapêuticos</span></button>
       <button class="drawer-item" id="di-cursos" onclick="drawerNav('cursos')"><span class="drawer-item-icon">◈</span><span id="ditem-cursos">Cursos</span></button>
       <button class="drawer-item" id="di-leituras" onclick="drawerNav('leituras')"><span class="drawer-item-icon">📚</span><span id="ditem-leituras">Leituras</span></button>
       <button class="drawer-item" id="di-biblioteca" onclick="drawerNav('biblioteca')"><span class="drawer-item-icon">📖</span><span id="ditem-biblioteca">Biblioteca</span></button>
@@ -1482,7 +1520,26 @@
       </div>
     </div>
     <div class="interp-box" style="margin-bottom:1.5rem"><div class="interp-label" id="cursos-elekitra-label">Formações em Destaque</div><div class="interp-text" id="cursos-intro-txt">Formações online para aprofundar o teu caminho espiritual e de autoconhecimento.</div></div>
+    <div style="margin-bottom:1rem">
+      <input type="text" id="cursos-busca" oninput="filtrarCursos()" placeholder="Pesquisar cursos (ex: reiki, estelar, cristais...)"
+        style="width:100%;padding:.7rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-family:'Jost',sans-serif;font-size:.85rem;outline:none">
+    </div>
+    <div id="cursos-chips-categoria" style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.25rem"></div>
+    <div id="cursos-contagem" style="font-size:.72rem;color:var(--text3);margin-bottom:1rem"></div>
+    <div id="cursos-sem-resultados" style="display:none;font-size:.85rem;color:var(--text3);text-align:center;padding:2rem;font-style:italic"></div>
     <div class="courses-grid" id="courses-grid"></div>
+  </div>
+
+  <div id="tab-packs" class="tab-content" style="display:none">
+    <div class="runas-hero" style="margin-bottom:1.5rem">
+      <div class="runas-hero-icon">🎁</div>
+      <div>
+        <div class="runas-hero-title" id="packs-hero-titulo">Packs Terapêuticos</div>
+        <div class="runas-hero-sub" id="packs-hero-sub">Acompanhamento contínuo · Equipa multidisciplinar · Transformação profunda</div>
+      </div>
+    </div>
+    <div class="interp-box" style="margin-bottom:1.5rem"><div class="interp-label" id="packs-intro-label">O que são os packs terapêuticos?</div><div class="interp-text" id="packs-intro-txt">Acompanhamentos estruturados, com sessões regulares e um plano adaptado a ti — para quem quer ir mais além de uma sessão pontual.</div></div>
+    <div class="courses-grid" id="packs-grid"></div>
   </div>
 
   
@@ -1688,6 +1745,12 @@
         <div class="diario-hero-sub" id="sonhos-subtitulo">O que os teus sonhos podem estar a dizer-te</div>
       </div>
     </div>
+    <div class="sonhos-mode-tabs">
+      <button class="sonhos-mode-btn active" id="sonhos-mode-dic-btn" onclick="switchSonhosMode('dicionario')">🔎 <span id="sonhos-modo-dic-txt">Dicionário de símbolos</span></button>
+      <button class="sonhos-mode-btn" id="sonhos-mode-ia-btn" onclick="switchSonhosMode('ia')">🤖 <span id="sonhos-modo-ia-txt">Interpretação por IA</span></button>
+    </div>
+
+    <div id="sonhos-mode-dicionario">
     <p style="font-size:.82rem;color:var(--text2);line-height:1.6;margin-bottom:1.5rem" id="sonhos-intro">Pesquisa um símbolo, palavra ou tema do teu sonho, ou escolhe um dos mais comuns abaixo. Os sonhos são pessoais — usa estas interpretações como ponto de partida para a tua própria reflexão, não como uma verdade fixa.</p>
     <div style="display:flex;gap:.5rem;margin-bottom:1.25rem">
       <input type="text" id="sonhos-busca" placeholder="Pesquisar (ex: água, voar, cobra...)"
@@ -1698,6 +1761,41 @@
     <div id="sonhos-resultado" style="display:none;margin-bottom:1.5rem"></div>
     <div class="form-section-label" id="sonhos-comuns-titulo">Símbolos mais comuns</div>
     <div id="sonhos-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:.6rem;margin-top:.75rem"></div>
+    </div><!-- /sonhos-mode-dicionario -->
+
+    <div id="sonhos-mode-ia" style="display:none">
+      <div class="sonhos-ia-intro">
+        <div class="sonhos-ia-icon">🤖💭</div>
+        <div class="sonhos-ia-titulo" id="sonhos-ia-titulo">Interpretação Personalizada com Inteligência Artificial</div>
+        <div class="sonhos-ia-sub" id="sonhos-ia-sub">Descreve o teu sonho com o máximo de detalhe que conseguires — pessoas, lugares, emoções, símbolos — e a IA dá-te uma interpretação personalizada</div>
+      </div>
+
+      <textarea id="sonhos-ia-texto-input" class="sonhos-ia-textarea" placeholder="Descreve o teu sonho aqui... O que viste, quem estava presente, como te sentiste, o que aconteceu..." maxlength="3000"></textarea>
+
+      <div id="sonhos-limite-info" style="display:none;margin-bottom:.75rem;background:rgba(74,143,181,0.07);border:1px solid var(--border);border-radius:10px;padding:.85rem 1rem;font-size:.8rem;color:var(--text2);line-height:1.6">
+        <span id="sonhos-limite-texto"></span>
+      </div>
+      <button id="sonhos-analisar-btn" onclick="interpretarSonhoIA()" class="btn-primary">
+        <span id="sonhos-analisar-txt">✦&nbsp;&nbsp;Interpretar o meu sonho</span>
+      </button>
+
+      <div id="sonhos-ia-loading" style="display:none;text-align:center;padding:2.5rem 1rem">
+        <div class="sonhos-ia-loading-icon">✦</div>
+        <div style="font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:.75rem 0 .4rem" id="sonhos-ia-analisando">A interpretar o teu sonho</div>
+        <div style="font-size:.82rem;color:var(--text3)" id="sonhos-ia-lendo">A IA está a procurar os significados simbólicos...</div>
+      </div>
+
+      <div id="sonhos-ia-resultado" style="display:none;margin-top:1.5rem">
+        <div class="section-title" id="sonhos-ia-resultado-titulo">✨ A tua interpretação</div>
+        <div id="sonhos-ia-resultado-texto-out" class="sonhos-ia-resultado-texto"></div>
+        <div id="sonhos-ia-bloqueio-msg" style="display:none;margin-top:1rem;text-align:center;font-size:.78rem;color:var(--text3);font-family:'Cormorant Garamond',serif;font-style:italic;padding:.75rem">
+          🔒 <span id="sonhos-ia-bloqueio-txt">Esta é a tua interpretação desta semana. Uma nova ficará disponível na próxima semana.</span>
+        </div>
+        <button id="sonhos-ia-retry-btn" onclick="resetSonhoIA()" style="display:none;width:100%;padding:.85rem;background:transparent;border:1px solid var(--border);border-radius:10px;color:var(--accent);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;margin-top:1rem">
+          <span id="sonhos-ia-retry-txt">↺ Tentar novamente</span>
+        </button>
+      </div>
+    </div><!-- /sonhos-mode-ia -->
   </div>
 
   <div id="tab-anjos" class="tab-content" style="display:none">
@@ -1732,6 +1830,20 @@
       <div class="interp-label" id="diario-espaco-label">O teu espaço sagrado</div>
       <div class="interp-text" id="diario-espaco-txt">O diário terapêutico é uma das ferramentas mais poderosas de autoconhecimento. Escrever sem censura permite aceder a camadas da consciência que o pensamento racional não alcança. As tuas entradas ficam guardadas neste dispositivo — ninguém mais as vê.</div>
     </div>
+    <div class="diario-guia-card">
+      <button class="diario-guia-toggle" onclick="toggleDiarioGuia()">
+        <span id="diario-guia-titulo">💡 Como tirar mais partido do teu diário</span>
+        <span class="diario-guia-arrow" id="diario-guia-arrow">▾</span>
+      </button>
+      <div id="diario-guia-conteudo" style="display:none">
+        <div class="diario-guia-tip"><span class="diario-guia-tip-icon">✦</span><span id="diario-guia-tip1">Escreve sem reler enquanto escreves — corrige depois, se quiseres, nunca durante.</span></div>
+        <div class="diario-guia-tip"><span class="diario-guia-tip-icon">✦</span><span id="diario-guia-tip2">Não te preocupes com gramática, ortografia ou se "faz sentido" — isto não é para ninguém ler.</span></div>
+        <div class="diario-guia-tip"><span class="diario-guia-tip-icon">✦</span><span id="diario-guia-tip3">Foca-te no que sentes, não só no que aconteceu — os factos importam menos do que o impacto que tiveram em ti.</span></div>
+        <div class="diario-guia-tip"><span class="diario-guia-tip-icon">✦</span><span id="diario-guia-tip4">A verdade desconfortável é mais útil aqui do que a versão bonita ou socialmente aceitável.</span></div>
+        <div class="diario-guia-tip"><span class="diario-guia-tip-icon">✦</span><span id="diario-guia-tip5">Não precisas de concluir nada — uma entrada pode ficar em aberto, com mais perguntas do que respostas.</span></div>
+      </div>
+    </div>
+    <div id="diario-streak" class="diario-streak" style="display:none"></div>
     <div class="diario-new-entry">
       <div class="diario-toolbar">
         <div class="diario-date-label" id="diario-date-now"></div>
@@ -1744,7 +1856,11 @@
           <span class="diario-mood" onclick="selectMood(this,'✨')" title="Luminoso">✨</span>
         </div>
       </div>
+      <div id="diario-mood-prompt-row"></div>
       <div class="diario-prompts" id="diario-prompts-row"></div>
+      <div class="diario-temas-label" id="diario-temas-label">Ou escolhe um tema para te inspirares</div>
+      <div class="diario-tema-chips" id="diario-tema-chips"></div>
+      <div class="diario-tema-prompts" id="diario-tema-prompts" style="display:none"></div>
       <textarea id="diario-textarea" class="diario-textarea" placeholder="Escreve livremente... Como te sentes hoje? O que está a pesar? O que descobriste? Não há certo nem errado aqui."></textarea>
       <div class="diario-actions">
         <div style="font-size:0.72rem;color:var(--text3)" id="diario-char-count">0 caracteres</div>
@@ -2061,6 +2177,13 @@ const TRANSLATIONS = {
     diario_subtitulo: 'O teu espaço privado de reflexão e cura',
     diario_espaco_label: 'O teu espaço sagrado',
     diario_espaco_txt: 'O diário terapêutico é uma das ferramentas mais poderosas de autoconhecimento. Escrever sem censura permite aceder a camadas da consciência que o pensamento racional não alcança. As tuas entradas ficam guardadas neste dispositivo — ninguém mais as vê.',
+    diario_guia_titulo: '💡 Como tirar mais partido do teu diário',
+    diario_guia_tip1: 'Escreve sem reler enquanto escreves — corrige depois, se quiseres, nunca durante.',
+    diario_guia_tip2: 'Não te preocupes com gramática, ortografia ou se "faz sentido" — isto não é para ninguém ler.',
+    diario_guia_tip3: 'Foca-te no que sentes, não só no que aconteceu — os factos importam menos do que o impacto que tiveram em ti.',
+    diario_guia_tip4: 'A verdade desconfortável é mais útil aqui do que a versão bonita ou socialmente aceitável.',
+    diario_guia_tip5: 'Não precisas de concluir nada — uma entrada pode ficar em aberto, com mais perguntas do que respostas.',
+    diario_temas_label: 'Ou escolhe um tema para te inspirares',
     diario_como_estas: 'Como estás?',
     diario_guardar: '💾 Guardar entrada',
     diario_entradas_titulo: 'Entradas anteriores',
@@ -2126,6 +2249,10 @@ const TRANSLATIONS = {
     cursos_hero_sub: 'Formação espiritual · Práticas · Transformação',
     cursos_elekitra: 'Formações em Destaque',
     cursos_intro: 'Formações online para aprofundar o teu caminho espiritual e de autoconhecimento.',
+    packs_hero_titulo: 'Packs Terapêuticos',
+    packs_hero_sub: 'Acompanhamento contínuo · Equipa multidisciplinar · Transformação profunda',
+    packs_intro_label: 'O que são os packs terapêuticos?',
+    packs_intro_txt: 'Acompanhamentos estruturados, com sessões regulares e um plano adaptado a ti — para quem quer ir mais além de uma sessão pontual.',
     cursos_saber_mais: 'Saber mais',
     cursos_inscrever: 'Inscrever-me',
     palma_foto_label: '📷   Tirar foto / Escolher da galeria',
@@ -2535,6 +2662,13 @@ const TRANSLATIONS = {
     diario_subtitulo: 'Tu espacio privado de reflexión y sanación',
     diario_espaco_label: 'Tu espacio sagrado',
     diario_espaco_txt: 'El diario terapéutico es una de las herramientas más poderosas de autoconocimiento. Escribir sin censura permite acceder a capas de la conciencia que el pensamiento racional no alcanza. Tus entradas quedan guardadas en este dispositivo — nadie más las ve.',
+    diario_guia_titulo: '💡 Cómo aprovechar mejor tu diario',
+    diario_guia_tip1: 'Escribe sin releer mientras escribes — corrige después, si quieres, nunca durante.',
+    diario_guia_tip2: 'No te preocupes por la gramática, la ortografía o si "tiene sentido" — esto no es para que nadie lo lea.',
+    diario_guia_tip3: 'Concéntrate en lo que sientes, no solo en lo que pasó — los hechos importan menos que el impacto que tuvieron en ti.',
+    diario_guia_tip4: 'La verdad incómoda es más útil aquí que la versión bonita o socialmente aceptable.',
+    diario_guia_tip5: 'No necesitas concluir nada — una entrada puede quedar abierta, con más preguntas que respuestas.',
+    diario_temas_label: 'O elige un tema para inspirarte',
     diario_como_estas: '¿Cómo estás?',
     diario_guardar: '💾 Guardar entrada',
     diario_entradas_titulo: 'Entradas anteriores',
@@ -2611,6 +2745,10 @@ const TRANSLATIONS = {
     cursos_hero_sub: 'Formação espiritual · Práticas · Transformação',
     cursos_elekitra: 'Formações em Destaque',
     cursos_intro: 'Formaciones online creadas por Margarida Leite para profundizar tu camino espiritual.',
+    packs_hero_titulo: 'Packs Terapéuticos',
+    packs_hero_sub: 'Acompañamiento continuo · Equipo multidisciplinar · Transformación profunda',
+    packs_intro_label: '¿Qué son los packs terapéuticos?',
+    packs_intro_txt: 'Acompañamientos estructurados, con sesiones regulares y un plan adaptado a ti — para quien quiere ir más allá de una sesión puntual.',
     cursos_saber_mais: 'Saber más',
     cursos_inscrever: 'Inscribirme',
     bib_titulo: 'Biblioteca Espiritual',
@@ -2889,11 +3027,22 @@ const TRANSLATIONS = {
     cursos_hero_sub: 'Spiritual training · Practices · Transformation',
     cursos_elekitra: 'Featured Courses',
     cursos_intro: 'Online courses to deepen your spiritual path and self-knowledge.',
+    packs_hero_titulo: 'Therapeutic Packs',
+    packs_hero_sub: 'Ongoing support · Multidisciplinary team · Deep transformation',
+    packs_intro_label: 'What are therapeutic packs?',
+    packs_intro_txt: 'Structured support programmes, with regular sessions and a plan adapted to you — for those who want to go further than a one-off session.',
     cursos_saber_mais: 'Learn more', cursos_inscrever: 'Enroll',
     diario_titulo: 'Therapeutic Journal',
     diario_subtitulo: 'Your private space for reflection and healing',
     diario_espaco_label: 'Your sacred space',
     diario_espaco_txt: 'The therapeutic journal is one of the most powerful self-knowledge tools. Writing without censorship allows access to layers of consciousness that rational thought cannot reach. Your entries are stored on this device — no one else sees them.',
+    diario_guia_titulo: '💡 How to get more out of your journal',
+    diario_guia_tip1: 'Write without re-reading as you go — correct it afterwards, if you want, never during.',
+    diario_guia_tip2: 'Do not worry about grammar, spelling, or whether it "makes sense" — this is not meant for anyone else to read.',
+    diario_guia_tip3: 'Focus on what you feel, not just what happened — the facts matter less than the impact they had on you.',
+    diario_guia_tip4: 'The uncomfortable truth is more useful here than the pretty or socially acceptable version.',
+    diario_guia_tip5: 'You do not need to conclude anything — an entry can stay open-ended, with more questions than answers.',
+    diario_temas_label: 'Or pick a theme to inspire you',
     diario_como_estas: 'How are you?', diario_guardar: '💾 Save entry',
     diario_entradas_titulo: 'Previous entries',
     diario_vazio: 'Your journal is blank. The first entry is always the hardest — and the most important.',
@@ -3404,8 +3553,17 @@ function applyLang() {
     set('sonhos-intro','Pesquisa um símbolo, palavra ou tema do teu sonho, ou escolhe um dos mais comuns abaixo. Os sonhos são pessoais — usa estas interpretações como ponto de partida para a tua própria reflexão, não como uma verdade fixa.','Busca un símbolo, palabra o tema de tu sueño, o elige uno de los más comunes abajo. Los sueños son personales — usa estas interpretaciones como punto de partida para tu propia reflexión, no como una verdad fija.','Search for a symbol, word or theme from your dream, or pick one of the most common ones below. Dreams are personal — use these interpretations as a starting point for your own reflection, not as a fixed truth.');
     set('sonhos-btn-buscar','Ver','Ver','View');
     set('sonhos-comuns-titulo','Símbolos mais comuns','Símbolos más comunes','Most common symbols');
+    set('sonhos-modo-dic-txt','Dicionário de símbolos','Diccionario de símbolos','Symbol dictionary');
+    set('sonhos-modo-ia-txt','Interpretação por IA','Interpretación por IA','AI interpretation');
+    set('sonhos-ia-titulo','Interpretação Personalizada com Inteligência Artificial','Interpretación Personalizada con Inteligencia Artificial','Personalised Interpretation with Artificial Intelligence');
+    set('sonhos-ia-sub','Descreve o teu sonho com o máximo de detalhe que conseguires — pessoas, lugares, emoções, símbolos — e a IA dá-te uma interpretação personalizada','Describe tu sueño con el máximo detalle que puedas — personas, lugares, emociones, símbolos — y la IA te da una interpretación personalizada','Describe your dream in as much detail as you can — people, places, emotions, symbols — and the AI gives you a personalised interpretation');
+    set('sonhos-analisar-txt','✦  Interpretar o meu sonho','✦  Interpretar mi sueño','✦  Interpret my dream');
+    set('sonhos-ia-analisando','A interpretar o teu sonho','Interpretando tu sueño','Interpreting your dream');
+    set('sonhos-ia-lendo','A IA está a procurar os significados simbólicos...','La IA está buscando los significados simbólicos...','The AI is looking for the symbolic meanings...');
+    set('sonhos-ia-resultado-titulo','✨ A tua interpretação','✨ Tu interpretación','✨ Your interpretation');
     set('ditem-sonhos','Interpretação dos Sonhos','Interpretación de los Sueños','Dream Interpretation');
     var _be=document.getElementById('sonhos-busca');if(_be)_be.placeholder=currentLang==='en'?'Search (e.g. water, flying, snake...)':currentLang==='es'?'Buscar (ej: agua, volar, serpiente...)':'Pesquisar (ex: água, voar, cobra...)';
+    var _siT=document.getElementById('sonhos-ia-texto-input');if(_siT)_siT.placeholder=currentLang==='en'?'Describe your dream here... What you saw, who was there, how you felt, what happened...':currentLang==='es'?'Describe tu sueño aquí... Qué viste, quién estaba presente, cómo te sentiste, qué pasó...':'Descreve o teu sonho aqui... O que viste, quem estava presente, como te sentiste, o que aconteceu...';
     // Traduções do toggle Guia/Áudio em Meditações
     set('med-mode-guia-txt','Guia Meditativo','Guía Meditativa','Meditation Guide');
     set('med-mode-audio-txt','Áudio','Audio','Audio');
@@ -3630,6 +3788,7 @@ function applyLang() {
   const tabBtnHoro=document.getElementById('tab-btn-horoscopo'); if(tabBtnHoro) tabBtnHoro.textContent=currentLang==='es'?'🔮 Horóscopo':currentLang==='en'?'🔮 Horoscope':'🔮 Horóscopo';
   if(typeof renderHoroscopo==='function'&&window._planetas&&window._planetas.length>0) renderHoroscopo();
   // Mapa Astral tab
+  _renderCursosChips();
   _renderCourses();
   var _ahT=document.getElementById('astral-hero-title');if(_ahT)_ahT.textContent=T.astral_hero_title||'Mapa Astral';
   var _ahS=document.getElementById('astral-hero-sub');if(_ahS)_ahS.textContent=T.astral_hero_sub||'O céu no momento em que nasceste';
@@ -3655,6 +3814,11 @@ function applyLang() {
   const cursosHeroSub=document.getElementById('cursos-hero-sub'); if(cursosHeroSub) cursosHeroSub.textContent=T.cursos_hero_sub||'';
   const cursosLabel=document.getElementById('cursos-elekitra-label'); if(cursosLabel) cursosLabel.textContent=T.cursos_elekitra;
   const cursosIntroEl=document.getElementById('cursos-intro-txt'); if(cursosIntroEl) cursosIntroEl.textContent=T.cursos_intro;
+  const packsHeroTit=document.getElementById('packs-hero-titulo'); if(packsHeroTit) packsHeroTit.textContent=T.packs_hero_titulo||'Packs Terapêuticos';
+  const packsHeroSub=document.getElementById('packs-hero-sub'); if(packsHeroSub) packsHeroSub.textContent=T.packs_hero_sub||'';
+  const packsLabel=document.getElementById('packs-intro-label'); if(packsLabel) packsLabel.textContent=T.packs_intro_label;
+  const packsIntroEl=document.getElementById('packs-intro-txt'); if(packsIntroEl) packsIntroEl.textContent=T.packs_intro_txt;
+  if(typeof renderPacks==='function') renderPacks();
   // Biblioteca tab
   const bibTitulo=document.getElementById('bib-titulo'); if(bibTitulo) bibTitulo.textContent=T.bib_titulo;
   const bibSubtitulo=document.getElementById('bib-subtitulo'); if(bibSubtitulo) bibSubtitulo.textContent=T.bib_subtitulo;
@@ -3696,6 +3860,14 @@ function applyLang() {
   const diarSub=document.getElementById('diario-subtitulo'); if(diarSub) diarSub.textContent=T.diario_subtitulo;
   const diarEspacoLabel=document.getElementById('diario-espaco-label'); if(diarEspacoLabel) diarEspacoLabel.textContent=T.diario_espaco_label;
   const diarEspacoTxt=document.getElementById('diario-espaco-txt'); if(diarEspacoTxt) diarEspacoTxt.textContent=T.diario_espaco_txt;
+  const diarGuiaTit=document.getElementById('diario-guia-titulo'); if(diarGuiaTit) diarGuiaTit.textContent=T.diario_guia_titulo;
+  const diarGT1=document.getElementById('diario-guia-tip1'); if(diarGT1) diarGT1.textContent=T.diario_guia_tip1;
+  const diarGT2=document.getElementById('diario-guia-tip2'); if(diarGT2) diarGT2.textContent=T.diario_guia_tip2;
+  const diarGT3=document.getElementById('diario-guia-tip3'); if(diarGT3) diarGT3.textContent=T.diario_guia_tip3;
+  const diarGT4=document.getElementById('diario-guia-tip4'); if(diarGT4) diarGT4.textContent=T.diario_guia_tip4;
+  const diarGT5=document.getElementById('diario-guia-tip5'); if(diarGT5) diarGT5.textContent=T.diario_guia_tip5;
+  const diarTemasLbl=document.getElementById('diario-temas-label'); if(diarTemasLbl) diarTemasLbl.textContent=T.diario_temas_label;
+  if(typeof _diarioRenderTemaChips==='function') _diarioRenderTemaChips();
   const diarComoEstas=document.getElementById('diario-como-estas'); if(diarComoEstas) diarComoEstas.textContent=T.diario_como_estas;
   const diarGuardar=document.getElementById('diario-guardar-btn'); if(diarGuardar) diarGuardar.textContent=T.diario_guardar;
   const diarEntradasTitulo=document.getElementById('diario-entradas-titulo'); if(diarEntradasTitulo) diarEntradasTitulo.textContent=T.diario_entradas_titulo;
@@ -7086,7 +7258,7 @@ function renderGenerico(myNome,myNums,myNI,mySigNo,myLuaSigNo,myKi,myEnn,myHd,si
     currentLang==='es'?'Como Fuego, amas con pasión y necesitas inspiración constante. Buscas a alguien que te encienda y te deje brillar.':currentLang==='en'?'As Fire, you love with passion and need constant inspiration. You seek someone who ignites you and lets you shine.':'Como Fogo, amas com paixão e precisas de inspiração constante. Procuras alguém que te acenda e te deixe brilhar.',
     currentLang==='es'?'Como Tierra, amas con lealtad y constancia. Construyes relaciones para durar y necesitas seguridad.':currentLang==='en'?'As Earth, you love with loyalty and constancy. You build relationships to last and need security.':'Como Terra, amas com lealdade e constância. Constróis relações para durar e precisas de segurança.',
     currentLang==='es'?'Como Aire, amas con la mente y la conversación. Necesitas libertad intelectual y un compañero que te estimule.':currentLang==='en'?'As Air, you love through mind and conversation. You need intellectual freedom and a partner who stimulates you.':'Como Ar, amas com a mente e a conversa. Precisas de liberdade intelectual e um/a parceiro/a que te estimule.',
-    currentLang==='es'?'Como Agua, amas con profundidad emocional total. Necesitas intimidad, confianza y conexión espiritual.':currentLang==='en'?'As Water, you love with total emotional depth. You need intimacy, trust and spiritual connection.':'Como Água, amas com profundidade emocional total. Precisas de intimidade, confiança e conexão espiritual.',
+    currentLang==='es'?'Como Agua, amas con profundidad emocional total. Necesitas intimidad, confianza y conexión espiritual.':currentLang==='en'?'As Water, you love with total emotional depth. You need intimacy, trust and spiritual connection.':'Como Água, amas com profundidade emocional total. Precisas de intimidade, confiança e conexão espiritual.'
   ];
 
   document.getElementById('parc-resultados').innerHTML=`
@@ -7759,11 +7931,73 @@ const GT_DATA={
 };
 function getGT(){return GT_DATA[currentLang]||GT_DATA.pt;}
 let bibCat='Todas';
+let _cursosFiltroTexto='';
+let _cursosCategoriaAtiva='Todas';
+
+function _cursosCategoriasUnicas(){
+  const cats=getCR().map(c=>c.cat);
+  return ['Todas',...new Set(cats)];
+}
+
+function _renderCursosChips(){
+  const wrap=document.getElementById('cursos-chips-categoria');
+  if(!wrap)return;
+  const cats=_cursosCategoriasUnicas();
+  const labelTodas=currentLang==='en'?'All':currentLang==='es'?'Todas':'Todas';
+  wrap.innerHTML=cats.map(function(c){
+    const label=c==='Todas'?labelTodas:c;
+    const ativo=c===_cursosCategoriaAtiva?' active':'';
+    return '<button class="sonhos-chip'+ativo+'" style="padding:.4rem .8rem;flex:0 0 auto;display:inline-block'+(ativo?';background:var(--accent-deep);color:#fff;border-color:var(--accent-deep)':'')+'" onclick="filtrarCursosPorCategoria(\''+c.replace(/'/g,"\\'")+'\')">'+label+'</button>';
+  }).join('');
+}
+
+function filtrarCursosPorCategoria(cat){
+  _cursosCategoriaAtiva=cat;
+  _renderCursosChips();
+  _renderCourses();
+}
+
+function filtrarCursos(){
+  const inp=document.getElementById('cursos-busca');
+  _cursosFiltroTexto=inp?inp.value.trim().toLowerCase():'';
+  _renderCourses();
+}
+
 function _renderCourses(){
   var el=document.getElementById('courses-grid');
   if(!el) return;
   var badge=currentLang==='en'?'PT content (subtitles available)':currentLang==='es'?'Contenido en PT (subtitulos disponibles)':'Conteudo em Portugues';
-  el.innerHTML=getCR().map(function(c){
+  var todos=getCR();
+  var termo=_cursosFiltroTexto;
+  var lista=todos.filter(function(c){
+    const matchCat=_cursosCategoriaAtiva==='Todas'||c.cat===_cursosCategoriaAtiva;
+    if(!matchCat)return false;
+    if(!termo)return true;
+    return (c.titulo+' '+c.cat+' '+c.desc).toLowerCase().indexOf(termo)!==-1;
+  });
+  var contagemEl=document.getElementById('cursos-contagem');
+  var semResultadosEl=document.getElementById('cursos-sem-resultados');
+  if(contagemEl){
+    contagemEl.textContent=currentLang==='en'
+      ?lista.length+' of '+todos.length+' courses'
+      :currentLang==='es'
+      ?lista.length+' de '+todos.length+' cursos'
+      :lista.length+' de '+todos.length+' cursos';
+  }
+  if(!lista.length){
+    el.innerHTML='';
+    if(semResultadosEl){
+      semResultadosEl.style.display='block';
+      semResultadosEl.textContent=currentLang==='en'
+        ?'No courses found for "'+termo+'". Try a different word or category.'
+        :currentLang==='es'
+        ?'No se encontraron cursos para "'+termo+'". Prueba con otra palabra o categoría.'
+        :'Não foram encontrados cursos para "'+termo+'". Tenta outra palavra ou categoria.';
+    }
+    return;
+  }
+  if(semResultadosEl)semResultadosEl.style.display='none';
+  el.innerHTML=lista.map(function(c){
     return '<div class="course-card">'
       +'<div class="course-thumb" style="background:'+c.bg+'">'+c.emoji+'</div>'
       +'<div class="course-body">'
@@ -7778,6 +8012,51 @@ function _renderCourses(){
       +'<div style="display:flex;gap:.5rem;margin-top:.75rem">'
       +'<a href="'+c.info+'" target="_blank" style="flex:1;display:block;padding:.55rem;background:transparent;border:1px solid var(--border);border-radius:7px;color:var(--text2);font-size:.62rem;text-align:center;text-decoration:none">'+(currentLang==="es"?"Saber mas":currentLang==="en"?"Learn more":"Saber mais")+'</a>'
       +'<a href="'+c.link+'" target="_blank" style="flex:1;display:block;padding:.55rem;background:var(--accent-deep);color:#fff;border-radius:7px;font-size:.62rem;text-align:center;text-decoration:none">'+(currentLang==="es"?"Inscribirme":currentLang==="en"?"Sign me up":"Inscrever-me")+'</a>'
+      +'</div></div></div>';
+  }).join('');
+}
+
+// ── PACKS TERAPÊUTICOS ───────────────────────────────────────────────────────
+const PACKS_DATA={
+  pt:[
+    {emoji:'🩺',cat:'Equipa Multidisciplinar',titulo:'Mentoria Increase Doença',desc:'Transforma doença em cura — cura emocional e energética como complemento ao tratamento físico, com sessão de diagnóstico, plano personalizado, meditações semanais e hipnoterapia.',dur:'Até 6 meses',preco:'159€/mês ou 800€ pacote completo',bg:'rgba(74,143,181,.09)',link:'https://www.elekitra.net/mentorias/mentoria-increase-doenca'},
+    {emoji:'🔥',cat:'Equipa Multidisciplinar',titulo:'Mentoria Increase Emagrecimento',desc:'Liberta corpo e mente — cura as raízes emocionais do excesso de peso, com plano personalizado, meditações semanais e sessões de hipnoterapia.',dur:'Até 6 meses',preco:'159€/mês ou 800€ pacote completo',bg:'rgba(200,140,90,.09)',link:'https://www.elekitra.net/mentorias/mentoria-increase-emagrecimento'},
+    {emoji:'🌸',cat:'Equipa Multidisciplinar',titulo:'Mentoria Increase Emocional',desc:'Cura a raiz emocional da dor — para quem atravessa ansiedade intensa ou ataques de pânico. Diagnóstico gratuito, acompanhamento contínuo e meditações guiadas.',dur:'Mínimo 3 meses',preco:'Sob consulta',bg:'rgba(180,120,150,.09)',link:'https://www.elekitra.net/mentorias/mentoria-increase-emocional'},
+    {emoji:'👑',cat:'Mentoria com Margarida Leite',titulo:'Mentoria Premium',desc:'Acesso a todos os cursos online da Margarida e a mentoria individual contigo, para expandires o teu potencial durante um ano inteiro.',dur:'1 ano',preco:'249€/mês ou 2.499€/ano',bg:'rgba(184,151,110,.12)',link:'https://www.elekitra.net/mentorias/mentoria-premium'},
+    {emoji:'🌀',cat:'Mentoria com Margarida Leite',titulo:'Mentoria Challenge',desc:'Reunião mensal em grupo com práticas energéticas, novas ferramentas e acesso livre aos círculos de cura.',dur:'Mensal · contínuo',preco:'80€/mês ou 799€/ano',bg:'rgba(106,171,204,.09)',link:'https://www.elekitra.net/mentorias/mentoria-challenge'}
+  ],
+  en:[
+    {emoji:'🩺',cat:'Multidisciplinary Team',titulo:'Mentoria Increase Doença',desc:'Turning illness into healing — emotional and energetic healing as a complement to physical treatment, with a diagnostic session, personalised plan, weekly meditations and hypnotherapy.',dur:'Up to 6 months',preco:'€159/month or €800 full package',bg:'rgba(74,143,181,.09)',link:'https://www.elekitra.net/mentorias/mentoria-increase-doenca'},
+    {emoji:'🔥',cat:'Multidisciplinary Team',titulo:'Mentoria Increase Emagrecimento',desc:'Freeing body and mind — healing the emotional roots of excess weight, with a personalised plan, weekly meditations and hypnotherapy sessions.',dur:'Up to 6 months',preco:'€159/month or €800 full package',bg:'rgba(200,140,90,.09)',link:'https://www.elekitra.net/mentorias/mentoria-increase-emagrecimento'},
+    {emoji:'🌸',cat:'Multidisciplinary Team',titulo:'Mentoria Increase Emocional',desc:'Healing the emotional root of pain — for those going through intense anxiety or panic attacks. Free diagnostic session, ongoing support and guided meditations.',dur:'Minimum 3 months',preco:'On request',bg:'rgba(180,120,150,.09)',link:'https://www.elekitra.net/mentorias/mentoria-increase-emocional'},
+    {emoji:'👑',cat:"Mentorship with Margarida Leite",titulo:'Mentoria Premium',desc:"Access to all of Margarida's online courses plus one-to-one mentorship with her, to expand your potential over a full year.",dur:'1 year',preco:'€249/month or €2,499/year',bg:'rgba(184,151,110,.12)',link:'https://www.elekitra.net/mentorias/mentoria-premium'},
+    {emoji:'🌀',cat:"Mentorship with Margarida Leite",titulo:'Mentoria Challenge',desc:'A monthly group meeting with energetic practices, new tools and free access to the healing circles.',dur:'Monthly · ongoing',preco:'€80/month or €799/year',bg:'rgba(106,171,204,.09)',link:'https://www.elekitra.net/mentorias/mentoria-challenge'}
+  ],
+  es:[
+    {emoji:'🩺',cat:'Equipo Multidisciplinar',titulo:'Mentoria Increase Doença',desc:'Transforma enfermedad en curación — curación emocional y energética como complemento al tratamiento físico, con sesión de diagnóstico, plan personalizado, meditaciones semanales e hipnoterapia.',dur:'Hasta 6 meses',preco:'159€/mes o 800€ paquete completo',bg:'rgba(74,143,181,.09)',link:'https://www.elekitra.net/mentorias/mentoria-increase-doenca'},
+    {emoji:'🔥',cat:'Equipo Multidisciplinar',titulo:'Mentoria Increase Emagrecimento',desc:'Libera cuerpo y mente — cura las raíces emocionales del exceso de peso, con plan personalizado, meditaciones semanales y sesiones de hipnoterapia.',dur:'Hasta 6 meses',preco:'159€/mes o 800€ paquete completo',bg:'rgba(200,140,90,.09)',link:'https://www.elekitra.net/mentorias/mentoria-increase-emagrecimento'},
+    {emoji:'🌸',cat:'Equipo Multidisciplinar',titulo:'Mentoria Increase Emocional',desc:'Cura la raíz emocional del dolor — para quienes atraviesan ansiedad intensa o ataques de pánico. Diagnóstico gratuito, acompañamiento continuo y meditaciones guiadas.',dur:'Mínimo 3 meses',preco:'Bajo consulta',bg:'rgba(180,120,150,.09)',link:'https://www.elekitra.net/mentorias/mentoria-increase-emocional'},
+    {emoji:'👑',cat:'Mentoría con Margarida Leite',titulo:'Mentoria Premium',desc:'Acceso a todos los cursos online de Margarida y mentoría individual contigo, para expandir tu potencial durante un año entero.',dur:'1 año',preco:'249€/mes o 2.499€/año',bg:'rgba(184,151,110,.12)',link:'https://www.elekitra.net/mentorias/mentoria-premium'},
+    {emoji:'🌀',cat:'Mentoría con Margarida Leite',titulo:'Mentoria Challenge',desc:'Reunión mensual en grupo con prácticas energéticas, nuevas herramientas y acceso libre a los círculos de curación.',dur:'Mensual · continuo',preco:'80€/mes o 799€/año',bg:'rgba(106,171,204,.09)',link:'https://www.elekitra.net/mentorias/mentoria-challenge'}
+  ]
+};
+function getPacks(){return PACKS_DATA[currentLang]||PACKS_DATA.pt;}
+function renderPacks(){
+  var el=document.getElementById('packs-grid');
+  if(!el) return;
+  el.innerHTML=getPacks().map(function(p){
+    return '<div class="course-card">'
+      +'<div class="course-thumb" style="background:'+p.bg+'">'+p.emoji+'</div>'
+      +'<div class="course-body">'
+      +'<div class="course-tag">'+p.cat+'</div>'
+      +'<div class="course-title">'+p.titulo+'</div>'
+      +'<div class="course-desc">'+p.desc+'</div>'
+      +'<div class="course-footer">'
+      +'<div class="course-meta">'+p.dur+'</div>'
+      +'<div class="course-price">'+p.preco+'</div>'
+      +'</div>'
+      +'<div style="margin-top:.75rem">'
+      +'<a href="'+p.link+'" target="_blank" style="display:block;padding:.6rem;background:var(--accent-deep);color:#fff;border-radius:7px;font-size:.65rem;letter-spacing:.05em;text-align:center;text-decoration:none;text-transform:uppercase">'+(currentLang==="es"?"Saber mas y contactar":currentLang==="en"?"Learn more & contact":"Saber mais e contactar")+'</a>'
       +'</div></div></div>';
   }).join('');
 }
@@ -7814,22 +8093,159 @@ const DP_DATA={
   en:['How do I feel today in relation to myself?','What emotion is most present and where does it come from?','What did I learn about myself this week?','What pattern did I notice in myself today?','What do I need to release or forgive?','What small thing brought me joy today?','What am I afraid of and what does that tell me?','What is my body trying to tell me?','What would I like to say to someone but have not said?','What version of myself do I want to cultivate this week?']
 };
 function getDP(){return DP_DATA[currentLang]||DP_DATA.pt;}
+
+// ── DIÁRIO: temas de inspiração (chips) ─────────────────────────────────────
+const DIARIO_TEMAS_DATA={
+  pt:[
+    {id:'gratidao',icon:'🙏',titulo:'Gratidão',prompts:['Pelo que sentes gratidão hoje, mesmo que pequeno?','Que pessoa fez a tua semana melhor, e porquê?']},
+    {id:'emocoes',icon:'💭',titulo:'Emoções',prompts:['Que emoção tens estado a evitar sentir?','Onde no corpo sentes o que estás a sentir agora?']},
+    {id:'padroes',icon:'🔁',titulo:'Padrões',prompts:['Que padrão se repetiu esta semana que já reconheces de outras vezes?','O que fazes sempre quando te sentes ansiosa/o?']},
+    {id:'relacoes',icon:'💬',titulo:'Relações',prompts:['Há algo que gostarias de dizer a alguém mas ainda não disseste?','Que relação na tua vida precisa da tua atenção agora?']},
+    {id:'objetivos',icon:'🎯',titulo:'Objectivos',prompts:['Que pequeno passo podes dar esta semana em direcção a algo que queres?','O que estás a adiar, e porquê?']},
+    {id:'sonhos',icon:'🌙',titulo:'Sonhos',prompts:['Lembras-te de algum sonho recente? O que sentiste nele?','Se pudesses viver um dia exactamente como querias, como seria?']}
+  ],
+  es:[
+    {id:'gratidao',icon:'🙏',titulo:'Gratitud',prompts:['¿Por qué sientes gratitud hoy, aunque sea pequeño?','¿Qué persona hizo tu semana mejor, y por qué?']},
+    {id:'emocoes',icon:'💭',titulo:'Emociones',prompts:['¿Qué emoción has estado evitando sentir?','¿Dónde en el cuerpo sientes lo que estás sintiendo ahora?']},
+    {id:'padroes',icon:'🔁',titulo:'Patrones',prompts:['¿Qué patrón se repitió esta semana que ya reconoces de otras veces?','¿Qué haces siempre cuando te sientes ansiosa/o?']},
+    {id:'relacoes',icon:'💬',titulo:'Relaciones',prompts:['¿Hay algo que te gustaría decirle a alguien pero aún no has dicho?','¿Qué relación en tu vida necesita tu atención ahora?']},
+    {id:'objetivos',icon:'🎯',titulo:'Objetivos',prompts:['¿Qué pequeño paso puedes dar esta semana hacia algo que quieres?','¿Qué estás postergando, y por qué?']},
+    {id:'sonhos',icon:'🌙',titulo:'Sueños',prompts:['¿Recuerdas algún sueño reciente? ¿Qué sentiste en él?','Si pudieras vivir un día exactamente como quisieras, ¿cómo sería?']}
+  ],
+  en:[
+    {id:'gratidao',icon:'🙏',titulo:'Gratitude',prompts:['What are you grateful for today, even something small?','Who made your week better, and why?']},
+    {id:'emocoes',icon:'💭',titulo:'Emotions',prompts:['What emotion have you been avoiding feeling?','Where in your body do you feel what you are feeling right now?']},
+    {id:'padroes',icon:'🔁',titulo:'Patterns',prompts:['What pattern repeated this week that you already recognise from other times?','What do you always do when you feel anxious?']},
+    {id:'relacoes',icon:'💬',titulo:'Relationships',prompts:['Is there something you would like to say to someone but have not said yet?','Which relationship in your life needs your attention right now?']},
+    {id:'objetivos',icon:'🎯',titulo:'Goals',prompts:['What small step can you take this week towards something you want?','What are you putting off, and why?']},
+    {id:'sonhos',icon:'🌙',titulo:'Dreams',prompts:['Do you remember a recent dream? What did you feel in it?','If you could live a day exactly as you wanted, what would it look like?']}
+  ]
+};
+function getDiarioTemas(){return DIARIO_TEMAS_DATA[currentLang]||DIARIO_TEMAS_DATA.pt;}
+
+// ── DIÁRIO: prompt sugerido de acordo com o humor seleccionado ──────────────
+const DIARIO_MOOD_PROMPTS_DATA={
+  pt:{'😔':['O que achas que está a pesar-te mais hoje?','Se esta tristeza pudesse falar, o que diria?'],
+      '😐':['O que estás a sentir que ainda não conseguiste nomear?','O que mudaria o teu dia de neutro para bom?'],
+      '🙂':['O que contribuiu para te sentires bem hoje?','Que pequeno momento de hoje queres lembrar?'],
+      '😊':['O que tens feito bem que gostarias de continuar a fazer?','Quem gostarias de agradecer por este momento?'],
+      '✨':['O que queres celebrar hoje?','Que clareza ou insight chegou até ti recentemente?']},
+  es:{'😔':['¿Qué crees que te está pesando más hoy?','Si esta tristeza pudiera hablar, ¿qué diría?'],
+      '😐':['¿Qué estás sintiendo que aún no has conseguido nombrar?','¿Qué cambiaría tu día de neutro a bueno?'],
+      '🙂':['¿Qué contribuyó a que te sintieras bien hoy?','¿Qué pequeño momento de hoy quieres recordar?'],
+      '😊':['¿Qué has estado haciendo bien que te gustaría seguir haciendo?','¿A quién le gustaría agradecer por este momento?'],
+      '✨':['¿Qué quieres celebrar hoy?','¿Qué claridad o idea ha llegado a ti recientemente?']},
+  en:{'😔':['What do you think is weighing on you most today?','If this sadness could speak, what would it say?'],
+      '😐':['What are you feeling that you have not been able to name yet?','What would turn your day from neutral to good?'],
+      '🙂':['What contributed to you feeling good today?','What small moment from today do you want to remember?'],
+      '😊':['What have you been doing well that you would like to keep doing?','Who would you like to thank for this moment?'],
+      '✨':['What do you want to celebrate today?','What clarity or insight has come to you recently?']}
+};
+function getDiarioMoodPrompts(mood){const d=DIARIO_MOOD_PROMPTS_DATA[currentLang]||DIARIO_MOOD_PROMPTS_DATA.pt;return d[mood]||null;}
+
 let dMood='';
+function _diarioGetEntries(){const pid=sessionStorage.getItem('perfil_activo_id');const key=pid?'essencia_diario_'+pid:'essencia_diario';try{return JSON.parse(localStorage.getItem(key)||'[]');}catch(e){return [];}}
+
 function renderDiario(){const t=new Date();
   const ds=currentLang==='es'?['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado']:currentLang==='en'?['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']:['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
   const ms=currentLang==='es'?['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']:currentLang==='en'?['January','February','March','April','May','June','July','August','September','October','November','December']:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
   const de=currentLang==='es'?'de':currentLang==='en'?'of':'de';
   const dn=document.getElementById('diario-date-now');if(dn)dn.textContent=ds[t.getDay()]+', '+t.getDate()+' '+de+' '+ms[t.getMonth()]+' '+de+' '+t.getFullYear();
-  const pr=getDP()[t.getDate()%getDP().length];
-  const prow=document.getElementById('diario-prompts-row');if(prow)prow.innerHTML='<div style="background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:.5rem 1rem;font-size:.82rem;color:var(--text2);cursor:pointer;display:inline-flex;align-items:center;gap:.4rem" onclick="usarPrompt(\''+pr.replace(/'/g,"\\'")+'\')" ><span style="color:var(--accent2)">✦</span>'+pr+'</div>';
+  _diarioRenderPromptPadrao();
+  _diarioRenderTemaChips();
   const ta=document.getElementById('diario-textarea');
   if(ta){ta.placeholder=currentLang==='es'?'Escribe libremente... ¿Cómo te sientes hoy? ¿Qué pesa? ¿Qué descubriste? No hay correcto ni incorrecto aquí.':currentLang==='en'?'Write freely... How do you feel today? What is weighing on you? What did you discover? There is no right or wrong here.':'Escreve livremente... Como te sentes hoje? O que está a pesar? O que descobriste? Não há certo nem errado aqui.';
   ta.addEventListener('input',function(){const cc=document.getElementById('diario-char-count');if(cc)cc.textContent=this.value.length+(currentLang==='es'?' caracteres':currentLang==='en'?' characters':' caracteres');});}
   carregarEntradas();}
-function selectMood(el,mood){document.querySelectorAll('.diario-mood').forEach(m=>m.style.opacity='.35');el.style.opacity='1';dMood=mood;}
+
+function _diarioRenderPromptPadrao(){
+  const t=new Date();
+  const pr=getDP()[t.getDate()%getDP().length];
+  const prow=document.getElementById('diario-prompts-row');if(prow)prow.innerHTML='<div style="background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:.5rem 1rem;font-size:.82rem;color:var(--text2);cursor:pointer;display:inline-flex;align-items:center;gap:.4rem" onclick="usarPrompt(\''+pr.replace(/'/g,"\\'")+'\')" ><span style="color:var(--accent2)">✦</span>'+pr+'</div>';
+}
+
+function _diarioRenderMoodPrompt(mood){
+  const mrow=document.getElementById('diario-mood-prompt-row');
+  if(!mrow)return;
+  const opcoes=getDiarioMoodPrompts(mood);
+  if(!opcoes){mrow.innerHTML='';return;}
+  const pr=opcoes[Math.floor(Math.random()*opcoes.length)];
+  const label=currentLang==='es'?'Como dijiste que te sientes así, que tal explorar:':currentLang==='en'?'Since you said you feel this way, how about exploring:':'Já que disseste que te sentes assim, que tal explorares:';
+  mrow.innerHTML='<div style="font-size:.68rem;letter-spacing:.06em;color:var(--text3);margin-bottom:.4rem">'+label+'</div><div class="diario-mood-prompt-chip" onclick="usarPrompt(\''+pr.replace(/'/g,"\\'")+'\')"><span>'+mood+'</span>'+pr+'</div>';
+}
+
+function _diarioRenderTemaChips(){
+  const wrap=document.getElementById('diario-tema-chips');
+  if(!wrap)return;
+  wrap.innerHTML=getDiarioTemas().map(tm=>'<button class="diario-tema-chip" id="diario-tema-'+tm.id+'" onclick="diarioEscolherTema(\''+tm.id+'\')">'+tm.icon+' '+tm.titulo+'</button>').join('');
+}
+
+function diarioEscolherTema(temaId){
+  const tema=getDiarioTemas().find(t=>t.id===temaId);
+  const area=document.getElementById('diario-tema-prompts');
+  if(!tema||!area)return;
+  const temaAnterior=area.dataset.temaAtual||'';
+  document.querySelectorAll('.diario-tema-chip').forEach(c=>c.classList.remove('active'));
+  if(temaAnterior===temaId){
+    // Clicar outra vez no mesmo tema fecha a lista de prompts
+    area.style.display='none';
+    area.dataset.temaAtual='';
+    return;
+  }
+  const chipAtivo=document.getElementById('diario-tema-'+temaId);
+  if(chipAtivo)chipAtivo.classList.add('active');
+  area.dataset.temaAtual=temaId;
+  area.innerHTML=tema.prompts.map(p=>'<button class="diario-prompt-chip" onclick="usarPrompt(\''+p.replace(/'/g,"\\'")+'\')"><span style="color:var(--accent2);flex-shrink:0">✦</span>'+p+'</button>').join('');
+  area.style.display='flex';
+}
+
+function toggleDiarioGuia(){
+  const c=document.getElementById('diario-guia-conteudo');
+  const arrow=document.getElementById('diario-guia-arrow');
+  if(!c)return;
+  const aberto=c.style.display==='block';
+  c.style.display=aberto?'none':'block';
+  if(arrow)arrow.classList.toggle('open',!aberto);
+}
+
+// ── DIÁRIO: sequência de escrita (encorajamento suave, sem pressão) ────────
+function _diarioRenderStreak(){
+  const el=document.getElementById('diario-streak');
+  if(!el)return;
+  const arr=_diarioGetEntries();
+  const agora=Date.now();
+  const seteDias=7*86400000;
+  const diasComEntrada=new Set();
+  arr.forEach(e=>{
+    const ts=new Date(e.data).getTime();
+    if(agora-ts<=seteDias&&agora-ts>=0){
+      const d=new Date(e.data);
+      diasComEntrada.add(d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate());
+    }
+  });
+  const n=diasComEntrada.size;
+  if(!arr.length){el.style.display='none';return;}
+  let msg;
+  if(n===0){
+    msg=currentLang==='en'?'It has been a while since your last entry — how about today?':currentLang==='es'?'Ha pasado un tiempo desde tu última entrada — ¿qué tal hoy?':'Já lá vai um tempo desde a tua última entrada — que tal hoje?';
+  } else if(n>=5){
+    msg=currentLang==='en'?'✨ You have written on '+n+' of the last 7 days — beautiful consistency.':currentLang==='es'?'✨ Has escrito en '+n+' de los últimos 7 días — una consistencia hermosa.':'✨ Escreveste em '+n+' dos últimos 7 dias — que bonita consistência.';
+  } else {
+    msg=currentLang==='en'?'You have written on '+n+' of the last 7 days.':currentLang==='es'?'Has escrito en '+n+' de los últimos 7 días.':'Escreveste em '+n+' dos últimos 7 dias.';
+  }
+  el.textContent=msg;
+  el.style.display='block';
+}
+
+function selectMood(el,mood){
+  document.querySelectorAll('.diario-mood').forEach(m=>m.style.opacity='.35');
+  el.style.opacity='1';
+  dMood=mood;
+  _diarioRenderMoodPrompt(mood);
+}
 function usarPrompt(p){const ta=document.getElementById('diario-textarea');if(ta){ta.value=p+'\n\n';ta.focus();}}
-function guardarEntrada(){const ta=document.getElementById('diario-textarea');const txt=ta?ta.value.trim():'';if(!txt){alert(currentLang==='es'?'Escribe algo antes de guardar.':currentLang==='en'?'Write something before saving.':'Escreve algo antes de guardar.');return;}const entry={id:Date.now(),data:new Date().toISOString(),mood:dMood,texto:txt};try{const arr=(()=>{const pid=sessionStorage.getItem('perfil_activo_id');const key=pid?'essencia_diario_'+pid:'essencia_diario';try{return JSON.parse(localStorage.getItem(key)||'[]');}catch(e){return [];}})();arr.unshift(entry);(()=>{const pid=sessionStorage.getItem('perfil_activo_id');const key=pid?'essencia_diario_'+pid:'essencia_diario';localStorage.setItem(key,JSON.stringify(arr.slice(0,100)));})();if(ta)ta.value='';const cc=document.getElementById('diario-char-count');if(cc)cc.textContent='0 caracteres';dMood='';document.querySelectorAll('.diario-mood').forEach(m=>m.style.opacity='.35');carregarEntradas();alert(currentLang==='es'?'Entrada guardada ✓':currentLang==='en'?'Entry saved ✓':'Entrada guardada ✓');}catch(e){alert('Não foi possível guardar.');}}
-function carregarEntradas(){try{const arr=(()=>{const pid=sessionStorage.getItem('perfil_activo_id');const key=pid?'essencia_diario_'+pid:'essencia_diario';try{return JSON.parse(localStorage.getItem(key)||'[]');}catch(e){return [];}})();const list=document.getElementById('diario-entries-list');const empty=document.getElementById('diario-empty-msg');if(!list)return;if(!arr.length){list.innerHTML='';if(empty)empty.style.display='block';return;}if(empty)empty.style.display='none';const ds=currentLang==='es'?['Dom','Lun','Mar','Mié','Jue','Vie','Sáb']:currentLang==='en'?['Sun','Mon','Tue','Wed','Thu','Fri','Sat']:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];const ms=currentLang==='es'?['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']:currentLang==='en'?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];list.innerHTML=arr.map(e=>{const d=new Date(e.data);return'<div class="diario-entry-card"><div class="diario-entry-header"><div class="diario-entry-mood">'+(e.mood||'📝')+'</div><div><div class="diario-entry-date">'+ds[d.getDay()]+', '+d.getDate()+' '+ms[d.getMonth()]+' '+d.getFullYear()+'</div><div class="diario-entry-preview">'+e.texto.substring(0,80)+(e.texto.length>80?'...':'')+'</div></div><button class="diario-entry-del" onclick="apagarEntrada('+e.id+')" title="Apagar">🗑</button></div><div class="diario-entry-body" id="de-'+e.id+'" style="display:none">'+e.texto.replace(/\n/g,'<br>')+'</div><button class="diario-toggle-btn" onclick="toggleEntrada('+e.id+')">Ver entrada completa ↓</button></div>';}).join('');}catch(e){}}
+function guardarEntrada(){const ta=document.getElementById('diario-textarea');const txt=ta?ta.value.trim():'';if(!txt){alert(currentLang==='es'?'Escribe algo antes de guardar.':currentLang==='en'?'Write something before saving.':'Escreve algo antes de guardar.');return;}const entry={id:Date.now(),data:new Date().toISOString(),mood:dMood,texto:txt};try{const arr=_diarioGetEntries();arr.unshift(entry);(()=>{const pid=sessionStorage.getItem('perfil_activo_id');const key=pid?'essencia_diario_'+pid:'essencia_diario';localStorage.setItem(key,JSON.stringify(arr.slice(0,100)));})();if(ta)ta.value='';const cc=document.getElementById('diario-char-count');if(cc)cc.textContent='0 caracteres';dMood='';document.querySelectorAll('.diario-mood').forEach(m=>m.style.opacity='.35');const mrow=document.getElementById('diario-mood-prompt-row');if(mrow)mrow.innerHTML='';const tp=document.getElementById('diario-tema-prompts');if(tp){tp.style.display='none';tp.dataset.temaAtual='';}document.querySelectorAll('.diario-tema-chip').forEach(c=>c.classList.remove('active'));carregarEntradas();alert(currentLang==='es'?'Entrada guardada ✓':currentLang==='en'?'Entry saved ✓':'Entrada guardada ✓');}catch(e){alert('Não foi possível guardar.');}}
+function carregarEntradas(){try{const arr=_diarioGetEntries();const list=document.getElementById('diario-entries-list');const empty=document.getElementById('diario-empty-msg');_diarioRenderStreak();if(!list)return;if(!arr.length){list.innerHTML='';if(empty)empty.style.display='block';return;}if(empty)empty.style.display='none';const ds=currentLang==='es'?['Dom','Lun','Mar','Mié','Jue','Vie','Sáb']:currentLang==='en'?['Sun','Mon','Tue','Wed','Thu','Fri','Sat']:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];const ms=currentLang==='es'?['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']:currentLang==='en'?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];list.innerHTML=arr.map(e=>{const d=new Date(e.data);return'<div class="diario-entry-card"><div class="diario-entry-header"><div class="diario-entry-mood">'+(e.mood||'📝')+'</div><div><div class="diario-entry-date">'+ds[d.getDay()]+', '+d.getDate()+' '+ms[d.getMonth()]+' '+d.getFullYear()+'</div><div class="diario-entry-preview">'+e.texto.substring(0,80)+(e.texto.length>80?'...':'')+'</div></div><button class="diario-entry-del" onclick="apagarEntrada('+e.id+')" title="Apagar">🗑</button></div><div class="diario-entry-body" id="de-'+e.id+'" style="display:none">'+e.texto.replace(/\n/g,'<br>')+'</div><button class="diario-toggle-btn" onclick="toggleEntrada('+e.id+')">Ver entrada completa ↓</button></div>';}).join('');}catch(e){}}
 function toggleEntrada(id){const body=document.getElementById('de-'+id);if(!body)return;const btn=body.nextElementSibling;if(body.style.display==='none'){body.style.display='block';btn.textContent=currentLang==='es'?'Cerrar ↑':currentLang==='en'?'Close ↑':'Fechar ↑';}else{body.style.display='none';btn.textContent=currentLang==='es'?'Ver entrada completa ↓':currentLang==='en'?'View full entry ↓':'Ver entrada completa ↓';}}
 function apagarEntrada(id){if(!confirm(currentLang==='es'?'¿Eliminar esta entrada?':currentLang==='en'?'Delete this entry?':'Apagar esta entrada?'))return;try{let arr=(()=>{const pid=sessionStorage.getItem('perfil_activo_id');const key=pid?'essencia_diario_'+pid:'essencia_diario';try{return JSON.parse(localStorage.getItem(key)||'[]');}catch(e){return [];}})();arr=arr.filter(e=>e.id!==id);(()=>{const pid=sessionStorage.getItem('perfil_activo_id');const key=pid?'essencia_diario_'+pid:'essencia_diario';localStorage.setItem(key,JSON.stringify(arr));})();carregarEntradas();}catch(e){}}
 
@@ -7873,7 +8289,7 @@ function renderSintHero(nome,pl,nums,ki,ennT,hdT){
   var badges=[
     {icon:'⬡', label:hdLabel},
     {icon:'◯', label:(currentLang==='en'?'Enneagram Type ':currentLang==='es'?'Eneagrama Tipo ':'Eneagrama Tipo ')+ennT},
-    {icon:'✦', label:(currentLang==='en'?'Ki Star ':currentLang==='es'?'Estrella Ki ':'Estrela Ki ')+kiNum+(kiEl?' · '+kiEl:'')},
+    {icon:'✦', label:(currentLang==='en'?'Ki Star ':currentLang==='es'?'Estrella Ki ':'Estrela Ki ')+kiNum+(kiEl?' · '+kiEl:'')}
   ];
   var badgesEl=document.getElementById('sint-hero-badges');
   if(badgesEl) badgesEl.innerHTML=badges.map(function(b){
@@ -7992,7 +8408,7 @@ function drawSinteseCard(){
     {icon:'◯',  label:t('sint_enneagram'), val:'Tipo '+ennT, col:'#9b6ab5'},
     {icon:'⬡',  label:t('sint_hd'), val:translateHdTipo(hdT), col:'#4a9b7a'},
     {icon:'✦',  label:t('sint_ki'), val:ki.principal+'', col:'#c8a040'},
-    {icon:'♡',  label:t('sint_alma'), val:''+nums.nA, col:'#c07090'},
+    {icon:'♡',  label:t('sint_alma'), val:''+nums.nA, col:'#c07090'}
   ];
 
   // Draw chips as cards in a 2-col grid (last one centered)
@@ -8138,16 +8554,17 @@ function renderTerapeutasChipsEspecialidade(){
 const TR=[
   {nome:'Margarida Leite',linguas:['PT','EN','ES'],titulo:'Programadora Energética · Mentora Espiritual',titulo_en:'Energy Programmer · Spiritual Mentor',titulo_es:'Programadora Energética · Mentora Espiritual',tags:['Cura Energética','Limpeza','Técnicas Estelares','Apometria'],tags_en:['Energy Healing','Cleansing','Stellar Techniques','Apometria'],tags_es:['Curación Energética','Limpieza','Técnicas Estelares','Apometría'],bio:'Trabalha essencialmente na cura multidimensional do ser, integrando técnicas diversas para o alinhamento com a tua essência.',bio_en:'Works essentially in the multidimensional healing of the being, integrating diverse techniques for alignment with your essence.',bio_es:'Trabaja esencialmente en la curación multidimensional del ser, integrando técnicas diversas para el alineamiento con tu esencia.',preco:'Sob consulta',preco_en:'On request',preco_es:'Bajo consulta',color:'#4a8fb5',link:'https://www.elekitra.net/os-nossos-servicos'},
   
-  {nome:'Ana Almeida',linguas:['PT'],titulo:'Hipnoterapeuta Transpessoal · Professora da Manifestação',titulo_en:'Transpersonal Hypnotherapist · Manifestation Teacher',titulo_es:'Hipnoterapeuta Transpersonal · Profesora de Manifestación',tags:['Hipnoterapia','Manifestação','Transpessoal'],tags_en:['Hypnotherapy','Manifestation','Transpersonal'],tags_es:['Hipnoterapia','Manifestación','Transpersonal'],bio:'Especialista em hipnoterapia transpessoal e ensino da manifestação consciente. Acompanha processos de transformação profunda.',bio_en:'Specialist in transpersonal hypnotherapy and conscious manifestation teaching. Guides deep transformation processes.',bio_es:'Especialista en hipnoterapia transpersonal y enseñanza de la manifestación consciente. Acompaña procesos de transformación profunda.',preco:'Sob consulta',preco_en:'On request',preco_es:'Bajo consulta',color:'#8a6ab5',whatsapp:'914047826',link:'https://wa.me/351914047826'},
+  {nome:'Ana Almeida',linguas:['PT','ES'],titulo:'Hipnoterapeuta Transpessoal · Professora da Manifestação',titulo_en:'Transpersonal Hypnotherapist · Manifestation Teacher',titulo_es:'Hipnoterapeuta Transpersonal · Profesora de Manifestación',tags:['Hipnoterapia Transpessoal','Manifestação'],tags_en:['Transpersonal Hypnotherapy','Manifestation'],tags_es:['Hipnoterapia Transpersonal','Manifestación'],bio:'Especialista em hipnoterapia transpessoal e ensino da manifestação consciente. Acompanha processos de transformação profunda.',bio_en:'Specialist in transpersonal hypnotherapy and conscious manifestation teaching. Guides deep transformation processes.',bio_es:'Especialista en hipnoterapia transpersonal y enseñanza de la manifestación consciente. Acompaña procesos de transformación profunda.',preco:'Sob consulta',preco_en:'On request',preco_es:'Bajo consulta',color:'#8a6ab5',whatsapp:'914047826',link:'https://wa.me/351914047826'},
   {nome:'Ana Vaz Amaral',linguas:['PT','EN'],titulo:'Terapeuta Holística · Feng Shui · Astrologia do Ki',titulo_en:'Holistic Therapist · Feng Shui · Ki Astrology',titulo_es:'Terapeuta Holística · Feng Shui · Astrología del Ki',tags:['Feng Shui','Astrologia do Ki'],tags_en:['Feng Shui','Ki Astrology'],tags_es:['Feng Shui','Astrología del Ki'],bio:'Especialista em Feng Shui e Astrologia do Ki para harmonização de espaços e desenvolvimento pessoal.',bio_en:'Specialist in Feng Shui and Ki Astrology for space harmonisation and personal development.',bio_es:'Especialista en Feng Shui y Astrología del Ki para la armonización de espacios y el desarrollo personal.',preco:'Sob consulta',preco_en:'On request',preco_es:'Bajo consulta',color:'#6aabcc',whatsapp:'932733732',link:'https://wa.me/351932733732'},
   {nome:'Ana Antunes',linguas:['PT','EN'],titulo:'Reiki · Mensagens de Entes Queridos',titulo_en:'Reiki · Messages from Loved Ones',titulo_es:'Reiki · Mensajes de Seres Queridos',tags:['Reiki','Mediunidade','Cura Energética'],tags_en:['Reiki','Mediumship','Energy Healing'],tags_es:['Reiki','Mediumnidad','Sanación Energética'],bio:'Especialista em Reiki e mensagens de entes queridos, guiando-te na tua jornada espiritual.',bio_en:'Specialist in Reiki and messages from loved ones, guiding you in your spiritual journey.',bio_es:'Especialista en Reiki y mensajes de seres queridos, guiándote en tu viaje espiritual.',preco:'Sob consulta',preco_en:'On request',preco_es:'Bajo consulta',color:'#6a9b7a',whatsapp:'966705758',link:'https://wa.me/351966705758'},
   {nome:'Bertha Poyer',linguas:['PT','ES'],titulo:'Numerologia · Mandalas',titulo_en:'Numerology · Mandalas',titulo_es:'Numerología · Mandalas',tags:['Numerologia','Mandalas','Autoconhecimento'],tags_en:['Numerology','Mandalas','Self-knowledge'],tags_es:['Numerología','Mandalas','Autoconocimiento'],bio:'Especialista em Numerologia e Mandalas, combinando sabedoria ancestral e arte sagrada para o autoconhecimento.',bio_en:'Specialist in Numerology and Mandalas, combining ancient wisdom and sacred art for self-knowledge.',bio_es:'Especialista en Numerología y Mandalas, combinando sabiduría ancestral y arte sagrado para el autoconocimiento.',preco:'Sob consulta',preco_en:'On request',preco_es:'Bajo consulta',color:'#9b7a9b',whatsapp:'913646194',link:'https://wa.me/351913646194'},
   {nome:'Adriana Nebuloni',linguas:['PT'],titulo:'Cura Sistémica · Tarot Quântico · Cura Estelar · AstroKabbalah',titulo_en:'Systemic Healing · Quantum Tarot · Stellar Healing · AstroKabbalah',titulo_es:'Curación Sistémica · Tarot Cuántico · Curación Estelar · AstroKabbalah',tags:['Cura Sistémica','Tarot Quântico','Cura Estelar','AstroKabbalah'],tags_en:['Systemic Healing','Quantum Tarot','Stellar Healing','AstroKabbalah'],tags_es:['Curación Sistémica','Tarot Cuántico','Curación Estelar','AstroKabbalah'],bio:'Terapeuta especializada em cura sistémica, tarot quântico, cura estelar e AstroKabbalah para transformação profunda e expansão da consciência.',bio_en:'Therapist specialised in systemic healing, quantum tarot, stellar healing and AstroKabbalah for deep transformation.',bio_es:'Terapeuta especializada en curación sistémica, tarot cuántico, curación estelar y AstroKabbalah.',preco:'Sob consulta',preco_en:'On request',preco_es:'Bajo consulta',color:'#b58a6a',link:'https://arnebuloni.wixsite.com/adriananebuloni'},
   {nome:'Eduardo Catalani',linguas:['PT'],titulo:'Limpeza Energética · Alinhamento',titulo_en:'Energy Cleansing · Alignment',titulo_es:'Limpieza Energética · Alineamiento',tags:['Limpeza Energética','Alinhamento'],tags_en:['Energy Cleansing','Alignment'],tags_es:['Limpieza Energética','Alineamiento'],bio:'Especialista em limpeza energética e alinhamento para restaurar o equilíbrio e harmonia do ser.',bio_en:'Specialist in energy cleansing and alignment to restore balance and harmony.',bio_es:'Especialista en limpieza energética y alineamiento para restaurar el equilibrio y la armonía.',preco:'Sob consulta',preco_en:'On request',preco_es:'Bajo consulta',color:'#6a8ab5',whatsapp:'5511975998886',link:'https://wa.me/5511975998886'},
   {nome:'Ana Paz dos Reis',linguas:['PT','EN'],titulo:'Breathwork · Yoga · Cerimónia de Cacau',titulo_en:'Breathwork · Yoga · Cacao Ceremony',titulo_es:'Breathwork · Yoga · Ceremonia de Cacao',tags:['Breathwork','Yoga','Cerimónia de Cacau'],tags_en:['Breathwork','Yoga','Cacao Ceremony'],tags_es:['Breathwork','Yoga','Ceremonia de Cacao'],bio:'Facilitadora de práticas de respiração consciente, yoga e cerimónias de cacau para transformação interior e conexão profunda.',bio_en:'Facilitator of conscious breathwork, yoga and cacao ceremonies for inner transformation and deep connection.',bio_es:'Facilitadora de prácticas de respiración consciente, yoga y ceremonias de cacao para a transformação interior.',preco:'Sob consulta',preco_en:'On request',preco_es:'Bajo consulta',color:'#6ab58a',whatsapp:'351916284103',link:'https://wa.me/351916284103'},
-  {nome:'Deolinda Conceição',linguas:['PT'],titulo:'Oráculos · Tarot',titulo_en:'Oracles · Tarot',titulo_es:'Oráculos · Tarot',tags:['Oráculos','Tarot'],tags_en:['Oracles','Tarot'],tags_es:['Oráculos','Tarot'],bio:'Especialista em oráculos e tarot para orientação espiritual e clareza interior. Fundadora do Oráculo33.',bio_en:'Specialist in oracles and tarot for spiritual guidance and inner clarity. Founder of Oráculo33.',bio_es:'Especialista en oráculos y tarot para orientación espiritual y claridad interior. Fundadora de Oráculo33.',preco:'Sob consulta',preco_en:'On request',preco_es:'Bajo consulta',color:'#b56a8a',whatsapp:'351927559612',link:'https://wa.me/351927559612'}
+  {nome:'Deolinda Conceição',linguas:['PT'],titulo:'Oráculos · Tarot',titulo_en:'Oracles · Tarot',titulo_es:'Oráculos · Tarot',tags:['Oráculos','Tarot'],tags_en:['Oracles','Tarot'],tags_es:['Oráculos','Tarot'],bio:'Especialista em oráculos e tarot para orientação espiritual e clareza interior. Fundadora do Oráculo33.',bio_en:'Specialist in oracles and tarot for spiritual guidance and inner clarity. Founder of Oráculo33.',bio_es:'Especialista en oráculos y tarot para orientación espiritual y claridad interior. Fundadora de Oráculo33.',preco:'Sob consulta',preco_en:'On request',preco_es:'Bajo consulta',color:'#b56a8a',whatsapp:'351927559612',link:'https://wa.me/351927559612'},
+  {nome:'Manuel Clemente',linguas:['PT'],titulo:'Especialista em Human Design',titulo_en:'Human Design Specialist',titulo_es:'Especialista en Human Design',tags:['Human Design','Relacionamentos','Aprofundamento'],tags_en:['Human Design','Relationships','Deepening'],tags_es:['Human Design','Relaciones','Profundización'],bio:'Especialista em Human Design, ajudando-te a aprofundar o teu autoconhecimento e as tuas relações através do teu desenho energético único.',bio_en:'Human Design specialist, helping you deepen your self-knowledge and relationships through your unique energetic blueprint.',bio_es:'Especialista en Human Design, ayudándote a profundizar tu autoconocimiento y tus relaciones a través de tu diseño energético único.',preco:'Sob consulta',preco_en:'On request',preco_es:'Bajo consulta',color:'#4a6ab5',link:'https://manuelclemente.pt/human-design'}
 ];
-const CR_DATA={pt:[{emoji:'🌿',cat:'Reiki · Xamanismo',titulo:'Reiki Xamânico Amadeus',desc:'Praticante e mestrado. Descobre o teu animal do poder.',dur:'Online',preco:'89€',bg:'rgba(74,155,106,.09)',link:'https://pay.hotmart.com/U93586824L',info:'https://www.elekitra.net/cursos/reiki-xamanico'},{emoji:'⭐',cat:'Reiki · Estelares',titulo:'Reiki Estelar Praticante',desc:'Energias estelares para cura e expansão.',dur:'Online',preco:'69€',bg:'rgba(106,171,204,.09)',link:'https://www.elekitra.net/cursos/reiki-estelar',info:'https://www.elekitra.net/cursos/reiki-estelar'},{emoji:'🛡️',cat:'Protecção Energética',titulo:'Limpeza, Harmonização e Protecção',desc:'Ervas, cristais, velas, símbolos e feng shui.',dur:'Online',preco:'159€',bg:'rgba(74,143,181,.09)',link:'https://pay.hotmart.com/J94751534M',info:'https://www.elekitra.net'},{emoji:'⚔️',cat:'Protecção · Mestrado',titulo:'Ferramentas de Protecção Energética',desc:'4 técnicas de mestrado.',dur:'Online',preco:'99€',bg:'rgba(155,122,74,.09)',link:'https://pay.hotmart.com/H95511068B',info:'https://www.elekitra.net'},{emoji:'🔰',cat:'Protecção · Básico',titulo:'Ferramentas Básicas de Protecção',desc:'4 técnicas para o dia a dia.',dur:'Online',preco:'99€',bg:'rgba(74,180,140,.09)',link:'https://www.elekitra.net/cursos/ferramentas-basicas-de-protecao-energetica',info:'https://www.elekitra.net/cursos/ferramentas-basicas-de-protecao-energetica'},{emoji:'⚡',cat:'Energia · Detox',titulo:'Energy Detox Express',desc:'Cura energética e desobsessão.',dur:'Online',preco:'99€',bg:'rgba(200,160,64,.09)',link:'https://www.elekitra.net/cursos/energy-detox-express',info:'https://www.elekitra.net/cursos/energy-detox-express'},{emoji:'✨',cat:'Códigos de Luz',titulo:'Códigos de Luz',desc:'Expansão energética e alinhamento.',dur:'Online',preco:'159€',bg:'rgba(168,212,232,.12)',link:'https://www.elekitra.net/cursos/codigos-de-luz',info:'https://www.elekitra.net/cursos/codigos-de-luz'},{emoji:'💫',cat:'Códigos · Avançado',titulo:'Códigos de Luz Upgrade',desc:'Aprofunda o trabalho com códigos de luz.',dur:'Online',preco:'159€',bg:'rgba(155,127,212,.09)',link:'https://www.elekitra.net/cursos/codigos-de-luz-upgrade',info:'https://www.elekitra.net/cursos/codigos-de-luz-upgrade'},{emoji:'🧘',cat:'Meditação · Pack',titulo:'Pack Meditações 7 Dias',desc:'7 meditações guiadas transformadoras.',dur:'7 dias',preco:'29,99€',bg:'rgba(168,212,150,.09)',link:'https://www.elekitra.net',info:'https://www.elekitra.net'},{emoji:'🌅',cat:'Meditação · Programa',titulo:'Programa 7 Dias',desc:'Meditação com activações energéticas.',dur:'7 dias',preco:'59€',bg:'rgba(200,230,255,.12)',link:'https://www.elekitra.net',info:'https://www.elekitra.net'},{emoji:'🕊️',cat:'Libertação · Trauma',titulo:'Libertação de Trauma em 7 dias',desc:'Programa intensivo para libertar padrões traumáticos.',dur:'7 dias',preco:'69€',bg:'rgba(200,100,100,.08)',link:'https://www.elekitra.net/cursos/libertacao-de-trauma-em-7-dias',info:'https://www.elekitra.net/cursos/libertacao-de-trauma-em-7-dias'},{emoji:'🌀',cat:'Lealdades',titulo:'Jornada das Lealdades Inconscientes',desc:'Dissolve padrões inconscientes de lealdade familiar.',dur:'Online',preco:'79€',bg:'rgba(106,155,122,.09)',link:'https://www.elekitra.net/cursos/jornada-das-lealdades-inconscientes',info:'https://www.elekitra.net/cursos/jornada-das-lealdades-inconscientes'},{emoji:'🌊',cat:'Cura · Atlântis',titulo:'Cura Integrada Nova Atlântis',desc:'Técnicas estelares e sabedoria atlante.',dur:'Online',preco:'69€',bg:'rgba(64,140,200,.09)',link:'https://www.elekitra.net/cursos/cura-integrada-nova-atlantis',info:'https://www.elekitra.net/cursos/cura-integrada-nova-atlantis'},{emoji:'🔮',cat:'Radiestesia',titulo:'Radiestesia e Radiónica',desc:'Pêndulo e técnicas de radiónica.',dur:'Online',preco:'99€',bg:'rgba(155,74,155,.09)',link:'https://www.elekitra.net/cursos/radiestesia-e-radionica',info:'https://www.elekitra.net/cursos/radiestesia-e-radionica'}],en:[{emoji:'🌿',cat:'Reiki · Shamanism',titulo:'Shamanic Reiki Amadeus',desc:'Practitioner and master level. Discover your power animal.',dur:'Online',preco:'89€',bg:'rgba(74,155,106,.09)',link:'https://pay.hotmart.com/U93586824L',info:'https://www.elekitra.net/cursos/reiki-xamanico'},{emoji:'⭐',cat:'Reiki · Stellar',titulo:'Stellar Reiki Practitioner',desc:'Stellar energies for healing and expansion.',dur:'Online',preco:'69€',bg:'rgba(106,171,204,.09)',link:'https://www.elekitra.net/cursos/reiki-estelar',info:'https://www.elekitra.net/cursos/reiki-estelar'},{emoji:'🛡️',cat:'Energetic Protection',titulo:'Cleansing, Harmonisation and Protection',desc:'Herbs, crystals, candles, symbols and feng shui.',dur:'Online',preco:'159€',bg:'rgba(74,143,181,.09)',link:'https://pay.hotmart.com/J94751534M',info:'https://www.elekitra.net'},{emoji:'⚔️',cat:'Protection · Mastery',titulo:'Energetic Protection Tools',desc:'4 mastery-level techniques.',dur:'Online',preco:'99€',bg:'rgba(155,122,74,.09)',link:'https://pay.hotmart.com/H95511068B',info:'https://www.elekitra.net'},{emoji:'🔰',cat:'Protection · Basic',titulo:'Basic Protection Tools',desc:'4 everyday techniques.',dur:'Online',preco:'99€',bg:'rgba(74,180,140,.09)',link:'https://www.elekitra.net/cursos/ferramentas-basicas-de-protecao-energetica',info:'https://www.elekitra.net/cursos/ferramentas-basicas-de-protecao-energetica'},{emoji:'⚡',cat:'Energy · Detox',titulo:'Energy Detox Express',desc:'Energetic healing and de-obsession.',dur:'Online',preco:'99€',bg:'rgba(200,160,64,.09)',link:'https://www.elekitra.net/cursos/energy-detox-express',info:'https://www.elekitra.net/cursos/energy-detox-express'},{emoji:'✨',cat:'Codes of Light',titulo:'Codes of Light',desc:'Energetic expansion and alignment.',dur:'Online',preco:'159€',bg:'rgba(168,212,232,.12)',link:'https://www.elekitra.net/cursos/codigos-de-luz',info:'https://www.elekitra.net/cursos/codigos-de-luz'},{emoji:'💫',cat:'Codes · Advanced',titulo:'Codes of Light Upgrade',desc:'Deepen your work with the codes of light.',dur:'Online',preco:'159€',bg:'rgba(155,127,212,.09)',link:'https://www.elekitra.net/cursos/codigos-de-luz-upgrade',info:'https://www.elekitra.net/cursos/codigos-de-luz-upgrade'},{emoji:'🧘',cat:'Meditation · Pack',titulo:'7-Day Meditation Pack',desc:'7 transformative guided meditations.',dur:'7 days',preco:'29,99€',bg:'rgba(168,212,150,.09)',link:'https://www.elekitra.net',info:'https://www.elekitra.net'},{emoji:'🌅',cat:'Meditation · Programme',titulo:'7-Day Programme',desc:'Meditation with energetic activations.',dur:'7 days',preco:'59€',bg:'rgba(200,230,255,.12)',link:'https://www.elekitra.net',info:'https://www.elekitra.net'},{emoji:'🕊️',cat:'Release · Trauma',titulo:'Trauma Release in 7 Days',desc:'Intensive programme to release traumatic patterns.',dur:'7 days',preco:'69€',bg:'rgba(200,100,100,.08)',link:'https://www.elekitra.net/cursos/libertacao-de-trauma-em-7-dias',info:'https://www.elekitra.net/cursos/libertacao-de-trauma-em-7-dias'},{emoji:'🌀',cat:'Loyalties',titulo:'Journey of Unconscious Loyalties',desc:'Dissolve unconscious patterns of family loyalty.',dur:'Online',preco:'79€',bg:'rgba(106,155,122,.09)',link:'https://www.elekitra.net/cursos/jornada-das-lealdades-inconscientes',info:'https://www.elekitra.net/cursos/jornada-das-lealdades-inconscientes'},{emoji:'🌊',cat:'Healing · Atlantis',titulo:'Integrated Healing New Atlantis',desc:'Stellar techniques and Atlantean wisdom.',dur:'Online',preco:'69€',bg:'rgba(64,140,200,.09)',link:'https://www.elekitra.net/cursos/cura-integrada-nova-atlantis',info:'https://www.elekitra.net/cursos/cura-integrada-nova-atlantis'},{emoji:'🔮',cat:'Radiesthesia',titulo:'Radiesthesia and Radionics',desc:'Pendulum and radionics techniques.',dur:'Online',preco:'99€',bg:'rgba(155,74,155,.09)',link:'https://www.elekitra.net/cursos/radiestesia-e-radionica',info:'https://www.elekitra.net/cursos/radiestesia-e-radionica'}],es:[{emoji:'🌿',cat:'Reiki · Chamanismo',titulo:'Reiki Chamanico Amadeus',desc:'Practicante y maestria. Descubre tu animal de poder.',dur:'Online',preco:'89€',bg:'rgba(74,155,106,.09)',link:'https://pay.hotmart.com/U93586824L',info:'https://www.elekitra.net/cursos/reiki-xamanico'},{emoji:'⭐',cat:'Reiki · Estelares',titulo:'Reiki Estelar Practicante',desc:'Energias estelares para la sanacion y expansion.',dur:'Online',preco:'69€',bg:'rgba(106,171,204,.09)',link:'https://www.elekitra.net/cursos/reiki-estelar',info:'https://www.elekitra.net/cursos/reiki-estelar'},{emoji:'🛡️',cat:'Proteccion Energetica',titulo:'Limpieza, Armonizacion y Proteccion',desc:'Hierbas, cristales, velas, simbolos y feng shui.',dur:'Online',preco:'159€',bg:'rgba(74,143,181,.09)',link:'https://pay.hotmart.com/J94751534M',info:'https://www.elekitra.net'},{emoji:'⚔️',cat:'Proteccion · Maestria',titulo:'Herramientas de Proteccion Energetica',desc:'4 tecnicas de maestria.',dur:'Online',preco:'99€',bg:'rgba(155,122,74,.09)',link:'https://pay.hotmart.com/H95511068B',info:'https://www.elekitra.net'},{emoji:'🔰',cat:'Proteccion · Basico',titulo:'Herramientas Basicas de Proteccion',desc:'4 tecnicas para el dia a dia.',dur:'Online',preco:'99€',bg:'rgba(74,180,140,.09)',link:'https://www.elekitra.net/cursos/ferramentas-basicas-de-protecao-energetica',info:'https://www.elekitra.net/cursos/ferramentas-basicas-de-protecao-energetica'},{emoji:'⚡',cat:'Energia · Detox',titulo:'Energy Detox Express',desc:'Sanacion energetica y desposesion.',dur:'Online',preco:'99€',bg:'rgba(200,160,64,.09)',link:'https://www.elekitra.net/cursos/energy-detox-express',info:'https://www.elekitra.net/cursos/energy-detox-express'},{emoji:'✨',cat:'Codigos de Luz',titulo:'Codigos de Luz',desc:'Expansion energetica y alineamiento.',dur:'Online',preco:'159€',bg:'rgba(168,212,232,.12)',link:'https://www.elekitra.net/cursos/codigos-de-luz',info:'https://www.elekitra.net/cursos/codigos-de-luz'},{emoji:'💫',cat:'Codigos · Avanzado',titulo:'Codigos de Luz Upgrade',desc:'Profundiza el trabajo con los codigos de luz.',dur:'Online',preco:'159€',bg:'rgba(155,127,212,.09)',link:'https://www.elekitra.net/cursos/codigos-de-luz-upgrade',info:'https://www.elekitra.net/cursos/codigos-de-luz-upgrade'},{emoji:'🧘',cat:'Meditacion · Pack',titulo:'Pack Meditaciones 7 Dias',desc:'7 meditaciones guiadas transformadoras.',dur:'Online',preco:'29,99€',bg:'rgba(168,212,150,.09)',link:'https://www.elekitra.net',info:'https://www.elekitra.net'},{emoji:'🌅',cat:'Meditacion · Programa',titulo:'Programa 7 Dias',desc:'Meditacion con activaciones energeticas.',dur:'7 dias',preco:'59€',bg:'rgba(200,230,255,.12)',link:'https://www.elekitra.net',info:'https://www.elekitra.net'},{emoji:'🕊️',cat:'Liberacion · Trauma',titulo:'Liberacion de Trauma en 7 dias',desc:'Programa intensivo para liberar patrones traumaticos.',dur:'7 dias',preco:'69€',bg:'rgba(200,100,100,.08)',link:'https://www.elekitra.net/cursos/libertacao-de-trauma-em-7-dias',info:'https://www.elekitra.net/cursos/libertacao-de-trauma-em-7-dias'},{emoji:'🌀',cat:'Lealtades',titulo:'Jornada de las Lealtades Inconscientes',desc:'Disuelve patrones inconscientes de lealtad familiar.',dur:'Online',preco:'79€',bg:'rgba(106,155,122,.09)',link:'https://www.elekitra.net/cursos/jornada-das-lealdades-inconscientes',info:'https://www.elekitra.net/cursos/jornada-das-lealdades-inconscientes'},{emoji:'🌊',cat:'Sanacion · Atlantida',titulo:'Sanacion Integrada Nueva Atlantida',desc:'Tecnicas estelares y sabiduria atlante.',dur:'Online',preco:'69€',bg:'rgba(64,140,200,.09)',link:'https://www.elekitra.net/cursos/cura-integrada-nova-atlantis',info:'https://www.elekitra.net/cursos/cura-integrada-nova-atlantis'},{emoji:'🔮',cat:'Radiestesia',titulo:'Radiestesia y Radionica',desc:'Pendulo y tecnicas de radionica.',dur:'Online',preco:'99€',bg:'rgba(155,74,155,.09)',link:'https://www.elekitra.net/cursos/radiestesia-e-radionica',info:'https://www.elekitra.net/cursos/radiestesia-e-radionica'}]};
+const CR_DATA={pt:[{emoji:'🌿',cat:'Reiki · Xamanismo',titulo:'Reiki Xamânico Amadeus',desc:'Praticante e mestrado. Descobre o teu animal do poder.',dur:'Online',preco:'89€',bg:'rgba(74,155,106,.09)',link:'https://pay.hotmart.com/U93586824L',info:'https://www.elekitra.net/cursos/reiki-xamanico'},{emoji:'⭐',cat:'Reiki · Estelares',titulo:'Reiki Estelar Praticante',desc:'Energias estelares para cura e expansão.',dur:'Online',preco:'69€',bg:'rgba(106,171,204,.09)',link:'https://www.elekitra.net/cursos/reiki-estelar',info:'https://www.elekitra.net/cursos/reiki-estelar'},{emoji:'🛡️',cat:'Protecção Energética',titulo:'Limpeza, Harmonização e Protecção',desc:'Ervas, cristais, velas, símbolos e feng shui.',dur:'Online',preco:'159€',bg:'rgba(74,143,181,.09)',link:'https://pay.hotmart.com/J94751534M',info:'https://www.elekitra.net'},{emoji:'⚔️',cat:'Protecção · Mestrado',titulo:'Ferramentas de Protecção Energética',desc:'4 técnicas de mestrado.',dur:'Online',preco:'99€',bg:'rgba(155,122,74,.09)',link:'https://pay.hotmart.com/H95511068B',info:'https://www.elekitra.net'},{emoji:'🔰',cat:'Protecção · Básico',titulo:'Ferramentas Básicas de Protecção',desc:'4 técnicas para o dia a dia.',dur:'Online',preco:'99€',bg:'rgba(74,180,140,.09)',link:'https://www.elekitra.net/cursos/ferramentas-basicas-de-protecao-energetica',info:'https://www.elekitra.net/cursos/ferramentas-basicas-de-protecao-energetica'},{emoji:'⚡',cat:'Energia · Detox',titulo:'Energy Detox Express',desc:'Cura energética e desobsessão.',dur:'Online',preco:'99€',bg:'rgba(200,160,64,.09)',link:'https://www.elekitra.net/cursos/energy-detox-express',info:'https://www.elekitra.net/cursos/energy-detox-express'},{emoji:'✨',cat:'Códigos de Luz',titulo:'Códigos de Luz',desc:'Expansão energética e alinhamento.',dur:'Online',preco:'159€',bg:'rgba(168,212,232,.12)',link:'https://www.elekitra.net/cursos/codigos-de-luz',info:'https://www.elekitra.net/cursos/codigos-de-luz'},{emoji:'💫',cat:'Códigos · Avançado',titulo:'Códigos de Luz Upgrade',desc:'Aprofunda o trabalho com códigos de luz.',dur:'Online',preco:'159€',bg:'rgba(155,127,212,.09)',link:'https://www.elekitra.net/cursos/codigos-de-luz-upgrade',info:'https://www.elekitra.net/cursos/codigos-de-luz-upgrade'},{emoji:'🧘',cat:'Meditação · Pack',titulo:'Pack Meditações 7 Dias',desc:'7 meditações guiadas transformadoras.',dur:'7 dias',preco:'29,99€',bg:'rgba(168,212,150,.09)',link:'https://www.elekitra.net',info:'https://www.elekitra.net'},{emoji:'🌅',cat:'Meditação · Programa',titulo:'Programa 7 Dias',desc:'Meditação com activações energéticas.',dur:'7 dias',preco:'59€',bg:'rgba(200,230,255,.12)',link:'https://www.elekitra.net',info:'https://www.elekitra.net'},{emoji:'🕊️',cat:'Libertação · Trauma',titulo:'Libertação de Trauma em 7 dias',desc:'Programa intensivo para libertar padrões traumáticos.',dur:'7 dias',preco:'69€',bg:'rgba(200,100,100,.08)',link:'https://www.elekitra.net/cursos/libertacao-de-trauma-em-7-dias',info:'https://www.elekitra.net/cursos/libertacao-de-trauma-em-7-dias'},{emoji:'🌀',cat:'Lealdades',titulo:'Jornada das Lealdades Inconscientes',desc:'Dissolve padrões inconscientes de lealdade familiar.',dur:'Online',preco:'79€',bg:'rgba(106,155,122,.09)',link:'https://www.elekitra.net/cursos/jornada-das-lealdades-inconscientes',info:'https://www.elekitra.net/cursos/jornada-das-lealdades-inconscientes'},{emoji:'🌊',cat:'Cura · Atlântis',titulo:'Cura Integrada Nova Atlântis',desc:'Técnicas estelares e sabedoria atlante.',dur:'Online',preco:'69€',bg:'rgba(64,140,200,.09)',link:'https://www.elekitra.net/cursos/cura-integrada-nova-atlantis',info:'https://www.elekitra.net/cursos/cura-integrada-nova-atlantis'},{emoji:'🔮',cat:'Radiestesia',titulo:'Radiestesia e Radiónica',desc:'Pêndulo e técnicas de radiónica.',dur:'Online',preco:'99€',bg:'rgba(155,74,155,.09)',link:'https://www.elekitra.net/cursos/radiestesia-e-radionica',info:'https://www.elekitra.net/cursos/radiestesia-e-radionica'},{emoji:'🌱',cat:'Grau de Neófito',titulo:'Misericórdia Divina de Jesus',desc:'A descoberta de um novo caminho espiritual.',dur:'4 horas',preco:'Gratuito',bg:'rgba(74,180,140,.09)',link:'https://cursos.alryom.com.br/curso/misericordia-divina-jesus',info:'https://cursos.alryom.com.br/curso/misericordia-divina-jesus'},{emoji:'🌱',cat:'Grau de Neófito',titulo:'Cura Energética',desc:'A descoberta de um novo caminho espiritual.',dur:'4 horas',preco:'Gratuito',bg:'rgba(74,180,140,.09)',link:'https://cursos.alryom.com.br/curso/cura-energetica',info:'https://cursos.alryom.com.br/curso/cura-energetica'},{emoji:'🌱',cat:'Grau de Neófito',titulo:'Cura Cósmica Planetária',desc:'A descoberta de um novo caminho espiritual.',dur:'4 horas',preco:'Gratuito',bg:'rgba(74,180,140,.09)',link:'https://cursos.alryom.com.br/curso/ccp',info:'https://cursos.alryom.com.br/curso/ccp'},{emoji:'🌱',cat:'Grau de Neófito',titulo:'Workshop do Terceiro Olho',desc:'A descoberta de um novo caminho espiritual.',dur:'1 hora',preco:'R$ 97,00',bg:'rgba(74,180,140,.09)',link:'https://alryomcursos.com.br/ws-3olho',info:'https://alryomcursos.com.br/ws-3olho'},{emoji:'🌱',cat:'Grau de Neófito',titulo:'Workshop Materialização Multidimensional',desc:'A descoberta de um novo caminho espiritual.',dur:'1 hora',preco:'R$ 47,00',bg:'rgba(74,180,140,.09)',link:'https://alryomcursos.com.br/ws-multi',info:'https://alryomcursos.com.br/ws-multi'},{emoji:'🌱',cat:'Grau de Neófito',titulo:'Workshop de Ascensão',desc:'A descoberta de um novo caminho espiritual.',dur:'1 hora',preco:'R$ 47,00',bg:'rgba(74,180,140,.09)',link:'https://alryomcursos.com.br/ws-ascensao',info:'https://alryomcursos.com.br/ws-ascensao'},{emoji:'🛡️',cat:'Grau de Guardião',titulo:'Iniciação do Manto de Proteção',desc:'Proteção espiritual e prosperidade.',dur:'2 horas',preco:'R$ 197,00',bg:'rgba(74,143,181,.09)',link:'https://alryomcursos.com.br/manto',info:'https://alryomcursos.com.br/manto'},{emoji:'🛡️',cat:'Grau de Guardião',titulo:'Escudo de Melchizedek',desc:'Proteção espiritual e prosperidade.',dur:'2 horas',preco:'R$ 197,00',bg:'rgba(74,143,181,.09)',link:'https://alryomcursos.com.br/escudo',info:'https://alryomcursos.com.br/escudo'},{emoji:'🛡️',cat:'Grau de Guardião',titulo:'Prosperidade de Salomão',desc:'Proteção espiritual e prosperidade.',dur:'4 horas',preco:'R$ 297,00',bg:'rgba(74,143,181,.09)',link:'https://alryomcursos.com.br/prosperidade-salomao',info:'https://alryomcursos.com.br/prosperidade-salomao'},{emoji:'🛡️',cat:'Grau de Guardião',titulo:'Meditação dos Chakras',desc:'Proteção espiritual e prosperidade.',dur:'2 horas',preco:'R$ 97,00',bg:'rgba(74,143,181,.09)',link:'https://alryomcursos.com.br/chakras',info:'https://alryomcursos.com.br/chakras'},{emoji:'🛡️',cat:'Grau de Guardião',titulo:'Cajado Elemental',desc:'Proteção espiritual e prosperidade.',dur:'4 horas',preco:'R$ 197,00',bg:'rgba(74,143,181,.09)',link:'https://alryomcursos.com.br/cajado',info:'https://alryomcursos.com.br/cajado'},{emoji:'💗',cat:'Grau de Hierofante do Amor Divino',titulo:'Iniciação do Amor Divino',desc:'Cura emocional e conexão com o Amor Divino.',dur:'2 horas',preco:'R$ 197,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/amor',info:'https://alryomcursos.com.br/amor'},{emoji:'💗',cat:'Grau de Hierofante do Amor Divino',titulo:'Iniciação da Espiral de Rosas de Kuan Yin',desc:'Cura emocional e conexão com o Amor Divino.',dur:'3 horas',preco:'R$ 197,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/kuanyin',info:'https://alryomcursos.com.br/kuanyin'},{emoji:'💗',cat:'Grau de Hierofante do Amor Divino',titulo:'Iniciação de Kuan Yin',desc:'Cura emocional e conexão com o Amor Divino.',dur:'2 horas',preco:'R$ 197,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/kuan',info:'https://alryomcursos.com.br/kuan'},{emoji:'💗',cat:'Grau de Hierofante do Amor Divino',titulo:'Iniciação do Amor Eterno',desc:'Cura emocional e conexão com o Amor Divino.',dur:'2 horas',preco:'R$ 197,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/amoreterno',info:'https://alryomcursos.com.br/amoreterno'},{emoji:'💗',cat:'Grau de Hierofante do Amor Divino',titulo:'Cura Kármica de Kuan Yin',desc:'Cura emocional e conexão com o Amor Divino.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/curakarmica',info:'https://alryomcursos.com.br/curakarmica'},{emoji:'💗',cat:'Grau de Hierofante do Amor Divino',titulo:'Mestre do Amor Divino',desc:'Cura emocional e conexão com o Amor Divino.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/mestreamor',info:'https://alryomcursos.com.br/mestreamor'},{emoji:'💗',cat:'Grau de Hierofante do Amor Divino',titulo:'Cristal de Luz do Amor Divino',desc:'Cura emocional e conexão com o Amor Divino.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/cristal-amor',info:'https://alryomcursos.com.br/cristal-amor'},{emoji:'💗',cat:'Grau de Hierofante do Amor Divino',titulo:'Diamante do Amor Divino',desc:'Cura emocional e conexão com o Amor Divino.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/diamante-amor',info:'https://alryomcursos.com.br/diamante-amor'},{emoji:'👁️',cat:'Grau de Mestre Psíquico',titulo:'Energia Cósmica',desc:'Domínio das energias cósmicas e abertura do terceiro olho.',dur:'8 horas',preco:'R$ 297,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/energia-agora',info:'https://alryomcursos.com.br/energia-agora'},{emoji:'👁️',cat:'Grau de Mestre Psíquico',titulo:'Removendo Obsessores',desc:'Domínio das energias cósmicas e abertura do terceiro olho.',dur:'6 horas',preco:'R$ 297,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/obsessores',info:'https://alryomcursos.com.br/obsessores'},{emoji:'👁️',cat:'Grau de Mestre Psíquico',titulo:'Ativações Tibetanas',desc:'Domínio das energias cósmicas e abertura do terceiro olho.',dur:'4 horas',preco:'R$ 297,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/ativacoes',info:'https://alryomcursos.com.br/ativacoes'},{emoji:'👁️',cat:'Grau de Mestre Psíquico',titulo:'Iniciação Estelar',desc:'Domínio das energias cósmicas e abertura do terceiro olho.',dur:'4 horas',preco:'R$ 297,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/estelar',info:'https://alryomcursos.com.br/estelar'},{emoji:'👁️',cat:'Grau de Mestre Psíquico',titulo:'Iniciação do Terceiro Olho',desc:'Domínio das energias cósmicas e abertura do terceiro olho.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/3olho',info:'https://alryomcursos.com.br/3olho'},{emoji:'👁️',cat:'Grau de Mestre Psíquico',titulo:'Sinta Seus Mentores Espirituais',desc:'Domínio das energias cósmicas e abertura do terceiro olho.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/mentores',info:'https://alryomcursos.com.br/mentores'},{emoji:'👁️',cat:'Grau de Mestre Psíquico',titulo:'Iniciação da Fraternidade Rosa de Orion',desc:'Domínio das energias cósmicas e abertura do terceiro olho.',dur:'4 horas',preco:'R$ 997,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/orion',info:'https://alryomcursos.com.br/orion'},{emoji:'👁️',cat:'Grau de Mestre Psíquico',titulo:'Última Iniciação Tibetana',desc:'Domínio das energias cósmicas e abertura do terceiro olho.',dur:'4 horas',preco:'R$ 997,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/ultima-tibetana',info:'https://alryomcursos.com.br/ultima-tibetana'},{emoji:'💎',cat:'Grau de Sacerdote do Reino Cristalino',titulo:'Projeção Psíquica',desc:'Domínio das energias mais sutis dos cristais de luz.',dur:'8 horas',preco:'R$ 1.497,00',bg:'rgba(140,180,220,.10)',link:'https://alryomcursos.com.br/projecao',info:'https://alryomcursos.com.br/projecao'},{emoji:'💎',cat:'Grau de Sacerdote do Reino Cristalino',titulo:'Portais de Luz',desc:'Domínio das energias mais sutis dos cristais de luz.',dur:'8 horas',preco:'R$ 1.497,00',bg:'rgba(140,180,220,.10)',link:'https://alryomcursos.com.br/portais',info:'https://alryomcursos.com.br/portais'},{emoji:'💎',cat:'Grau de Sacerdote do Reino Cristalino',titulo:'Cristais de Luz',desc:'Domínio das energias mais sutis dos cristais de luz.',dur:'8 horas',preco:'R$ 1.497,00',bg:'rgba(140,180,220,.10)',link:'https://alryomcursos.com.br/cristais',info:'https://alryomcursos.com.br/cristais'},{emoji:'💎',cat:'Grau de Sacerdote do Reino Cristalino',titulo:'Tecnologias Multidimensionais',desc:'Domínio das energias mais sutis dos cristais de luz.',dur:'8 horas',preco:'R$ 1.497,00',bg:'rgba(140,180,220,.10)',link:'https://alryomcursos.com.br/tecm',info:'https://alryomcursos.com.br/tecm'},{emoji:'💎',cat:'Grau de Sacerdote do Reino Cristalino',titulo:'Constelações Sistêmicas Multidimensionais',desc:'Domínio das energias mais sutis dos cristais de luz.',dur:'8 horas',preco:'R$ 1.497,00',bg:'rgba(140,180,220,.10)',link:'https://alryomcursos.com.br/constelacoes',info:'https://alryomcursos.com.br/constelacoes'},{emoji:'⚡',cat:'Grau de Mestre da Cura Energética',titulo:'Reiki Estelar - Praticante',desc:'As melhores técnicas de cura energética.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/reiki-estelar',info:'https://alryomcursos.com.br/reiki-estelar'},{emoji:'⚡',cat:'Grau de Mestre da Cura Energética',titulo:'Reiki Estelar - Mestrado',desc:'As melhores técnicas de cura energética.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/reiki-estelar',info:'https://alryomcursos.com.br/reiki-estelar'},{emoji:'⚡',cat:'Grau de Mestre da Cura Energética',titulo:'Cura Integrada Nova Atlantis - Praticante',desc:'As melhores técnicas de cura energética.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/novaatlantis',info:'https://alryomcursos.com.br/novaatlantis'},{emoji:'⚡',cat:'Grau de Mestre da Cura Energética',titulo:'Cura Integrada Nova Atlantis - Mestrado',desc:'As melhores técnicas de cura energética.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/novaatlantis',info:'https://alryomcursos.com.br/novaatlantis'},{emoji:'⚡',cat:'Grau de Mestre da Cura Energética',titulo:'Cura Integrada Nova Atlantis - Liberando Traumas',desc:'As melhores técnicas de cura energética.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/liberando-traumas',info:'https://alryomcursos.com.br/liberando-traumas'},{emoji:'⚡',cat:'Grau de Mestre da Cura Energética',titulo:'Cirurgia Etérica',desc:'As melhores técnicas de cura energética.',dur:'6 horas',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/cet',info:'https://alryomcursos.com.br/cet'},{emoji:'⚡',cat:'Grau de Mestre da Cura Energética',titulo:'Alinhamento Estelar',desc:'As melhores técnicas de cura energética.',dur:'8 horas',preco:'R$ 1.497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/alinhamento',info:'https://alryomcursos.com.br/alinhamento'},{emoji:'⚡',cat:'Grau de Mestre da Cura Energética',titulo:'Alinhamento Estelar - Upgrade',desc:'As melhores técnicas de cura energética.',dur:'6 horas',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/ale-upgrade',info:'https://alryomcursos.com.br/ale-upgrade'},{emoji:'⚡',cat:'Grau de Mestre da Cura Energética',titulo:'Cura Etérica Arcturiana',desc:'As melhores técnicas de cura energética.',dur:'8 horas',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/cea',info:'https://alryomcursos.com.br/cea'},{emoji:'⚡',cat:'Grau de Mestre da Cura Energética',titulo:'Cirurgia Quântica Apométrica',desc:'As melhores técnicas de cura energética.',dur:'6 horas',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/apometria',info:'https://alryomcursos.com.br/apometria'},{emoji:'⚡',cat:'Grau de Mestre da Cura Energética',titulo:'Frota Diamante Azul',desc:'As melhores técnicas de cura energética.',dur:'4 horas',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/diamante-azul',info:'https://alryomcursos.com.br/diamante-azul'},{emoji:'⚡',cat:'Grau de Mestre da Cura Energética',titulo:'Cura Kármica - Ego e Resistência',desc:'As melhores técnicas de cura energética.',dur:'8 horas',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/curakarmica-er',info:'https://alryomcursos.com.br/curakarmica-er'},{emoji:'🔥',cat:'Grau de Adepto da Magia Cósmica',titulo:'Manto de Proteção dos Magos Universais',desc:'Poder espiritual para alterar a realidade.',dur:'4 horas',preco:'R$ 297,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/manto-magos',info:'https://alryomcursos.com.br/manto-magos'},{emoji:'🔥',cat:'Grau de Adepto da Magia Cósmica',titulo:'Espada da Transmutação dos Magos Universais',desc:'Poder espiritual para alterar a realidade.',dur:'4 horas',preco:'R$ 297,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/espada',info:'https://alryomcursos.com.br/espada'},{emoji:'🔥',cat:'Grau de Adepto da Magia Cósmica',titulo:'Iniciação da Magia Elemental',desc:'Poder espiritual para alterar a realidade.',dur:'4 horas',preco:'R$ 997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-elemental',info:'https://alryomcursos.com.br/magia-elemental'},{emoji:'🔥',cat:'Grau de Adepto da Magia Cósmica',titulo:'Iniciação da Magia Estelar',desc:'Poder espiritual para alterar a realidade.',dur:'4 horas',preco:'R$ 997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-estelar',info:'https://alryomcursos.com.br/magia-estelar'},{emoji:'🔥',cat:'Grau de Adepto da Magia Cósmica',titulo:'Iniciação da Magia Universal',desc:'Poder espiritual para alterar a realidade.',dur:'4 horas',preco:'R$ 997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-universal',info:'https://alryomcursos.com.br/magia-universal'},{emoji:'🔥',cat:'Grau de Adepto da Magia Cósmica',titulo:'Magia Ancestral dos Magos Universais',desc:'Poder espiritual para alterar a realidade.',dur:'4 horas',preco:'R$ 997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-ancestral',info:'https://alryomcursos.com.br/magia-ancestral'},{emoji:'🔥',cat:'Grau de Adepto da Magia Cósmica',titulo:'Grau Dourado dos Magos Universais',desc:'Poder espiritual para alterar a realidade.',dur:'4 horas',preco:'R$ 1.997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/grau-dourado',info:'https://alryomcursos.com.br/grau-dourado'},{emoji:'🔥',cat:'Grau de Adepto da Magia Cósmica',titulo:'Chama da Libertação dos Magos Universais',desc:'Poder espiritual para alterar a realidade.',dur:'4 horas',preco:'R$ 1.997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/chama',info:'https://alryomcursos.com.br/chama'},{emoji:'🔥',cat:'Grau de Adepto da Magia Cósmica',titulo:'Iniciação da Magia Cristalina',desc:'Poder espiritual para alterar a realidade.',dur:'4 horas',preco:'R$ 1.997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-cristalina',info:'https://alryomcursos.com.br/magia-cristalina'},{emoji:'🔥',cat:'Grau de Adepto da Magia Cósmica',titulo:'Iniciação da Magia Galáctica',desc:'Poder espiritual para alterar a realidade.',dur:'4 horas',preco:'R$ 2.997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-galactica',info:'https://alryomcursos.com.br/magia-galactica'},{emoji:'🛸',cat:'Grau de Oficial do Comando Estelar',titulo:'Grau de Oficial do Comando Estelar',desc:'Limpeza energética multidimensional com naves de luz.',dur:'4 horas',preco:'R$ 10,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/grau-comando-estelar',info:'https://alryomcursos.com.br/grau-comando-estelar'},{emoji:'🛸',cat:'Grau de Oficial do Comando Estelar',titulo:'Conexão Estelar',desc:'Limpeza energética multidimensional com naves de luz.',dur:'16 horas',preco:'R$ 1.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/conexao',info:'https://alryomcursos.com.br/conexao'},{emoji:'🛸',cat:'Grau de Oficial do Comando Estelar',titulo:'Conexão Estelar Black',desc:'Limpeza energética multidimensional com naves de luz.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/ceblack',info:'https://alryomcursos.com.br/ceblack'},{emoji:'🛸',cat:'Grau de Oficial do Comando Estelar',titulo:'Conexão Estelar Ultra Black',desc:'Limpeza energética multidimensional com naves de luz.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/ceultra',info:'https://alryomcursos.com.br/ceultra'},{emoji:'🛸',cat:'Grau de Oficial do Comando Estelar',titulo:'Conexão Estelar Frotas Estelares',desc:'Limpeza energética multidimensional com naves de luz.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/cefrotas',info:'https://alryomcursos.com.br/cefrotas'},{emoji:'🛸',cat:'Grau de Oficial do Comando Estelar',titulo:'Conexão Estelar Frotas Black',desc:'Limpeza energética multidimensional com naves de luz.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/cefrotasb',info:'https://alryomcursos.com.br/cefrotasb'},{emoji:'🛸',cat:'Grau de Oficial do Comando Estelar',titulo:'Conexão Estelar Realidades Virtuais',desc:'Limpeza energética multidimensional com naves de luz.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/cerv',info:'https://alryomcursos.com.br/cerv'},{emoji:'🛸',cat:'Grau de Oficial do Comando Estelar',titulo:'Conexão Estelar Interplanetário',desc:'Limpeza energética multidimensional com naves de luz.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/ce-inter',info:'https://alryomcursos.com.br/ce-inter'},{emoji:'🌀',cat:'Grau de Guardião dos Stargates',titulo:'Stargate - Controlador Primário',desc:'Acesso aos portais galácticos.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(100,100,180,.10)',link:'https://alryomcursos.com.br/stargate-cp',info:'https://alryomcursos.com.br/stargate-cp'},{emoji:'🌀',cat:'Grau de Guardião dos Stargates',titulo:'Stargate - Portais Planetários',desc:'Acesso aos portais galácticos.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(100,100,180,.10)',link:'https://alryomcursos.com.br/stargate-pp',info:'https://alryomcursos.com.br/stargate-pp'},{emoji:'🌀',cat:'Grau de Guardião dos Stargates',titulo:'Stargate - Anti Matrix',desc:'Acesso aos portais galácticos.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(100,100,180,.10)',link:'https://alryomcursos.com.br/stargate-am',info:'https://alryomcursos.com.br/stargate-am'},{emoji:'🌀',cat:'Grau de Guardião dos Stargates',titulo:'Stargate - Guerra Temporal',desc:'Acesso aos portais galácticos.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(100,100,180,.10)',link:'https://alryomcursos.com.br/stargate-gt',info:'https://alryomcursos.com.br/stargate-gt'},{emoji:'🌀',cat:'Grau de Guardião dos Stargates',titulo:'Matrix',desc:'Acesso aos portais galácticos.',dur:'20 horas',preco:'R$ 1.997,00',bg:'rgba(100,100,180,.10)',link:'https://alryomcursos.com.br/mx-inscricao',info:'https://alryomcursos.com.br/mx-inscricao'},{emoji:'🎓',cat:'Formação Profissional',titulo:'Prosperidade para Espiritualistas',desc:'Conhecimentos para uso profissional em terapia e espiritualidade.',dur:'8 horas',preco:'R$ 497,00',bg:'rgba(74,155,106,.09)',link:'https://alryomcursos.com.br/prosperidade',info:'https://alryomcursos.com.br/prosperidade'},{emoji:'🎓',cat:'Formação Profissional',titulo:'Terapeuta Energético Internacional',desc:'Conhecimentos para uso profissional em terapia e espiritualidade.',dur:'20 horas',preco:'R$ 2.997,00',bg:'rgba(74,155,106,.09)',link:'https://alryomcursos.com.br/terapeuta',info:'https://alryomcursos.com.br/terapeuta'}],en:[{emoji:'🌿',cat:'Reiki · Shamanism',titulo:'Shamanic Reiki Amadeus',desc:'Practitioner and master level. Discover your power animal.',dur:'Online',preco:'89€',bg:'rgba(74,155,106,.09)',link:'https://pay.hotmart.com/U93586824L',info:'https://www.elekitra.net/cursos/reiki-xamanico'},{emoji:'⭐',cat:'Reiki · Stellar',titulo:'Stellar Reiki Practitioner',desc:'Stellar energies for healing and expansion.',dur:'Online',preco:'69€',bg:'rgba(106,171,204,.09)',link:'https://www.elekitra.net/cursos/reiki-estelar',info:'https://www.elekitra.net/cursos/reiki-estelar'},{emoji:'🛡️',cat:'Energetic Protection',titulo:'Cleansing, Harmonisation and Protection',desc:'Herbs, crystals, candles, symbols and feng shui.',dur:'Online',preco:'159€',bg:'rgba(74,143,181,.09)',link:'https://pay.hotmart.com/J94751534M',info:'https://www.elekitra.net'},{emoji:'⚔️',cat:'Protection · Mastery',titulo:'Energetic Protection Tools',desc:'4 mastery-level techniques.',dur:'Online',preco:'99€',bg:'rgba(155,122,74,.09)',link:'https://pay.hotmart.com/H95511068B',info:'https://www.elekitra.net'},{emoji:'🔰',cat:'Protection · Basic',titulo:'Basic Protection Tools',desc:'4 everyday techniques.',dur:'Online',preco:'99€',bg:'rgba(74,180,140,.09)',link:'https://www.elekitra.net/cursos/ferramentas-basicas-de-protecao-energetica',info:'https://www.elekitra.net/cursos/ferramentas-basicas-de-protecao-energetica'},{emoji:'⚡',cat:'Energy · Detox',titulo:'Energy Detox Express',desc:'Energetic healing and de-obsession.',dur:'Online',preco:'99€',bg:'rgba(200,160,64,.09)',link:'https://www.elekitra.net/cursos/energy-detox-express',info:'https://www.elekitra.net/cursos/energy-detox-express'},{emoji:'✨',cat:'Codes of Light',titulo:'Codes of Light',desc:'Energetic expansion and alignment.',dur:'Online',preco:'159€',bg:'rgba(168,212,232,.12)',link:'https://www.elekitra.net/cursos/codigos-de-luz',info:'https://www.elekitra.net/cursos/codigos-de-luz'},{emoji:'💫',cat:'Codes · Advanced',titulo:'Codes of Light Upgrade',desc:'Deepen your work with the codes of light.',dur:'Online',preco:'159€',bg:'rgba(155,127,212,.09)',link:'https://www.elekitra.net/cursos/codigos-de-luz-upgrade',info:'https://www.elekitra.net/cursos/codigos-de-luz-upgrade'},{emoji:'🧘',cat:'Meditation · Pack',titulo:'7-Day Meditation Pack',desc:'7 transformative guided meditations.',dur:'7 days',preco:'29,99€',bg:'rgba(168,212,150,.09)',link:'https://www.elekitra.net',info:'https://www.elekitra.net'},{emoji:'🌅',cat:'Meditation · Programme',titulo:'7-Day Programme',desc:'Meditation with energetic activations.',dur:'7 days',preco:'59€',bg:'rgba(200,230,255,.12)',link:'https://www.elekitra.net',info:'https://www.elekitra.net'},{emoji:'🕊️',cat:'Release · Trauma',titulo:'Trauma Release in 7 Days',desc:'Intensive programme to release traumatic patterns.',dur:'7 days',preco:'69€',bg:'rgba(200,100,100,.08)',link:'https://www.elekitra.net/cursos/libertacao-de-trauma-em-7-dias',info:'https://www.elekitra.net/cursos/libertacao-de-trauma-em-7-dias'},{emoji:'🌀',cat:'Loyalties',titulo:'Journey of Unconscious Loyalties',desc:'Dissolve unconscious patterns of family loyalty.',dur:'Online',preco:'79€',bg:'rgba(106,155,122,.09)',link:'https://www.elekitra.net/cursos/jornada-das-lealdades-inconscientes',info:'https://www.elekitra.net/cursos/jornada-das-lealdades-inconscientes'},{emoji:'🌊',cat:'Healing · Atlantis',titulo:'Integrated Healing New Atlantis',desc:'Stellar techniques and Atlantean wisdom.',dur:'Online',preco:'69€',bg:'rgba(64,140,200,.09)',link:'https://www.elekitra.net/cursos/cura-integrada-nova-atlantis',info:'https://www.elekitra.net/cursos/cura-integrada-nova-atlantis'},{emoji:'🔮',cat:'Radiesthesia',titulo:'Radiesthesia and Radionics',desc:'Pendulum and radionics techniques.',dur:'Online',preco:'99€',bg:'rgba(155,74,155,.09)',link:'https://www.elekitra.net/cursos/radiestesia-e-radionica',info:'https://www.elekitra.net/cursos/radiestesia-e-radionica'},{emoji:'🌱',cat:'Neophyte Degree',titulo:'Misericórdia Divina de Jesus',desc:'The discovery of a new spiritual path.',dur:'4 hours',preco:'Free',bg:'rgba(74,180,140,.09)',link:'https://cursos.alryom.com.br/curso/misericordia-divina-jesus',info:'https://cursos.alryom.com.br/curso/misericordia-divina-jesus'},{emoji:'🌱',cat:'Neophyte Degree',titulo:'Cura Energética',desc:'The discovery of a new spiritual path.',dur:'4 hours',preco:'Free',bg:'rgba(74,180,140,.09)',link:'https://cursos.alryom.com.br/curso/cura-energetica',info:'https://cursos.alryom.com.br/curso/cura-energetica'},{emoji:'🌱',cat:'Neophyte Degree',titulo:'Cura Cósmica Planetária',desc:'The discovery of a new spiritual path.',dur:'4 hours',preco:'Free',bg:'rgba(74,180,140,.09)',link:'https://cursos.alryom.com.br/curso/ccp',info:'https://cursos.alryom.com.br/curso/ccp'},{emoji:'🌱',cat:'Neophyte Degree',titulo:'Workshop do Terceiro Olho',desc:'The discovery of a new spiritual path.',dur:'1 hour',preco:'R$ 97,00',bg:'rgba(74,180,140,.09)',link:'https://alryomcursos.com.br/ws-3olho',info:'https://alryomcursos.com.br/ws-3olho'},{emoji:'🌱',cat:'Neophyte Degree',titulo:'Workshop Materialização Multidimensional',desc:'The discovery of a new spiritual path.',dur:'1 hour',preco:'R$ 47,00',bg:'rgba(74,180,140,.09)',link:'https://alryomcursos.com.br/ws-multi',info:'https://alryomcursos.com.br/ws-multi'},{emoji:'🌱',cat:'Neophyte Degree',titulo:'Workshop de Ascensão',desc:'The discovery of a new spiritual path.',dur:'1 hour',preco:'R$ 47,00',bg:'rgba(74,180,140,.09)',link:'https://alryomcursos.com.br/ws-ascensao',info:'https://alryomcursos.com.br/ws-ascensao'},{emoji:'🛡️',cat:'Guardian Degree',titulo:'Iniciação do Manto de Proteção',desc:'Spiritual protection and prosperity.',dur:'2 hours',preco:'R$ 197,00',bg:'rgba(74,143,181,.09)',link:'https://alryomcursos.com.br/manto',info:'https://alryomcursos.com.br/manto'},{emoji:'🛡️',cat:'Guardian Degree',titulo:'Escudo de Melchizedek',desc:'Spiritual protection and prosperity.',dur:'2 hours',preco:'R$ 197,00',bg:'rgba(74,143,181,.09)',link:'https://alryomcursos.com.br/escudo',info:'https://alryomcursos.com.br/escudo'},{emoji:'🛡️',cat:'Guardian Degree',titulo:'Prosperidade de Salomão',desc:'Spiritual protection and prosperity.',dur:'4 hours',preco:'R$ 297,00',bg:'rgba(74,143,181,.09)',link:'https://alryomcursos.com.br/prosperidade-salomao',info:'https://alryomcursos.com.br/prosperidade-salomao'},{emoji:'🛡️',cat:'Guardian Degree',titulo:'Meditação dos Chakras',desc:'Spiritual protection and prosperity.',dur:'2 hours',preco:'R$ 97,00',bg:'rgba(74,143,181,.09)',link:'https://alryomcursos.com.br/chakras',info:'https://alryomcursos.com.br/chakras'},{emoji:'🛡️',cat:'Guardian Degree',titulo:'Cajado Elemental',desc:'Spiritual protection and prosperity.',dur:'4 hours',preco:'R$ 197,00',bg:'rgba(74,143,181,.09)',link:'https://alryomcursos.com.br/cajado',info:'https://alryomcursos.com.br/cajado'},{emoji:'💗',cat:'Hierophant of Divine Love Degree',titulo:'Iniciação do Amor Divino',desc:'Emotional healing and connection with Divine Love.',dur:'2 hours',preco:'R$ 197,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/amor',info:'https://alryomcursos.com.br/amor'},{emoji:'💗',cat:'Hierophant of Divine Love Degree',titulo:'Iniciação da Espiral de Rosas de Kuan Yin',desc:'Emotional healing and connection with Divine Love.',dur:'3 hours',preco:'R$ 197,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/kuanyin',info:'https://alryomcursos.com.br/kuanyin'},{emoji:'💗',cat:'Hierophant of Divine Love Degree',titulo:'Iniciação de Kuan Yin',desc:'Emotional healing and connection with Divine Love.',dur:'2 hours',preco:'R$ 197,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/kuan',info:'https://alryomcursos.com.br/kuan'},{emoji:'💗',cat:'Hierophant of Divine Love Degree',titulo:'Iniciação do Amor Eterno',desc:'Emotional healing and connection with Divine Love.',dur:'2 hours',preco:'R$ 197,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/amoreterno',info:'https://alryomcursos.com.br/amoreterno'},{emoji:'💗',cat:'Hierophant of Divine Love Degree',titulo:'Cura Kármica de Kuan Yin',desc:'Emotional healing and connection with Divine Love.',dur:'4 hours',preco:'R$ 497,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/curakarmica',info:'https://alryomcursos.com.br/curakarmica'},{emoji:'💗',cat:'Hierophant of Divine Love Degree',titulo:'Mestre do Amor Divino',desc:'Emotional healing and connection with Divine Love.',dur:'4 hours',preco:'R$ 497,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/mestreamor',info:'https://alryomcursos.com.br/mestreamor'},{emoji:'💗',cat:'Hierophant of Divine Love Degree',titulo:'Cristal de Luz do Amor Divino',desc:'Emotional healing and connection with Divine Love.',dur:'4 hours',preco:'R$ 497,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/cristal-amor',info:'https://alryomcursos.com.br/cristal-amor'},{emoji:'💗',cat:'Hierophant of Divine Love Degree',titulo:'Diamante do Amor Divino',desc:'Emotional healing and connection with Divine Love.',dur:'4 hours',preco:'R$ 497,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/diamante-amor',info:'https://alryomcursos.com.br/diamante-amor'},{emoji:'👁️',cat:'Psychic Master Degree',titulo:'Energia Cósmica',desc:'Mastery of cosmic energies and third eye opening.',dur:'8 hours',preco:'R$ 297,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/energia-agora',info:'https://alryomcursos.com.br/energia-agora'},{emoji:'👁️',cat:'Psychic Master Degree',titulo:'Removendo Obsessores',desc:'Mastery of cosmic energies and third eye opening.',dur:'6 hours',preco:'R$ 297,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/obsessores',info:'https://alryomcursos.com.br/obsessores'},{emoji:'👁️',cat:'Psychic Master Degree',titulo:'Ativações Tibetanas',desc:'Mastery of cosmic energies and third eye opening.',dur:'4 hours',preco:'R$ 297,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/ativacoes',info:'https://alryomcursos.com.br/ativacoes'},{emoji:'👁️',cat:'Psychic Master Degree',titulo:'Iniciação Estelar',desc:'Mastery of cosmic energies and third eye opening.',dur:'4 hours',preco:'R$ 297,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/estelar',info:'https://alryomcursos.com.br/estelar'},{emoji:'👁️',cat:'Psychic Master Degree',titulo:'Iniciação do Terceiro Olho',desc:'Mastery of cosmic energies and third eye opening.',dur:'4 hours',preco:'R$ 497,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/3olho',info:'https://alryomcursos.com.br/3olho'},{emoji:'👁️',cat:'Psychic Master Degree',titulo:'Sinta Seus Mentores Espirituais',desc:'Mastery of cosmic energies and third eye opening.',dur:'4 hours',preco:'R$ 497,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/mentores',info:'https://alryomcursos.com.br/mentores'},{emoji:'👁️',cat:'Psychic Master Degree',titulo:'Iniciação da Fraternidade Rosa de Orion',desc:'Mastery of cosmic energies and third eye opening.',dur:'4 hours',preco:'R$ 997,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/orion',info:'https://alryomcursos.com.br/orion'},{emoji:'👁️',cat:'Psychic Master Degree',titulo:'Última Iniciação Tibetana',desc:'Mastery of cosmic energies and third eye opening.',dur:'4 hours',preco:'R$ 997,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/ultima-tibetana',info:'https://alryomcursos.com.br/ultima-tibetana'},{emoji:'💎',cat:'Crystalline Kingdom Priest Degree',titulo:'Projeção Psíquica',desc:'Mastery of the subtlest energies of crystals of light.',dur:'8 hours',preco:'R$ 1.497,00',bg:'rgba(140,180,220,.10)',link:'https://alryomcursos.com.br/projecao',info:'https://alryomcursos.com.br/projecao'},{emoji:'💎',cat:'Crystalline Kingdom Priest Degree',titulo:'Portais de Luz',desc:'Mastery of the subtlest energies of crystals of light.',dur:'8 hours',preco:'R$ 1.497,00',bg:'rgba(140,180,220,.10)',link:'https://alryomcursos.com.br/portais',info:'https://alryomcursos.com.br/portais'},{emoji:'💎',cat:'Crystalline Kingdom Priest Degree',titulo:'Cristais de Luz',desc:'Mastery of the subtlest energies of crystals of light.',dur:'8 hours',preco:'R$ 1.497,00',bg:'rgba(140,180,220,.10)',link:'https://alryomcursos.com.br/cristais',info:'https://alryomcursos.com.br/cristais'},{emoji:'💎',cat:'Crystalline Kingdom Priest Degree',titulo:'Tecnologias Multidimensionais',desc:'Mastery of the subtlest energies of crystals of light.',dur:'8 hours',preco:'R$ 1.497,00',bg:'rgba(140,180,220,.10)',link:'https://alryomcursos.com.br/tecm',info:'https://alryomcursos.com.br/tecm'},{emoji:'💎',cat:'Crystalline Kingdom Priest Degree',titulo:'Constelações Sistêmicas Multidimensionais',desc:'Mastery of the subtlest energies of crystals of light.',dur:'8 hours',preco:'R$ 1.497,00',bg:'rgba(140,180,220,.10)',link:'https://alryomcursos.com.br/constelacoes',info:'https://alryomcursos.com.br/constelacoes'},{emoji:'⚡',cat:'Energy Healing Master Degree',titulo:'Reiki Estelar - Praticante',desc:'The best energy healing techniques.',dur:'4 hours',preco:'R$ 497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/reiki-estelar',info:'https://alryomcursos.com.br/reiki-estelar'},{emoji:'⚡',cat:'Energy Healing Master Degree',titulo:'Reiki Estelar - Mestrado',desc:'The best energy healing techniques.',dur:'4 hours',preco:'R$ 497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/reiki-estelar',info:'https://alryomcursos.com.br/reiki-estelar'},{emoji:'⚡',cat:'Energy Healing Master Degree',titulo:'Cura Integrada Nova Atlantis - Praticante',desc:'The best energy healing techniques.',dur:'4 hours',preco:'R$ 497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/novaatlantis',info:'https://alryomcursos.com.br/novaatlantis'},{emoji:'⚡',cat:'Energy Healing Master Degree',titulo:'Cura Integrada Nova Atlantis - Mestrado',desc:'The best energy healing techniques.',dur:'4 hours',preco:'R$ 497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/novaatlantis',info:'https://alryomcursos.com.br/novaatlantis'},{emoji:'⚡',cat:'Energy Healing Master Degree',titulo:'Cura Integrada Nova Atlantis - Liberando Traumas',desc:'The best energy healing techniques.',dur:'4 hours',preco:'R$ 497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/liberando-traumas',info:'https://alryomcursos.com.br/liberando-traumas'},{emoji:'⚡',cat:'Energy Healing Master Degree',titulo:'Cirurgia Etérica',desc:'The best energy healing techniques.',dur:'6 hours',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/cet',info:'https://alryomcursos.com.br/cet'},{emoji:'⚡',cat:'Energy Healing Master Degree',titulo:'Alinhamento Estelar',desc:'The best energy healing techniques.',dur:'8 hours',preco:'R$ 1.497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/alinhamento',info:'https://alryomcursos.com.br/alinhamento'},{emoji:'⚡',cat:'Energy Healing Master Degree',titulo:'Alinhamento Estelar - Upgrade',desc:'The best energy healing techniques.',dur:'6 hours',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/ale-upgrade',info:'https://alryomcursos.com.br/ale-upgrade'},{emoji:'⚡',cat:'Energy Healing Master Degree',titulo:'Cura Etérica Arcturiana',desc:'The best energy healing techniques.',dur:'8 hours',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/cea',info:'https://alryomcursos.com.br/cea'},{emoji:'⚡',cat:'Energy Healing Master Degree',titulo:'Cirurgia Quântica Apométrica',desc:'The best energy healing techniques.',dur:'6 hours',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/apometria',info:'https://alryomcursos.com.br/apometria'},{emoji:'⚡',cat:'Energy Healing Master Degree',titulo:'Frota Diamante Azul',desc:'The best energy healing techniques.',dur:'4 hours',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/diamante-azul',info:'https://alryomcursos.com.br/diamante-azul'},{emoji:'⚡',cat:'Energy Healing Master Degree',titulo:'Cura Kármica - Ego e Resistência',desc:'The best energy healing techniques.',dur:'8 hours',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/curakarmica-er',info:'https://alryomcursos.com.br/curakarmica-er'},{emoji:'🔥',cat:'Cosmic Magic Adept Degree',titulo:'Manto de Proteção dos Magos Universais',desc:'Spiritual power to alter reality.',dur:'4 hours',preco:'R$ 297,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/manto-magos',info:'https://alryomcursos.com.br/manto-magos'},{emoji:'🔥',cat:'Cosmic Magic Adept Degree',titulo:'Espada da Transmutação dos Magos Universais',desc:'Spiritual power to alter reality.',dur:'4 hours',preco:'R$ 297,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/espada',info:'https://alryomcursos.com.br/espada'},{emoji:'🔥',cat:'Cosmic Magic Adept Degree',titulo:'Iniciação da Magia Elemental',desc:'Spiritual power to alter reality.',dur:'4 hours',preco:'R$ 997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-elemental',info:'https://alryomcursos.com.br/magia-elemental'},{emoji:'🔥',cat:'Cosmic Magic Adept Degree',titulo:'Iniciação da Magia Estelar',desc:'Spiritual power to alter reality.',dur:'4 hours',preco:'R$ 997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-estelar',info:'https://alryomcursos.com.br/magia-estelar'},{emoji:'🔥',cat:'Cosmic Magic Adept Degree',titulo:'Iniciação da Magia Universal',desc:'Spiritual power to alter reality.',dur:'4 hours',preco:'R$ 997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-universal',info:'https://alryomcursos.com.br/magia-universal'},{emoji:'🔥',cat:'Cosmic Magic Adept Degree',titulo:'Magia Ancestral dos Magos Universais',desc:'Spiritual power to alter reality.',dur:'4 hours',preco:'R$ 997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-ancestral',info:'https://alryomcursos.com.br/magia-ancestral'},{emoji:'🔥',cat:'Cosmic Magic Adept Degree',titulo:'Grau Dourado dos Magos Universais',desc:'Spiritual power to alter reality.',dur:'4 hours',preco:'R$ 1.997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/grau-dourado',info:'https://alryomcursos.com.br/grau-dourado'},{emoji:'🔥',cat:'Cosmic Magic Adept Degree',titulo:'Chama da Libertação dos Magos Universais',desc:'Spiritual power to alter reality.',dur:'4 hours',preco:'R$ 1.997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/chama',info:'https://alryomcursos.com.br/chama'},{emoji:'🔥',cat:'Cosmic Magic Adept Degree',titulo:'Iniciação da Magia Cristalina',desc:'Spiritual power to alter reality.',dur:'4 hours',preco:'R$ 1.997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-cristalina',info:'https://alryomcursos.com.br/magia-cristalina'},{emoji:'🔥',cat:'Cosmic Magic Adept Degree',titulo:'Iniciação da Magia Galáctica',desc:'Spiritual power to alter reality.',dur:'4 hours',preco:'R$ 2.997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-galactica',info:'https://alryomcursos.com.br/magia-galactica'},{emoji:'🛸',cat:'Stellar Command Officer Degree',titulo:'Grau de Oficial do Comando Estelar',desc:'Multidimensional energy cleansing with ships of light.',dur:'4 hours',preco:'R$ 10,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/grau-comando-estelar',info:'https://alryomcursos.com.br/grau-comando-estelar'},{emoji:'🛸',cat:'Stellar Command Officer Degree',titulo:'Conexão Estelar',desc:'Multidimensional energy cleansing with ships of light.',dur:'16 hours',preco:'R$ 1.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/conexao',info:'https://alryomcursos.com.br/conexao'},{emoji:'🛸',cat:'Stellar Command Officer Degree',titulo:'Conexão Estelar Black',desc:'Multidimensional energy cleansing with ships of light.',dur:'8 hours',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/ceblack',info:'https://alryomcursos.com.br/ceblack'},{emoji:'🛸',cat:'Stellar Command Officer Degree',titulo:'Conexão Estelar Ultra Black',desc:'Multidimensional energy cleansing with ships of light.',dur:'8 hours',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/ceultra',info:'https://alryomcursos.com.br/ceultra'},{emoji:'🛸',cat:'Stellar Command Officer Degree',titulo:'Conexão Estelar Frotas Estelares',desc:'Multidimensional energy cleansing with ships of light.',dur:'8 hours',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/cefrotas',info:'https://alryomcursos.com.br/cefrotas'},{emoji:'🛸',cat:'Stellar Command Officer Degree',titulo:'Conexão Estelar Frotas Black',desc:'Multidimensional energy cleansing with ships of light.',dur:'8 hours',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/cefrotasb',info:'https://alryomcursos.com.br/cefrotasb'},{emoji:'🛸',cat:'Stellar Command Officer Degree',titulo:'Conexão Estelar Realidades Virtuais',desc:'Multidimensional energy cleansing with ships of light.',dur:'8 hours',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/cerv',info:'https://alryomcursos.com.br/cerv'},{emoji:'🛸',cat:'Stellar Command Officer Degree',titulo:'Conexão Estelar Interplanetário',desc:'Multidimensional energy cleansing with ships of light.',dur:'8 hours',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/ce-inter',info:'https://alryomcursos.com.br/ce-inter'},{emoji:'🌀',cat:'Stargate Guardian Degree',titulo:'Stargate - Controlador Primário',desc:'Access to galactic portals.',dur:'8 hours',preco:'R$ 2.997,00',bg:'rgba(100,100,180,.10)',link:'https://alryomcursos.com.br/stargate-cp',info:'https://alryomcursos.com.br/stargate-cp'},{emoji:'🌀',cat:'Stargate Guardian Degree',titulo:'Stargate - Portais Planetários',desc:'Access to galactic portals.',dur:'8 hours',preco:'R$ 2.997,00',bg:'rgba(100,100,180,.10)',link:'https://alryomcursos.com.br/stargate-pp',info:'https://alryomcursos.com.br/stargate-pp'},{emoji:'🌀',cat:'Stargate Guardian Degree',titulo:'Stargate - Anti Matrix',desc:'Access to galactic portals.',dur:'8 hours',preco:'R$ 2.997,00',bg:'rgba(100,100,180,.10)',link:'https://alryomcursos.com.br/stargate-am',info:'https://alryomcursos.com.br/stargate-am'},{emoji:'🌀',cat:'Stargate Guardian Degree',titulo:'Stargate - Guerra Temporal',desc:'Access to galactic portals.',dur:'8 hours',preco:'R$ 2.997,00',bg:'rgba(100,100,180,.10)',link:'https://alryomcursos.com.br/stargate-gt',info:'https://alryomcursos.com.br/stargate-gt'},{emoji:'🌀',cat:'Stargate Guardian Degree',titulo:'Matrix',desc:'Access to galactic portals.',dur:'20 hours',preco:'R$ 1.997,00',bg:'rgba(100,100,180,.10)',link:'https://alryomcursos.com.br/mx-inscricao',info:'https://alryomcursos.com.br/mx-inscricao'},{emoji:'🎓',cat:'Professional Training',titulo:'Prosperidade para Espiritualistas',desc:'Knowledge for professional use in therapy and spirituality.',dur:'8 hours',preco:'R$ 497,00',bg:'rgba(74,155,106,.09)',link:'https://alryomcursos.com.br/prosperidade',info:'https://alryomcursos.com.br/prosperidade'},{emoji:'🎓',cat:'Professional Training',titulo:'Terapeuta Energético Internacional',desc:'Knowledge for professional use in therapy and spirituality.',dur:'20 hours',preco:'R$ 2.997,00',bg:'rgba(74,155,106,.09)',link:'https://alryomcursos.com.br/terapeuta',info:'https://alryomcursos.com.br/terapeuta'}],es:[{emoji:'🌿',cat:'Reiki · Chamanismo',titulo:'Reiki Chamanico Amadeus',desc:'Practicante y maestria. Descubre tu animal de poder.',dur:'Online',preco:'89€',bg:'rgba(74,155,106,.09)',link:'https://pay.hotmart.com/U93586824L',info:'https://www.elekitra.net/cursos/reiki-xamanico'},{emoji:'⭐',cat:'Reiki · Estelares',titulo:'Reiki Estelar Practicante',desc:'Energias estelares para la sanacion y expansion.',dur:'Online',preco:'69€',bg:'rgba(106,171,204,.09)',link:'https://www.elekitra.net/cursos/reiki-estelar',info:'https://www.elekitra.net/cursos/reiki-estelar'},{emoji:'🛡️',cat:'Proteccion Energetica',titulo:'Limpieza, Armonizacion y Proteccion',desc:'Hierbas, cristales, velas, simbolos y feng shui.',dur:'Online',preco:'159€',bg:'rgba(74,143,181,.09)',link:'https://pay.hotmart.com/J94751534M',info:'https://www.elekitra.net'},{emoji:'⚔️',cat:'Proteccion · Maestria',titulo:'Herramientas de Proteccion Energetica',desc:'4 tecnicas de maestria.',dur:'Online',preco:'99€',bg:'rgba(155,122,74,.09)',link:'https://pay.hotmart.com/H95511068B',info:'https://www.elekitra.net'},{emoji:'🔰',cat:'Proteccion · Basico',titulo:'Herramientas Basicas de Proteccion',desc:'4 tecnicas para el dia a dia.',dur:'Online',preco:'99€',bg:'rgba(74,180,140,.09)',link:'https://www.elekitra.net/cursos/ferramentas-basicas-de-protecao-energetica',info:'https://www.elekitra.net/cursos/ferramentas-basicas-de-protecao-energetica'},{emoji:'⚡',cat:'Energia · Detox',titulo:'Energy Detox Express',desc:'Sanacion energetica y desposesion.',dur:'Online',preco:'99€',bg:'rgba(200,160,64,.09)',link:'https://www.elekitra.net/cursos/energy-detox-express',info:'https://www.elekitra.net/cursos/energy-detox-express'},{emoji:'✨',cat:'Codigos de Luz',titulo:'Codigos de Luz',desc:'Expansion energetica y alineamiento.',dur:'Online',preco:'159€',bg:'rgba(168,212,232,.12)',link:'https://www.elekitra.net/cursos/codigos-de-luz',info:'https://www.elekitra.net/cursos/codigos-de-luz'},{emoji:'💫',cat:'Codigos · Avanzado',titulo:'Codigos de Luz Upgrade',desc:'Profundiza el trabajo con los codigos de luz.',dur:'Online',preco:'159€',bg:'rgba(155,127,212,.09)',link:'https://www.elekitra.net/cursos/codigos-de-luz-upgrade',info:'https://www.elekitra.net/cursos/codigos-de-luz-upgrade'},{emoji:'🧘',cat:'Meditacion · Pack',titulo:'Pack Meditaciones 7 Dias',desc:'7 meditaciones guiadas transformadoras.',dur:'Online',preco:'29,99€',bg:'rgba(168,212,150,.09)',link:'https://www.elekitra.net',info:'https://www.elekitra.net'},{emoji:'🌅',cat:'Meditacion · Programa',titulo:'Programa 7 Dias',desc:'Meditacion con activaciones energeticas.',dur:'7 dias',preco:'59€',bg:'rgba(200,230,255,.12)',link:'https://www.elekitra.net',info:'https://www.elekitra.net'},{emoji:'🕊️',cat:'Liberacion · Trauma',titulo:'Liberacion de Trauma en 7 dias',desc:'Programa intensivo para liberar patrones traumaticos.',dur:'7 dias',preco:'69€',bg:'rgba(200,100,100,.08)',link:'https://www.elekitra.net/cursos/libertacao-de-trauma-em-7-dias',info:'https://www.elekitra.net/cursos/libertacao-de-trauma-em-7-dias'},{emoji:'🌀',cat:'Lealtades',titulo:'Jornada de las Lealtades Inconscientes',desc:'Disuelve patrones inconscientes de lealtad familiar.',dur:'Online',preco:'79€',bg:'rgba(106,155,122,.09)',link:'https://www.elekitra.net/cursos/jornada-das-lealdades-inconscientes',info:'https://www.elekitra.net/cursos/jornada-das-lealdades-inconscientes'},{emoji:'🌊',cat:'Sanacion · Atlantida',titulo:'Sanacion Integrada Nueva Atlantida',desc:'Tecnicas estelares y sabiduria atlante.',dur:'Online',preco:'69€',bg:'rgba(64,140,200,.09)',link:'https://www.elekitra.net/cursos/cura-integrada-nova-atlantis',info:'https://www.elekitra.net/cursos/cura-integrada-nova-atlantis'},{emoji:'🔮',cat:'Radiestesia',titulo:'Radiestesia y Radionica',desc:'Pendulo y tecnicas de radionica.',dur:'Online',preco:'99€',bg:'rgba(155,74,155,.09)',link:'https://www.elekitra.net/cursos/radiestesia-e-radionica',info:'https://www.elekitra.net/cursos/radiestesia-e-radionica'},{emoji:'🌱',cat:'Grado de Neófito',titulo:'Misericórdia Divina de Jesus',desc:'El descubrimiento de un nuevo camino espiritual.',dur:'4 horas',preco:'Gratis',bg:'rgba(74,180,140,.09)',link:'https://cursos.alryom.com.br/curso/misericordia-divina-jesus',info:'https://cursos.alryom.com.br/curso/misericordia-divina-jesus'},{emoji:'🌱',cat:'Grado de Neófito',titulo:'Cura Energética',desc:'El descubrimiento de un nuevo camino espiritual.',dur:'4 horas',preco:'Gratis',bg:'rgba(74,180,140,.09)',link:'https://cursos.alryom.com.br/curso/cura-energetica',info:'https://cursos.alryom.com.br/curso/cura-energetica'},{emoji:'🌱',cat:'Grado de Neófito',titulo:'Cura Cósmica Planetária',desc:'El descubrimiento de un nuevo camino espiritual.',dur:'4 horas',preco:'Gratis',bg:'rgba(74,180,140,.09)',link:'https://cursos.alryom.com.br/curso/ccp',info:'https://cursos.alryom.com.br/curso/ccp'},{emoji:'🌱',cat:'Grado de Neófito',titulo:'Workshop do Terceiro Olho',desc:'El descubrimiento de un nuevo camino espiritual.',dur:'1 hora',preco:'R$ 97,00',bg:'rgba(74,180,140,.09)',link:'https://alryomcursos.com.br/ws-3olho',info:'https://alryomcursos.com.br/ws-3olho'},{emoji:'🌱',cat:'Grado de Neófito',titulo:'Workshop Materialização Multidimensional',desc:'El descubrimiento de un nuevo camino espiritual.',dur:'1 hora',preco:'R$ 47,00',bg:'rgba(74,180,140,.09)',link:'https://alryomcursos.com.br/ws-multi',info:'https://alryomcursos.com.br/ws-multi'},{emoji:'🌱',cat:'Grado de Neófito',titulo:'Workshop de Ascensão',desc:'El descubrimiento de un nuevo camino espiritual.',dur:'1 hora',preco:'R$ 47,00',bg:'rgba(74,180,140,.09)',link:'https://alryomcursos.com.br/ws-ascensao',info:'https://alryomcursos.com.br/ws-ascensao'},{emoji:'🛡️',cat:'Grado de Guardián',titulo:'Iniciação do Manto de Proteção',desc:'Protección espiritual y prosperidad.',dur:'2 horas',preco:'R$ 197,00',bg:'rgba(74,143,181,.09)',link:'https://alryomcursos.com.br/manto',info:'https://alryomcursos.com.br/manto'},{emoji:'🛡️',cat:'Grado de Guardián',titulo:'Escudo de Melchizedek',desc:'Protección espiritual y prosperidad.',dur:'2 horas',preco:'R$ 197,00',bg:'rgba(74,143,181,.09)',link:'https://alryomcursos.com.br/escudo',info:'https://alryomcursos.com.br/escudo'},{emoji:'🛡️',cat:'Grado de Guardián',titulo:'Prosperidade de Salomão',desc:'Protección espiritual y prosperidad.',dur:'4 horas',preco:'R$ 297,00',bg:'rgba(74,143,181,.09)',link:'https://alryomcursos.com.br/prosperidade-salomao',info:'https://alryomcursos.com.br/prosperidade-salomao'},{emoji:'🛡️',cat:'Grado de Guardián',titulo:'Meditação dos Chakras',desc:'Protección espiritual y prosperidad.',dur:'2 horas',preco:'R$ 97,00',bg:'rgba(74,143,181,.09)',link:'https://alryomcursos.com.br/chakras',info:'https://alryomcursos.com.br/chakras'},{emoji:'🛡️',cat:'Grado de Guardián',titulo:'Cajado Elemental',desc:'Protección espiritual y prosperidad.',dur:'4 horas',preco:'R$ 197,00',bg:'rgba(74,143,181,.09)',link:'https://alryomcursos.com.br/cajado',info:'https://alryomcursos.com.br/cajado'},{emoji:'💗',cat:'Grado de Hierofante del Amor Divino',titulo:'Iniciação do Amor Divino',desc:'Curación emocional y conexión con el Amor Divino.',dur:'2 horas',preco:'R$ 197,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/amor',info:'https://alryomcursos.com.br/amor'},{emoji:'💗',cat:'Grado de Hierofante del Amor Divino',titulo:'Iniciação da Espiral de Rosas de Kuan Yin',desc:'Curación emocional y conexión con el Amor Divino.',dur:'3 horas',preco:'R$ 197,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/kuanyin',info:'https://alryomcursos.com.br/kuanyin'},{emoji:'💗',cat:'Grado de Hierofante del Amor Divino',titulo:'Iniciação de Kuan Yin',desc:'Curación emocional y conexión con el Amor Divino.',dur:'2 horas',preco:'R$ 197,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/kuan',info:'https://alryomcursos.com.br/kuan'},{emoji:'💗',cat:'Grado de Hierofante del Amor Divino',titulo:'Iniciação do Amor Eterno',desc:'Curación emocional y conexión con el Amor Divino.',dur:'2 horas',preco:'R$ 197,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/amoreterno',info:'https://alryomcursos.com.br/amoreterno'},{emoji:'💗',cat:'Grado de Hierofante del Amor Divino',titulo:'Cura Kármica de Kuan Yin',desc:'Curación emocional y conexión con el Amor Divino.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/curakarmica',info:'https://alryomcursos.com.br/curakarmica'},{emoji:'💗',cat:'Grado de Hierofante del Amor Divino',titulo:'Mestre do Amor Divino',desc:'Curación emocional y conexión con el Amor Divino.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/mestreamor',info:'https://alryomcursos.com.br/mestreamor'},{emoji:'💗',cat:'Grado de Hierofante del Amor Divino',titulo:'Cristal de Luz do Amor Divino',desc:'Curación emocional y conexión con el Amor Divino.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/cristal-amor',info:'https://alryomcursos.com.br/cristal-amor'},{emoji:'💗',cat:'Grado de Hierofante del Amor Divino',titulo:'Diamante do Amor Divino',desc:'Curación emocional y conexión con el Amor Divino.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,120,150,.09)',link:'https://alryomcursos.com.br/diamante-amor',info:'https://alryomcursos.com.br/diamante-amor'},{emoji:'👁️',cat:'Grado de Maestro Psíquico',titulo:'Energia Cósmica',desc:'Dominio de las energías cósmicas y apertura del tercer ojo.',dur:'8 horas',preco:'R$ 297,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/energia-agora',info:'https://alryomcursos.com.br/energia-agora'},{emoji:'👁️',cat:'Grado de Maestro Psíquico',titulo:'Removendo Obsessores',desc:'Dominio de las energías cósmicas y apertura del tercer ojo.',dur:'6 horas',preco:'R$ 297,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/obsessores',info:'https://alryomcursos.com.br/obsessores'},{emoji:'👁️',cat:'Grado de Maestro Psíquico',titulo:'Ativações Tibetanas',desc:'Dominio de las energías cósmicas y apertura del tercer ojo.',dur:'4 horas',preco:'R$ 297,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/ativacoes',info:'https://alryomcursos.com.br/ativacoes'},{emoji:'👁️',cat:'Grado de Maestro Psíquico',titulo:'Iniciação Estelar',desc:'Dominio de las energías cósmicas y apertura del tercer ojo.',dur:'4 horas',preco:'R$ 297,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/estelar',info:'https://alryomcursos.com.br/estelar'},{emoji:'👁️',cat:'Grado de Maestro Psíquico',titulo:'Iniciação do Terceiro Olho',desc:'Dominio de las energías cósmicas y apertura del tercer ojo.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/3olho',info:'https://alryomcursos.com.br/3olho'},{emoji:'👁️',cat:'Grado de Maestro Psíquico',titulo:'Sinta Seus Mentores Espirituais',desc:'Dominio de las energías cósmicas y apertura del tercer ojo.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/mentores',info:'https://alryomcursos.com.br/mentores'},{emoji:'👁️',cat:'Grado de Maestro Psíquico',titulo:'Iniciação da Fraternidade Rosa de Orion',desc:'Dominio de las energías cósmicas y apertura del tercer ojo.',dur:'4 horas',preco:'R$ 997,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/orion',info:'https://alryomcursos.com.br/orion'},{emoji:'👁️',cat:'Grado de Maestro Psíquico',titulo:'Última Iniciação Tibetana',desc:'Dominio de las energías cósmicas y apertura del tercer ojo.',dur:'4 horas',preco:'R$ 997,00',bg:'rgba(120,90,180,.09)',link:'https://alryomcursos.com.br/ultima-tibetana',info:'https://alryomcursos.com.br/ultima-tibetana'},{emoji:'💎',cat:'Grado de Sacerdote del Reino Cristalino',titulo:'Projeção Psíquica',desc:'Dominio de las energías más sutiles de los cristales de luz.',dur:'8 horas',preco:'R$ 1.497,00',bg:'rgba(140,180,220,.10)',link:'https://alryomcursos.com.br/projecao',info:'https://alryomcursos.com.br/projecao'},{emoji:'💎',cat:'Grado de Sacerdote del Reino Cristalino',titulo:'Portais de Luz',desc:'Dominio de las energías más sutiles de los cristales de luz.',dur:'8 horas',preco:'R$ 1.497,00',bg:'rgba(140,180,220,.10)',link:'https://alryomcursos.com.br/portais',info:'https://alryomcursos.com.br/portais'},{emoji:'💎',cat:'Grado de Sacerdote del Reino Cristalino',titulo:'Cristais de Luz',desc:'Dominio de las energías más sutiles de los cristales de luz.',dur:'8 horas',preco:'R$ 1.497,00',bg:'rgba(140,180,220,.10)',link:'https://alryomcursos.com.br/cristais',info:'https://alryomcursos.com.br/cristais'},{emoji:'💎',cat:'Grado de Sacerdote del Reino Cristalino',titulo:'Tecnologias Multidimensionais',desc:'Dominio de las energías más sutiles de los cristales de luz.',dur:'8 horas',preco:'R$ 1.497,00',bg:'rgba(140,180,220,.10)',link:'https://alryomcursos.com.br/tecm',info:'https://alryomcursos.com.br/tecm'},{emoji:'💎',cat:'Grado de Sacerdote del Reino Cristalino',titulo:'Constelações Sistêmicas Multidimensionais',desc:'Dominio de las energías más sutiles de los cristales de luz.',dur:'8 horas',preco:'R$ 1.497,00',bg:'rgba(140,180,220,.10)',link:'https://alryomcursos.com.br/constelacoes',info:'https://alryomcursos.com.br/constelacoes'},{emoji:'⚡',cat:'Grado de Maestro de Curación Energética',titulo:'Reiki Estelar - Praticante',desc:'Las mejores técnicas de curación energética.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/reiki-estelar',info:'https://alryomcursos.com.br/reiki-estelar'},{emoji:'⚡',cat:'Grado de Maestro de Curación Energética',titulo:'Reiki Estelar - Mestrado',desc:'Las mejores técnicas de curación energética.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/reiki-estelar',info:'https://alryomcursos.com.br/reiki-estelar'},{emoji:'⚡',cat:'Grado de Maestro de Curación Energética',titulo:'Cura Integrada Nova Atlantis - Praticante',desc:'Las mejores técnicas de curación energética.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/novaatlantis',info:'https://alryomcursos.com.br/novaatlantis'},{emoji:'⚡',cat:'Grado de Maestro de Curación Energética',titulo:'Cura Integrada Nova Atlantis - Mestrado',desc:'Las mejores técnicas de curación energética.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/novaatlantis',info:'https://alryomcursos.com.br/novaatlantis'},{emoji:'⚡',cat:'Grado de Maestro de Curación Energética',titulo:'Cura Integrada Nova Atlantis - Liberando Traumas',desc:'Las mejores técnicas de curación energética.',dur:'4 horas',preco:'R$ 497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/liberando-traumas',info:'https://alryomcursos.com.br/liberando-traumas'},{emoji:'⚡',cat:'Grado de Maestro de Curación Energética',titulo:'Cirurgia Etérica',desc:'Las mejores técnicas de curación energética.',dur:'6 horas',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/cet',info:'https://alryomcursos.com.br/cet'},{emoji:'⚡',cat:'Grado de Maestro de Curación Energética',titulo:'Alinhamento Estelar',desc:'Las mejores técnicas de curación energética.',dur:'8 horas',preco:'R$ 1.497,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/alinhamento',info:'https://alryomcursos.com.br/alinhamento'},{emoji:'⚡',cat:'Grado de Maestro de Curación Energética',titulo:'Alinhamento Estelar - Upgrade',desc:'Las mejores técnicas de curación energética.',dur:'6 horas',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/ale-upgrade',info:'https://alryomcursos.com.br/ale-upgrade'},{emoji:'⚡',cat:'Grado de Maestro de Curación Energética',titulo:'Cura Etérica Arcturiana',desc:'Las mejores técnicas de curación energética.',dur:'8 horas',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/cea',info:'https://alryomcursos.com.br/cea'},{emoji:'⚡',cat:'Grado de Maestro de Curación Energética',titulo:'Cirurgia Quântica Apométrica',desc:'Las mejores técnicas de curación energética.',dur:'6 horas',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/apometria',info:'https://alryomcursos.com.br/apometria'},{emoji:'⚡',cat:'Grado de Maestro de Curación Energética',titulo:'Frota Diamante Azul',desc:'Las mejores técnicas de curación energética.',dur:'4 horas',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/diamante-azul',info:'https://alryomcursos.com.br/diamante-azul'},{emoji:'⚡',cat:'Grado de Maestro de Curación Energética',titulo:'Cura Kármica - Ego e Resistência',desc:'Las mejores técnicas de curación energética.',dur:'8 horas',preco:'R$ 997,00',bg:'rgba(200,160,64,.09)',link:'https://alryomcursos.com.br/curakarmica-er',info:'https://alryomcursos.com.br/curakarmica-er'},{emoji:'🔥',cat:'Grado de Adepto de la Magia Cósmica',titulo:'Manto de Proteção dos Magos Universais',desc:'Poder espiritual para alterar la realidad.',dur:'4 horas',preco:'R$ 297,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/manto-magos',info:'https://alryomcursos.com.br/manto-magos'},{emoji:'🔥',cat:'Grado de Adepto de la Magia Cósmica',titulo:'Espada da Transmutação dos Magos Universais',desc:'Poder espiritual para alterar la realidad.',dur:'4 horas',preco:'R$ 297,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/espada',info:'https://alryomcursos.com.br/espada'},{emoji:'🔥',cat:'Grado de Adepto de la Magia Cósmica',titulo:'Iniciação da Magia Elemental',desc:'Poder espiritual para alterar la realidad.',dur:'4 horas',preco:'R$ 997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-elemental',info:'https://alryomcursos.com.br/magia-elemental'},{emoji:'🔥',cat:'Grado de Adepto de la Magia Cósmica',titulo:'Iniciação da Magia Estelar',desc:'Poder espiritual para alterar la realidad.',dur:'4 horas',preco:'R$ 997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-estelar',info:'https://alryomcursos.com.br/magia-estelar'},{emoji:'🔥',cat:'Grado de Adepto de la Magia Cósmica',titulo:'Iniciação da Magia Universal',desc:'Poder espiritual para alterar la realidad.',dur:'4 horas',preco:'R$ 997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-universal',info:'https://alryomcursos.com.br/magia-universal'},{emoji:'🔥',cat:'Grado de Adepto de la Magia Cósmica',titulo:'Magia Ancestral dos Magos Universais',desc:'Poder espiritual para alterar la realidad.',dur:'4 horas',preco:'R$ 997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-ancestral',info:'https://alryomcursos.com.br/magia-ancestral'},{emoji:'🔥',cat:'Grado de Adepto de la Magia Cósmica',titulo:'Grau Dourado dos Magos Universais',desc:'Poder espiritual para alterar la realidad.',dur:'4 horas',preco:'R$ 1.997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/grau-dourado',info:'https://alryomcursos.com.br/grau-dourado'},{emoji:'🔥',cat:'Grado de Adepto de la Magia Cósmica',titulo:'Chama da Libertação dos Magos Universais',desc:'Poder espiritual para alterar la realidad.',dur:'4 horas',preco:'R$ 1.997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/chama',info:'https://alryomcursos.com.br/chama'},{emoji:'🔥',cat:'Grado de Adepto de la Magia Cósmica',titulo:'Iniciação da Magia Cristalina',desc:'Poder espiritual para alterar la realidad.',dur:'4 horas',preco:'R$ 1.997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-cristalina',info:'https://alryomcursos.com.br/magia-cristalina'},{emoji:'🔥',cat:'Grado de Adepto de la Magia Cósmica',titulo:'Iniciação da Magia Galáctica',desc:'Poder espiritual para alterar la realidad.',dur:'4 horas',preco:'R$ 2.997,00',bg:'rgba(180,90,90,.09)',link:'https://alryomcursos.com.br/magia-galactica',info:'https://alryomcursos.com.br/magia-galactica'},{emoji:'🛸',cat:'Grado de Oficial del Comando Estelar',titulo:'Grau de Oficial do Comando Estelar',desc:'Limpieza energética multidimensional con naves de luz.',dur:'4 horas',preco:'R$ 10,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/grau-comando-estelar',info:'https://alryomcursos.com.br/grau-comando-estelar'},{emoji:'🛸',cat:'Grado de Oficial del Comando Estelar',titulo:'Conexão Estelar',desc:'Limpieza energética multidimensional con naves de luz.',dur:'16 horas',preco:'R$ 1.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/conexao',info:'https://alryomcursos.com.br/conexao'},{emoji:'🛸',cat:'Grado de Oficial del Comando Estelar',titulo:'Conexão Estelar Black',desc:'Limpieza energética multidimensional con naves de luz.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/ceblack',info:'https://alryomcursos.com.br/ceblack'},{emoji:'🛸',cat:'Grado de Oficial del Comando Estelar',titulo:'Conexão Estelar Ultra Black',desc:'Limpieza energética multidimensional con naves de luz.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/ceultra',info:'https://alryomcursos.com.br/ceultra'},{emoji:'🛸',cat:'Grado de Oficial del Comando Estelar',titulo:'Conexão Estelar Frotas Estelares',desc:'Limpieza energética multidimensional con naves de luz.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/cefrotas',info:'https://alryomcursos.com.br/cefrotas'},{emoji:'🛸',cat:'Grado de Oficial del Comando Estelar',titulo:'Conexão Estelar Frotas Black',desc:'Limpieza energética multidimensional con naves de luz.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/cefrotasb',info:'https://alryomcursos.com.br/cefrotasb'},{emoji:'🛸',cat:'Grado de Oficial del Comando Estelar',titulo:'Conexão Estelar Realidades Virtuais',desc:'Limpieza energética multidimensional con naves de luz.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/cerv',info:'https://alryomcursos.com.br/cerv'},{emoji:'🛸',cat:'Grado de Oficial del Comando Estelar',titulo:'Conexão Estelar Interplanetário',desc:'Limpieza energética multidimensional con naves de luz.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(90,140,200,.10)',link:'https://alryomcursos.com.br/ce-inter',info:'https://alryomcursos.com.br/ce-inter'},{emoji:'🌀',cat:'Grado de Guardián de los Stargates',titulo:'Stargate - Controlador Primário',desc:'Acceso a los portales galácticos.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(100,100,180,.10)',link:'https://alryomcursos.com.br/stargate-cp',info:'https://alryomcursos.com.br/stargate-cp'},{emoji:'🌀',cat:'Grado de Guardián de los Stargates',titulo:'Stargate - Portais Planetários',desc:'Acceso a los portales galácticos.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(100,100,180,.10)',link:'https://alryomcursos.com.br/stargate-pp',info:'https://alryomcursos.com.br/stargate-pp'},{emoji:'🌀',cat:'Grado de Guardián de los Stargates',titulo:'Stargate - Anti Matrix',desc:'Acceso a los portales galácticos.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(100,100,180,.10)',link:'https://alryomcursos.com.br/stargate-am',info:'https://alryomcursos.com.br/stargate-am'},{emoji:'🌀',cat:'Grado de Guardián de los Stargates',titulo:'Stargate - Guerra Temporal',desc:'Acceso a los portales galácticos.',dur:'8 horas',preco:'R$ 2.997,00',bg:'rgba(100,100,180,.10)',link:'https://alryomcursos.com.br/stargate-gt',info:'https://alryomcursos.com.br/stargate-gt'},{emoji:'🌀',cat:'Grado de Guardián de los Stargates',titulo:'Matrix',desc:'Acceso a los portales galácticos.',dur:'20 horas',preco:'R$ 1.997,00',bg:'rgba(100,100,180,.10)',link:'https://alryomcursos.com.br/mx-inscricao',info:'https://alryomcursos.com.br/mx-inscricao'},{emoji:'🎓',cat:'Formación Profesional',titulo:'Prosperidade para Espiritualistas',desc:'Conocimientos para uso profesional en terapia y espiritualidad.',dur:'8 horas',preco:'R$ 497,00',bg:'rgba(74,155,106,.09)',link:'https://alryomcursos.com.br/prosperidade',info:'https://alryomcursos.com.br/prosperidade'},{emoji:'🎓',cat:'Formación Profesional',titulo:'Terapeuta Energético Internacional',desc:'Conocimientos para uso profesional en terapia y espiritualidad.',dur:'20 horas',preco:'R$ 2.997,00',bg:'rgba(74,155,106,.09)',link:'https://alryomcursos.com.br/terapeuta',info:'https://alryomcursos.com.br/terapeuta'}]};
 function getCR(){return CR_DATA[currentLang]||CR_DATA.pt;}
 
 // ── MAIN CALCULAR & NAV ──
@@ -8492,6 +8909,7 @@ function abrirPerfil(id) {
   sessionStorage.setItem('perfil_activo_id', id);
   if(typeof _palmResetEstadoCompleto==='function') _palmResetEstadoCompleto();
   if(typeof _plantaResetEstadoCompleto==='function') _plantaResetEstadoCompleto();
+  if(typeof _sonhoResetEstadoCompleto==='function') _sonhoResetEstadoCompleto();
   _terapeutasFiltro='';
 
   // Se o perfil já tem dados calculados, vai directo para resultados
@@ -8543,6 +8961,7 @@ function novoPerfil() {
   sessionStorage.setItem('perfil_activo_id', id);
   if(typeof _palmResetEstadoCompleto==='function') _palmResetEstadoCompleto();
   if(typeof _plantaResetEstadoCompleto==='function') _plantaResetEstadoCompleto();
+  if(typeof _sonhoResetEstadoCompleto==='function') _sonhoResetEstadoCompleto();
   _terapeutasFiltro='';
   mostrarFormulario(null);
 }
@@ -8746,6 +9165,7 @@ function restaurarSessao(perfil) {
   document.getElementById('terapeuta-intro').textContent = currentLang==='es'?'En base a tu perfil, seleccionamos terapeutas que complementan tus necesidades.':currentLang==='en'?'Based on your profile, we selected therapists that complement your needs.':'Com base no teu perfil, seleccionámos terapeutas que complementam as tuas necessidades.';
   renderTerapeutasGrid();
   renderTerapeutasChipsEspecialidade();
+  _renderCursosChips();
   _renderCourses();
 
   document.getElementById('palm-result').style.display = 'none';
@@ -8955,6 +9375,7 @@ function calcular(){
   renderTerapeutasGrid();
   renderTerapeutasChipsEspecialidade();
   // Cursos
+  _renderCursosChips();
   _renderCourses();
   // Síntese
   renderSintHero(window._nome||nome||'',window._planetas,window._nums,window._ki,window._ennTipo||'?',window._hdTipo||'—');
@@ -8992,7 +9413,7 @@ const DRAWER_LABELS = {
     humandesign:'Human Design', chakras:'Chakras', lunar:'Agenda Lunar',
     meditacoes:'Meditações', frequencias:'Frequências', tarot:'Tarot', runas:'Runas',
     palma:'Leitura de Mãos', constelacoes:'Constelações', eventos:'Eventos', terapeutas:'Consultas',
-    cursos:'Cursos', biblioteca:'Biblioteca', leituras:'Leituras', diario_terapeutico:'Diário', sono:'Sono',
+    cursos:'Cursos', packs:'Packs Terapêuticos', biblioteca:'Biblioteca', leituras:'Leituras', diario_terapeutico:'Diário', sono:'Sono',
     parceiro:'Parceiro',
     nova_pessoa:'Nova pessoa'
   },
@@ -9003,7 +9424,7 @@ const DRAWER_LABELS = {
     humandesign:'Human Design', chakras:'Chakras', lunar:'Agenda Lunar',
     meditacoes:'Meditaciones', frequencias:'Frecuencias', tarot:'Tarot', runas:'Runas',
     palma:'Lectura de Manos', constelacoes:'Constelaciones', eventos:'Eventos', terapeutas:'Consultas',
-    cursos:'Cursos', biblioteca:'Biblioteca', leituras:'Lecturas', diario_terapeutico:'Diario', sono:'Sueño',
+    cursos:'Cursos', packs:'Packs Terapéuticos', biblioteca:'Biblioteca', leituras:'Lecturas', diario_terapeutico:'Diario', sono:'Sueño',
     parceiro:'Pareja',
     nova_pessoa:'Nueva persona'
   },
@@ -9014,7 +9435,7 @@ const DRAWER_LABELS = {
     humandesign:'Human Design', chakras:'Chakras', lunar:'Lunar Calendar',
     meditacoes:'Meditations', frequencias:'Frequencies', tarot:'Tarot', runas:'Runes',
     palma:'Palm Reading', constelacoes:'Constellations', eventos:'Events', terapeutas:'Sessions',
-    cursos:'Courses', biblioteca:'Library', leituras:'Readings', diario_terapeutico:'Journal', sono:'Sleep',
+    cursos:'Courses', packs:'Therapeutic Packs', biblioteca:'Library', leituras:'Readings', diario_terapeutico:'Journal', sono:'Sleep',
     parceiro:'Partner',
     nova_pessoa:'New person'
   }
@@ -9060,18 +9481,13 @@ function _rsPopularAnos(){
   const sel=document.getElementById('rs-inp-ano');
   if(!sel)return;
   const anoBase=_rsAnoBase();
-  const labels=currentLang==='es'
-    ?['Este año','Próximo año','Dentro de 2 años']
-    :currentLang==='en'
-    ?['This year','Next year','In 2 years']
-    :['Este ano','Próximo ano','Dentro de 2 anos'];
   const valorAnterior=sel.value;
   sel.innerHTML='';
   for(let i=0;i<3;i++){
     const ano=anoBase+i;
     const o=document.createElement('option');
     o.value=ano;
-    o.textContent='☀ '+labels[i]+' — '+ano;
+    o.textContent='☀ '+ano;
     sel.appendChild(o);
   }
   sel.value=valorAnterior&&[anoBase,anoBase+1,anoBase+2].includes(parseInt(valorAnterior))?valorAnterior:anoBase;
@@ -10091,7 +10507,7 @@ function drawerNav(id){
     sintese:'✧',diario:'☀',horoscopo:'🔮',astral:'☽',numerologia:'∞',ki:'✦',
     enneagram:'◯',humandesign:'⬡',chakras:'🌈',lunar:'🌙',meditacoes:'🎧',
     frequencias:'〜',tarot:'🃏',runas:'ᚱ',palma:'✋',constelacoes:'🌳',
-    terapeutas:'♡',cursos:'◈',biblioteca:'📖',leituras:'📚','diario-terapeutico':'✍',solar:'☀'
+    terapeutas:'♡',cursos:'◈',packs:'🎁',biblioteca:'📖',leituras:'📚','diario-terapeutico':'✍',solar:'☀'
   };
   const icon=titleMap[id]||'✧';
   const titleEl=document.getElementById('app-bar-title');
@@ -10139,6 +10555,7 @@ function applyDrawerLabels(){
   setTxt('ditem-eventos',DL.eventos||'Eventos');
   setTxt('ditem-terapeutas',DL.terapeutas);
   setTxt('ditem-cursos',DL.cursos);
+  setTxt('ditem-packs',DL.packs);
   setTxt('ditem-biblioteca',DL.biblioteca);
   setTxt('ditem-leituras',DL.leituras||'Leituras');
   setTxt('ditem-diario-terapeutico',DL.diario_terapeutico);
@@ -10176,7 +10593,7 @@ function updateDrawerUser(perfilOverride){
   }
 }
 
-function showTab(id,btn){document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');const tab=document.getElementById('tab-'+id);if(tab)tab.style.display='block';if(id==='humandesign'){populateHDPreview();calcularHD();}if(id==='biblioteca')renderBiblioteca();if(id==='diario-terapeutico')renderDiario();if(id==='horoscopo')renderHoroscopo();if(id==='tarot')carregarHistoricoTiragens('tarot');if(id==='runas')carregarHistoricoTiragens('runas');if(id==='parceiro')parcReset();if(id==='solar'){rsPopularPaises();_rsUpdateInfoNote();}if(id==='sono')sonoInit();if(id==='eventos')evInit();if(id==='leituras')leitInit();if(id==='palma'){_palmMostrarLimite();_palmMostrarResultadoGuardado();}if(id==='emocional')emoInit();if(id==='constelacoes'){if(typeof _constMostrarResultadoGuardado==='function')_constMostrarResultadoGuardado();}if(id==='chakras'){if(typeof _chakraMostrarResultadoGuardado==='function')_chakraMostrarResultadoGuardado();}if(id==='fengshui'){renderFengShuiQuestionnaire();if(typeof _fsMostrarResultadoGuardado==='function')_fsMostrarResultadoGuardado();}if(id==='sonhos'){if(typeof renderSonhosGrid==='function')renderSonhosGrid();}if(id==='anjos'){if(typeof renderAnjosGrid==='function')renderAnjosGrid();}}
+function showTab(id,btn){document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');const tab=document.getElementById('tab-'+id);if(tab)tab.style.display='block';if(id==='humandesign'){populateHDPreview();calcularHD();}if(id==='biblioteca')renderBiblioteca();if(id==='diario-terapeutico')renderDiario();if(id==='horoscopo')renderHoroscopo();if(id==='tarot')carregarHistoricoTiragens('tarot');if(id==='runas')carregarHistoricoTiragens('runas');if(id==='parceiro')parcReset();if(id==='solar'){rsPopularPaises();_rsUpdateInfoNote();}if(id==='sono')sonoInit();if(id==='eventos')evInit();if(id==='leituras')leitInit();if(id==='palma'){_palmMostrarLimite();_palmMostrarResultadoGuardado();}if(id==='emocional')emoInit();if(id==='constelacoes'){if(typeof _constMostrarResultadoGuardado==='function')_constMostrarResultadoGuardado();}if(id==='chakras'){if(typeof _chakraMostrarResultadoGuardado==='function')_chakraMostrarResultadoGuardado();}if(id==='fengshui'){renderFengShuiQuestionnaire();if(typeof _fsMostrarResultadoGuardado==='function')_fsMostrarResultadoGuardado();}if(id==='sonhos'){if(typeof renderSonhosGrid==='function')renderSonhosGrid();}if(id==='anjos'){if(typeof renderAnjosGrid==='function')renderAnjosGrid();}if(id==='packs'){if(typeof renderPacks==='function')renderPacks();}}
 
 </script>
 
@@ -11072,7 +11489,322 @@ function resetPlantaIA() {
   var msgEl=document.getElementById('planta-ia-bloqueio-msg'); if(msgEl) msgEl.style.display='none';
   var retryEl=document.getElementById('planta-ia-retry-btn'); if(retryEl) retryEl.style.display='none';
 }
-// ── Override alert/confirm messages with translated versions ──────
+
+// ── INTERPRETAÇÃO DE SONHOS: MODOS (dicionário vs IA) ───────────────────────
+function switchSonhosMode(mode) {
+  document.getElementById('sonhos-mode-dicionario').style.display = mode === 'dicionario' ? 'block' : 'none';
+  document.getElementById('sonhos-mode-ia').style.display = mode === 'ia' ? 'block' : 'none';
+  document.getElementById('sonhos-mode-dic-btn').classList.toggle('active', mode === 'dicionario');
+  document.getElementById('sonhos-mode-ia-btn').classList.toggle('active', mode === 'ia');
+  if (mode === 'ia') {
+    if (typeof _sonhoMostrarResultadoGuardado === 'function') _sonhoMostrarResultadoGuardado();
+    _sonhoMostrarLimite();
+  }
+}
+
+// ── Persistência e limite SEMANAL da interpretação de sonhos por IA ────────
+function _sonhoSemanaAtual(){
+  // Identificador simples e estável da semana (ano + número da semana ISO)
+  var now=new Date();
+  var d=new Date(Date.UTC(now.getFullYear(),now.getMonth(),now.getDate()));
+  var dayNum=(d.getUTCDay()+6)%7; // segunda=0
+  d.setUTCDate(d.getUTCDate()-dayNum+3);
+  var firstThursday=new Date(Date.UTC(d.getUTCFullYear(),0,4));
+  var weekNum=1+Math.round(((d-firstThursday)/86400000-3+((firstThursday.getUTCDay()+6)%7))/7);
+  return d.getUTCFullYear()+'-S'+weekNum;
+}
+function _sonhoResultadoKey(){
+  var pid=sessionStorage.getItem('perfil_activo_id')||localStorage.getItem('essencia_ultimo_perfil')||'default';
+  return 'essencia_sonho_result_'+pid;
+}
+function _sonhoGuardarResultado(textoSonho, htmlTexto){
+  try{
+    var now=new Date();
+    var obj={
+      sonho: textoSonho,
+      texto: htmlTexto,
+      data: now.toLocaleDateString('pt-PT',{day:'2-digit',month:'long',year:'numeric'}),
+      ts: now.getTime(),
+      lang: currentLang||'pt'
+    };
+    localStorage.setItem(_sonhoResultadoKey(), JSON.stringify(obj));
+  }catch(e){}
+}
+function _sonhoCarregarResultado(){
+  try{
+    var raw=localStorage.getItem(_sonhoResultadoKey());
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+function _sonhoMostrarResultadoGuardado(){
+  var guardado=_sonhoCarregarResultado();
+  if(!guardado) return;
+  var el=document.getElementById('sonhos-ia-resultado-texto-out');
+  var wrap=document.getElementById('sonhos-ia-resultado');
+  var tit=document.getElementById('sonhos-ia-resultado-titulo');
+  var inputEl=document.getElementById('sonhos-ia-texto-input');
+  if(!el||!wrap) return;
+  var labelData=currentLang==='en'?'Interpretation saved on ':currentLang==='es'?'Interpretación guardada el ':'Interpretação guardada a ';
+  var avisoIdioma='';
+  if(guardado.lang && guardado.lang!==currentLang){
+    var nomeIdiomaGuardado = guardado.lang==='en'?'inglês':guardado.lang==='es'?'espanhol':'português';
+    if(currentLang==='en'){
+      nomeIdiomaGuardado = guardado.lang==='en'?'English':guardado.lang==='es'?'Spanish':'Portuguese';
+    } else if(currentLang==='es'){
+      nomeIdiomaGuardado = guardado.lang==='en'?'inglés':guardado.lang==='es'?'español':'portugués';
+    }
+    var avisoTxt = currentLang==='en'
+      ? ('Note: this interpretation was generated in '+nomeIdiomaGuardado+'. To get it in English, request a new one next week.')
+      : currentLang==='es'
+      ? ('Nota: esta interpretación fue generada en '+nomeIdiomaGuardado+'. Para obtenerla en español, solicita una nueva la próxima semana.')
+      : ('Nota: esta interpretação foi gerada em '+nomeIdiomaGuardado+'. Para a teres em português, pede uma nova na próxima semana.');
+    avisoIdioma='<div style="font-size:.74rem;color:var(--accent2);font-style:italic;margin-bottom:.85rem;padding:.6rem .85rem;background:rgba(74,143,181,0.06);border-radius:8px">ℹ️ '+avisoTxt+'</div>';
+  }
+  if(inputEl && guardado.sonho) inputEl.value = guardado.sonho;
+  el.innerHTML='<div style="font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--border2)">'+labelData+guardado.data+'</div>'+avisoIdioma+guardado.texto;
+  wrap.style.display='block';
+  if(tit){tit.textContent='✨ '+(currentLang==='en'?'Your interpretation':currentLang==='es'?'Tu interpretación':'A tua interpretação');}
+  _sonhoAtualizarMsgBloqueio(true);
+}
+
+function _sonhoLimiteKey(){
+  var pid=sessionStorage.getItem('perfil_activo_id')||localStorage.getItem('essencia_ultimo_perfil')||'default';
+  return 'essencia_sonho_'+pid;
+}
+function _sonhoGetUsos(){
+  try{
+    var d=JSON.parse(localStorage.getItem(_sonhoLimiteKey())||'null');
+    var semanaAtual=_sonhoSemanaAtual();
+    if(d&&d.semana===semanaAtual) return d.usos||0;
+    return 0;
+  }catch(e){return 0;}
+}
+function _sonhoRegistarUso(){
+  try{
+    var semanaAtual=_sonhoSemanaAtual();
+    localStorage.setItem(_sonhoLimiteKey(),JSON.stringify({semana:semanaAtual,usos:_sonhoGetUsos()+1}));
+  }catch(e){}
+}
+function _sonhoMostrarLimite(){
+  var usos=_sonhoGetUsos();
+  var limite=1;
+  var restantes=limite-usos;
+  var infoEl=document.getElementById('sonhos-limite-info');
+  var textoEl=document.getElementById('sonhos-limite-texto');
+  var btnEl=document.getElementById('sonhos-analisar-btn');
+  if(!infoEl||!textoEl) return;
+  if(restantes<=0){
+    textoEl.innerHTML='🔒 '+(
+      currentLang==='en'?'You have already used your weekly AI dream interpretation. Available again next week.':
+      currentLang==='es'?'Ya usaste tu interpretación semanal de IA. Disponible de nuevo la próxima semana.':
+      'Já usaste a tua interpretação semanal por IA. Disponível novamente na próxima semana.'
+    );
+    infoEl.style.display='block';
+    infoEl.style.borderColor='rgba(181,74,74,.3)';
+    infoEl.style.background='rgba(181,74,74,.05)';
+    if(btnEl){btnEl.style.display='none';}
+  } else {
+    textoEl.innerHTML='✦ '+(
+      currentLang==='en'?'1 free AI interpretation per week. You have <strong>'+restantes+'</strong> remaining this week.':
+      currentLang==='es'?'1 interpretación gratuita de IA por semana. Te queda <strong>'+restantes+'</strong> esta semana.':
+      '1 interpretação gratuita por IA por semana. Tens <strong>'+restantes+'</strong> disponível esta semana.'
+    );
+    infoEl.style.display='block';
+    infoEl.style.borderColor='var(--border)';
+    infoEl.style.background='rgba(74,143,181,0.07)';
+    if(btnEl){btnEl.style.display='block';}
+  }
+}
+
+async function interpretarSonhoIA() {
+  const textoSonho = (document.getElementById('sonhos-ia-texto-input').value||'').trim();
+  if(!textoSonho || textoSonho.length < 10) {
+    alert(currentLang==='en'?'Please describe your dream with a bit more detail first.':currentLang==='es'?'Por favor describe tu sueño con un poco más de detalle primero.':'Por favor descreve o teu sonho com um pouco mais de detalhe primeiro.');
+    return;
+  }
+  if(_sonhoGetUsos()>=1){
+    _sonhoMostrarLimite();
+    return;
+  }
+
+  document.getElementById('sonhos-ia-loading').style.display = 'block';
+  document.getElementById('sonhos-ia-resultado').style.display = 'none';
+  document.getElementById('sonhos-analisar-btn').disabled = true;
+
+  const nome = window._nome || 'a pessoa';
+  const pl = window._planetas || [];
+  const nums = window._nums || {};
+  const solSig = pl.length ? SIGNOS[pl[0].signo] : '';
+  const luaSig = pl.length ? SIGNOS[pl[1].signo] : '';
+  const _sonhoPromptLang = currentLang || 'pt';
+
+  const contextoPerfil = _sonhoPromptLang==='es'
+    ? [solSig ? `Sol en ${solSig}` : '', luaSig ? `Luna en ${luaSig}` : '', nums.nV ? `Número de Vida ${nums.nV} (${numInfo(nums.nV).nome})` : ''].filter(Boolean).join(', ')
+    : _sonhoPromptLang==='en'
+    ? [solSig ? `Sun in ${solSig}` : '', luaSig ? `Moon in ${luaSig}` : '', nums.nV ? `Life Number ${nums.nV} (${numInfo(nums.nV).nome})` : ''].filter(Boolean).join(', ')
+    : [solSig ? `Sol em ${solSig}` : '', luaSig ? `Lua em ${luaSig}` : '', nums.nV ? `Número de Vida ${nums.nV} (${numInfo(nums.nV).nome})` : ''].filter(Boolean).join(', ');
+
+  let prompt;
+  if(_sonhoPromptLang==='es'){
+    prompt = `Eres un intérprete de sueños con 30 años de experiencia, con formación en simbolismo, psicología junguiana y tradiciones de interpretación de sueños. ${nome} describe el siguiente sueño:
+
+"""
+${textoSonho}
+"""
+
+${contextoPerfil ? `Contexto astrológico de esta persona: ${contextoPerfil}.` : ''}
+
+Por favor interpreta el sueño con profundidad, estructurando la respuesta así:
+
+1. **Temas y símbolos principales** — identifica los elementos simbólicos más relevantes del sueño y qué suelen representar.
+
+2. **Emociones presentes** — qué emociones parecen estar presentes en el sueño y qué pueden estar señalando sobre el estado interior de la persona.
+
+3. **Posibles conexiones con la vida despierta** — de forma cuidadosa y sin afirmaciones categóricas, qué situaciones de la vida real el sueño podría estar reflejando.
+
+4. **Síntesis y reflexión** — una síntesis cálida e integradora, invitando a la persona a reflexionar por sí misma. ${contextoPerfil ? `Integra también el contexto astrológico (${contextoPerfil}) si es relevante.` : ''}
+
+Escribe en español, con un tono cálido, respetuoso y no determinista — deja claro que esta es una lectura simbólica posible, no una verdad absoluta. Nunca hagas afirmaciones médicas o psiquiátricas. Estructura la respuesta con subtítulos en formato ### para cada sección.`;
+  } else if(_sonhoPromptLang==='en'){
+    prompt = `You are a dream interpreter with 30 years of experience, trained in symbolism, Jungian psychology and dream interpretation traditions. ${nome} describes the following dream:
+
+"""
+${textoSonho}
+"""
+
+${contextoPerfil ? `Astrological context for this person: ${contextoPerfil}.` : ''}
+
+Please interpret the dream in depth, structuring your reply as follows:
+
+1. **Main themes and symbols** — identify the most relevant symbolic elements in the dream and what they commonly represent.
+
+2. **Emotions present** — what emotions seem to be present in the dream and what they might be signalling about the person's inner state.
+
+3. **Possible connections to waking life** — carefully and without categorical claims, what real-life situations the dream might be reflecting.
+
+4. **Synthesis and reflection** — a warm, integrative synthesis, inviting the person to reflect for themselves. ${contextoPerfil ? `Also integrate the astrological context (${contextoPerfil}) if relevant.` : ''}
+
+Write in English, with a warm, respectful, non-deterministic tone — make clear this is one possible symbolic reading, not an absolute truth. Never make medical or psychiatric claims. Structure the response with ### subheadings for each section.`;
+  } else {
+    prompt = `És uma intérprete de sonhos com 30 anos de experiência, com formação em simbolismo, psicologia junguiana e tradições de interpretação de sonhos. ${nome} descreve o seguinte sonho:
+
+"""
+${textoSonho}
+"""
+
+${contextoPerfil ? `Contexto astrológico desta pessoa: ${contextoPerfil}.` : ''}
+
+Por favor interpreta o sonho com profundidade, estruturando a resposta assim:
+
+1. **Temas e símbolos principais** — identifica os elementos simbólicos mais relevantes do sonho e o que costumam representar.
+
+2. **Emoções presentes** — que emoções parecem estar presentes no sonho e o que podem estar a assinalar sobre o estado interior da pessoa.
+
+3. **Possíveis ligações à vida desperta** — de forma cuidadosa e sem afirmações categóricas, que situações da vida real o sonho poderá estar a reflectir.
+
+4. **Síntese e reflexão** — uma síntese calorosa e integradora, convidando a pessoa a reflectir por si mesma. ${contextoPerfil ? `Integra também o contexto astrológico (${contextoPerfil}) se for relevante.` : ''}
+
+Escreve em português europeu, com um tom caloroso, respeitoso e não-determinista — deixa claro que esta é uma leitura simbólica possível, não uma verdade absoluta. Nunca faças afirmações médicas ou psiquiátricas. Estrutura a resposta com subtítulos em formato ### para cada secção.`;
+  }
+
+  try {
+    const response = await fetch('/.netlify/functions/sonho-interpretacao', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: prompt })
+    });
+
+    if(!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.error?.message || `Erro ${response.status}`);
+    }
+
+    const data = await response.json();
+    const texto = data.content?.[0]?.text || 'Não foi possível obter a interpretação.';
+
+    const formatado = texto
+      .replace(/^###\s+(.+)$/gm, '<h3>$1</h3>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .split('\n\n').join('</p><p>')
+      .split('\n').join('<br>');
+
+    document.getElementById('sonhos-ia-resultado-texto-out').innerHTML = '<p>' + formatado + '</p>';
+    _sonhoRegistarUso();
+    _sonhoGuardarResultado(textoSonho, '<p>' + formatado + '</p>');
+    _sonhoMostrarLimite();
+    document.getElementById('sonhos-ia-resultado').style.display = 'block';
+    _sonhoAtualizarMsgBloqueio(true);
+
+  } catch(e) {
+    let msg = e.message || '';
+    if(msg.includes('401') || msg.includes('authentication')) {
+      msg = currentLang==='en'?'Authentication error. Please try again later.':currentLang==='es'?'Error de autenticación. Por favor inténtalo más tarde.':'Erro de autenticação. Por favor tenta novamente mais tarde.';
+    } else if(msg.includes('429')) {
+      msg = currentLang==='en'?'Too many requests. Please wait a moment and try again.':currentLang==='es'?'Demasiadas solicitudes. Espera un momento e inténtalo de nuevo.':'Demasiados pedidos. Aguarda um momento e tenta novamente.';
+    } else if(msg.includes('400')) {
+      msg = currentLang==='en'?'The dream description could not be processed. Please try rephrasing it.':currentLang==='es'?'No se pudo procesar la descripción del sueño. Intenta reformularla.':'A descrição do sonho não pôde ser processada. Tenta reformulá-la.';
+    } else if(msg.includes('504') || msg.includes('Gateway') || msg.includes('timeout') || msg.includes('Timeout')) {
+      msg = currentLang==='en'?'The interpretation took too long and timed out. Please try again.':currentLang==='es'?'La interpretación tardó demasiado y se agotó el tiempo. Por favor inténtalo de nuevo.':'A interpretação demorou demasiado tempo e foi interrompida. Por favor tenta novamente.';
+    } else if(msg.includes('fetch') || msg.includes('network') || msg.includes('Failed') || msg.includes('CORS')) {
+      msg = currentLang==='en'?'Connection error. Please check your internet connection and try again.':currentLang==='es'?'Error de conexión. Verifica tu conexión a internet e inténtalo de nuevo.':'Erro de ligação. Verifica a tua conexão à internet e tenta novamente.';
+    } else {
+      msg = (currentLang==='en'?'Could not complete the interpretation: ':currentLang==='es'?'No se pudo completar la interpretación: ':'Não foi possível completar a interpretação: ') + msg;
+    }
+    document.getElementById('sonhos-ia-resultado-texto-out').innerHTML =
+      '<div style="color:#c0392b;font-size:.88rem;line-height:1.7;padding:1rem;background:rgba(192,57,43,.06);border-radius:10px;border:1px solid rgba(192,57,43,.15)">' +
+      '⚠️ ' + msg + '</div>';
+    document.getElementById('sonhos-ia-resultado').style.display = 'block';
+    _sonhoAtualizarMsgBloqueio(false);
+  } finally {
+    document.getElementById('sonhos-ia-loading').style.display = 'none';
+    document.getElementById('sonhos-analisar-btn').disabled = false;
+  }
+}
+
+function _sonhoAtualizarMsgBloqueio(sucesso){
+  var msgEl=document.getElementById('sonhos-ia-bloqueio-msg');
+  var retryEl=document.getElementById('sonhos-ia-retry-btn');
+  var txtEl=document.getElementById('sonhos-ia-bloqueio-txt');
+  var retryTxtEl=document.getElementById('sonhos-ia-retry-txt');
+  if(!msgEl||!retryEl) return;
+  if(sucesso){
+    if(txtEl){
+      txtEl.textContent = currentLang==='en'
+        ? 'This is your interpretation for this week. A new one will be available next week.'
+        : currentLang==='es'
+        ? 'Esta es tu interpretación de esta semana. Una nueva estará disponible la próxima semana.'
+        : 'Esta é a tua interpretação desta semana. Uma nova ficará disponível na próxima semana.';
+    }
+    msgEl.style.display='block';
+    retryEl.style.display='none';
+  } else {
+    if(retryTxtEl){
+      retryTxtEl.textContent = currentLang==='en' ? '↺ Try again' : currentLang==='es' ? '↺ Intentar de nuevo' : '↺ Tentar novamente';
+    }
+    msgEl.style.display='none';
+    retryEl.style.display='block';
+  }
+}
+
+function _sonhoResetEstadoCompleto() {
+  // Chamado sempre que se muda de perfil, para impedir que a interpretação
+  // de uma pessoa apareça associada a outra.
+  try{
+    var inputEl=document.getElementById('sonhos-ia-texto-input'); if(inputEl) inputEl.value='';
+    var res=document.getElementById('sonhos-ia-resultado'); if(res) res.style.display='none';
+    var txt=document.getElementById('sonhos-ia-resultado-texto-out'); if(txt) txt.innerHTML='';
+    var load=document.getElementById('sonhos-ia-loading'); if(load) load.style.display='none';
+    var infoEl=document.getElementById('sonhos-limite-info'); if(infoEl) infoEl.style.display='none';
+  }catch(e){}
+}
+
+function resetSonhoIA() {
+  document.getElementById('sonhos-ia-texto-input').value = '';
+  document.getElementById('sonhos-ia-resultado').style.display = 'none';
+  document.getElementById('sonhos-ia-loading').style.display = 'none';
+  var msgEl=document.getElementById('sonhos-ia-bloqueio-msg'); if(msgEl) msgEl.style.display='none';
+  var retryEl=document.getElementById('sonhos-ia-retry-btn'); if(retryEl) retryEl.style.display='none';
+}
 const _calcularOriginal = window.calcular;
 // Patch calcular() to use translated error messages
 function calcularComLang() {
