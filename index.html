@@ -6549,16 +6549,16 @@ function getMAUD(){return MAUD_DATA[currentLang]||MAUD_DATA.pt;}
 let medFA='Todas';
 const MED_AUDIO_DATA={
   pt:[
-    {id:'limpeza',emoji:'🧹',titulo:'Limpeza Energética',dur:'7 min',cat:'Limpeza',desc:'Uma meditação guiada para libertares energias acumuladas e voltares a sentir o teu espaço (e o teu corpo) mais leve.',src:'audio/limpeza.m4a'},
-    {id:'sonotranquilo',emoji:'🌙',titulo:'Sono Tranquilo',dur:'8 min',cat:'Sono',desc:'Uma meditação guiada para te ajudar a desacelerar e adormeceres com mais calma.',src:'audio/sonotranquilo.m4a'}
+    {id:'limpeza',emoji:'🧹',titulo:'Limpeza Energética',dur:'7 min',cat:'Limpeza',desc:'Uma meditação guiada para libertares energias acumuladas e voltares a sentir o teu espaço (e o teu corpo) mais leve.',src:'audio/limpeza.mp3'},
+    {id:'sonotranquilo',emoji:'🌙',titulo:'Sono Tranquilo',dur:'8 min',cat:'Sono',desc:'Uma meditação guiada para te ajudar a desacelerar e adormeceres com mais calma.',src:'audio/sonotranquilo.mp3'}
   ],
   es:[
-    {id:'limpeza',emoji:'🧹',titulo:'Limpieza Energética',dur:'7 min',cat:'Limpieza',desc:'Una meditación guiada para liberar energías acumuladas y volver a sentir tu espacio (y tu cuerpo) más ligero.',src:'audio/limpeza.m4a'},
-    {id:'sonotranquilo',emoji:'🌙',titulo:'Sueño Tranquilo',dur:'8 min',cat:'Sueño',desc:'Una meditación guiada para ayudarte a desacelerar y dormir con más calma.',src:'audio/sonotranquilo.m4a'}
+    {id:'limpeza',emoji:'🧹',titulo:'Limpieza Energética',dur:'7 min',cat:'Limpieza',desc:'Una meditación guiada para liberar energías acumuladas y volver a sentir tu espacio (y tu cuerpo) más ligero.',src:'audio/limpeza.mp3'},
+    {id:'sonotranquilo',emoji:'🌙',titulo:'Sueño Tranquilo',dur:'8 min',cat:'Sueño',desc:'Una meditación guiada para ayudarte a desacelerar y dormir con más calma.',src:'audio/sonotranquilo.mp3'}
   ],
   en:[
-    {id:'limpeza',emoji:'🧹',titulo:'Energy Cleansing',dur:'7 min',cat:'Cleansing',desc:'A guided meditation to release accumulated energy and feel your space (and your body) lighter again.',src:'audio/limpeza.m4a'},
-    {id:'sonotranquilo',emoji:'🌙',titulo:'Peaceful Sleep',dur:'8 min',cat:'Sleep',desc:'A guided meditation to help you slow down and fall asleep more peacefully.',src:'audio/sonotranquilo.m4a'}
+    {id:'limpeza',emoji:'🧹',titulo:'Energy Cleansing',dur:'7 min',cat:'Cleansing',desc:'A guided meditation to release accumulated energy and feel your space (and your body) lighter again.',src:'audio/limpeza.mp3'},
+    {id:'sonotranquilo',emoji:'🌙',titulo:'Peaceful Sleep',dur:'8 min',cat:'Sleep',desc:'A guided meditation to help you slow down and fall asleep more peacefully.',src:'audio/sonotranquilo.mp3'}
   ]
 };
 
@@ -6568,7 +6568,7 @@ function renderMedAudioGrid(){
   const grid=document.getElementById('med-audio-grid');
   if(!grid)return;
   grid.innerHTML=getMedAudioData().map(function(m){
-    return '<div class="med-audio-card"><div class="med-audio-card-header"><div class="med-audio-icon">'+m.emoji+'</div><div><div class="med-audio-title">'+m.titulo+'</div><div class="med-audio-meta">'+m.cat+' · ⏱ '+m.dur+'</div></div></div><div class="med-audio-desc">'+m.desc+'</div><audio class="med-audio-player" controls preload="none" onerror="this.nextElementSibling.style.display=\'block\'"><source src="'+m.src+'" type="audio/mp4"></audio><div style="display:none;font-size:.72rem;color:#c0392b;margin-top:.4rem">'+(currentLang==="es"?"No se pudo cargar el audio. Comprueba tu conexión o intenta de nuevo más tarde.":currentLang==="en"?"Could not load the audio. Check your connection or try again later.":"Não foi possível carregar o áudio. Verifica a tua ligação ou tenta novamente mais tarde.")+'</div></div>';
+    return '<div class="med-audio-card"><div class="med-audio-card-header"><div class="med-audio-icon">'+m.emoji+'</div><div><div class="med-audio-title">'+m.titulo+'</div><div class="med-audio-meta">'+m.cat+' · ⏱ '+m.dur+'</div></div></div><div class="med-audio-desc">'+m.desc+'</div><audio class="med-audio-player" controls preload="none" onerror="this.nextElementSibling.style.display=\'block\'"><source src="'+m.src+'" type="audio/mpeg"></audio><div style="display:none;font-size:.72rem;color:#c0392b;margin-top:.4rem">'+(currentLang==="es"?"No se pudo cargar el audio. Comprueba tu conexión o intenta de nuevo más tarde.":currentLang==="en"?"Could not load the audio. Check your connection or try again later.":"Não foi possível carregar o áudio. Verifica a tua ligação ou tenta novamente mais tarde.")+'</div></div>';
   }).join('');
 }
 
@@ -11200,7 +11200,7 @@ function plantaFotoSelecionada(input) {
     tempImg.onload = function() {
       // Reduz a imagem para evitar pedidos demasiado grandes (fotos de telemóvel
       // de plantas em papel A3/A2 podem facilmente ter vários MB).
-      const MAX_DIM = 1800;
+      const MAX_DIM = 1400;
       let w = tempImg.width, h = tempImg.height;
       if (w > MAX_DIM || h > MAX_DIM) {
         if (w > h) { h = Math.round(h * (MAX_DIM / w)); w = MAX_DIM; }
@@ -11363,61 +11363,49 @@ async function analisarPlantaIA() {
 
 ${contextoPerfil ? `Contexto astrológico de esta persona: ${contextoPerfil}.` : ''}
 
-Por favor analiza detalladamente:
+Por favor analiza de forma directa y concisa (no te extiendas):
 
 1. **Distribución general y flujo del Chi** — cómo circula la energía por la planta, puertas, pasillos y obstáculos.
 
-2. **Bagua y las nueve áreas de vida** — superponiendo el mapa Bagua sobre la planta (a partir de la puerta principal), identifica qué áreas de la vida (riqueza, relaciones, carrera, salud, etc.) están bien representadas y cuáles están débiles o ausentes.
+2. **Bagua y áreas de vida** — superponiendo el mapa Bagua sobre la planta (a partir de la puerta principal), qué áreas (riqueza, relaciones, carrera, salud) están bien representadas y cuáles débiles o ausentes. Incluye también la posición de la puerta principal y habitaciones clave (dormitorio, cocina, baños).
 
-3. **Posición de la puerta principal y de las habitaciones clave** — dormitorio principal, cocina, baños. ¿Están bien posicionados según el Feng Shui?
+3. **Elementos y desafíos** — qué elementos (Madera, Fuego, Tierra, Metal, Agua) predominan o faltan, y posibles desafíos (esquinas afiladas, vigas, escaleras frente a la puerta).
 
-4. **Elementos y equilibrio (Madera, Fuego, Tierra, Metal, Agua)** — qué elementos predominan en la distribución y cuáles faltan.
+4. **Recomendaciones prácticas** — 3 a 4 sugerencias concretas y realizables (sin obras grandes) para armonizar el espacio. ${contextoPerfil ? `Integra también el contexto astrológico (${contextoPerfil}).` : ''}
 
-5. **Posibles desafíos** — esquinas afiladas, vigas, escaleras frente a la puerta, baños en zonas de riqueza, etc.
-
-6. **Síntesis y recomendaciones prácticas** — 4 a 6 sugerencias concretas y realizables (sin obras grandes) para armonizar el espacio. ${contextoPerfil ? `Integra también el contexto astrológico (${contextoPerfil}) para una lectura más personal.` : ''}
-
-Escribe en español, con profundidad pero accesibilidad. Usa un tono cálido y constructivo. Estructura la respuesta con subtítulos en formato ### para cada sección. Si la imagen no parece ser una planta de casa, dilo claramente al principio de la respuesta.`;
+Escribe en español, con tono cálido pero DIRECTO — cada sección debe tener máximo 2-3 frases cortas. Estructura la respuesta con subtítulos en formato ### para cada sección. Si la imagen no parece ser una planta de casa, dilo claramente al principio de la respuesta.`;
   } else if(_plantaPromptLang==='en'){
     prompt = `You are a Feng Shui consultant with 30 years of experience. Analyse this top-down floor plan image of ${nome}'s home.
 
 ${contextoPerfil ? `Astrological context for this person: ${contextoPerfil}.` : ''}
 
-Please analyse in detail:
+Please analyse directly and concisely (do not be verbose):
 
 1. **Overall layout and Chi flow** — how energy moves through the plan, doors, hallways, and obstructions.
 
-2. **Bagua map and the nine life areas** — overlaying the Bagua map onto the plan (from the main entrance), identify which life areas (wealth, relationships, career, health, etc.) are well represented and which are weak or missing.
+2. **Bagua and life areas** — overlaying the Bagua map onto the plan (from the main entrance), which life areas (wealth, relationships, career, health) are well represented and which are weak or missing. Also cover the main door and key room positions (bedroom, kitchen, bathrooms).
 
-3. **Main door and key room positions** — main bedroom, kitchen, bathrooms. Are they well placed according to Feng Shui?
+3. **Elements and challenges** — which elements (Wood, Fire, Earth, Metal, Water) dominate or are missing, and possible challenges (sharp corners, beams, stairs facing the front door).
 
-4. **Elements and balance (Wood, Fire, Earth, Metal, Water)** — which elements dominate the layout and which are missing.
+4. **Practical recommendations** — 3 to 4 concrete, achievable suggestions (no major renovations) to harmonise the space. ${contextoPerfil ? `Also integrate the astrological context (${contextoPerfil}).` : ''}
 
-5. **Possible challenges** — sharp corners, beams, stairs facing the front door, bathrooms in wealth areas, etc.
-
-6. **Synthesis and practical recommendations** — 4 to 6 concrete, achievable suggestions (no major renovations) to harmonise the space. ${contextoPerfil ? `Also integrate the astrological context (${contextoPerfil}) for a more personal reading.` : ''}
-
-Write in English, with depth but accessibility. Use a warm, constructive tone. Structure the response with ### subheadings for each section. If the image doesn't look like a floor plan, say so clearly at the start of your reply.`;
+Write in English, with a warm but DIRECT tone — each section should be at most 2-3 short sentences. Structure the response with ### subheadings for each section. If the image doesn't look like a floor plan, say so clearly at the start of your reply.`;
   } else {
     prompt = `És um consultor de Feng Shui com 30 anos de experiência. Analisa esta imagem da planta (vista de cima) da casa de ${nome}.
 
 ${contextoPerfil ? `Contexto astrológico desta pessoa: ${contextoPerfil}.` : ''}
 
-Por favor analisa detalhadamente:
+Por favor analisa de forma direta e concisa (não te alongues):
 
 1. **Distribuição geral e fluxo do Chi** — como circula a energia pela planta, portas, corredores e obstáculos.
 
-2. **Bagua e as nove áreas de vida** — sobrepondo o mapa Bagua à planta (a partir da porta principal), identifica quais as áreas da vida (riqueza, relações, carreira, saúde, etc.) que estão bem representadas e quais estão fracas ou ausentes.
+2. **Bagua e áreas de vida** — sobrepondo o mapa Bagua à planta (a partir da porta principal), quais as áreas (riqueza, relações, carreira, saúde) bem representadas e quais fracas ou ausentes. Inclui também a posição da porta principal e divisões-chave (quarto, cozinha, casas de banho).
 
-3. **Posição da porta principal e das divisões-chave** — quarto principal, cozinha, casas de banho. Estão bem posicionadas segundo o Feng Shui?
+3. **Elementos e desafios** — que elementos (Madeira, Fogo, Terra, Metal, Água) predominam ou faltam, e possíveis desafios (cantos afiados, vigas, escadas de frente para a porta).
 
-4. **Elementos e equilíbrio (Madeira, Fogo, Terra, Metal, Água)** — que elementos predominam na distribuição e quais faltam.
+4. **Recomendações práticas** — 3 a 4 sugestões concretas e realizáveis (sem grandes obras) para harmonizar o espaço. ${contextoPerfil ? `Integra também o contexto astrológico (${contextoPerfil}).` : ''}
 
-5. **Possíveis desafios** — cantos afiados, vigas, escadas de frente para a porta, casas de banho em zonas de riqueza, etc.
-
-6. **Síntese e recomendações práticas** — 4 a 6 sugestões concretas e realizáveis (sem grandes obras) para harmonizar o espaço. ${contextoPerfil ? `Integra também o contexto astrológico (${contextoPerfil}) para uma leitura mais pessoal.` : ''}
-
-Escreve em português europeu, com profundidade mas acessibilidade. Usa um tom caloroso e construtivo. Estrutura a resposta com subtítulos em formato ### para cada secção. Se a imagem não parecer ser uma planta de casa, diz isso claramente no início da resposta.`;
+Escreve em português europeu, com tom caloroso mas DIRETO — cada secção deve ter no máximo 2-3 frases curtas. Estrutura a resposta com subtítulos em formato ### para cada secção. Se a imagem não parecer ser uma planta de casa, diz isso claramente no início da resposta.`;
   }
 
   try {
