@@ -1540,6 +1540,7 @@
       </div>
     </div>
     <div class="interp-box" style="margin-bottom:1.5rem"><div class="interp-label" id="packs-intro-label">O que são os packs terapêuticos?</div><div class="interp-text" id="packs-intro-txt">Acompanhamentos estruturados, com sessões regulares e um plano adaptado a ti — para quem quer ir mais além de uma sessão pontual.</div></div>
+    <div class="course-lang-badge" style="margin-bottom:1.25rem;display:block" id="packs-idiomas-nota">As equipas terapêuticas podem disponibilizar os packs nas 3 línguas (PT/ES/EN), mas a página explicativa de cada pack está apenas em Português.</div>
     <div class="courses-grid" id="packs-grid"></div>
   </div>
 
@@ -2254,6 +2255,7 @@ const TRANSLATIONS = {
     packs_hero_sub: 'Acompanhamento contínuo · Equipa multidisciplinar · Transformação profunda',
     packs_intro_label: 'O que são os packs terapêuticos?',
     packs_intro_txt: 'Acompanhamentos estruturados, com sessões regulares e um plano adaptado a ti — para quem quer ir mais além de uma sessão pontual.',
+    packs_idiomas_nota: 'As equipas terapêuticas podem disponibilizar os packs nas 3 línguas (PT/ES/EN), mas a página explicativa de cada pack está apenas em Português.',
     cursos_saber_mais: 'Saber mais',
     cursos_inscrever: 'Inscrever-me',
     palma_foto_label: '📷   Tirar foto / Escolher da galeria',
@@ -2750,6 +2752,7 @@ const TRANSLATIONS = {
     packs_hero_sub: 'Acompañamiento continuo · Equipo multidisciplinar · Transformación profunda',
     packs_intro_label: '¿Qué son los packs terapéuticos?',
     packs_intro_txt: 'Acompañamientos estructurados, con sesiones regulares y un plan adaptado a ti — para quien quiere ir más allá de una sesión puntual.',
+    packs_idiomas_nota: 'Los equipos terapéuticos pueden ofrecer los packs en los 3 idiomas (PT/ES/EN), pero la página explicativa de cada pack está solo en portugués.',
     cursos_saber_mais: 'Saber más',
     cursos_inscrever: 'Inscribirme',
     bib_titulo: 'Biblioteca Espiritual',
@@ -3032,6 +3035,7 @@ const TRANSLATIONS = {
     packs_hero_sub: 'Ongoing support · Multidisciplinary team · Deep transformation',
     packs_intro_label: 'What are therapeutic packs?',
     packs_intro_txt: 'Structured support programmes, with regular sessions and a plan adapted to you — for those who want to go further than a one-off session.',
+    packs_idiomas_nota: 'The therapeutic teams can offer the packs in all 3 languages (PT/ES/EN), but the explanatory page for each pack is only in Portuguese.',
     cursos_saber_mais: 'Learn more', cursos_inscrever: 'Enroll',
     diario_titulo: 'Therapeutic Journal',
     diario_subtitulo: 'Your private space for reflection and healing',
@@ -3819,6 +3823,7 @@ function applyLang() {
   const packsHeroSub=document.getElementById('packs-hero-sub'); if(packsHeroSub) packsHeroSub.textContent=T.packs_hero_sub||'';
   const packsLabel=document.getElementById('packs-intro-label'); if(packsLabel) packsLabel.textContent=T.packs_intro_label;
   const packsIntroEl=document.getElementById('packs-intro-txt'); if(packsIntroEl) packsIntroEl.textContent=T.packs_intro_txt;
+  const packsIdiomasEl=document.getElementById('packs-idiomas-nota'); if(packsIdiomasEl) packsIdiomasEl.textContent=T.packs_idiomas_nota;
   if(typeof renderPacks==='function') renderPacks();
   // Biblioteca tab
   const bibTitulo=document.getElementById('bib-titulo'); if(bibTitulo) bibTitulo.textContent=T.bib_titulo;
@@ -6569,7 +6574,7 @@ function renderMedAudioGrid(){
   const grid=document.getElementById('med-audio-grid');
   if(!grid)return;
   grid.innerHTML=getMedAudioData().map(function(m){
-    return '<div class="med-audio-card"><div class="med-audio-card-header"><div class="med-audio-icon">'+m.emoji+'</div><div><div class="med-audio-title">'+m.titulo+'</div><div class="med-audio-meta">'+m.cat+' · ⏱ '+m.dur+'</div></div></div><div class="med-audio-desc">'+m.desc+'</div><audio class="med-audio-player" controls preload="none" onerror="this.nextElementSibling.style.display=\'block\'"><source src="'+m.src+'" type="audio/mpeg"></audio><div style="display:none;font-size:.72rem;color:#c0392b;margin-top:.4rem">'+(currentLang==="es"?"No se pudo cargar el audio. Comprueba tu conexión o intenta de nuevo más tarde.":currentLang==="en"?"Could not load the audio. Check your connection or try again later.":"Não foi possível carregar o áudio. Verifica a tua ligação ou tenta novamente mais tarde.")+'</div></div>';
+    return '<div class="med-audio-card"><div class="med-audio-card-header"><div class="med-audio-icon">'+m.emoji+'</div><div><div class="med-audio-title">'+m.titulo+'</div><div class="med-audio-meta">'+m.cat+' · ⏱ '+m.dur+'</div></div></div><div class="course-lang-badge">'+(currentLang==="es"?"Audio en portugués":currentLang==="en"?"Audio in Portuguese":"Áudio em Português")+'</div><div class="med-audio-desc">'+m.desc+'</div><audio class="med-audio-player" controls preload="none" onerror="this.nextElementSibling.style.display=\'block\'"><source src="'+m.src+'" type="audio/mpeg"></audio><div style="display:none;font-size:.72rem;color:#c0392b;margin-top:.4rem">'+(currentLang==="es"?"No se pudo cargar el audio. Comprueba tu conexión o intenta de nuevo más tarde.":currentLang==="en"?"Could not load the audio. Check your connection or try again later.":"Não foi possível carregar o áudio. Verifica a tua ligação ou tenta novamente mais tarde.")+'</div></div>';
   }).join('');
 }
 

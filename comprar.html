@@ -50,6 +50,16 @@
   .pay-btn { flex: 1; min-width: 160px; text-align: center; }
   .pay-btn-paypal { background: #ffc439; color: #003087; }
   .pay-btn-paypal:hover { background: #f2b633; color: #003087; }
+  .pay-btn-mbway { background: #d4006e; color: #fff; border: none; cursor: pointer; font-family: 'Cinzel', serif; }
+  .pay-btn-mbway:hover { background: #b00059; }
+  .mbway-box { margin-top: 1rem; padding: 1.1rem; background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; text-align: left; }
+  .cta-email-wrap .mbway-box { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.22); }
+  .mbway-box .mbway-phone { font-weight: 600; color: var(--accent-deep); white-space: nowrap; }
+  .cta-email-wrap .mbway-box .mbway-phone { color: #fff; }
+  .mbway-box input { width: 100%; padding: .75rem 1rem; border: 1px solid var(--border); border-radius: 10px; background: var(--card); color: var(--text); font-family: 'Jost', sans-serif; font-size: .88rem; outline: none; margin-bottom: .6rem; box-sizing: border-box; }
+  .cta-email-wrap .mbway-box input { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.25); color: #fff; }
+  .cta-email-wrap .mbway-box input::placeholder { color: rgba(255,255,255,.5); }
+  .mbway-box .btn-primary { width: 100%; margin-top: .3rem; }
   .cta-email-wrap .pay-btn-paypal { background: #ffc439; color: #003087; }
   .cta-email-wrap .pay-btn-paypal:hover { background: #f2b633; }
   .form-msg { display: none; margin-top: .8rem; font-size: .82rem; border-radius: 8px; padding: .6rem 1rem; }
@@ -117,7 +127,6 @@
   }
 </style>
 </head>
-</head>
 <body>
 
 <!-- SELETOR DE LÍNGUA -->
@@ -149,10 +158,25 @@
   <div class="pay-choice" id="heroPayChoice" style="display:none;max-width:440px;margin:1rem auto 0;background:var(--card);border:1px solid var(--border2);box-shadow:var(--shadow2);border-radius:18px;padding:1.5rem">
     <p class="email-form-label" id="t-pay-choice-label" style="text-align:center">Como queres pagar?</p>
     <div class="pay-choice-row">
-      <a class="btn-primary pay-btn" href="https://pay.sumup.com/b2c/QGCQ6B2I" target="_blank" rel="noopener" id="t-pay-card">💳 Cartão / MB WAY</a>
+      <a class="btn-primary pay-btn" href="https://pay.sumup.com/b2c/QGCQ6B2I" target="_blank" rel="noopener" id="t-pay-card">💳 Cartão</a>
+      <button type="button" class="btn-primary pay-btn pay-btn-mbway" onclick="toggleMbway('hero')" id="t-pay-mbway">📱 MB WAY</button>
       <a class="btn-primary pay-btn pay-btn-paypal" href="https://paypal.me/tatechera/14.99EUR" target="_blank" rel="noopener" id="t-pay-paypal">🅿️ PayPal</a>
     </div>
     <p class="email-note" id="t-pay-note" style="text-align:center;margin-top:.8rem">Pagamento em euros (€). Se pagares de fora da Zona Euro, o valor é convertido automaticamente pelo teu banco ou pela PayPal.</p>
+
+    <div class="mbway-box" id="heroMbwayBox" style="display:none">
+      <p id="t-mbway-instrucoes-hero">Envia o pagamento de <strong>14,99€</strong> por MB WAY para <span class="mbway-phone">+351 925 791 568</span>. Depois deixa aqui o teu nome e contacto para identificarmos o pagamento — vais receber o código de acesso em até 24h.</p>
+      <form id="heroMbwayForm" name="compra-essencia-mbway" netlify netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="compra-essencia-mbway">
+        <input type="hidden" name="bot-field" style="display:none">
+        <input type="hidden" name="email" id="heroMbwayEmailHidden">
+        <input type="text" name="nome" id="heroMbwayNome" placeholder="O teu nome completo" required>
+        <input type="tel" name="contacto" id="heroMbwayContacto" placeholder="O teu contacto telefónico (o mesmo do MB WAY, se possível)" required>
+        <button type="submit" class="btn-primary" id="t-mbway-confirmar-hero">Confirmar os meus dados</button>
+        <div class="form-msg error" id="heroMbwayError" style="display:none"></div>
+      </form>
+      <div id="heroMbwaySuccess" style="display:none;text-align:center;font-size:.85rem;color:var(--text2)" data-i18n-key="mbwaySuccess">Obrigada! Recebemos os teus dados. Confirma que enviaste o pagamento por MB WAY para +351 925 791 568 — vais receber o teu código de acesso por email em até 24h.</div>
+    </div>
   </div>
 
   <p class="hero-price" id="t-hero-price">Pagamento único · <strong>14,99€</strong></p>
@@ -259,17 +283,32 @@
     <div class="pay-choice" id="ctaPayChoice" style="display:none">
       <p class="email-form-label" style="color:#fff;text-align:center" id="t-pay-choice-label-cta">Como queres pagar?</p>
       <div class="pay-choice-row" style="margin-top:.6rem">
-        <a class="btn-primary pay-btn" href="https://pay.sumup.com/b2c/QGCQ6B2I" target="_blank" rel="noopener" id="t-pay-card-cta">💳 Cartão / MB WAY</a>
+        <a class="btn-primary pay-btn" href="https://pay.sumup.com/b2c/QGCQ6B2I" target="_blank" rel="noopener" id="t-pay-card-cta">💳 Cartão</a>
+        <button type="button" class="btn-primary pay-btn pay-btn-mbway" onclick="toggleMbway('cta')" id="t-pay-mbway-cta">📱 MB WAY</button>
         <a class="btn-primary pay-btn pay-btn-paypal" href="https://paypal.me/tatechera/14.99EUR" target="_blank" rel="noopener" id="t-pay-paypal-cta">🅿️ PayPal</a>
       </div>
       <p class="email-note" style="color:rgba(255,255,255,.65);text-align:center;margin-top:.8rem" id="t-pay-note-cta">Pagamento em euros (€). Se pagares de fora da Zona Euro, o valor é convertido automaticamente pelo teu banco ou pela PayPal.</p>
+
+      <div class="mbway-box" id="ctaMbwayBox" style="display:none">
+        <p id="t-mbway-instrucoes-cta">Envia o pagamento de <strong>14,99€</strong> por MB WAY para <span class="mbway-phone">+351 925 791 568</span>. Depois deixa aqui o teu nome e contacto para identificarmos o pagamento — vais receber o código de acesso em até 24h.</p>
+        <form id="ctaMbwayForm" name="compra-essencia-mbway-cta" netlify netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="compra-essencia-mbway-cta">
+          <input type="hidden" name="bot-field" style="display:none">
+          <input type="hidden" name="email" id="ctaMbwayEmailHidden">
+          <input type="text" name="nome" id="ctaMbwayNome" placeholder="O teu nome completo" required>
+          <input type="tel" name="contacto" id="ctaMbwayContacto" placeholder="O teu contacto telefónico (o mesmo do MB WAY, se possível)" required>
+          <button type="submit" class="btn-primary" id="t-mbway-confirmar-cta">Confirmar os meus dados</button>
+          <div class="form-msg error" id="ctaMbwayError" style="display:none"></div>
+        </form>
+        <div id="ctaMbwaySuccess" style="display:none;text-align:center;font-size:.85rem;color:rgba(255,255,255,.85)">Obrigada! Recebemos os teus dados. Confirma que enviaste o pagamento por MB WAY para +351 925 791 568 — vais receber o teu código de acesso por email em até 24h.</div>
+      </div>
     </div>
   </div>
   <p class="cta-guarantee" id="t-guarantee">Pagamento seguro · Suporte por email</p>
 </div>
 
 <footer>
-  <p id="t-footer">Essência — Auto-Conhecimento · Criado por <a href="https://www.elekitra.net">Margarida Leite</a> e Ana Almeida · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a></p>
+  <p id="t-footer">Essência — Auto-Conhecimento · Criado por <strong>Margarida Leite</strong> e <strong>Ana Almeida</strong> · <a href="mailto:appessenciaa@gmail.com">appessenciaa@gmail.com</a></p>
 </footer>
 
 <script>
@@ -326,10 +365,17 @@ var T = {
     ctaNote: 'Não partilhamos o teu email com terceiros.',
     guarantee: 'Pagamento seguro · Suporte por email',
     payChoiceLabel: 'Como queres pagar?',
-    payCard: '💳 Cartão / MB WAY',
+    payCard: '💳 Cartão',
+    payMbway: '📱 MB WAY',
     payPaypal: '🅿️ PayPal',
     payNote: 'Pagamento em euros (€). Se pagares de fora da Zona Euro, o valor é convertido automaticamente pelo teu banco ou pela PayPal.',
-    footer: 'Essência — Auto-Conhecimento · Criado por <a href="https://www.elekitra.net">Margarida Leite</a> e Ana Almeida · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a>'
+    mbwayInstrucoes: 'Envia o pagamento de <strong>14,99€</strong> por MB WAY para <span class="mbway-phone">+351 925 791 568</span>. Depois deixa aqui o teu nome e contacto para identificarmos o pagamento — vais receber o código de acesso em até 24h.',
+    mbwayNomePlaceholder: 'O teu nome completo',
+    mbwayContactoPlaceholder: 'O teu contacto telefónico (o mesmo do MB WAY, se possível)',
+    mbwayConfirmar: 'Confirmar os meus dados',
+    mbwayError: 'Por favor preenche o nome e o contacto.',
+    mbwaySuccess: 'Obrigada! Recebemos os teus dados. Confirma que enviaste o pagamento por MB WAY para +351 925 791 568 — vais receber o teu código de acesso por email em até 24h.',
+    footer: 'Essência — Auto-Conhecimento · Criado por <strong>Margarida Leite</strong> e <strong>Ana Almeida</strong> · <a href="mailto:appessenciaa@gmail.com">appessenciaa@gmail.com</a>'
   },
   es: {
     lang: 'es',
@@ -382,10 +428,17 @@ var T = {
     ctaNote: 'No compartimos tu email con terceros.',
     guarantee: 'Pago seguro · Soporte por email',
     payChoiceLabel: '¿Cómo quieres pagar?',
-    payCard: '💳 Tarjeta / MB WAY',
+    payCard: '💳 Tarjeta',
+    payMbway: '📱 MB WAY',
     payPaypal: '🅿️ PayPal',
     payNote: 'Pago en euros (€). Si pagas desde fuera de la Zona Euro, el importe se convierte automáticamente por tu banco o por PayPal.',
-    footer: 'Essência — Autoconocimiento · Creado por <a href="https://www.elekitra.net">Margarida Leite</a> y Ana Almeida · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a>'
+    mbwayInstrucoes: 'Envía el pago de <strong>14,99€</strong> por MB WAY a <span class="mbway-phone">+351 925 791 568</span>. Después déjanos aquí tu nombre y contacto para identificar el pago — recibirás el código de acceso en hasta 24h.',
+    mbwayNomePlaceholder: 'Tu nombre completo',
+    mbwayContactoPlaceholder: 'Tu contacto telefónico (el mismo del MB WAY, si es posible)',
+    mbwayConfirmar: 'Confirmar mis datos',
+    mbwayError: 'Por favor completa el nombre y el contacto.',
+    mbwaySuccess: '¡Gracias! Hemos recibido tus datos. Confirma que enviaste el pago por MB WAY a +351 925 791 568 — recibirás tu código de acceso por email en hasta 24h.',
+    footer: 'Essência — Autoconocimiento · Creado por <strong>Margarida Leite</strong> y <strong>Ana Almeida</strong> · <a href="mailto:appessenciaa@gmail.com">appessenciaa@gmail.com</a>'
   },
   en: {
     lang: 'en',
@@ -438,10 +491,17 @@ var T = {
     ctaNote: 'We never share your email with third parties.',
     guarantee: 'Secure payment · Email support',
     payChoiceLabel: 'How would you like to pay?',
-    payCard: '💳 Card / MB WAY',
+    payCard: '💳 Card',
+    payMbway: '📱 MB WAY',
     payPaypal: '🅿️ PayPal',
     payNote: 'Payment in euros (€). If paying from outside the Eurozone, the amount is automatically converted by your bank or by PayPal.',
-    footer: 'Essência — Self-Knowledge · Created by <a href="https://www.elekitra.net">Margarida Leite</a> and Ana Almeida · <a href="mailto:elekitra@mail.com">elekitra@mail.com</a>'
+    mbwayInstrucoes: 'Send the <strong>€14.99</strong> payment via MB WAY to <span class="mbway-phone">+351 925 791 568</span>. Then leave your name and contact here so we can identify the payment — you will receive your access code within 24h.',
+    mbwayNomePlaceholder: 'Your full name',
+    mbwayContactoPlaceholder: 'Your phone contact (the same one used for MB WAY, if possible)',
+    mbwayConfirmar: 'Confirm my details',
+    mbwayError: 'Please fill in your name and contact.',
+    mbwaySuccess: 'Thank you! We received your details. Please confirm you sent the MB WAY payment to +351 925 791 568 — you will receive your access code by email within 24h.',
+    footer: 'Essência — Self-Knowledge · Created by <strong>Margarida Leite</strong> and <strong>Ana Almeida</strong> · <a href="mailto:appessenciaa@gmail.com">appessenciaa@gmail.com</a>'
   }
 };
 
@@ -494,11 +554,27 @@ function setLang(lang) {
     't-cta-label': t.ctaLabel, 't-btn-cta': t.btnCta, 't-cta-note': t.ctaNote,
     't-guarantee': t.guarantee,
     't-pay-choice-label': t.payChoiceLabel, 't-pay-card': t.payCard, 't-pay-paypal': t.payPaypal, 't-pay-note': t.payNote,
-    't-pay-choice-label-cta': t.payChoiceLabel, 't-pay-card-cta': t.payCard, 't-pay-paypal-cta': t.payPaypal, 't-pay-note-cta': t.payNote
+    't-pay-choice-label-cta': t.payChoiceLabel, 't-pay-card-cta': t.payCard, 't-pay-paypal-cta': t.payPaypal, 't-pay-note-cta': t.payNote,
+    't-pay-mbway': t.payMbway, 't-pay-mbway-cta': t.payMbway,
+    't-mbway-confirmar-hero': t.mbwayConfirmar, 't-mbway-confirmar-cta': t.mbwayConfirmar
   };
-  // ctaH2 tem <br> — usar innerHTML
+  // ctaH2 e instruções do MB WAY têm HTML — usar innerHTML
   s('t-cta-h2', t.ctaH2);
   delete fields['t-cta-h2'];
+  s('t-mbway-instrucoes-hero', t.mbwayInstrucoes);
+  s('t-mbway-instrucoes-cta', t.mbwayInstrucoes);
+  s('heroMbwaySuccess', t.mbwaySuccess);
+  s('ctaMbwaySuccess', t.mbwaySuccess);
+  s('heroMbwayError', t.mbwayError);
+  s('ctaMbwayError', t.mbwayError);
+  ['heroMbwayNome', 'ctaMbwayNome'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.placeholder = t.mbwayNomePlaceholder;
+  });
+  ['heroMbwayContacto', 'ctaMbwayContacto'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.placeholder = t.mbwayContactoPlaceholder;
+  });
 
   Object.keys(fields).forEach(function(id) { st(id, fields[id]); });
 
@@ -550,6 +626,41 @@ function handleForm(formId, emailId, errorId, payChoiceId) {
 
 handleForm('heroForm', 'heroEmail', 'heroError', 'heroPayChoice');
 handleForm('ctaForm', 'ctaEmail', 'ctaError', 'ctaPayChoice');
+
+// ── MB WAY (fluxo separado: pedir nome + contacto e instruir o envio manual) ──
+function toggleMbway(prefix) {
+  var box = document.getElementById(prefix + 'MbwayBox');
+  if (!box) return;
+  box.style.display = (box.style.display === 'none' || !box.style.display) ? 'block' : 'none';
+}
+
+function handleMbwayForm(formId, nomeId, contactoId, emailHiddenId, emailSourceId, errorId, successId) {
+  var form = document.getElementById(formId);
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var nome = document.getElementById(nomeId).value.trim();
+    var contacto = document.getElementById(contactoId).value.trim();
+    if (!nome || !contacto) {
+      document.getElementById(errorId).style.display = 'block';
+      return;
+    }
+    document.getElementById(errorId).style.display = 'none';
+    var emailSourceEl = document.getElementById(emailSourceId);
+    document.getElementById(emailHiddenId).value = emailSourceEl ? emailSourceEl.value.trim() : '';
+    var data = new FormData(form);
+    fetch('/', { method: 'POST', body: data })
+      .catch(function() {})
+      .finally(function() {
+        form.style.display = 'none';
+        var succ = document.getElementById(successId);
+        if (succ) succ.style.display = 'block';
+      });
+  });
+}
+
+handleMbwayForm('heroMbwayForm', 'heroMbwayNome', 'heroMbwayContacto', 'heroMbwayEmailHidden', 'heroEmail', 'heroMbwayError', 'heroMbwaySuccess');
+handleMbwayForm('ctaMbwayForm', 'ctaMbwayNome', 'ctaMbwayContacto', 'ctaMbwayEmailHidden', 'ctaEmail', 'ctaMbwayError', 'ctaMbwaySuccess');
 </script>
 
 </body>
