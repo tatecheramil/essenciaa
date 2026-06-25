@@ -6568,7 +6568,7 @@ function renderMedAudioGrid(){
   const grid=document.getElementById('med-audio-grid');
   if(!grid)return;
   grid.innerHTML=getMedAudioData().map(function(m){
-    return '<div class="med-audio-card"><div class="med-audio-card-header"><div class="med-audio-icon">'+m.emoji+'</div><div><div class="med-audio-title">'+m.titulo+'</div><div class="med-audio-meta">'+m.cat+' · ⏱ '+m.dur+'</div></div></div><div class="med-audio-desc">'+m.desc+'</div><audio class="med-audio-player" controls preload="none" src="'+m.src+'"></audio></div>';
+    return '<div class="med-audio-card"><div class="med-audio-card-header"><div class="med-audio-icon">'+m.emoji+'</div><div><div class="med-audio-title">'+m.titulo+'</div><div class="med-audio-meta">'+m.cat+' · ⏱ '+m.dur+'</div></div></div><div class="med-audio-desc">'+m.desc+'</div><audio class="med-audio-player" controls preload="none" onerror="this.nextElementSibling.style.display=\'block\'"><source src="'+m.src+'" type="audio/mp4"></audio><div style="display:none;font-size:.72rem;color:#c0392b;margin-top:.4rem">'+(currentLang==="es"?"No se pudo cargar el audio. Comprueba tu conexión o intenta de nuevo más tarde.":currentLang==="en"?"Could not load the audio. Check your connection or try again later.":"Não foi possível carregar o áudio. Verifica a tua ligação ou tenta novamente mais tarde.")+'</div></div>';
   }).join('');
 }
 
@@ -9470,11 +9470,7 @@ function rsPopularPaises(){
 
 function _rsAnoBase(){
   const hoje=new Date();
-  let yr=hoje.getFullYear();
-  const d=window._dia||1,m=window._mes||1;
-  const aniversarioEsteAno=new Date(yr,m-1,d);
-  if(aniversarioEsteAno>hoje)yr--;
-  return yr;
+  return hoje.getFullYear();
 }
 
 function _rsPopularAnos(){
@@ -10812,18 +10808,41 @@ function palmFotoSelecionada(input) {
 
   const reader = new FileReader();
   reader.onload = function(e) {
-    // Show preview
-    const img = document.getElementById('palm-preview-img');
-    img.src = e.target.result;
-    document.getElementById('palm-preview-wrap').style.display = 'block';
-    // Store base64 (remove data:image/...;base64, prefix) and mime type
-    palmIAImageBase64 = e.target.result.split(',')[1];
-    palmIAImageMimeType = file.type || 'image/jpeg';
-    // Show analyse button + limit info
-    document.getElementById('palm-analisar-btn').style.display = 'block';
-    _palmMostrarLimite();
-    // Hide previous result
-    document.getElementById('palm-ia-resultado').style.display = 'none';
+    const tempImg = new Image();
+    tempImg.onload = function() {
+      // Reduz a imagem para evitar pedidos demasiado grandes (fotos de telemóvel
+      // em alta resolução podem facilmente ter vários MB).
+      const MAX_DIM = 1600;
+      let w = tempImg.width, h = tempImg.height;
+      if (w > MAX_DIM || h > MAX_DIM) {
+        if (w > h) { h = Math.round(h * (MAX_DIM / w)); w = MAX_DIM; }
+        else { w = Math.round(w * (MAX_DIM / h)); h = MAX_DIM; }
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, w, h);
+      ctx.drawImage(tempImg, 0, 0, w, h);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+
+      // Show preview
+      const img = document.getElementById('palm-preview-img');
+      img.src = dataUrl;
+      document.getElementById('palm-preview-wrap').style.display = 'block';
+      // Store base64 (remove data:image/...;base64, prefix) and mime type
+      palmIAImageBase64 = dataUrl.split(',')[1];
+      palmIAImageMimeType = 'image/jpeg';
+      // Show analyse button + limit info
+      document.getElementById('palm-analisar-btn').style.display = 'block';
+      _palmMostrarLimite();
+      // Hide previous result
+      document.getElementById('palm-ia-resultado').style.display = 'none';
+    };
+    tempImg.onerror = function() {
+      alert(currentLang==='en'?'Could not read this image. Please try another photo.':currentLang==='es'?'No se pudo leer esta imagen. Por favor intenta con otra foto.':'Não foi possível ler esta imagem. Por favor tenta outra foto.');
+    };
+    tempImg.src = e.target.result;
   };
   reader.readAsDataURL(file);
 }
@@ -11177,14 +11196,37 @@ function plantaFotoSelecionada(input) {
 
   const reader = new FileReader();
   reader.onload = function(e) {
-    const img = document.getElementById('planta-preview-img');
-    img.src = e.target.result;
-    document.getElementById('planta-preview-wrap').style.display = 'block';
-    plantaIAImageBase64 = e.target.result.split(',')[1];
-    plantaIAImageMimeType = file.type || 'image/jpeg';
-    document.getElementById('planta-analisar-btn').style.display = 'block';
-    _plantaMostrarLimite();
-    document.getElementById('planta-ia-resultado').style.display = 'none';
+    const tempImg = new Image();
+    tempImg.onload = function() {
+      // Reduz a imagem para evitar pedidos demasiado grandes (fotos de telemóvel
+      // de plantas em papel A3/A2 podem facilmente ter vários MB).
+      const MAX_DIM = 1800;
+      let w = tempImg.width, h = tempImg.height;
+      if (w > MAX_DIM || h > MAX_DIM) {
+        if (w > h) { h = Math.round(h * (MAX_DIM / w)); w = MAX_DIM; }
+        else { w = Math.round(w * (MAX_DIM / h)); h = MAX_DIM; }
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, w, h);
+      ctx.drawImage(tempImg, 0, 0, w, h);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+
+      const img = document.getElementById('planta-preview-img');
+      img.src = dataUrl;
+      document.getElementById('planta-preview-wrap').style.display = 'block';
+      plantaIAImageBase64 = dataUrl.split(',')[1];
+      plantaIAImageMimeType = 'image/jpeg';
+      document.getElementById('planta-analisar-btn').style.display = 'block';
+      _plantaMostrarLimite();
+      document.getElementById('planta-ia-resultado').style.display = 'none';
+    };
+    tempImg.onerror = function() {
+      alert(currentLang==='en'?'Could not read this image. Please try another photo.':currentLang==='es'?'No se pudo leer esta imagen. Por favor intenta con otra foto.':'Não foi possível ler esta imagem. Por favor tenta outra foto.');
+    };
+    tempImg.src = e.target.result;
   };
   reader.readAsDataURL(file);
 }
@@ -11416,6 +11458,8 @@ Escreve em português europeu, com profundidade mas acessibilidade. Usa um tom c
       msg = currentLang==='en'?'Authentication error. Please try again later.':currentLang==='es'?'Error de autenticación. Por favor inténtalo más tarde.':'Erro de autenticação. Por favor tenta novamente mais tarde.';
     } else if(msg.includes('429')) {
       msg = currentLang==='en'?'Too many requests. Please wait a moment and try again.':currentLang==='es'?'Demasiadas solicitudes. Espera un momento e inténtalo de nuevo.':'Demasiados pedidos. Aguarda um momento e tenta novamente.';
+    } else if(msg.includes('413') || msg.includes('too large') || msg.includes('payload')) {
+      msg = currentLang==='en'?'The photo is too large to send. Try taking the photo a bit further away or with less zoom, and try again.':currentLang==='es'?'La foto es demasiado grande para enviar. Intenta tomar la foto un poco más alejada o con menos zoom, y vuelve a intentarlo.':'A foto é demasiado grande para enviar. Tenta tirar a foto um pouco mais afastada ou com menos zoom, e tenta novamente.';
     } else if(msg.includes('400')) {
       msg = currentLang==='en'?'The image could not be processed. Please try a clearer photo.':currentLang==='es'?'No se pudo procesar la imagen. Prueba con una foto más clara.':'A imagem não pôde ser processada. Tenta com uma foto mais nítida.';
     } else if(msg.includes('504') || msg.includes('Gateway') || msg.includes('timeout') || msg.includes('Timeout')) {
