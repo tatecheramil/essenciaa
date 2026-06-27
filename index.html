@@ -307,6 +307,7 @@
 
 <!-- ── ECRÃ DE CÓDIGO DE ACESSO ── -->
 <div id="ecra-codigo" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:9999;flex-direction:column;align-items:center;justify-content:center;padding:2rem">
+  <button id="cod-btn-fechar" onclick="esconderEcra()" style="display:none;position:absolute;top:1.25rem;right:1.25rem;width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text2);font-size:1.1rem;cursor:pointer;line-height:1">✕</button>
   <div style="max-width:360px;width:100%;text-align:center">
     <div style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem">Essência</div>
     <div style="font-size:2rem;margin-bottom:.5rem">✦</div>
@@ -325,6 +326,12 @@
       Não tens código? Obtém em<br>
       <a href="https://www.elekitra.net" target="_blank" style="color:var(--accent)">www.elekitra.net</a>
     </p>
+    <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border2)">
+      <button onclick="entrarModoGratuito()"
+        style="width:100%;padding:.85rem;background:transparent;border:1.5px solid var(--border);border-radius:12px;color:var(--accent-deep);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer"
+        id="cod-btn-gratis">✦ Experimentar gratuitamente</button>
+      <p style="font-size:.72rem;color:var(--text3);margin-top:.6rem;line-height:1.5">Acede já a algumas funcionalidades, sem código. Podes desbloquear tudo mais tarde.</p>
+    </div>
   </div>
 </div>
 <!-- ── /ECRÃ DE CÓDIGO ── -->
@@ -520,6 +527,8 @@
       </div>
       <button onclick="closeDrawer();editarPerfilActual()" id="btn-editar-perfil" title="Editar dados" style="flex-shrink:0;background:transparent;border:1px solid var(--border);border-radius:8px;padding:.35rem .55rem;cursor:pointer;color:var(--accent-deep);font-size:.85rem;line-height:1">✏️</button>
     </div>
+
+    <button id="drawer-banner-codigo" onclick="closeDrawer();abrirEcraParaCodigo()" style="display:none;width:calc(100% - 2rem);margin:0 1rem .75rem;padding:.7rem;background:rgba(74,143,181,.08);border:1px solid var(--border);border-radius:10px;color:var(--accent-deep);font-size:.78rem;cursor:pointer;font-family:'Jost',sans-serif">🔑 <span id="drawer-banner-codigo-txt">Já tenho um código</span></button>
 
     <div class="drawer-scroll">
     <!-- HOJE -->
@@ -1230,18 +1239,18 @@
 
   
   <div id="tab-humandesign" class="tab-content" style="display:none">
+    <div class="hd-hero">
+      <div class="hd-hero-icon">⬡</div>
+      <div>
+        <div class="hd-hero-title">Human Design</div>
+        <div class="hd-hero-sub">O teu manual de instruções único</div>
+      </div>
+    </div>
+    <div class="interp-box" style="margin-bottom:1.5rem">
+      <div class="interp-label" id="hd-titulo-label">O que é o Human Design?</div>
+      <div class="interp-text" id="hd-intro-txt">O Human Design combina Astrologia, I Ching, Kabbalah, Chakras e Mecânica Quântica para revelar como estás desenhado/a para tomar decisões, interagir com os outros e viver alinhado/a com a tua natureza profunda.</div>
+    </div>
     <div id="hd-form-section">
-      <div class="hd-hero">
-        <div class="hd-hero-icon">⬡</div>
-        <div>
-          <div class="hd-hero-title">Human Design</div>
-          <div class="hd-hero-sub">O teu manual de instruções único</div>
-        </div>
-      </div>
-      <div class="interp-box" style="margin-bottom:1.5rem">
-        <div class="interp-label" id="hd-titulo-label">O que é o Human Design?</div>
-        <div class="interp-text" id="hd-intro-txt">O Human Design combina Astrologia, I Ching, Kabbalah, Chakras e Mecânica Quântica para revelar como estás desenhado/a para tomar decisões, interagir com os outros e viver alinhado/a com a tua natureza profunda.</div>
-      </div>
       <div class="hd-form-card" id="hd-data-preview"></div>
       <div class="field" style="margin-top:1rem">
         <label style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text2);display:block;margin-bottom:0.5rem">Preferes seleccionar o teu Tipo manualmente?</label>
@@ -1391,18 +1400,18 @@
   <div id="tab-constelacoes" class="tab-content" style="display:none">
 
     
+    <div class="const-hero">
+      <div class="const-hero-icon">🌳</div>
+      <div>
+        <div class="const-hero-title" id="const-titulo">Mapeamento Sistémico</div>
+        <div class="const-hero-sub" id="const-subtitulo">Uma abordagem inspirada nas Constelações Familiares de Bert Hellinger</div>
+      </div>
+    </div>
+    <div class="interp-box" style="margin-bottom:1.5rem">
+      <div class="interp-label" id="const-explorar-label">O que vais explorar</div>
+      <div class="interp-text" id="const-intro-txt">As Constelações Familiares revelam os padrões invisíveis que herdamos dos nossos sistemas familiares — lealdades inconscientes, segredos, traumas não resolvidos e dinâmicas que se repetem de geração em geração. Este mapeamento guiado não substitui uma sessão presencial, mas ajuda-te a identificar padrões, a ganhar consciência sistémica e a preparar o terreno para um trabalho mais profundo. Responde com honestidade — não há respostas certas.</div>
+    </div>
     <div id="const-form-section">
-      <div class="const-hero">
-        <div class="const-hero-icon">🌳</div>
-        <div>
-          <div class="const-hero-title" id="const-titulo">Mapeamento Sistémico</div>
-          <div class="const-hero-sub" id="const-subtitulo">Uma abordagem inspirada nas Constelações Familiares de Bert Hellinger</div>
-        </div>
-      </div>
-      <div class="interp-box" style="margin-bottom:1.5rem">
-        <div class="interp-label" id="const-explorar-label">O que vais explorar</div>
-        <div class="interp-text" id="const-intro-txt">As Constelações Familiares revelam os padrões invisíveis que herdamos dos nossos sistemas familiares — lealdades inconscientes, segredos, traumas não resolvidos e dinâmicas que se repetem de geração em geração. Este mapeamento guiado não substitui uma sessão presencial, mas ajuda-te a identificar padrões, a ganhar consciência sistémica e a preparar o terreno para um trabalho mais profundo. Responde com honestidade — não há respostas certas.</div>
-      </div>
 
       
       <div class="const-block" id="const-bloco-1">
@@ -10889,7 +10898,16 @@ function toggleDrawer(){
   const overlay=document.getElementById('drawer-overlay');
   const isOpen=drawer.classList.contains('open');
   if(isOpen){closeDrawer();}
-  else{drawer.style.transition='';drawer.style.left='';drawer.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden';}
+  else{
+    drawer.style.transition='';drawer.style.left='';drawer.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden';
+    var banner=document.getElementById('drawer-banner-codigo');
+    if(banner){
+      var ehGratis=(typeof nivelAcesso==='function')&&nivelAcesso()==='gratis';
+      banner.style.display=ehGratis?'block':'none';
+      var txt=document.getElementById('drawer-banner-codigo-txt');
+      if(txt) txt.textContent=currentLang==='en'?'I already have a code':currentLang==='es'?'Ya tengo un código':'Já tenho um código';
+    }
+  }
 }
 function closeDrawer(){
   const drawer=document.getElementById('drawer');
@@ -11005,7 +11023,7 @@ function updateDrawerUser(perfilOverride){
   }
 }
 
-function showTab(id,btn){document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');const tab=document.getElementById('tab-'+id);if(tab)tab.style.display='block';if(id==='humandesign'){populateHDPreview();calcularHD();}if(id==='biblioteca')renderBiblioteca();if(id==='diario-terapeutico')renderDiario();if(id==='horoscopo')renderHoroscopo();if(id==='tarot')carregarHistoricoTiragens('tarot');if(id==='runas')carregarHistoricoTiragens('runas');if(id==='parceiro')parcReset();if(id==='solar'){rsPopularPaises();_rsUpdateInfoNote();}if(id==='sono')sonoInit();if(id==='eventos')evInit();if(id==='leituras')leitInit();if(id==='palma'){_palmMostrarLimite();_palmMostrarResultadoGuardado();}if(id==='emocional')emoInit();if(id==='constelacoes'){if(typeof _constMostrarResultadoGuardado==='function')_constMostrarResultadoGuardado();}if(id==='chakras'){if(typeof _chakraMostrarResultadoGuardado==='function')_chakraMostrarResultadoGuardado();}if(id==='fengshui'){renderFengShuiQuestionnaire();if(typeof _fsMostrarResultadoGuardado==='function')_fsMostrarResultadoGuardado();}if(id==='sonhos'){if(typeof renderSonhosGrid==='function')renderSonhosGrid();}if(id==='anjos'){if(typeof renderAnjosGrid==='function')renderAnjosGrid();}if(id==='packs'){if(typeof renderPacks==='function')renderPacks();}if(id==='frequencias'){if(typeof _fxIsStandalone==='function'&&_fxIsStandalone()&&!_fxUnlocked){var fw=document.getElementById('freq-ios-warn');if(fw)fw.style.display='block';}}}
+function showTab(id,btn){document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');const tab=document.getElementById('tab-'+id);if(tab)tab.style.display='block';if(id==='humandesign'){populateHDPreview();calcularHD();}if(id==='biblioteca')renderBiblioteca();if(id==='diario-terapeutico')renderDiario();if(id==='horoscopo')renderHoroscopo();if(id==='tarot')carregarHistoricoTiragens('tarot');if(id==='runas')carregarHistoricoTiragens('runas');if(id==='parceiro')parcReset();if(id==='solar'){rsPopularPaises();_rsUpdateInfoNote();}if(id==='sono')sonoInit();if(id==='eventos')evInit();if(id==='leituras')leitInit();if(id==='palma'){_palmMostrarLimite();_palmMostrarResultadoGuardado();}if(id==='emocional')emoInit();if(id==='constelacoes'){if(typeof _constMostrarResultadoGuardado==='function')_constMostrarResultadoGuardado();}if(id==='chakras'){if(typeof _chakraMostrarResultadoGuardado==='function')_chakraMostrarResultadoGuardado();}if(id==='fengshui'){renderFengShuiQuestionnaire();if(typeof _fsMostrarResultadoGuardado==='function')_fsMostrarResultadoGuardado();}if(id==='sonhos'){if(typeof renderSonhosGrid==='function')renderSonhosGrid();}if(id==='anjos'){if(typeof renderAnjosGrid==='function')renderAnjosGrid();}if(id==='packs'){if(typeof renderPacks==='function')renderPacks();}if(id==='frequencias'){if(typeof _fxIsStandalone==='function'&&_fxIsStandalone()&&!_fxUnlocked){var fw=document.getElementById('freq-ios-warn');if(fw)fw.style.display='block';}}if(typeof aplicarNivelGratuito==='function')aplicarNivelGratuito(id);}
 
 </script>
 
@@ -12305,6 +12323,100 @@ function calcularComLang() {
     if(ck&&!ls)localStorage.setItem('_ess_acesso','1');
     return ls||ck;
   }
+
+  // ── NÍVEL DE ACESSO: 'completo' (código pago válido) vs 'gratis' (modo de experimentação) ──
+  // Não altera em nada o comportamento actual da app — é só a base para,
+  // em passos seguintes, decidirmos o que cada nível pode ver.
+  function setNivelAcesso(nivel){
+    try{
+      localStorage.setItem('_ess_tier',nivel);
+      setCookie('_ess_tier',nivel,365);
+    }catch(e){}
+  }
+  function nivelAcesso(){
+    try{
+      var v=localStorage.getItem('_ess_tier')||getCookie('_ess_tier');
+      if(v==='completo'||v==='gratis') return v;
+      // Compatibilidade: quem activou um código antes desta actualização tem
+      // acesso ('_ess_acesso'==='1') mas ainda não tem nível guardado — só
+      // havia códigos pagos antes do modo gratuito existir, por isso é 'completo'.
+      if(temAcesso()){ setNivelAcesso('completo'); return 'completo'; }
+      return null;
+    }catch(e){ return null; }
+  }
+  function temAcessoCompleto(){
+    return nivelAcesso()==='completo';
+  }
+  window.entrarModoGratuito=function(){
+    localStorage.setItem('_ess_acesso','1');
+    setCookie('_ess_acesso','1',365);
+    setNivelAcesso('gratis');
+    esconderEcra();
+  };
+
+  // ── BLOQUEIO DE MENUS NO MODO GRATUITO (feito por partes, a crescer com o tempo) ──
+  // Lista de tabs limitadas no modo gratuito + quantos elementos iniciais (a
+  // partir do cabeçalho) ficam sempre visíveis nessa tab antes de trancar o resto.
+  var MENUS_LIMITADOS_KEEP = {astral:1,solar:1,numerologia:1,ki:2,enneagram:1,chakras:1,palma:2,humandesign:2,
+    sono:1,sonhos:1,anjos:2,
+    meditacoes:1,frequencias:2,tarot:2,runas:2,
+    constelacoes:2,parceiro:1,fengshui:1};
+  // Para tabs cuja estrutura interna não separa o cabeçalho do resto, o
+  // cartão de bloqueio pode mostrar o seu próprio mini-cabeçalho.
+  var MENUS_LIMITADOS_FALLBACK_HEADER = {};
+
+  function _bloqueioMensagem(){
+    return currentLang==='en'
+      ?'This content is part of the full version. Unlock it with your licence to see the complete reading.'
+      :currentLang==='es'
+      ?'Este contenido es parte de la versión completa. Desbloquéalo con tu licencia para ver la lectura completa.'
+      :'Este conteúdo faz parte da versão completa. Desbloqueia com a tua licença para veres a leitura completa.';
+  }
+  function _bloqueioBotaoTxt(){
+    return currentLang==='en'?'Unlock full access':currentLang==='es'?'Desbloquear acceso completo':'Desbloquear acesso completo';
+  }
+  function _jaTenhoCodigoTxt(){
+    return currentLang==='en'?'I already have a code'  :currentLang==='es'?'Ya tengo un código':'Já tenho um código';
+  }
+  function _garantirCartaoBloqueio(tabId,tab){
+    var lockId='lock-'+tabId;
+    var lockEl=document.getElementById(lockId);
+    if(lockEl) return lockEl;
+    lockEl=document.createElement('div');
+    lockEl.id=lockId;
+    lockEl.className='interp-box';
+    lockEl.style.textAlign='center';
+    lockEl.style.padding='2rem 1.5rem';
+    var fb=MENUS_LIMITADOS_FALLBACK_HEADER[tabId];
+    var headerHtml=fb?('<div style="font-size:1.6rem;margin-bottom:.5rem">'+fb.icone+'</div><div style="font-family:Cinzel,serif;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:1rem">'+fb.titulo+'</div>'):'';
+    lockEl.innerHTML=headerHtml+'<div style="font-size:1.8rem;margin-bottom:.75rem">🔒</div>'
+      +'<div style="font-size:.88rem;color:var(--text2);line-height:1.7;margin-bottom:1.25rem">'+_bloqueioMensagem()+'</div>'
+      +'<a href="https://appessencia.netlify.app/comprar" target="_blank" style="display:inline-block;padding:.85rem 1.75rem;background:var(--accent-deep);color:#fff;border-radius:10px;font-family:Cinzel,serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none">'+_bloqueioBotaoTxt()+'</a>'
+      +'<div style="margin-top:1rem"><button onclick="abrirEcraParaCodigo()" style="background:transparent;border:none;color:var(--accent);font-size:.78rem;text-decoration:underline;cursor:pointer;font-family:Jost,sans-serif">'+_jaTenhoCodigoTxt()+'</button></div>';
+    tab.appendChild(lockEl);
+    return lockEl;
+  }
+  function aplicarNivelGratuito(tabId){
+    if(!(tabId in MENUS_LIMITADOS_KEEP)) return;
+    if(typeof temAcessoCompleto==='function' && temAcessoCompleto()) return;
+    var tab=document.getElementById('tab-'+tabId);
+    if(!tab) return;
+    var lockId='lock-'+tabId;
+    var keepCount=MENUS_LIMITADOS_KEEP[tabId];
+    var idx=0;
+    Array.prototype.slice.call(tab.children).forEach(function(child){
+      if(child.id===lockId) return;
+      if(idx>=keepCount) child.style.display='none';
+      idx++;
+    });
+    var lockEl=_garantirCartaoBloqueio(tabId,tab);
+    lockEl.style.display='block';
+  }
+  // Estas funções precisam de ficar acessíveis fora desta IIFE, porque o
+  // showTab() (definido noutro <script>) chama aplicarNivelGratuito() directamente.
+  window.aplicarNivelGratuito=aplicarNivelGratuito;
+  window.temAcessoCompleto=temAcessoCompleto;
+  window.nivelAcesso=nivelAcesso;
   function mostrarEcra(){
     var e=document.getElementById('ecra-codigo');
     if(e)e.style.display='flex';
@@ -12313,6 +12425,15 @@ function calcularComLang() {
     var e=document.getElementById('ecra-codigo');
     if(e)e.style.display='none';
   }
+  window.mostrarEcra=mostrarEcra;
+  window.esconderEcra=esconderEcra;
+  // Permite reabrir o ecrã de código a partir de dentro da app (modo gratuito),
+  // para quem já tem acesso mas quer introduzir um código pago depois de o comprar.
+  window.abrirEcraParaCodigo=function(){
+    mostrarEcra();
+    var btn=document.getElementById('cod-btn-fechar');
+    if(btn) btn.style.display='block';
+  };
 
   window.validarCodigo=async function(){
     var codigo=document.getElementById('cod-input').value.trim().toUpperCase();
@@ -12330,7 +12451,9 @@ function calcularComLang() {
         localStorage.setItem('_ess_acesso','1');
         localStorage.setItem('_ess_codigo',codigo);
         setCookie('_ess_acesso','1',365);
+        setNivelAcesso('completo');
         esconderEcra();
+        location.reload();
       } else {
         erroEl.textContent=data.erro||'Código inválido. Verifica e tenta novamente.';
         erroEl.style.display='block';
