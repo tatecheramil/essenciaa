@@ -15,5 +15,24 @@
     "preco": "€47",
     "preco_gratis": false,
     "link": "https://eventoie.netlify.app"
+  },
+  {
+    "titulo": "Evento Manifestação",
+    "titulo_en": "Manifestation Event",
+    "titulo_es": "Evento Manifestación",
+    "data": "2026-11-07",
+    "hora": "10:00 – 18:30",
+    "tipo": "presencial",
+    "local": "Seminário Torre da Aguilha, São Domingos de Rana (Cascais)",
+    "lingua": "PT",
+    "organizador": "Margarida Leite · Ana Cristina Vaz de Almeida · Ana Vaz Amaral",
+    "organizador_en": "Margarida Leite · Ana Cristina Vaz de Almeida · Ana Vaz Amaral",
+    "organizador_es": "Margarida Leite · Ana Cristina Vaz de Almeida · Ana Vaz Amaral",
+    "descricao": "Evento intimista com três terapeutas dedicadas a ajudarte a manifestar em todas as áreas da tua vida. Identificação de bloqueios, técnicas de manifestação e harmonização do teu espaço. Acompanhamento personalizado com espaço para dúvidas. Podes pagar metade na inscrição e o restante 15 dias antes do evento.",
+    "descricao_en": "Intimate event with three therapists dedicated to helping you manifest in all areas of your life. Identification of blockages, manifestation techniques and space harmonisation. Personalised support with room for questions. You can pay half on registration and the rest 15 days before the event.",
+    "descricao_es": "Evento íntimo con tres terapeutas dedicadas a ayudarte a manifestar en todas las áreas de tu vida. Identificación de bloqueos, técnicas de manifestación y armonización de tu espacio. Acompañamiento personalizado con espacio para preguntas. Puedes pagar la mitad al inscribirte y el resto 15 días antes del evento.",
+    "preco": "50€",
+    "preco_gratis": false,
+    "link": "https://docs.google.com/forms/d/e/1FAIpQLSfosi4X7yVFLJ0kEj9V0TdS6NP4GGICs5C6eTqBhk-T3fG-aw/viewform"
   }
 ]
