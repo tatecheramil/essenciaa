@@ -4963,8 +4963,8 @@ function assinaturaIAFotoSelecionada(input){
 
 function _assinIAKey(){var pid=sessionStorage.getItem('perfil_activo_id')||localStorage.getItem('essencia_ultimo_perfil')||'default';return 'essencia_assinIA_'+pid;}
 function _assinIAResultKey(){var pid=sessionStorage.getItem('perfil_activo_id')||localStorage.getItem('essencia_ultimo_perfil')||'default';return 'essencia_assinIA_result_'+pid;}
-function _assinIAGetUsos(){try{var d=JSON.parse(localStorage.getItem(_assinIAKey())||'null');var now=new Date();var mesAtual=now.getFullYear()+'-'+(now.getMonth()+1);if(d&&d.mes===mesAtual)return d.usos||0;return 0;}catch(e){return 0;}}
-function _assinIARegistarUso(){try{var now=new Date();var mesAtual=now.getFullYear()+'-'+(now.getMonth()+1);localStorage.setItem(_assinIAKey(),JSON.stringify({mes:mesAtual,usos:_assinIAGetUsos()+1}));}catch(e){}}
+function _assinIAGetUsos(){try{var d=JSON.parse(localStorage.getItem(_assinIAKey())||'null');if(d&&d.usos>0)return d.usos;return 0;}catch(e){return 0;}}
+function _assinIARegistarUso(){try{localStorage.setItem(_assinIAKey(),JSON.stringify({usos:1,data:new Date().toISOString()}));}catch(e){}}
 function _assinIAGuardarResultado(html){try{var obj={html:html,data:new Date().toLocaleDateString('pt-PT',{day:'2-digit',month:'long',year:'numeric'}),lang:currentLang||'pt'};localStorage.setItem(_assinIAResultKey(),JSON.stringify(obj));}catch(e){}}
 function _assinIACarregarResultado(){try{var raw=localStorage.getItem(_assinIAResultKey());return raw?JSON.parse(raw):null;}catch(e){return null;}}
 function _assinIAMostrarResultadoGuardado(){
@@ -4992,11 +4992,11 @@ function _assinIAMostrarLimite(){
   var infoEl=document.getElementById('assin-ia-limite-info'),textoEl=document.getElementById('assin-ia-limite-texto'),btnEl=document.getElementById('assin-ia-analisar-btn');
   if(!infoEl||!textoEl)return;
   if(restantes<=0){
-    textoEl.innerHTML='🔒 '+(currentLang==='en'?'You have already used your monthly handwriting reading. Available again next month.':currentLang==='es'?'Ya usaste tu lectura mensual de grafología. Disponible el próximo mes.':'Já usaste a tua leitura mensal de grafia. Disponível no próximo mês.');
-    infoEl.style.display='block';infoEl.style.borderColor='rgba(181,74,74,.3)';infoEl.style.background='rgba(181,74,74,.05)';
+    textoEl.innerHTML='🔒 '+(currentLang==='en'?'Your handwriting reading is saved. A signature does not change — this is your definitive analysis.':currentLang==='es'?'Tu lectura de grafología está guardada. Una firma no cambia — este es tu análisis definitivo.':'A tua leitura de grafia está guardada. Uma assinatura não muda — esta é a tua análise definitiva.');
+    infoEl.style.display='block';infoEl.style.borderColor='rgba(74,143,181,.25)';infoEl.style.background='rgba(74,143,181,.05)';
     if(btnEl)btnEl.style.display='none';
   }else{
-    textoEl.innerHTML='✦ '+(currentLang==='en'?'1 free reading per month. You have <strong>'+restantes+'</strong> remaining this month.':currentLang==='es'?'1 lectura gratuita al mes. Te queda <strong>'+restantes+'</strong> este mes.':'1 leitura gratuita por mês. Tens <strong>'+restantes+'</strong> disponível este mês.');
+    textoEl.innerHTML='✦ '+(currentLang==='en'?'1 reading for life. This will be your definitive handwriting analysis — choose a clear, legible photo.':currentLang==='es'?'1 lectura de por vida. Esta será tu análisis definitivo de grafología — elige una foto clara y legible.':'1 leitura para a vida. Esta será a tua análise definitiva de grafia — escolhe uma foto nítida e legível.');
     infoEl.style.display='block';infoEl.style.borderColor='var(--border)';infoEl.style.background='rgba(74,143,181,0.07)';
   }
 }
@@ -10180,6 +10180,19 @@ function calcular(){
   const local=document.getElementById('inp-local').value.trim();
   if(!nome||!dia||!mes||!ano){alert('Por favor preenche o nome e a data de nascimento.');return;}
   if(!document.getElementById('aceito-privacidade').checked){alert('Para continuar é necessário aceitar a Política de Privacidade.');return;}
+  // ── Limite de 5 perfis por licença ───────────────────────────────────────
+  const _perfisActuais=carregarPerfis();
+  const _idActual=sessionStorage.getItem('perfil_activo_id')||localStorage.getItem('essencia_ultimo_perfil');
+  const _eNovoPerfil=!_perfisActuais.find(p=>p.id===_idActual)||!_idActual;
+  const MAX_PERFIS=5;
+  if(_eNovoPerfil && _perfisActuais.length>=MAX_PERFIS){
+    const _msg=currentLang==='en'
+      ?'This licence allows a maximum of '+MAX_PERFIS+' profiles. Please remove an existing profile before adding a new one.'
+      :currentLang==='es'
+      ?'Esta licencia permite un máximo de '+MAX_PERFIS+' perfiles. Elimina un perfil existente antes de añadir uno nuevo.'
+      :'Esta licença permite um máximo de '+MAX_PERFIS+' perfis. Remove um perfil existente antes de adicionares um novo.';
+    alert(_msg);return;
+  }
   window._nome=nome;window._dia=dia;window._mes=mes;window._ano=ano;window._hora=hora;window._local=local;
   const mn=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
   document.getElementById('res-nome').textContent=nome;
@@ -11857,17 +11870,15 @@ function _palmLimiteKey(mao){
 function _palmGetUsos(mao){
   try{
     var d=JSON.parse(localStorage.getItem(_palmLimiteKey(mao))||'null');
-    var now=new Date();
-    var mesAtual=now.getFullYear()+'-'+(now.getMonth()+1);
-    if(d&&d.mes===mesAtual) return d.usos||0;
+    // Leitura de mãos é vitalícia — as mãos não mudam.
+    // Basta existir qualquer registo de uso, independentemente do mês.
+    if(d&&d.usos>0) return d.usos;
     return 0;
   }catch(e){return 0;}
 }
 function _palmRegistarUso(mao){
   try{
-    var now=new Date();
-    var mesAtual=now.getFullYear()+'-'+(now.getMonth()+1);
-    localStorage.setItem(_palmLimiteKey(mao),JSON.stringify({mes:mesAtual,usos:_palmGetUsos(mao)+1}));
+    localStorage.setItem(_palmLimiteKey(mao),JSON.stringify({usos:1,data:new Date().toISOString()}));
   }catch(e){}
 }
 function _palmMostrarLimite(){
@@ -11882,22 +11893,22 @@ function _palmMostrarLimite(){
   var T=TRANSLATIONS[currentLang]||TRANSLATIONS.pt;
   var maoNome=mao==='esquerda'?(T.palm_mao_esquerda||'esquerda'):(T.palm_mao_direita||'direita');
   if(restantes<=0){
-    // Bloqueado este mês
+    // Bloqueado permanentemente — leitura já feita
     textoEl.innerHTML='🔒 '+(
-      currentLang==='en'?'You have already used your monthly reading for the <strong>'+maoNome+'</strong> hand. Available again next month.':
-      currentLang==='es'?'Ya usaste tu lectura mensual para la mano <strong>'+maoNome+'</strong>. Disponible el próximo mes.':
-      'Já usaste a tua leitura mensal para a mão <strong>'+maoNome+'</strong>. Disponível no próximo mês.'
+      currentLang==='en'?'Your reading for the <strong>'+maoNome+'</strong> hand is saved. Hands do not change — this is your definitive reading.':
+      currentLang==='es'?'Tu lectura para la mano <strong>'+maoNome+'</strong> está guardada. Las manos no cambian — esta es tu lectura definitiva.':
+      'A tua leitura para a mão <strong>'+maoNome+'</strong> está guardada. As mãos não mudam — esta é a tua leitura definitiva.'
     );
     infoEl.style.display='block';
-    infoEl.style.borderColor='rgba(181,74,74,.3)';
-    infoEl.style.background='rgba(181,74,74,.05)';
+    infoEl.style.borderColor='rgba(74,143,181,.3)';
+    infoEl.style.background='rgba(74,143,181,.05)';
     if(btnEl){btnEl.style.display='none';}
   } else {
-    // Ainda tem leitura disponível
+    // Primeira leitura disponível
     textoEl.innerHTML='✦ '+(
-      currentLang==='en'?'1 free reading per hand per month. You have <strong>'+restantes+'</strong> reading remaining for the <strong>'+maoNome+'</strong> hand this month.':
-      currentLang==='es'?'1 lectura gratuita por mano al mes. Te queda <strong>'+restantes+'</strong> lectura para la mano <strong>'+maoNome+'</strong> este mes.':
-      '1 leitura gratuita por mão por mês. Tens <strong>'+restantes+'</strong> leitura disponível para a mão <strong>'+maoNome+'</strong> este mês.'
+      currentLang==='en'?'1 reading per hand, for life. This will be your definitive reading for the <strong>'+maoNome+'</strong> hand — choose a clear, well-lit photo.':
+      currentLang==='es'?'1 lectura por mano, de por vida. Esta será tu lectura definitiva para la mano <strong>'+maoNome+'</strong> — elige una foto clara y bien iluminada.':
+      '1 leitura por mão, para a vida. Esta será a tua leitura definitiva para a mão <strong>'+maoNome+'</strong> — escolhe uma foto nítida e bem iluminada.'
     );
     infoEl.style.display='block';
     infoEl.style.borderColor='var(--border)';
@@ -12256,20 +12267,21 @@ function _plantaMostrarLimite(){
   var btnEl=document.getElementById('planta-analisar-btn');
   if(!infoEl||!textoEl) return;
   if(restantes<=0){
-    textoEl.innerHTML='🔒 '+(
-      currentLang==='en'?'You have already used your monthly floor-plan reading. Available again next month.':
-      currentLang==='es'?'Ya usaste tu lectura mensual de la planta. Disponible el próximo mes.':
-      'Já usaste a tua leitura mensal da planta da casa. Disponível no próximo mês.'
+    // Já tem leitura — mostra info mas mantém botão disponível (com aviso de substituição)
+    textoEl.innerHTML='📋 '+(
+      currentLang==='en'?'You have a saved floor-plan reading below. If you move house, you can request a new analysis — the previous reading will be replaced.':
+      currentLang==='es'?'Tienes una lectura de planta guardada abajo. Si cambias de casa, puedes solicitar un nuevo análisis — la lectura anterior será sustituida.':
+      'Tens uma leitura de planta guardada abaixo. Se mudares de casa, podes pedir uma nova análise — a leitura anterior será substituída.'
     );
     infoEl.style.display='block';
-    infoEl.style.borderColor='rgba(181,74,74,.3)';
-    infoEl.style.background='rgba(181,74,74,.05)';
-    if(btnEl){btnEl.style.display='none';}
+    infoEl.style.borderColor='rgba(74,143,181,.25)';
+    infoEl.style.background='rgba(74,143,181,.05)';
+    if(btnEl){btnEl.style.display='block';}
   } else {
     textoEl.innerHTML='✦ '+(
-      currentLang==='en'?'1 free reading per month. You have <strong>'+restantes+'</strong> reading remaining this month.':
-      currentLang==='es'?'1 lectura gratuita al mes. Te queda <strong>'+restantes+'</strong> lectura este mes.':
-      '1 leitura gratuita por mês. Tens <strong>'+restantes+'</strong> leitura disponível este mês.'
+      currentLang==='en'?'1 reading per month. You have <strong>'+restantes+'</strong> reading available this month.':
+      currentLang==='es'?'1 lectura al mes. Te queda <strong>'+restantes+'</strong> lectura disponible este mes.':
+      '1 leitura por mês. Tens <strong>'+restantes+'</strong> leitura disponível este mês.'
     );
     infoEl.style.display='block';
     infoEl.style.borderColor='var(--border)';
@@ -12279,9 +12291,14 @@ function _plantaMostrarLimite(){
 
 async function analisarPlantaIA() {
   if(!plantaIAImageBase64) { alert(currentLang==='en'?'Please select a photo of your floor plan first.':currentLang==='es'?'Por favor selecciona primero una foto de la planta.':'Por favor selecciona primeiro uma foto da planta da casa.'); return; }
+  // Se já existe uma leitura guardada, pedir confirmação antes de substituir
   if(_plantaGetUsos()>=1){
-    _plantaMostrarLimite();
-    return;
+    var _confirmMsg=currentLang==='en'
+      ?'You already have a saved floor plan reading. If you continue, the previous reading will be replaced by the new one.\n\nDo you want to continue?'
+      :currentLang==='es'
+      ?'Ya tienes una lectura de planta guardada. Si continúas, la lectura anterior será sustituida por la nueva.\n\n¿Deseas continuar?'
+      :'Já tens uma leitura de planta guardada. Se continuares, a leitura anterior será substituída pela nova.\n\nQueres continuar?';
+    if(!confirm(_confirmMsg)) return;
   }
 
   document.getElementById('planta-ia-loading').style.display = 'block';
@@ -12570,14 +12587,14 @@ function _sonhoMostrarLimite(){
   var btnEl=document.getElementById('sonhos-analisar-btn');
   if(!infoEl||!textoEl) return;
   if(restantes<=0){
-    textoEl.innerHTML='🔒 '+(
-      currentLang==='en'?'You have already used your weekly AI dream interpretation. Available again next week.':
-      currentLang==='es'?'Ya usaste tu interpretación semanal de IA. Disponible de nuevo la próxima semana.':
-      'Já usaste a tua interpretação semanal por IA. Disponível novamente na próxima semana.'
+    textoEl.innerHTML='📋 '+(
+      currentLang==='en'?'You have a saved dream interpretation below. You can request a new one next week — the previous interpretation will be replaced.':
+      currentLang==='es'?'Tienes una interpretación de sueño guardada abajo. Puedes solicitar una nueva la próxima semana — la interpretación anterior será sustituida.':
+      'Tens uma interpretação de sonho guardada abaixo. Podes pedir uma nova na próxima semana — a interpretação anterior será substituída.'
     );
     infoEl.style.display='block';
-    infoEl.style.borderColor='rgba(181,74,74,.3)';
-    infoEl.style.background='rgba(181,74,74,.05)';
+    infoEl.style.borderColor='rgba(74,143,181,.25)';
+    infoEl.style.background='rgba(74,143,181,.05)';
     if(btnEl){btnEl.style.display='none';}
   } else {
     textoEl.innerHTML='✦ '+(
@@ -12599,8 +12616,12 @@ async function interpretarSonhoIA() {
     return;
   }
   if(_sonhoGetUsos()>=1){
-    _sonhoMostrarLimite();
-    return;
+    var _confirmSonho=currentLang==='en'
+      ?'You already have a saved dream interpretation. If you continue, it will be replaced by the new one.\n\nDo you want to continue?'
+      :currentLang==='es'
+      ?'Ya tienes una interpretación de sueño guardada. Si continúas, será sustituida por la nueva.\n\n¿Deseas continuar?'
+      :'Já tens uma interpretação de sonho guardada. Se continuares, será substituída pela nova.\n\nQueres continuar?';
+    if(!confirm(_confirmSonho)) return;
   }
 
   document.getElementById('sonhos-ia-loading').style.display = 'block';
