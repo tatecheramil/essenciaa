@@ -309,6 +309,20 @@
 </head>
 <body>
 
+<!-- ── ECRÃ DE RENOVAÇÃO (licença expirada) ── -->
+<div id="ecra-renovacao" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:9998;flex-direction:column;align-items:center;overflow-y:auto;padding:max(2rem,env(safe-area-inset-top)) 2rem max(2rem,env(safe-area-inset-bottom)) 2rem">
+  <div style="max-width:360px;width:100%;text-align:center;margin:auto;padding:1rem 0">
+    <div style="font-size:2.5rem;margin-bottom:1rem">✦</div>
+    <div style="font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:.5rem" id="ren-titulo">Licença Expirada</div>
+    <div style="font-size:.88rem;color:var(--text2);line-height:1.7;margin-bottom:1.75rem" id="ren-texto">A tua licença da Essência chegou ao fim. Renova para continuares a aceder a todo o teu autoconhecimento.</div>
+    <a href="https://appessencia.netlify.app/comprar" target="_blank"
+      style="display:block;width:100%;padding:.95rem;background:var(--accent-deep);color:#fff;border:none;border-radius:12px;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;margin-bottom:.85rem;box-sizing:border-box" id="ren-btn-renovar">✦ Renovar a minha licença</a>
+    <button onclick="window.abrirEcraParaCodigo()" style="width:100%;padding:.85rem;background:transparent;border:1px solid var(--border);border-radius:12px;color:var(--accent-deep);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer" id="ren-btn-codigo">🔑 Já tenho um código novo</button>
+    <div id="ren-data-exp" style="font-size:.72rem;color:var(--text3);margin-top:1.25rem"></div>
+  </div>
+</div>
+<!-- ── /ECRÃ DE RENOVAÇÃO ── -->
+
 <!-- ── ECRÃ DE CÓDIGO DE ACESSO ── -->
 <div id="ecra-codigo" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:9999;flex-direction:column;align-items:center;overflow-y:auto;padding:max(2rem, env(safe-area-inset-top)) 2rem max(2rem, env(safe-area-inset-bottom)) 2rem">
   <button id="cod-btn-fechar" onclick="esconderEcra()" style="display:none;position:sticky;top:0;align-self:flex-end;width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text2);font-size:1.1rem;cursor:pointer;line-height:1;flex-shrink:0;z-index:1">✕</button>
@@ -12961,6 +12975,8 @@ function calcularComLang() {
   // Permite reabrir o ecrã de código a partir de dentro da app (modo gratuito),
   // para quem já tem acesso mas quer introduzir um código pago depois de o comprar.
   window.abrirEcraParaCodigo=function(){
+    var ren=document.getElementById('ecra-renovacao');
+    if(ren) ren.style.display='none';
     mostrarEcra();
     var btn=document.getElementById('cod-btn-fechar');
     if(btn) btn.style.display='block';
@@ -12983,6 +12999,9 @@ function calcularComLang() {
         localStorage.setItem('_ess_codigo',codigo);
         setCookie('_ess_acesso','1',365);
         setNivelAcesso('completo');
+        // Guardar data de expiração: hoje + 365 dias
+        var expiry=new Date();expiry.setDate(expiry.getDate()+365);
+        localStorage.setItem('_ess_expiry',expiry.toISOString());
         esconderEcra();
         location.reload();
       } else {
@@ -12997,10 +13016,57 @@ function calcularComLang() {
     }
   };
 
+  // ── EXPIRAÇÃO DA LICENÇA ────────────────────────────────────────────────────
+  function licencaExpirada(){
+    // Modo gratuito nunca expira (não tem data de expiração)
+    if(nivelAcesso()==='gratis') return false;
+    var exp=localStorage.getItem('_ess_expiry');
+    if(!exp) return false; // Licenças antigas (sem data) não expiram — protecção de retrocompatibilidade
+    try{ return new Date()>new Date(exp); }catch(e){ return false; }
+  }
+  function diasParaExpirar(){
+    var exp=localStorage.getItem('_ess_expiry');
+    if(!exp) return null;
+    try{
+      var diff=Math.ceil((new Date(exp)-new Date())/(1000*60*60*24));
+      return diff;
+    }catch(e){ return null; }
+  }
+  function mostrarEcraRenovacao(){
+    var el=document.getElementById('ecra-renovacao');
+    if(!el) return;
+    // Textos traduzidos
+    var tit=document.getElementById('ren-titulo');
+    var txt=document.getElementById('ren-texto');
+    var btnR=document.getElementById('ren-btn-renovar');
+    var btnC=document.getElementById('ren-btn-codigo');
+    var dataEl=document.getElementById('ren-data-exp');
+    if(tit) tit.textContent=currentLang==='en'?'Licence Expired':currentLang==='es'?'Licencia Expirada':'Licença Expirada';
+    if(txt) txt.textContent=currentLang==='en'?'Your Essência licence has expired. Renew to continue accessing all your self-knowledge tools.':currentLang==='es'?'Tu licencia de Essência ha caducado. Renuévala para seguir accediendo a todo tu autoconocimiento.':'A tua licença da Essência chegou ao fim. Renova para continuares a aceder a todo o teu autoconhecimento.';
+    if(btnR) btnR.textContent='✦ '+(currentLang==='en'?'Renew my licence':currentLang==='es'?'Renovar mi licencia':'Renovar a minha licença');
+    if(btnC) btnC.textContent='🔑 '+(currentLang==='en'?'I already have a new code':currentLang==='es'?'Ya tengo un código nuevo':'Já tenho um código novo');
+    // Mostrar data de expiração
+    var exp=localStorage.getItem('_ess_expiry');
+    if(dataEl&&exp){
+      try{
+        var d=new Date(exp);
+        var label=currentLang==='en'?'Expired on: ':currentLang==='es'?'Expiró el: ':'Expirou a: ';
+        dataEl.textContent=label+d.toLocaleDateString('pt-PT',{day:'2-digit',month:'long',year:'numeric'});
+      }catch(e){}
+    }
+    el.style.display='flex';
+  }
+  window.licencaExpirada=licencaExpirada;
+  window.mostrarEcraRenovacao=mostrarEcraRenovacao;
+
   document.addEventListener('DOMContentLoaded',function(){
     var input=document.getElementById('cod-input');
     if(input)input.addEventListener('keydown',function(e){if(e.key==='Enter')window.validarCodigo();});
-    if(!temAcesso())mostrarEcra();
+    if(!temAcesso()){
+      mostrarEcra();
+    } else if(licencaExpirada()){
+      mostrarEcraRenovacao();
+    }
   });
 })();
 </script>
