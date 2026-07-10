@@ -1008,6 +1008,13 @@
       <div class="daily-title" id="daily-greeting"></div>
     </div>
     <div class="daily-grid" id="daily-grid"></div>
+    <div id="daily-nudge" style="display:none;margin-top:1.5rem;background:linear-gradient(135deg,rgba(74,143,181,0.07),rgba(168,212,232,0.1));border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:center">
+      <div style="font-size:1.5rem;margin-bottom:.6rem">✨</div>
+      <div style="font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:.6rem" id="nudge-titulo">Estás a gostar da Essência?</div>
+      <div style="font-size:.85rem;color:var(--text2);line-height:1.7;margin-bottom:1.1rem" id="nudge-texto">A versão completa inclui o teu Mapa Astral, Eneagrama, Human Design, Tarot aprofundado, Leitura de Mãos por IA e muito mais — tudo por apenas 14,99€, sem mensalidades.</div>
+      <a href="https://appessencia.netlify.app/comprar" target="_blank" style="display:inline-block;padding:.8rem 1.5rem;background:var(--accent-deep);color:#fff;border-radius:10px;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;margin-bottom:.75rem" id="nudge-btn">✦ Ver tudo o que inclui</a>
+      <div><button onclick="document.getElementById('daily-nudge').style.display='none'" style="background:transparent;border:none;color:var(--text3);font-size:.72rem;cursor:pointer;font-family:'Jost',sans-serif" id="nudge-fechar">Continuar na versão gratuita</button></div>
+    </div>
 
     <div class="section-title" id="daily-med-titulo">Meditação guiada de hoje</div>
     <div class="interp-box" id="meditation-box">
@@ -11560,7 +11567,31 @@ function updateDrawerUser(perfilOverride){
   }
 }
 
-function showTab(id,btn){document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');const tab=document.getElementById('tab-'+id);if(tab)tab.style.display='block';if(id==='humandesign'){populateHDPreview();calcularHD();}if(id==='biblioteca')renderBiblioteca();if(id==='diario-terapeutico')renderDiario();if(id==='horoscopo')renderHoroscopo();if(id==='tarot')carregarHistoricoTiragens('tarot');if(id==='runas')carregarHistoricoTiragens('runas');if(id==='parceiro')parcReset();if(id==='solar'){rsPopularPaises();_rsUpdateInfoNote();}if(id==='sono')sonoInit();if(id==='eventos')evInit();if(id==='leituras')leitInit();if(id==='palma'){_palmMostrarLimite();_palmMostrarResultadoGuardado();}if(id==='emocional')emoInit();if(id==='constelacoes'){if(typeof _constMostrarResultadoGuardado==='function')_constMostrarResultadoGuardado();}if(id==='chakras'){if(typeof _chakraMostrarResultadoGuardado==='function')_chakraMostrarResultadoGuardado();}if(id==='fengshui'){renderFengShuiQuestionnaire();if(typeof _fsMostrarResultadoGuardado==='function')_fsMostrarResultadoGuardado();}if(id==='sonhos'){if(typeof renderSonhosGrid==='function')renderSonhosGrid();}if(id==='anjos'){if(typeof renderAnjosGrid==='function')renderAnjosGrid();}if(id==='packs'){if(typeof renderPacks==='function')renderPacks();}if(id==='assinatura'){var _asInEl=document.getElementById('assin-input');if(_asInEl)_asInEl.value='';var _asResEl=document.getElementById('assin-result');if(_asResEl)_asResEl.style.display='none';var _asPreEl=document.getElementById('assin-preview');if(_asPreEl)_asPreEl.textContent='';}if(id==='frequencias'){if(typeof _fxIsStandalone==='function'&&_fxIsStandalone()&&!_fxUnlocked){var fw=document.getElementById('freq-ios-warn');if(fw)fw.style.display='block';}}if(typeof aplicarNivelGratuito==='function')aplicarNivelGratuito(id);}
+function showTab(id,btn){document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');const tab=document.getElementById('tab-'+id);if(tab)tab.style.display='block';if(id==='humandesign'){populateHDPreview();calcularHD();}if(id==='biblioteca')renderBiblioteca();if(id==='diario-terapeutico')renderDiario();if(id==='horoscopo')renderHoroscopo();if(id==='tarot')carregarHistoricoTiragens('tarot');if(id==='runas')carregarHistoricoTiragens('runas');if(id==='parceiro')parcReset();if(id==='solar'){rsPopularPaises();_rsUpdateInfoNote();}if(id==='sono')sonoInit();if(id==='eventos')evInit();if(id==='leituras')leitInit();if(id==='palma'){_palmMostrarLimite();_palmMostrarResultadoGuardado();}if(id==='emocional')emoInit();if(id==='constelacoes'){if(typeof _constMostrarResultadoGuardado==='function')_constMostrarResultadoGuardado();}if(id==='chakras'){if(typeof _chakraMostrarResultadoGuardado==='function')_chakraMostrarResultadoGuardado();}if(id==='fengshui'){renderFengShuiQuestionnaire();if(typeof _fsMostrarResultadoGuardado==='function')_fsMostrarResultadoGuardado();}if(id==='sonhos'){if(typeof renderSonhosGrid==='function')renderSonhosGrid();}if(id==='anjos'){if(typeof renderAnjosGrid==='function')renderAnjosGrid();}if(id==='packs'){if(typeof renderPacks==='function')renderPacks();}
+if(id==='assinatura'){var _asInEl=document.getElementById('assin-input');if(_asInEl)_asInEl.value='';var _asResEl=document.getElementById('assin-result');if(_asResEl)_asResEl.style.display='none';var _asPreEl=document.getElementById('assin-preview');if(_asPreEl)_asPreEl.textContent='';}
+// ── NUDGE DE CONVERSÃO: mostra na 3.ª abertura dos Conselhos Diários (modo gratuito) ──
+if(id==='diario'){
+  var _isGratis=(typeof nivelAcesso==='function')&&nivelAcesso()==='gratis';
+  if(_isGratis){
+    var _nudgeKey='essencia_nudge_daily_visits';
+    var _visits=parseInt(localStorage.getItem(_nudgeKey)||'0')+1;
+    localStorage.setItem(_nudgeKey,String(_visits));
+    var _nudgeEl=document.getElementById('daily-nudge');
+    // Mostrar na 3ª visita e depois de 7 em 7 visitas (não saturar)
+    if(_nudgeEl&&(_visits===3||(_visits>3&&(_visits-3)%7===0))){
+      var _l=currentLang||'pt';
+      var _nTit=document.getElementById('nudge-titulo');
+      var _nTxt=document.getElementById('nudge-texto');
+      var _nBtn=document.getElementById('nudge-btn');
+      var _nFch=document.getElementById('nudge-fechar');
+      if(_nTit)_nTit.textContent=_l==='en'?'Enjoying Essência?':_l==='es'?'¿Te gusta Essência?':'Estás a gostar da Essência?';
+      if(_nTxt)_nTxt.textContent=_l==='en'?'The full version includes your Natal Chart, Enneagram, Human Design, in-depth Tarot, AI Palm Reading and much more — all for just €14.99, no subscription.':_l==='es'?'La versión completa incluye tu Mapa Natal, Eneagrama, Human Design, Tarot en profundidad, Lectura de Manos por IA y mucho más — todo por solo 14,99€, sin mensualidad.':'A versão completa inclui o teu Mapa Astral, Eneagrama, Human Design, Tarot aprofundado, Leitura de Mãos por IA e muito mais — tudo por apenas 14,99€, sem mensalidades.';
+      if(_nBtn)_nBtn.textContent='✦ '+(_l==='en'?'See everything included':_l==='es'?'Ver todo lo que incluye':'Ver tudo o que inclui');
+      if(_nFch)_nFch.textContent=_l==='en'?'Continue with free version':_l==='es'?'Continuar con la versión gratuita':'Continuar na versão gratuita';
+      _nudgeEl.style.display='block';
+    }
+  }
+}if(id==='frequencias'){if(typeof _fxIsStandalone==='function'&&_fxIsStandalone()&&!_fxUnlocked){var fw=document.getElementById('freq-ios-warn');if(fw)fw.style.display='block';}}if(typeof aplicarNivelGratuito==='function')aplicarNivelGratuito(id);}
 
 </script>
 
@@ -12917,8 +12948,78 @@ function calcularComLang() {
       ?'Este contenido es parte de la versión completa. Desbloquéalo con tu licencia para ver la lectura completa.'
       :'Este conteúdo faz parte da versão completa. Desbloqueia com a tua licença para veres a leitura completa.';
   }
+  // Teasers específicos por tab — mostrados no cartão de bloqueio em vez da mensagem genérica
+  var _BLOQUEIO_TEASERS={
+    pt:{
+      astral:'O teu Mapa Astral revela o teu Ascendente, os planetas em cada casa e como cada um se expressa na tua vida — calculado com precisão para a tua data, hora e local de nascimento exactos.',
+      solar:'A tua Revolução Solar é um mapa do teu ano pessoal — mostra os temas, desafios e oportunidades que vais encontrar até ao teu próximo aniversário.',
+      numerologia:'Os teus números de Vida, Destino e Alma revelam os padrões que moldam quem és, o que vieste aprender e como te expressas no mundo.',
+      assinatura:'A tua assinatura é a energia que projectas ao mundo. Descobre o número que ela vibra e se está alinhada com a tua essência.',
+      ki:'A Astrologia do Ki revela o teu elemento energético e como a tua natureza profunda interage com o mundo à tua volta.',
+      enneagram:'O Eneagrama revela o teu tipo de personalidade, as tuas motivações mais profundas, os teus padrões de medo e de desejo — e o caminho de crescimento único para ti.',
+      chakras:'Descobre quais dos teus 7 centros de energia estão equilibrados, bloqueados ou em excesso — e o que isso revela sobre o teu estado físico, emocional e espiritual.',
+      palma:'A leitura das tuas mãos por Inteligência Artificial analisa as linhas, montes e padrões únicos da tua palma, revelando traços de personalidade e tendências da tua vida.',
+      humandesign:'O Human Design combina Astrologia, I Ching e Kabbalah para revelar o teu tipo energético, a tua Autoridade e como tomares decisões alinhadas com a tua natureza.',
+      sono:'Regista e analisa os teus padrões de sono, identifica o que os afecta e recebe insights para dormires melhor.',
+      sonhos:'A tua mente fala enquanto dormes. Interpreta os símbolos dos teus sonhos com IA e descobre o que o teu inconsciente te quer dizer.',
+      anjos:'Os números angélicos são mensagens do universo. Descobre o significado de cada sequência que aparece na tua vida.',
+      meditacoes:'Meditações guiadas criadas para o teu caminho espiritual — do enraizamento à expansão da consciência.',
+      frequencias:'Frequências sonoras de cura (Solfeggio e Binaural) para harmonizar corpo, mente e energia.',
+      tarot:'O Tarot aprofundado traz significados completos, palavras-chave e um conselho prático para cada carta revelada.',
+      runas:'As runas do Futhark Antigo com significado aprofundado de cada símbolo e um conselho concreto para a tua situação.',
+      constelacoes:'O mapeamento sistémico revela os padrões invisíveis herdados do teu sistema familiar — e como te libertares do que não é teu.',
+      parceiro:'Compara o teu perfil com o de alguém especial e descobre a dinâmica energética da vossa relação.',
+      fengshui:'O Feng Shui da tua casa por Inteligência Artificial analisa a planta e sugere ajustes para harmonizar a tua energia com o teu espaço.'
+    },
+    es:{
+      astral:'Tu Mapa Natal revela tu Ascendente, los planetas en cada casa y cómo cada uno se expresa en tu vida — calculado con precisión para tu fecha, hora y lugar de nacimiento exactos.',
+      solar:'Tu Revolución Solar es un mapa de tu año personal — muestra los temas, desafíos y oportunidades que encontrarás hasta tu próximo cumpleaños.',
+      numerologia:'Tus números de Vida, Destino y Alma revelan los patrones que moldean quién eres, qué viniste a aprender y cómo te expresas en el mundo.',
+      assinatura:'Tu firma es la energía que proyectas al mundo. Descubre el número que vibra y si está alineado con tu esencia.',
+      ki:'La Astrología del Ki revela tu elemento energético y cómo tu naturaleza profunda interactúa con el mundo que te rodea.',
+      enneagram:'El Eneagrama revela tu tipo de personalidad, tus motivaciones más profundas, tus patrones de miedo y deseo — y el camino de crecimiento único para ti.',
+      chakras:'Descubre cuáles de tus 7 centros de energía están equilibrados, bloqueados o en exceso — y lo que revela sobre tu estado físico, emocional y espiritual.',
+      palma:'La lectura de tus manos por Inteligencia Artificial analiza las líneas, montes y patrones únicos de tu palma, revelando rasgos de personalidad y tendencias de tu vida.',
+      humandesign:'El Human Design combina Astrología, I Ching y Kabbalah para revelar tu tipo energético, tu Autoridad y cómo tomar decisiones alineadas con tu naturaleza.',
+      sono:'Registra y analiza tus patrones de sueño, identifica qué los afecta y recibe insights para dormir mejor.',
+      sonhos:'Tu mente habla mientras duermes. Interpreta los símbolos de tus sueños con IA y descubre lo que tu inconsciente quiere decirte.',
+      anjos:'Los números angélicos son mensajes del universo. Descubre el significado de cada secuencia que aparece en tu vida.',
+      meditacoes:'Meditaciones guiadas creadas para tu camino espiritual — del enraizamiento a la expansión de la conciencia.',
+      frequencias:'Frecuencias sonoras de curación (Solfeggio y Binaural) para armonizar cuerpo, mente y energía.',
+      tarot:'El Tarot en profundidad trae significados completos, palabras clave y un consejo práctico para cada carta revelada.',
+      runas:'Las runas del Futhark Antiguo con significado profundo de cada símbolo y un consejo concreto para tu situación.',
+      constelacoes:'El mapeo sistémico revela los patrones invisibles heredados de tu sistema familiar — y cómo liberarte de lo que no es tuyo.',
+      parceiro:'Compara tu perfil con el de alguien especial y descubre la dinámica energética de vuestra relación.',
+      fengshui:'El Feng Shui de tu hogar por Inteligencia Artificial analiza la planta y sugiere ajustes para armonizar tu energía con tu espacio.'
+    },
+    en:{
+      astral:'Your Natal Chart reveals your Ascendant, the planets in each house and how each one expresses itself in your life — calculated precisely for your exact date, time and place of birth.',
+      solar:'Your Solar Return is a map of your personal year — showing the themes, challenges and opportunities you will encounter until your next birthday.',
+      numerologia:'Your Life, Destiny and Soul numbers reveal the patterns that shape who you are, what you came to learn and how you express yourself in the world.',
+      assinatura:'Your signature is the energy you project to the world. Discover the number it vibrates and whether it is aligned with your essence.',
+      ki:'Ki Astrology reveals your energy element and how your deep nature interacts with the world around you.',
+      enneagram:'The Enneagram reveals your personality type, your deepest motivations, your patterns of fear and desire — and the unique growth path for you.',
+      chakras:'Discover which of your 7 energy centres are balanced, blocked or in excess — and what this reveals about your physical, emotional and spiritual state.',
+      palma:'The AI reading of your hands analyses the unique lines, mounts and patterns of your palm, revealing personality traits and life tendencies.',
+      humandesign:'Human Design combines Astrology, I Ching and Kabbalah to reveal your energy type, your Authority and how to make decisions aligned with your nature.',
+      sono:'Record and analyse your sleep patterns, identify what affects them and receive insights to sleep better.',
+      sonhos:'Your mind speaks while you sleep. Interpret your dream symbols with AI and discover what your unconscious wants to tell you.',
+      anjos:'Angel numbers are messages from the universe. Discover the meaning of each sequence that appears in your life.',
+      meditacoes:'Guided meditations created for your spiritual path — from grounding to expanding consciousness.',
+      frequencias:'Healing sound frequencies (Solfeggio and Binaural) to harmonise body, mind and energy.',
+      tarot:'The in-depth Tarot brings full meanings, keywords and a practical piece of advice for each card revealed.',
+      runas:'The Elder Futhark runes with deep meaning for each symbol and concrete advice for your situation.',
+      constelacoes:'Systemic mapping reveals the invisible patterns inherited from your family system — and how to free yourself from what is not yours.',
+      parceiro:'Compare your profile with someone special and discover the energetic dynamic of your relationship.',
+      fengshui:'Your home Feng Shui by Artificial Intelligence analyses the floor plan and suggests adjustments to harmonise your energy with your space.'
+    }
+  };
+  function _bloqueioTeaser(tabId){
+    var d=_BLOQUEIO_TEASERS[currentLang]||_BLOQUEIO_TEASERS.pt;
+    return d[tabId]||_bloqueioMensagem();
+  }
   function _bloqueioBotaoTxt(){
-    return currentLang==='en'?'Unlock full access':currentLang==='es'?'Desbloquear acceso completo':'Desbloquear acesso completo';
+    return currentLang==='en'?'Unlock full access — €14.99':currentLang==='es'?'Desbloquear acceso completo — 14,99€':'Desbloquear acesso completo — 14,99€';
   }
   function _jaTenhoCodigoTxt(){
     return currentLang==='en'?'I already have a code'  :currentLang==='es'?'Ya tengo un código':'Já tenho um código';
@@ -12934,9 +13035,12 @@ function calcularComLang() {
     lockEl.style.padding='2rem 1.5rem';
     var fb=MENUS_LIMITADOS_FALLBACK_HEADER[tabId];
     var headerHtml=fb?('<div style="font-size:1.6rem;margin-bottom:.5rem">'+fb.icone+'</div><div style="font-family:Cinzel,serif;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:1rem">'+fb.titulo+'</div>'):'';
-    lockEl.innerHTML=headerHtml+'<div style="font-size:1.8rem;margin-bottom:.75rem">🔒</div>'
-      +'<div style="font-size:.88rem;color:var(--text2);line-height:1.7;margin-bottom:1.25rem">'+_bloqueioMensagem()+'</div>'
-      +'<a href="https://appessencia.netlify.app/comprar" target="_blank" style="display:inline-block;padding:.85rem 1.75rem;background:var(--accent-deep);color:#fff;border-radius:10px;font-family:Cinzel,serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none">'+_bloqueioBotaoTxt()+'</a>'
+    var teaser=_bloqueioTeaser(tabId);
+    lockEl.innerHTML=headerHtml
+      +'<div style="font-size:1.8rem;margin-bottom:.75rem">🔒</div>'
+      +'<div style="font-size:.88rem;color:var(--text2);line-height:1.7;margin-bottom:1.25rem;font-style:italic">'+teaser+'</div>'
+      +'<a href="https://appessencia.netlify.app/comprar" target="_blank" style="display:inline-block;padding:.9rem 1.75rem;background:var(--accent-deep);color:#fff;border-radius:10px;font-family:Cinzel,serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;box-shadow:0 4px 14px rgba(45,106,138,.25)">'+_bloqueioBotaoTxt()+'</a>'
+      +'<div style="font-size:.75rem;color:var(--text3);margin-top:.6rem">'+(currentLang==='en'?'One-time payment · Valid for 1 year · Up to 5 profiles':currentLang==='es'?'Pago único · Válido 1 año · Hasta 5 perfiles':'Pagamento único · Válido 1 ano · Até 5 perfis')+'</div>'
       +'<div style="margin-top:1rem"><button onclick="abrirEcraParaCodigo()" style="background:transparent;border:none;color:var(--accent);font-size:.78rem;text-decoration:underline;cursor:pointer;font-family:Jost,sans-serif">'+_jaTenhoCodigoTxt()+'</button></div>';
     tab.appendChild(lockEl);
     return lockEl;

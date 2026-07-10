@@ -141,12 +141,19 @@
   <input type="text" name="nome">
   <input type="tel" name="contacto">
   <input type="email" name="email">
+  <input type="text" name="codigo_parceiro">
+</form>
+<form name="compra-essencia-paypal" netlify netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="compra-essencia-paypal">
+  <input type="email" name="email">
+  <input type="text" name="codigo_parceiro">
 </form>
 <form name="compra-essencia-mbway-cta" netlify netlify-honeypot="bot-field" hidden>
   <input type="hidden" name="form-name" value="compra-essencia-mbway-cta">
   <input type="text" name="nome">
   <input type="tel" name="contacto">
   <input type="email" name="email">
+  <input type="text" name="codigo_parceiro">
 </form>
 
 <!-- SELETOR DE LÍNGUA -->
@@ -177,6 +184,20 @@
 
   <div class="pay-choice" id="heroPayChoice" style="display:none;max-width:440px;margin:1rem auto 0;background:var(--card);border:1px solid var(--border2);box-shadow:var(--shadow2);border-radius:18px;padding:1.5rem">
     <p class="email-form-label" id="t-pay-choice-label" style="text-align:center">Como queres pagar?</p>
+    <div style="margin-bottom:1rem">
+      <label style="display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.4rem" id="t-cod-desc-label">Tens um código de parceiro? (opcional)</label>
+      <div style="display:flex;gap:.5rem">
+        <input type="text" id="heroCodDesc" placeholder="" maxlength="15"
+          style="flex:1;padding:.65rem .9rem;border:1px solid var(--border);border-radius:8px;background:var(--bg2);color:var(--text);font-family:'Jost',sans-serif;font-size:.85rem;text-transform:uppercase;outline:none"
+          oninput="this.value=this.value.toUpperCase()" onblur="aplicarCodigoDesconto('hero')">
+        <button type="button" onclick="aplicarCodigoDesconto('hero')"
+          style="padding:.65rem 1rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--accent-deep);font-size:.8rem;cursor:pointer">✓</button>
+      </div>
+      <div id="heroCodDescFeedback" style="font-size:.75rem;margin-top:.35rem"></div>
+    </div>
+    <div id="hero-sumup-aviso" style="display:none;font-size:.75rem;color:var(--text2);background:rgba(74,143,181,.06);border:1px solid var(--border);border-radius:8px;padding:.6rem .85rem;margin-bottom:.75rem">
+      💡 Com código de parceiro, o pagamento com desconto está disponível apenas via PayPal.
+    </div>
     <div class="consent-wrap" id="heroConsentWrap">
       <input type="checkbox" id="heroConsent">
       <label for="heroConsent" id="t-consent-label">Ao prosseguir, confirmo que pretendo aceder ao conteúdo digital de imediato e reconheço que, nos termos do art.º 47.º do DL 24/2014, renuncio ao direito de livre resolução de 14 dias.</label>
@@ -184,7 +205,7 @@
     <div class="pay-choice-row">
       <a class="btn-primary pay-btn" href="https://pay.sumup.com/b2c/QGCQ6B2I" target="_blank" rel="noopener" id="t-pay-card">💳 Cartão</a>
       <button type="button" class="btn-primary pay-btn pay-btn-mbway" onclick="toggleMbway('hero')" id="t-pay-mbway">📱 MB WAY</button>
-      <a class="btn-primary pay-btn pay-btn-paypal" href="https://paypal.me/tatechera/14.99EUR" target="_blank" rel="noopener" id="t-pay-paypal">🅿️ PayPal</a>
+      <button type="button" class="btn-primary pay-btn pay-btn-paypal" onclick="togglePaypal('hero')" id="t-pay-paypal">🅿️ PayPal</button>
     </div>
     <p class="email-note" id="t-pay-note" style="text-align:center;margin-top:.8rem">Pagamento em euros (€). Se pagares de fora da Zona Euro, o valor é convertido automaticamente pelo teu banco ou pela PayPal.</p>
 
@@ -194,12 +215,25 @@
         <input type="hidden" name="form-name" value="compra-essencia-mbway">
         <input type="hidden" name="bot-field" style="display:none">
         <input type="hidden" name="email" id="heroMbwayEmailHidden">
+        <input type="hidden" name="codigo_parceiro" id="heroMbwayCodigoDesconto">
         <input type="text" name="nome" id="heroMbwayNome" placeholder="O teu nome completo" required>
         <input type="tel" name="contacto" id="heroMbwayContacto" placeholder="O teu contacto telefónico (o mesmo do MB WAY, se possível)" required>
         <button type="submit" class="btn-primary" id="t-mbway-confirmar-hero">Confirmar os meus dados</button>
         <div class="form-msg error" id="heroMbwayError" style="display:none"></div>
       </form>
       <div id="heroMbwaySuccess" style="display:none;text-align:center;font-size:.85rem;color:var(--text2)" data-i18n-key="mbwaySuccess">Obrigada! Recebemos os teus dados. Confirma que enviaste o pagamento por MB WAY para +351 925 791 568 — vais receber o teu código de acesso por email em até 24h.</div>
+    </div>
+    <div class="mbway-box" id="heroPaypalBox" style="display:none">
+      <p id="t-paypal-instrucoes-hero" style="font-size:.85rem;color:var(--text2);line-height:1.6;margin-bottom:1rem">Deixa o teu email antes de ires para o PayPal — assim podemos enviar-te o código de acesso assim que confirmarmos o pagamento.</p>
+      <form id="heroPaypalForm" name="compra-essencia-paypal" netlify netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="compra-essencia-paypal">
+        <input type="hidden" name="bot-field" style="display:none">
+        <input type="hidden" name="email" id="heroPaypalEmailHidden">
+        <input type="hidden" name="codigo_parceiro" id="heroPaypalCodigo">
+        <button type="submit" class="btn-primary" id="t-paypal-confirmar-hero" style="margin-bottom:.5rem">Guardar e ir para o PayPal</button>
+        <div class="form-msg error" id="heroPaypalError" style="display:none"></div>
+      </form>
+      <div id="heroPaypalSuccess" style="display:none;text-align:center;font-size:.85rem;color:var(--text2)">A abrir o PayPal...</div>
     </div>
   </div>
 
@@ -309,6 +343,20 @@
     </form>
     <div class="pay-choice" id="ctaPayChoice" style="display:none">
       <p class="email-form-label" style="color:#fff;text-align:center" id="t-pay-choice-label-cta">Como queres pagar?</p>
+      <div style="margin-bottom:1rem">
+        <label style="display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:.4rem">Tens um código de parceiro? (opcional)</label>
+        <div style="display:flex;gap:.5rem">
+          <input type="text" id="ctaCodDesc" placeholder="" maxlength="15"
+            style="flex:1;padding:.65rem .9rem;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.1);color:#fff;font-family:'Jost',sans-serif;font-size:.85rem;text-transform:uppercase;outline:none"
+            oninput="this.value=this.value.toUpperCase()" onblur="aplicarCodigoDesconto('cta')">
+          <button type="button" onclick="aplicarCodigoDesconto('cta')"
+            style="padding:.65rem 1rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);border-radius:8px;color:#fff;font-size:.8rem;cursor:pointer">✓</button>
+        </div>
+        <div id="ctaCodDescFeedback" style="font-size:.75rem;margin-top:.35rem;color:rgba(255,255,255,.8)"></div>
+      </div>
+      <div id="cta-sumup-aviso" style="display:none;font-size:.75rem;color:rgba(255,255,255,.75);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:.6rem .85rem;margin-bottom:.75rem">
+        💡 Com código de parceiro, o pagamento com desconto está disponível apenas via PayPal.
+      </div>
       <div class="consent-wrap" id="ctaConsentWrap">
         <input type="checkbox" id="ctaConsent">
         <label for="ctaConsent" id="t-consent-label-cta">Ao prosseguir, confirmo que pretendo aceder ao conteúdo digital de imediato e reconheço que, nos termos do art.º 47.º do DL 24/2014, renuncio ao direito de livre resolução de 14 dias.</label>
@@ -316,7 +364,7 @@
       <div class="pay-choice-row" style="margin-top:.6rem">
         <a class="btn-primary pay-btn" href="https://pay.sumup.com/b2c/QGCQ6B2I" target="_blank" rel="noopener" id="t-pay-card-cta">💳 Cartão</a>
         <button type="button" class="btn-primary pay-btn pay-btn-mbway" onclick="toggleMbway('cta')" id="t-pay-mbway-cta">📱 MB WAY</button>
-        <a class="btn-primary pay-btn pay-btn-paypal" href="https://paypal.me/tatechera/14.99EUR" target="_blank" rel="noopener" id="t-pay-paypal-cta">🅿️ PayPal</a>
+        <button type="button" class="btn-primary pay-btn pay-btn-paypal" onclick="togglePaypal('cta')" id="t-pay-paypal-cta">🅿️ PayPal</button>
       </div>
       <p class="email-note" style="color:rgba(255,255,255,.65);text-align:center;margin-top:.8rem" id="t-pay-note-cta">Pagamento em euros (€). Se pagares de fora da Zona Euro, o valor é convertido automaticamente pelo teu banco ou pela PayPal.</p>
 
@@ -326,12 +374,25 @@
           <input type="hidden" name="form-name" value="compra-essencia-mbway-cta">
           <input type="hidden" name="bot-field" style="display:none">
           <input type="hidden" name="email" id="ctaMbwayEmailHidden">
+          <input type="hidden" name="codigo_parceiro" id="ctaMbwayCodigoDesconto">
           <input type="text" name="nome" id="ctaMbwayNome" placeholder="O teu nome completo" required>
           <input type="tel" name="contacto" id="ctaMbwayContacto" placeholder="O teu contacto telefónico (o mesmo do MB WAY, se possível)" required>
           <button type="submit" class="btn-primary" id="t-mbway-confirmar-cta">Confirmar os meus dados</button>
           <div class="form-msg error" id="ctaMbwayError" style="display:none"></div>
         </form>
         <div id="ctaMbwaySuccess" style="display:none;text-align:center;font-size:.85rem;color:rgba(255,255,255,.85)">Obrigada! Recebemos os teus dados. Confirma que enviaste o pagamento por MB WAY para +351 925 791 568 — vais receber o teu código de acesso por email em até 24h.</div>
+      </div>
+      <div class="mbway-box" id="ctaPaypalBox" style="display:none">
+        <p style="font-size:.85rem;color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:1rem">Deixa o teu email antes de ires para o PayPal — assim podemos enviar-te o código de acesso assim que confirmarmos o pagamento.</p>
+        <form id="ctaPaypalForm" name="compra-essencia-paypal" netlify netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="compra-essencia-paypal">
+          <input type="hidden" name="bot-field" style="display:none">
+          <input type="hidden" name="email" id="ctaPaypalEmailHidden">
+          <input type="hidden" name="codigo_parceiro" id="ctaPaypalCodigo">
+          <button type="submit" class="btn-primary" id="t-paypal-confirmar-cta" style="margin-bottom:.5rem">Guardar e ir para o PayPal</button>
+          <div class="form-msg error" id="ctaPaypalError" style="display:none"></div>
+        </form>
+        <div id="ctaPaypalSuccess" style="display:none;text-align:center;font-size:.85rem;color:rgba(255,255,255,.8)">A abrir o PayPal...</div>
       </div>
     </div>
   </div>
@@ -670,8 +731,137 @@ function handleForm(formId, emailId, errorId, payChoiceId) {
   });
 }
 
+
+// ── SISTEMA DE CÓDIGOS DE DESCONTO ────────────────────────────────────────────
+var CODIGOS_DESCONTO = {
+  'BARBARA20': { preco: '12.90', precoDisplay: '12,90€ (~R$ 80)', terapeuta: 'Bárbara Machado' },
+  'EDUARDO20': { preco: '12.90', precoDisplay: '12,90€ (~R$ 80)', terapeuta: 'Eduardo Catalani' },
+  'ADRIANA20': { preco: '12.90', precoDisplay: '12,90€ (~R$ 80)', terapeuta: 'Adriana Nebuloni' },
+  'ALRYOM20':  { preco: '12.90', precoDisplay: '12,90€ (~R$ 80)', terapeuta: 'Alryom' }
+};
+var _codigoAplicado = null;
+
+function aplicarCodigoDesconto(prefix) {
+  var input = document.getElementById(prefix + 'CodDesc');
+  if (!input) return;
+  var codigo = input.value.trim().toUpperCase();
+  var feedbackEl = document.getElementById(prefix + 'CodDescFeedback');
+  if (!codigo) {
+    // Reset
+    _codigoAplicado = null;
+    _actualizarPrecoComDesconto(prefix, null);
+    if (feedbackEl) { feedbackEl.textContent = ''; feedbackEl.style.color = ''; }
+    return;
+  }
+  var info = CODIGOS_DESCONTO[codigo];
+  if (info) {
+    _codigoAplicado = { codigo: codigo, info: info };
+    _actualizarPrecoComDesconto(prefix, info);
+    if (feedbackEl) {
+      feedbackEl.textContent = '✓ Código válido — ' + info.precoDisplay + ' (parceria ' + info.terapeuta + ')';
+      feedbackEl.style.color = 'var(--accent-deep)';
+    }
+    // Guardar código nos campos ocultos dos formulários para o Netlify receber
+    ['heroMbwayCodigoDesconto','ctaMbwayCodigoDesconto'].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.value = codigo;
+    });
+  } else {
+    _codigoAplicado = null;
+    _actualizarPrecoComDesconto(prefix, null);
+    if (feedbackEl) {
+      feedbackEl.textContent = '✗ Código não reconhecido';
+      feedbackEl.style.color = '#c0392b';
+    }
+  }
+}
+
+function _actualizarPrecoComDesconto(prefix, info) {
+  if (info) {
+    // PayPal — actualizar link com novo valor
+    ['t-pay-paypal', 't-pay-paypal-cta'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.href = 'https://paypal.me/tatechera/' + info.preco + 'EUR';
+    });
+    // SumUp — esconder (não suporta preço dinâmico) e mostrar aviso
+    ['t-pay-card', 't-pay-card-cta'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+    ['hero-sumup-aviso', 'cta-sumup-aviso'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.style.display = 'block';
+    });
+    // Preço no cabeçalho
+    var hp = document.getElementById('t-hero-price');
+    if (hp) hp.innerHTML = 'Pagamento único · <strong>' + info.precoDisplay + '</strong> <span style="text-decoration:line-through;color:var(--text3);font-size:.8em">14,99€</span>';
+  } else {
+    // Restaurar
+    ['t-pay-paypal', 't-pay-paypal-cta'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.href = 'https://paypal.me/tatechera/14.99EUR';
+    });
+    ['t-pay-card', 't-pay-card-cta'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.style.display = '';
+    });
+    ['hero-sumup-aviso', 'cta-sumup-aviso'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+    var hp = document.getElementById('t-hero-price');
+    if (hp) hp.innerHTML = 'Pagamento único · <strong>14,99€</strong>';
+  }
+}
+
 handleForm('heroForm', 'heroEmail', 'heroError', 'heroPayChoice');
 handleForm('ctaForm', 'ctaEmail', 'ctaError', 'ctaPayChoice');
+
+// ── PAYPAL: mostrar caixa de registo antes de redirigir ───────────────────────
+function togglePaypal(prefix) {
+  if (!_consentOk(prefix)) return;
+  // Copiar email do campo principal
+  var emailEl = document.getElementById(prefix === 'hero' ? 'heroEmail' : 'ctaEmail');
+  var hiddenEl = document.getElementById(prefix + 'PaypalEmailHidden');
+  if (hiddenEl && emailEl) hiddenEl.value = emailEl.value;
+  // Copiar código de desconto se existir
+  var codEl = document.getElementById(prefix + 'CodDesc');
+  var codHiddenEl = document.getElementById(prefix + 'PaypalCodigo');
+  if (codHiddenEl && codEl) codHiddenEl.value = codEl.value.trim().toUpperCase();
+  // Mostrar caixa PayPal, esconder MB WAY
+  var mbBox = document.getElementById(prefix + 'MbwayBox');
+  var ppBox = document.getElementById(prefix + 'PaypalBox');
+  if (mbBox) mbBox.style.display = 'none';
+  if (ppBox) ppBox.style.display = 'block';
+}
+
+function handlePaypalForm(formId, emailHiddenId, codigoId, errorId, successId) {
+  var form = document.getElementById(formId);
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    fetch('/comprar', { method: 'POST', body: data })
+      .then(function() {
+        document.getElementById(successId).style.display = 'block';
+        form.style.display = 'none';
+        // Determinar URL do PayPal (com ou sem desconto)
+        var paypalUrl = _codigoAplicado
+          ? 'https://paypal.me/tatechera/' + _codigoAplicado.info.preco + 'EUR'
+          : 'https://paypal.me/tatechera/14.99EUR';
+        setTimeout(function() { window.open(paypalUrl, '_blank'); }, 600);
+      })
+      .catch(function() {
+        var errEl = document.getElementById(errorId);
+        if (errEl) { errEl.textContent = 'Erro ao guardar os dados. Podes ir directamente para o PayPal.'; errEl.style.display = 'block'; }
+        var paypalUrl = _codigoAplicado
+          ? 'https://paypal.me/tatechera/' + _codigoAplicado.info.preco + 'EUR'
+          : 'https://paypal.me/tatechera/14.99EUR';
+        window.open(paypalUrl, '_blank');
+      });
+  });
+}
+handlePaypalForm('heroPaypalForm', 'heroPaypalEmailHidden', 'heroPaypalCodigo', 'heroPaypalError', 'heroPaypalSuccess');
+handlePaypalForm('ctaPaypalForm', 'ctaPaypalEmailHidden', 'ctaPaypalCodigo', 'ctaPaypalError', 'ctaPaypalSuccess');
 
 // ── CHECKBOX DE CONSENTIMENTO ─────────────────────────────────────────────────
 // Os botões de pagamento (Cartão, MB WAY, PayPal) pedem que a checkbox
