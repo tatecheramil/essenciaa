@@ -207,6 +207,10 @@
       <button type="button" class="btn-primary pay-btn pay-btn-mbway" onclick="toggleMbway('hero')" id="t-pay-mbway">📱 MB WAY</button>
       <button type="button" class="btn-primary pay-btn pay-btn-paypal" onclick="togglePaypal('hero')" id="t-pay-paypal">🅿️ PayPal</button>
     </div>
+    <button type="button" id="hero-paypal-desc-btn" onclick="togglePaypal('hero')"
+      style="display:none;width:100%;padding:.9rem;background:#003087;color:#ffc439;border:none;border-radius:10px;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;margin-bottom:.5rem">
+      🅿️ Pagar com PayPal com desconto
+    </button>
     <p class="email-note" id="t-pay-note" style="text-align:center;margin-top:.8rem">Pagamento em euros (€). Se pagares de fora da Zona Euro, o valor é convertido automaticamente pelo teu banco ou pela PayPal.</p>
 
     <div class="mbway-box" id="heroMbwayBox" style="display:none">
@@ -365,6 +369,11 @@
         <a class="btn-primary pay-btn" href="https://pay.sumup.com/b2c/QGCQ6B2I" target="_blank" rel="noopener" id="t-pay-card-cta">💳 Cartão</a>
         <button type="button" class="btn-primary pay-btn pay-btn-mbway" onclick="toggleMbway('cta')" id="t-pay-mbway-cta">📱 MB WAY</button>
         <button type="button" class="btn-primary pay-btn pay-btn-paypal" onclick="togglePaypal('cta')" id="t-pay-paypal-cta">🅿️ PayPal</button>
+      </div>
+      <button type="button" id="cta-paypal-desc-btn" onclick="togglePaypal('cta')"
+        style="display:none;width:100%;padding:.9rem;background:#003087;color:#ffc439;border:none;border-radius:10px;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;margin-bottom:.5rem">
+        🅿️ Pagar com PayPal com desconto
+      </button>
       </div>
       <p class="email-note" style="color:rgba(255,255,255,.65);text-align:center;margin-top:.8rem" id="t-pay-note-cta">Pagamento em euros (€). Se pagares de fora da Zona Euro, o valor é convertido automaticamente pelo teu banco ou pela PayPal.</p>
 
@@ -777,36 +786,47 @@ function aplicarCodigoDesconto(prefix) {
 
 function _actualizarPrecoComDesconto(prefix, info) {
   if (info) {
-    // PayPal — actualizar link com novo valor
-    ['t-pay-paypal', 't-pay-paypal-cta'].forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) el.href = 'https://paypal.me/tatechera/' + info.preco + 'EUR';
-    });
-    // SumUp — esconder (não suporta preço dinâmico) e mostrar aviso
+    // Esconder Cartão, MB WAY e botão PayPal antigo — com desconto só o novo fluxo PayPal
     ['t-pay-card', 't-pay-card-cta'].forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) el.style.display = 'none';
+      var el = document.getElementById(id); if (el) el.style.display = 'none';
     });
+    ['t-pay-mbway', 't-pay-mbway-cta'].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.style.display = 'none';
+    });
+    ['t-pay-paypal', 't-pay-paypal-cta'].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.style.display = 'none';
+    });
+    // Mostrar botão "Pagar com PayPal com desconto"
+    ['hero-paypal-desc-btn', 'cta-paypal-desc-btn'].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.style.display = 'block';
+    });
+    // Esconder aviso SumUp (já não necessário)
     ['hero-sumup-aviso', 'cta-sumup-aviso'].forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) el.style.display = 'block';
+      var el = document.getElementById(id); if (el) el.style.display = 'none';
     });
     // Preço no cabeçalho
     var hp = document.getElementById('t-hero-price');
     if (hp) hp.innerHTML = 'Pagamento único · <strong>' + info.precoDisplay + '</strong> <span style="text-decoration:line-through;color:var(--text3);font-size:.8em">14,99€</span>';
   } else {
-    // Restaurar
-    ['t-pay-paypal', 't-pay-paypal-cta'].forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) el.href = 'https://paypal.me/tatechera/14.99EUR';
-    });
+    // Restaurar tudo
     ['t-pay-card', 't-pay-card-cta'].forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) el.style.display = '';
+      var el = document.getElementById(id); if (el) el.style.display = '';
+    });
+    ['t-pay-mbway', 't-pay-mbway-cta'].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.style.display = '';
+    });
+    ['t-pay-paypal', 't-pay-paypal-cta'].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.style.display = '';
+    });
+    ['hero-paypal-desc-btn', 'cta-paypal-desc-btn'].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.style.display = 'none';
     });
     ['hero-sumup-aviso', 'cta-sumup-aviso'].forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) el.style.display = 'none';
+      var el = document.getElementById(id); if (el) el.style.display = 'none';
+    });
+    // Fechar caixas PayPal se abertas
+    ['heroPaypalBox', 'ctaPaypalBox'].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.style.display = 'none';
     });
     var hp = document.getElementById('t-hero-price');
     if (hp) hp.innerHTML = 'Pagamento único · <strong>14,99€</strong>';
