@@ -1,112 +1,98 @@
 // netlify/functions/validate-code.js
 //
-// Valida um código de acesso. Cada código pode ser activado em até
-// DEVICE_LIMIT dispositivos diferentes (por defeito: 2) — o suficiente
-// para cobrir reinstalações da app ou troca de telemóvel, mas continua a
-// impedir que o mesmo código seja partilhado livremente por muitas pessoas.
+// Valida um código de acesso da Essência e regista o dispositivo.
+// Lê/escreve no ficheiro codigos.json do repositório GitHub.
 //
-// Podes ajustar o limite criando a variável de ambiente DEVICE_LIMIT no
-// Netlify (ex: "3"). Sem essa variável, o limite por defeito é 2.
-//
-// Requer a dependência "@netlify/blobs".
+// Variáveis de ambiente necessárias:
+//   GITHUB_TOKEN  — Personal Access Token do GitHub com permissão "repo"
+//   GITHUB_REPO   — dono/repositório, ex: tatecheramil/essenciaa
 
-const MAX_DISPOSITIVOS = parseInt(process.env.DEVICE_LIMIT || '2', 10);
+const CODIGOS_FILE = 'codigos.json';
+const MAX_DISPOSITIVOS = 2;
 
-exports.handler = async function (event, context) {
+exports.handler = async function (event) {
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: JSON.stringify({ valido: false, erro: 'Method not allowed' }) };
+    return { statusCode: 405, body: JSON.stringify({ erro: 'Method not allowed' }) };
   }
 
   try {
-    const { codigo, dispositivo } = JSON.parse(event.body || '{}');
-
-    if (!codigo || !dispositivo) {
-      return {
-        statusCode: 200,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ valido: false, erro: 'Pedido incompleto.' })
-      };
+    const { codigo, deviceId } = JSON.parse(event.body || '{}');
+    if (!codigo || !deviceId) {
+      return { statusCode: 400, body: JSON.stringify({ valido: false, erro: 'Parâmetros em falta.' }) };
     }
 
-    const codigoLimpo = String(codigo).trim().toUpperCase();
+    const codigoUpper = String(codigo).trim().toUpperCase();
 
-    if (!/^ESS-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(codigoLimpo)) {
-      return {
-        statusCode: 200,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ valido: false, erro: 'Formato de código inválido. Verifica e tenta novamente.' })
-      };
+    if (!process.env.GITHUB_TOKEN || !process.env.GITHUB_REPO) {
+      return { statusCode: 500, body: JSON.stringify({ valido: false, erro: 'Configuração do servidor em falta.' }) };
     }
 
-    const { getStore } = require('@netlify/blobs');
-    const store = getStore({
-      name: 'essencia-codigos',
-      siteID: process.env.NETLIFY_SITE_ID,
-      token: process.env.NETLIFY_BLOBS_TOKEN
+    const apiBase = `https://api.github.com/repos/${process.env.GITHUB_REPO}/contents/${CODIGOS_FILE}`;
+    const headers = {
+      'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+      'Content-Type': 'application/json',
+      'Accept': 'application/vnd.github.v3+json',
+      'User-Agent': 'Essencia-App'
+    };
+
+    // Ler códigos do GitHub
+    const getRes = await fetch(apiBase, { headers });
+    if (!getRes.ok) {
+      return { statusCode: 500, body: JSON.stringify({ valido: false, erro: 'Não foi possível verificar o código.' }) };
+    }
+
+    const fileInfo = await getRes.json();
+    const sha = fileInfo.sha;
+    const decoded = Buffer.from(fileInfo.content, 'base64').toString('utf-8');
+    const codigos = JSON.parse(decoded);
+
+    const entrada = codigos[codigoUpper];
+    if (!entrada) {
+      return { statusCode: 200, body: JSON.stringify({ valido: false, erro: 'Código inválido ou não encontrado.' }) };
+    }
+
+    const dispositivos = entrada.dispositivos || [];
+
+    // Já registado neste dispositivo?
+    if (dispositivos.includes(deviceId)) {
+      return { statusCode: 200, body: JSON.stringify({ valido: true }) };
+    }
+
+    // Limite de dispositivos atingido?
+    if (dispositivos.length >= MAX_DISPOSITIVOS) {
+      return { statusCode: 200, body: JSON.stringify({ valido: false, erro: 'Limite de dispositivos atingido para este código.' }) };
+    }
+
+    // Registar dispositivo
+    entrada.dispositivos = [...dispositivos, deviceId];
+    if (!entrada.activadoEm) entrada.activadoEm = new Date().toISOString();
+    codigos[codigoUpper] = entrada;
+
+    // Guardar no GitHub
+    const putBody = {
+      message: `Activar código ${codigoUpper} — dispositivo ${deviceId.slice(0, 8)}`,
+      content: Buffer.from(JSON.stringify(codigos, null, 2)).toString('base64'),
+      sha
+    };
+
+    const putRes = await fetch(apiBase, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify(putBody)
     });
 
-    let registo = null;
-    try {
-      registo = await store.get(codigoLimpo, { type: 'json' });
-    } catch (e) {
-      registo = null;
+    if (!putRes.ok) {
+      // Mesmo que não consiga guardar, aceitar o código (melhor que bloquear o cliente)
+      console.error('Erro ao actualizar GitHub:', await putRes.text());
     }
 
-    // Código não existe (nunca foi registado por ti através do admin-add-code)
-    if (!registo) {
-      return {
-        statusCode: 200,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          valido: false,
-          erro: 'Código não encontrado. Verifica se o introduziste correctamente.'
-        })
-      };
-    }
-
-    // Migração automática de registos antigos (campo único "dispositivo")
-    if (!Array.isArray(registo.dispositivos)) {
-      registo.dispositivos = registo.dispositivo ? [registo.dispositivo] : [];
-    }
-
-    // Este dispositivo já está autorizado para este código — entra normalmente
-    if (registo.dispositivos.includes(dispositivo)) {
-      return {
-        statusCode: 200,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ valido: true })
-      };
-    }
-
-    // Dispositivo novo — há lugar disponível dentro do limite permitido
-    if (registo.dispositivos.length < MAX_DISPOSITIVOS) {
-      registo.dispositivos.push(dispositivo);
-      if (!registo.activadoEm) registo.activadoEm = new Date().toISOString();
-      registo.ultimaActivacaoEm = new Date().toISOString();
-      await store.setJSON(codigoLimpo, registo);
-
-      return {
-        statusCode: 200,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ valido: true })
-      };
-    }
-
-    // Limite de dispositivos atingido — bloqueado
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        valido: false,
-        erro: 'Este código já atingiu o número máximo de dispositivos permitidos. Se precisares de ajuda, contacta-nos por email.'
-      })
+      body: JSON.stringify({ valido: true })
     };
 
   } catch (e) {
-    return {
-      statusCode: 500,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ valido: false, erro: 'Erro no servidor. Tenta novamente em breve.' })
-    };
+    return { statusCode: 500, body: JSON.stringify({ valido: false, erro: e.message }) };
   }
 };
