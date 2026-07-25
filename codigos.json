@@ -1998,5 +1998,10 @@
   "ESS-VMP5-5BTH-8FWC": {
     "usado": false,
     "dispositivo": null
+  },
+  "ESS-8XWZ-E5VL-7FFP": {
+    "dispositivos": [],
+    "criadoEm": "2026-07-25T11:34:36.975Z",
+    "activadoEm": null
   }
 }
