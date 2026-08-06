@@ -1999,12 +1999,12 @@
     "usado": false,
     "dispositivo": null
   },
-    "ESS-A8ZF-4MUZ-RZF8": {
+  "ESS-A8ZF-4MUZ-RZF8": {
     "dispositivos": [],
     "criadoEm": "2026-07-13T11:34:36.975Z",
     "activadoEm": null
   },
-    "ESS-GZDL-PDUU-BTFL": {
+  "ESS-GZDL-PDUU-BTFL": {
     "dispositivos": [],
     "criadoEm": "2026-07-13T11:34:36.975Z",
     "activadoEm": null
@@ -2017,6 +2017,11 @@
   "ESS-8XWZ-E5VL-7FFP": {
     "dispositivos": [],
     "criadoEm": "2026-07-25T11:34:36.975Z",
+    "activadoEm": null
+  },
+  "ESS-ZF9L-4AR5-ZF3C": {
+    "dispositivos": [],
+    "criadoEm": "2026-08-06T07:35:29.001Z",
     "activadoEm": null
   }
 }
