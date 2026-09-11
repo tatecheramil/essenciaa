@@ -13095,7 +13095,7 @@ function calcularComLang() {
     try{
       var resp=await fetch('/.netlify/functions/validate-code',{
         method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({codigo:codigo,dispositivo:getDeviceId()})
+        body:JSON.stringify({codigo:codigo,deviceId:getDeviceId()})
       });
       var data=await resp.json();
       if(data.valido){
