@@ -2037,8 +2037,10 @@
     "activadoEm": "2026-09-11T19:54:18.571Z"
   },
   "ESS-F5PF-5MAZ-NNLM": {
-    "dispositivos": [],
+    "dispositivos": [
+      "dev_1789155424648_kifl7ye44"
+    ],
     "criadoEm": "2026-09-11T19:35:04.122Z",
-    "activadoEm": null
+    "activadoEm": "2026-09-11T19:55:54.284Z"
   }
 }
