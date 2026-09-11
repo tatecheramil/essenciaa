@@ -2030,9 +2030,11 @@
     "activadoEm": null
   },
   "ESS-96BU-QC96-Q2QD": {
-    "dispositivos": [],
+    "dispositivos": [
+      "dev_1786455136031_we7912oaz"
+    ],
     "criadoEm": "2026-09-10T19:59:27.954Z",
-    "activadoEm": null
+    "activadoEm": "2026-09-11T19:54:18.571Z"
   },
   "ESS-F5PF-5MAZ-NNLM": {
     "dispositivos": [],
